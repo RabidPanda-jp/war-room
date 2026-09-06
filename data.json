@@ -330,6 +330,74 @@
     "record": "0-0-0",
     "pf": "0.00"
    }
+  ],
+  "schedule": [
+   {
+    "week": 1,
+    "oppName": "GIBBBBBYYYY",
+    "myPts": 103.75,
+    "oppPts": 115.43
+   },
+   {
+    "week": 5,
+    "oppName": "KING VERGA",
+    "myPts": 103.70,
+    "oppPts": 113.47
+   },
+   {
+    "week": 6,
+    "oppName": "Kade",
+    "myPts": 90.80,
+    "oppPts": 87.78
+   },
+   {
+    "week": 7,
+    "oppName": "Mostaza Picante",
+    "myPts": 92.95,
+    "oppPts": 110.56
+   },
+   {
+    "week": 8,
+    "oppName": "Tight End Danny",
+    "myPts": 81.64,
+    "oppPts": 101.05
+   },
+   {
+    "week": 9,
+    "oppName": "FrostFosterHome",
+    "myPts": 105.98,
+    "oppPts": 92.23
+   },
+   {
+    "week": 10,
+    "oppName": "First Down Syndrome",
+    "myPts": 105.10,
+    "oppPts": 96.78
+   },
+   {
+    "week": 11,
+    "oppName": "The White Man's Run Game",
+    "myPts": 70.73,
+    "oppPts": 87.64
+   },
+   {
+    "week": 12,
+    "oppName": "GIBBBBBYYYY",
+    "myPts": 105.64,
+    "oppPts": 112.69
+   },
+   {
+    "week": 13,
+    "oppName": "OJ Simpsons Glove Company",
+    "myPts": 94.07,
+    "oppPts": 107.00
+   },
+   {
+    "week": 14,
+    "oppName": "Serving Punt",
+    "myPts": 90.23,
+    "oppPts": 102.69
+   }
   ]
  },
  "brief": {
