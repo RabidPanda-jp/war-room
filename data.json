@@ -1,15 +1,15 @@
 {
- "updatedAt": "2026-09-05T22:14:44-07:00",
+ "updatedAt": "2026-09-06T01:52:35-07:00",
  "week": 1,
  "yahoo": {
-  "updatedAt": "2026-09-05",
+  "updatedAt": "2026-09-06",
   "week": 1,
   "opponent": "GIBBBBBYYYY",
   "oppManager": "Arshdeep",
   "record": "0-0-0",
   "oppRecord": "0-0-0",
-  "myProj": 103.72,
-  "oppProj": 115.41,
+  "myProj": 103.75,
+  "oppProj": 115.43,
   "myPts": 0,
   "oppPts": 0,
   "winProb": "39% underdog",
@@ -21,7 +21,7 @@
     "pos": "QB",
     "game": "Thu 8:35p vs SF",
     "status": "",
-    "proj": 16.51,
+    "proj": 16.49,
     "pts": null
    },
    {
@@ -31,7 +31,7 @@
     "pos": "RB",
     "game": "Sun 1:00p vs TB",
     "status": "",
-    "proj": 13.89,
+    "proj": 13.88,
     "pts": null
    },
    {
@@ -41,7 +41,7 @@
     "pos": "RB",
     "game": "Sun 1:00p @ DET",
     "status": "",
-    "proj": 11.51,
+    "proj": 11.49,
     "pts": null
    },
    {
@@ -51,7 +51,7 @@
     "pos": "WR",
     "game": "Sun 8:20p @ NYG",
     "status": "",
-    "proj": 13.0,
+    "proj": 13.03,
     "pts": null
    },
    {
@@ -61,7 +61,7 @@
     "pos": "WR",
     "game": "Sun 1:00p @ TEN",
     "status": "",
-    "proj": 9.88,
+    "proj": 9.86,
     "pts": null
    },
    {
@@ -71,7 +71,7 @@
     "pos": "WR",
     "game": "Sun 1:00p vs CLE",
     "status": "",
-    "proj": 9.47,
+    "proj": 9.48,
     "pts": null
    },
    {
@@ -81,7 +81,7 @@
     "pos": "TE",
     "game": "Sun 8:20p vs DAL",
     "status": "",
-    "proj": 7.39,
+    "proj": 7.41,
     "pts": null
    },
    {
@@ -91,7 +91,7 @@
     "pos": "RB",
     "game": "Sun 1:00p @ JAX",
     "status": "",
-    "proj": 10.1,
+    "proj": 10.12,
     "pts": null
    },
    {
@@ -111,7 +111,7 @@
     "pos": "DEF",
     "game": "Thu 8:35p @ LAR",
     "status": "",
-    "proj": 4.32,
+    "proj": 4.34,
     "pts": null
    }
   ],
@@ -123,7 +123,7 @@
     "pos": "WR",
     "game": "Sun 4:25p @ LAC",
     "status": "",
-    "proj": null,
+    "proj": 7.55,
     "pts": null
    },
    {
@@ -133,7 +133,7 @@
     "pos": "RB",
     "game": "Thu 8:35p vs SF",
     "status": "",
-    "proj": null,
+    "proj": 8.28,
     "pts": null
    },
    {
@@ -143,7 +143,7 @@
     "pos": "WR",
     "game": "Sun 4:25p vs WAS",
     "status": "",
-    "proj": null,
+    "proj": 6.24,
     "pts": null
    },
    {
@@ -153,7 +153,7 @@
     "pos": "RB",
     "game": "Sun 4:25p vs WAS",
     "status": "",
-    "proj": null,
+    "proj": 4.67,
     "pts": null
    },
    {
@@ -163,7 +163,7 @@
     "pos": "TE",
     "game": "Sun 4:25p @ PHI",
     "status": "",
-    "proj": null,
+    "proj": 5.62,
     "pts": null
    }
   ],
@@ -175,7 +175,7 @@
     "pos": "QB",
     "game": "Sun 1:00p @ IND",
     "status": "",
-    "proj": 18.77,
+    "proj": 18.78,
     "pts": null
    },
    {
@@ -195,7 +195,7 @@
     "pos": "RB",
     "game": "Sun 4:25p vs MIA",
     "status": "Q",
-    "proj": 12.58,
+    "proj": 12.59,
     "pts": null
    },
    {
@@ -205,7 +205,7 @@
     "pos": "WR",
     "game": "Sun 8:20p vs DAL",
     "status": "Q",
-    "proj": 11.63,
+    "proj": 11.62,
     "pts": null
    },
    {
@@ -215,7 +215,7 @@
     "pos": "WR",
     "game": "Sun 4:25p @ PHI",
     "status": "",
-    "proj": 9.59,
+    "proj": 9.63,
     "pts": null
    },
    {
@@ -225,7 +225,7 @@
     "pos": "WR",
     "game": "Sun 4:25p @ MIN",
     "status": "",
-    "proj": 9.07,
+    "proj": 9.06,
     "pts": null
    },
    {
@@ -235,7 +235,7 @@
     "pos": "TE",
     "game": "Sun 1:00p vs NO",
     "status": "Q",
-    "proj": 8.87,
+    "proj": 8.85,
     "pts": null
    },
    {
