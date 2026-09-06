@@ -458,24 +458,33 @@ function gameState(kick, team, now) {
     phase: "unknown",
     text: ""
   };
+  const base = {
+    opp: k.opp,
+    home: k.home,
+    tv: k.tv
+  };
   const dt = k.at.getTime() - now;
   if (dt > 24 * 3600e3) return {
+    ...base,
     phase: "pre",
     at: k.at,
     text: kickLabel(k.at)
   };
   if (dt > 0) return {
+    ...base,
     phase: dt < LOCK_SOON_MS ? "soon" : "pre",
     at: k.at,
     text: `in ${rel(dt)}`,
     soon: dt < LOCK_SOON_MS
   };
   if (-dt < GAME_LEN_MS) return {
+    ...base,
     phase: "live",
     at: k.at,
     text: "LIVE"
   };
   return {
+    ...base,
     phase: "final",
     at: k.at,
     text: "FINAL"
@@ -530,16 +539,19 @@ async function loadKickoffs(season, week) {
       const a = x.team.abbreviation;
       return ESPN_TO_SLEEPER[a] || a;
     };
+    const tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
     if (home && away) {
       map[ab(home)] = {
         at,
         opp: ab(away),
-        home: true
+        home: true,
+        tv
       };
       map[ab(away)] = {
         at,
         opp: ab(home),
-        home: false
+        home: false,
+        tv
       };
     }
   });
@@ -966,16 +978,22 @@ function Chip({
   }, children);
 }
 function Kick({
-  g
+  g,
+  showTv
 }) {
   if (!g?.text) return null;
   const c = g.phase === "soon" ? AMBER : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
-  return React.createElement("span", {
+  return React.createElement("span", null, React.createElement("span", {
     style: {
       color: c,
       fontWeight: g.phase === "soon" || g.phase === "live" ? 700 : 400
     }
-  }, g.text);
+  }, g.text), showTv && g.tv && g.phase !== "final" && React.createElement("span", {
+    style: {
+      color: MUTE,
+      fontWeight: 400
+    }
+  }, " \xB7 ", g.tv));
 }
 function PlayerCell({
   r,
@@ -989,6 +1007,7 @@ function PlayerCell({
     }
   }, "\u2014");
   const done = g?.phase === "final";
+  const oppText = r.bye ? "BYE" : g?.opp ? `${g.home ? "vs" : "@"} ${g.opp}` : "";
   return React.createElement("div", {
     style: {
       textAlign: align,
@@ -1007,7 +1026,12 @@ function PlayerCell({
     }
   }, full ? r.name : r.status && r.pos !== "DEF" ? r.name.split(/\s+/).slice(1).join(" ") : shortName(r.name, r.pos), React.createElement(Status, {
     s: r.status
-  })), React.createElement("div", {
+  }), r.pos !== "DEF" && React.createElement("span", {
+    style: {
+      color: MUTE,
+      fontWeight: 500
+    }
+  }, " \xB7 ", r.team)), React.createElement("div", {
     style: {
       fontSize: 12,
       color: MUTE,
@@ -1015,8 +1039,9 @@ function PlayerCell({
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, r.team, r.bye ? " · BYE" : g?.text ? React.createElement(React.Fragment, null, " \xB7 ", React.createElement(Kick, {
-    g: g
+  }, oppText, g?.text ? React.createElement(React.Fragment, null, " \xB7 ", React.createElement(Kick, {
+    g: g,
+    showTv: full
   })) : ""));
 }
 const Num = ({

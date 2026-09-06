@@ -66,11 +66,12 @@ const rel = ms => {
 function gameState(kick, team, now) {
   const k = kick?.[team];
   if (!k) return { phase: "unknown", text: "" };
+  const base = { opp: k.opp, home: k.home, tv: k.tv };
   const dt = k.at.getTime() - now;
-  if (dt > 24 * 3600e3) return { phase: "pre", at: k.at, text: kickLabel(k.at) };
-  if (dt > 0) return { phase: dt < LOCK_SOON_MS ? "soon" : "pre", at: k.at, text: `in ${rel(dt)}`, soon: dt < LOCK_SOON_MS };
-  if (-dt < GAME_LEN_MS) return { phase: "live", at: k.at, text: "LIVE" };
-  return { phase: "final", at: k.at, text: "FINAL" };
+  if (dt > 24 * 3600e3) return { ...base, phase: "pre", at: k.at, text: kickLabel(k.at) };
+  if (dt > 0) return { ...base, phase: dt < LOCK_SOON_MS ? "soon" : "pre", at: k.at, text: `in ${rel(dt)}`, soon: dt < LOCK_SOON_MS };
+  if (-dt < GAME_LEN_MS) return { ...base, phase: "live", at: k.at, text: "LIVE" };
+  return { ...base, phase: "final", at: k.at, text: "FINAL" };
 }
 const started = g => g?.phase === "live" || g?.phase === "final";
 const store = {
@@ -101,9 +102,10 @@ async function loadKickoffs(season, week) {
     const at = new Date(c.date || ev.date);
     const home = c.competitors.find(x => x.homeAway === "home"), away = c.competitors.find(x => x.homeAway === "away");
     const ab = x => { const a = x.team.abbreviation; return ESPN_TO_SLEEPER[a] || a; };
+    const tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
     if (home && away) {
-      map[ab(home)] = { at, opp: ab(away), home: true };
-      map[ab(away)] = { at, opp: ab(home), home: false };
+      map[ab(home)] = { at, opp: ab(away), home: true, tv };
+      map[ab(away)] = { at, opp: ab(home), home: false, tv };
     }
   });
   store.set(key, { at: Date.now(), map });
@@ -316,23 +318,30 @@ function Status({ s }) {
 function Chip({ children, tone = MUTE, bg = CHIP_BG, style }) {
   return <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 11, color: tone, background: bg, padding: "2px 6px", borderRadius: 4, whiteSpace: "nowrap", ...style }}>{children}</span>;
 }
-function Kick({ g }) { // kickoff / lock state text
+function Kick({ g, showTv }) { // kickoff / lock state text
   if (!g?.text) return null;
   const c = g.phase === "soon" ? AMBER : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
-  return <span style={{ color: c, fontWeight: g.phase === "soon" || g.phase === "live" ? 700 : 400 }}>{g.text}</span>;
+  return (
+    <span>
+      <span style={{ color: c, fontWeight: g.phase === "soon" || g.phase === "live" ? 700 : 400 }}>{g.text}</span>
+      {showTv && g.tv && g.phase !== "final" && <span style={{ color: MUTE, fontWeight: 400 }}> · {g.tv}</span>}
+    </span>
+  );
 }
 
 // ---------- screens ----------
 function PlayerCell({ r, g, align = "left", full }) {
   if (!r) return <div style={{ color: MUTE }}>—</div>;
   const done = g?.phase === "final";
+  const oppText = r.bye ? "BYE" : g?.opp ? `${g.home ? "vs" : "@"} ${g.opp}` : "";
   return (
     <div style={{ textAlign: align, minWidth: 0, opacity: done ? 0.55 : 1 }}>
       <div style={{ fontFamily: cond, fontWeight: 600, fontSize: full ? 15 : 14, lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {full ? r.name : r.status && r.pos !== "DEF" ? r.name.split(/\s+/).slice(1).join(" ") : shortName(r.name, r.pos)}<Status s={r.status} />
+        {r.pos !== "DEF" && <span style={{ color: MUTE, fontWeight: 500 }}> · {r.team}</span>}
       </div>
       <div style={{ fontSize: 12, color: MUTE, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-        {r.team}{r.bye ? " · BYE" : g?.text ? <> · <Kick g={g} /></> : ""}
+        {oppText}{g?.text ? <> · <Kick g={g} showTv={full} /></> : ""}
       </div>
     </div>
   );
