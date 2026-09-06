@@ -62,16 +62,28 @@ const rel = ms => {
   const d = Math.floor(h / 24);
   return `${d}d ${h % 24}h`;
 };
+// "Q3 8:42" / "Half" / "OT" style clock for a live game, falling back to a bare "LIVE" if ESPN hasn't given us a clock yet
+function liveText(k) {
+  if (k.halftime) return "Half";
+  if (k.period) {
+    const q = k.period <= 4 ? `Q${k.period}` : k.period === 5 ? "OT" : `OT${k.period - 4}`;
+    return k.clock ? `${q} ${k.clock}` : q;
+  }
+  return "LIVE";
+}
 // game state for a player row given a kickoff map and "now"
 function gameState(kick, team, now) {
   const k = kick?.[team];
   if (!k) return { phase: "unknown", text: "" };
-  const base = { opp: k.opp, home: k.home, tv: k.tv };
+  const base = { opp: k.opp, home: k.home, tv: k.tv, myScore: k.myScore, oppScore: k.oppScore };
   const dt = k.at.getTime() - now;
   if (dt > 24 * 3600e3) return { ...base, phase: "pre", at: k.at, text: kickLabel(k.at) };
-  if (dt > 0) return { ...base, phase: dt < LOCK_SOON_MS ? "soon" : "pre", at: k.at, text: `in ${rel(dt)}`, soon: dt < LOCK_SOON_MS };
-  if (-dt < GAME_LEN_MS) return { ...base, phase: "live", at: k.at, text: "LIVE" };
-  return { ...base, phase: "final", at: k.at, text: "FINAL" };
+  if (dt > 0 && k.state !== "in" && k.state !== "post") return { ...base, phase: dt < LOCK_SOON_MS ? "soon" : "pre", at: k.at, text: `in ${rel(dt)}`, soon: dt < LOCK_SOON_MS };
+  if (k.state === "post" || (!k.state && -dt >= GAME_LEN_MS)) {
+    const score = k.myScore != null && k.oppScore != null ? ` ${k.myScore}-${k.oppScore}` : "";
+    return { ...base, phase: "final", at: k.at, text: `FINAL${score}` };
+  }
+  return { ...base, phase: "live", at: k.at, text: liveText(k) };
 }
 const started = g => g?.phase === "live" || g?.phase === "final";
 const store = {
@@ -89,10 +101,11 @@ async function loadData() {
 
 // ---------- schedule / kickoffs ----------
 const ESPN_TO_SLEEPER = { WSH: "WAS", JAC: "JAX", LA: "LAR" };
-async function loadKickoffs(season, week) {
+const TV_SHORT = { "Prime Video": "Prime" };
+async function loadKickoffs(season, week, force) {
   const key = `wr_kick_${season}_${week}`;
   const cached = store.get(key);
-  if (cached && Date.now() - cached.at < 6 * 3600e3) return Object.fromEntries(Object.entries(cached.map).map(([t, k]) => [t, { ...k, at: new Date(k.at) }]));
+  if (!force && cached && Date.now() - cached.at < 6 * 3600e3) return Object.fromEntries(Object.entries(cached.map).map(([t, k]) => [t, { ...k, at: new Date(k.at) }]));
   const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${week}&seasontype=2&dates=${season}&limit=100`);
   if (!r.ok) throw new Error(`schedule ${r.status}`);
   const j = await r.json();
@@ -102,10 +115,16 @@ async function loadKickoffs(season, week) {
     const at = new Date(c.date || ev.date);
     const home = c.competitors.find(x => x.homeAway === "home"), away = c.competitors.find(x => x.homeAway === "away");
     const ab = x => { const a = x.team.abbreviation; return ESPN_TO_SLEEPER[a] || a; };
-    const tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
+    let tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
+    if (tv) Object.entries(TV_SHORT).forEach(([full, short]) => { tv = tv.replace(full, short); });
+    const status = c.status || ev.status;
+    const state = status?.type?.state || null; // 'pre' | 'in' | 'post'
+    const halftime = status?.type?.name === "STATUS_HALFTIME";
+    const period = status?.period || null, clock = status?.displayClock || null;
+    const hs = home?.score != null ? Number(home.score) : null, as = away?.score != null ? Number(away.score) : null;
     if (home && away) {
-      map[ab(home)] = { at, opp: ab(away), home: true, tv };
-      map[ab(away)] = { at, opp: ab(home), home: false, tv };
+      map[ab(home)] = { at, opp: ab(away), home: true, tv, state, halftime, period, clock, myScore: hs, oppScore: as };
+      map[ab(away)] = { at, opp: ab(home), home: false, tv, state, halftime, period, clock, myScore: as, oppScore: hs };
     }
   });
   store.set(key, { at: Date.now(), map });
@@ -338,7 +357,7 @@ function PlayerCell({ r, g, align = "left", full }) {
     <div style={{ textAlign: align, minWidth: 0, opacity: done ? 0.55 : 1 }}>
       <div style={{ fontFamily: cond, fontWeight: 600, fontSize: full ? 15 : 14, lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {full ? r.name : r.status && r.pos !== "DEF" ? r.name.split(/\s+/).slice(1).join(" ") : shortName(r.name, r.pos)}<Status s={r.status} />
-        {r.pos !== "DEF" && <span style={{ color: MUTE, fontWeight: 500 }}> · {r.team}</span>}
+        {r.pos !== "DEF" && <span style={{ color: MUTE, fontWeight: 500, fontSize: full ? 14 : 13 }}> · {r.team}</span>}
       </div>
       <div style={{ fontSize: 12, color: MUTE, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
         {oppText}{g?.text ? <> · <Kick g={g} showTv={full} /></> : ""}
@@ -684,6 +703,11 @@ function App() {
     const t = setInterval(() => { if (document.visibilityState === "visible") refreshSleeper(); }, 60000);
     return () => clearInterval(t);
   }, [anyLive]);
+  useEffect(() => {
+    if (!anyLive || !sl || document.visibilityState !== "visible") return;
+    const t = setInterval(() => { if (document.visibilityState === "visible") loadKickoffs(sl.season, sl.week, true).then(setKick).catch(() => {}); }, 20000);
+    return () => clearInterval(t);
+  }, [anyLive, sl]);
   const opp = useMemo(() => sl?.oppRoster ? slRows(sl, sl.oppRoster, sl.oppMatch) : { starters: [], bench: [] }, [sl]);
   const week = sl?.week ?? data?.week ?? null;
 
