@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#14213D"><title>War room</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<style>html,body{margin:0;background:#E9ECF0} #root{min-height:100vh}</style></head>
+<style>html,body{margin:0;background:#E9ECF0} #root{min-height:100vh}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0B0D12}</style>
+<script>try{var t=localStorage.getItem("wr_dark");var dk=t!==null?JSON.parse(t):matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",dk?"dark":"light");var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",dk?"#0B0D12":"#14213D");}catch(e){}</script>
+</head>
 <body><div id="root"></div>
 <script>/**
  * @license React
@@ -343,15 +346,26 @@ const Copy = ({
 const Check = ({
   size
 }) => I('<path d="M20 6 9 17l-5-5"/>', size);
-const INK = "#14213D",
-  OX = "#6E1F2B",
+const Sun = ({
+  size
+}) => I('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>', size);
+const Moon = ({
+  size
+}) => I('<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>', size);
+const INK = "var(--ink)",
+  OX = "var(--ox)",
   FLAG = "#F2C037",
-  FIELD = "#E9ECF0",
-  PAPER = "#fff",
-  MUTE = "#5C6470",
-  LINE = "#D5D9E0",
-  WIN = "#1E6B3A",
-  TEXT = "#1B1F27";
+  FIELD = "var(--field)",
+  PAPER = "var(--paper)",
+  MUTE = "var(--mute)",
+  LINE = "var(--line)",
+  WIN = "var(--win)",
+  TEXT = "var(--text)",
+  AMBER = "var(--amber)",
+  CHIP_BG = "var(--chip-bg)",
+  HAIRLINE = "var(--hairline)",
+  HILITE = "var(--hilite)",
+  FLAG_TEXT = "#1B1F27";
 const font = `"Barlow", system-ui, -apple-system, sans-serif`;
 const cond = `"Barlow Semi Condensed", "Barlow", system-ui, sans-serif`;
 const CONFIG = {
@@ -804,11 +818,13 @@ function Btn({
   tone = INK,
   disabled,
   ghost,
-  small
+  small,
+  ariaLabel
 }) {
   return React.createElement("button", {
     onClick: onClick,
     disabled: disabled,
+    "aria-label": ariaLabel,
     style: {
       fontFamily: cond,
       fontWeight: 600,
@@ -905,7 +921,7 @@ function Status({
 function Chip({
   children,
   tone = MUTE,
-  bg = "#F1F3F6",
+  bg = CHIP_BG,
   style
 }) {
   return React.createElement("span", {
@@ -926,7 +942,7 @@ function Kick({
   g
 }) {
   if (!g?.text) return null;
-  const c = g.phase === "soon" ? "#7A5A00" : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
+  const c = g.phase === "soon" ? AMBER : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
   return React.createElement("span", {
     style: {
       color: c,
@@ -1101,7 +1117,7 @@ function Matchup({
         gap: 4,
         alignItems: "center",
         padding: "7px 0",
-        borderBottom: `1px solid #EEF0F3`
+        borderBottom: `1px solid ${HAIRLINE}`
       }
     }, React.createElement(PlayerCell, {
       r: a,
@@ -1154,13 +1170,13 @@ function Team({
         gap: 6,
         alignItems: "center",
         padding: "7px 0",
-        borderBottom: `1px solid #EEF0F3`
+        borderBottom: `1px solid ${HAIRLINE}`
       }
     }, React.createElement(Chip, {
       style: {
         textAlign: "center",
         padding: "3px 0",
-        background: r.slot === "BN" || r.slot === "IR" ? "transparent" : "#F1F3F6"
+        background: r.slot === "BN" || r.slot === "IR" ? "transparent" : CHIP_BG
       }
     }, r.slot), React.createElement("div", {
       style: {
@@ -1320,7 +1336,7 @@ function Rules({
       gap: 8,
       fontSize: 14,
       padding: "4px 0",
-      borderBottom: i < rows.length - 1 ? "1px solid #EEF0F3" : "none"
+      borderBottom: i < rows.length - 1 ? `1px solid ${HAIRLINE}` : "none"
     }
   }, React.createElement("span", {
     style: {
@@ -1348,8 +1364,8 @@ function Standings({
       gap: 8,
       alignItems: "baseline",
       padding: "6px 0",
-      borderBottom: `1px solid #EEF0F3`,
-      background: r.mine ? "#F7F8FA" : "transparent",
+      borderBottom: `1px solid ${HAIRLINE}`,
+      background: r.mine ? HILITE : "transparent",
       fontWeight: r.mine ? 700 : 400
     }
   }, React.createElement("div", {
@@ -1391,7 +1407,7 @@ function LineupCard({
     ...r,
     g: gameState(kick, r.team, now)
   })).sort((a, b) => (a.g.at?.getTime() || 9e15) - (b.g.at?.getTime() || 9e15));
-  const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? "#7A5A00" : WIN;
+  const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? AMBER : WIN;
   return React.createElement(Card, {
     style: {
       marginBottom: 10
@@ -1409,7 +1425,7 @@ function LineupCard({
       gap: 8,
       alignItems: "start",
       padding: "7px 0",
-      borderBottom: `1px solid #EEF0F3`,
+      borderBottom: `1px solid ${HAIRLINE}`,
       opacity: r.g.phase === "final" ? 0.55 : 1
     }
   }, React.createElement(Chip, {
@@ -1496,7 +1512,7 @@ function Report({
         fontFamily: cond,
         fontWeight: 700,
         fontSize: 17,
-        color: urgent ? "#7A5A00" : tone,
+        color: urgent ? AMBER : tone,
         marginBottom: 4,
         lineHeight: 1.25
       }
@@ -1513,11 +1529,12 @@ function Report({
           lineHeight: 1.4,
           padding: "3px 0",
           background: hot ? "#FFF6D6" : "transparent",
-          borderRadius: 4
+          borderRadius: 4,
+          color: hot ? FLAG_TEXT : undefined
         }
       }, React.createElement("span", {
         style: {
-          color: MUTE,
+          color: hot ? "#7A5A00" : MUTE,
           fontFamily: cond,
           fontWeight: 600
         }
@@ -1570,6 +1587,16 @@ function App() {
     [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
   const [now, setNow] = useState(Date.now());
+  const [dark, setDark] = useState(() => {
+    const s = store.get("wr_dark");
+    return s == null ? matchMedia("(prefers-color-scheme: dark)").matches : !!s;
+  });
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    store.set("wr_dark", dark);
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", dark ? "#0B0D12" : "#14213D");
+  }, [dark]);
   const yahooRaw = data?.yahoo || null;
   const brief = data?.brief || null,
     waivers = data?.waivers || null,
@@ -1663,10 +1690,10 @@ function App() {
   const nextLock = useMemo(() => {
     const all = [...my.starters.map(r => ({
       ...r,
-      lgName: "Sleeper"
+      teamName: cfg.sleeperTeamName
     })), ...(yahoo?.starters || []).map(r => ({
       ...r,
-      lgName: "Yahoo"
+      teamName: cfg.yahooTeamName
     }))];
     const up = all.map(r => ({
       r,
@@ -1678,9 +1705,9 @@ function App() {
     return {
       at: first.g.at,
       soon: first.g.at.getTime() - now < LOCK_SOON_MS,
-      names: same.map(x => `${shortName(x.r.name, x.r.pos)} (${x.r.lgName[0]})`)
+      names: same.map(x => `${shortName(x.r.name, x.r.pos)} (${x.r.teamName})`)
     };
-  }, [my, yahoo, kick, now]);
+  }, [my, yahoo, kick, now, cfg]);
   const lockedSoonQ = useMemo(() => [...my.starters, ...(yahoo?.starters || [])].filter(r => r.status && gameState(kick, r.team, now).phase === "soon"), [my, yahoo, kick, now]);
   const doNow = brief?.text ? (brief.text.match(/^Do now:\s*(.+)$/gm) || []).map(l => l.replace(/^Do now:\s*/, "")) : [];
   const firstLine = brief?.text?.split("\n")[0] || "";
@@ -1725,7 +1752,7 @@ function App() {
     style: {
       maxWidth: 640,
       margin: "0 auto",
-      padding: "12px 12px 40px"
+      padding: "12px 12px calc(150px + env(safe-area-inset-bottom))"
     }
   }, React.createElement("div", {
     style: {
@@ -1748,7 +1775,23 @@ function App() {
       color: MUTE,
       marginTop: 3
     }
-  }, sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline", " \xB7 ", data ? `brief ${stamp(data.updatedAt)}` : dataBusy ? "loading data…" : "no data yet")), React.createElement(Btn, {
+  }, sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline", " \xB7 ", data ? `brief ${stamp(data.updatedAt)}` : dataBusy ? "loading data…" : "no data yet")), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 6
+    }
+  }, React.createElement(Btn, {
+    ghost: true,
+    small: true,
+    tone: MUTE,
+    ariaLabel: dark ? "Switch to light mode" : "Switch to dark mode",
+    onClick: () => setDark(d => !d)
+  }, dark ? React.createElement(Sun, {
+    size: 14
+  }) : React.createElement(Moon, {
+    size: 14
+  })), React.createElement(Btn, {
     ghost: true,
     small: true,
     tone: MUTE,
@@ -1763,7 +1806,7 @@ function App() {
     style: {
       animation: slBusy || dataBusy ? "spin 1s linear infinite" : "none"
     }
-  }), "Refresh")), nextLock && React.createElement("div", {
+  }), "Refresh"))), nextLock && React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "space-between",
@@ -1773,7 +1816,8 @@ function App() {
       borderRadius: 8,
       padding: "8px 12px",
       marginBottom: 8,
-      fontSize: 13
+      fontSize: 13,
+      color: nextLock.soon ? FLAG_TEXT : TEXT
     }
   }, React.createElement("div", {
     style: {
@@ -1798,7 +1842,8 @@ function App() {
       background: urgent ? FLAG : PAPER,
       borderRadius: 10,
       padding: "12px 14px",
-      marginBottom: 10
+      marginBottom: 10,
+      color: urgent ? FLAG_TEXT : TEXT
     }
   }, firstLine === firstLine.toUpperCase() && !/^GANGSTAS|^GAME OF/.test(firstLine) && React.createElement("div", {
     style: {
@@ -1818,7 +1863,7 @@ function App() {
   }, lockedSoonQ.length, " questionable starter", lockedSoonQ.length > 1 ? "s" : "", " lock", lockedSoonQ.length > 1 ? "" : "s", " ", gameState(kick, lockedSoonQ[0].team, now).text, ": ", lockedSoonQ.map(r => shortName(r.name, r.pos)).join(", "), " \u2014 check inactives"), React.createElement("div", {
     style: {
       fontSize: 12,
-      color: MUTE,
+      color: urgent ? "#7A5A00" : MUTE,
       marginBottom: 4
     }
   }, "Do now \xB7 ", stamp(brief.at)), doNow.map((d, i) => React.createElement("div", {
@@ -1859,7 +1904,8 @@ function App() {
       borderRadius: 6,
       padding: "10px 12px",
       fontSize: 14,
-      marginBottom: 10
+      marginBottom: 10,
+      color: FLAG_TEXT
     }
   }, dataErr), slErr && React.createElement("div", {
     style: {
@@ -1868,63 +1914,10 @@ function App() {
       borderRadius: 6,
       padding: "10px 12px",
       fontSize: 14,
-      marginBottom: 10
+      marginBottom: 10,
+      color: FLAG_TEXT
     }
-  }, "Sleeper: ", slErr), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 6,
-      marginBottom: 8
-    }
-  }, [["sleeper", sl?.league?.name || "Gangstas Paradise", "Sleeper · live", INK], ["yahoo", cfg.yahooLeagueName, yahoo ? `Yahoo · screenshots ${yahooAge === 0 ? "today" : yahooAge + "d old"}` : "Yahoo · no data", OX]].map(([k, n, s, c]) => React.createElement("button", {
-    key: k,
-    onClick: () => setLg(k),
-    style: {
-      textAlign: "left",
-      padding: "10px 12px",
-      borderRadius: 8,
-      border: `2px solid ${c}`,
-      background: lg === k ? c : "transparent",
-      color: lg === k ? "#fff" : c,
-      cursor: "pointer"
-    }
-  }, React.createElement("div", {
-    style: {
-      fontFamily: cond,
-      fontWeight: 800,
-      fontSize: 16,
-      lineHeight: 1.1
-    }
-  }, n), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      opacity: 0.85
-    }
-  }, s)))), React.createElement("div", {
-    style: {
-      display: "flex",
-      borderBottom: `2px solid ${LINE}`,
-      marginBottom: 12
-    }
-  }, tabs.map(([k, l]) => React.createElement("button", {
-    key: k,
-    onClick: () => setView(k),
-    style: {
-      flex: 1,
-      fontFamily: cond,
-      fontWeight: 700,
-      fontSize: 15,
-      padding: "7px 4px",
-      background: "none",
-      border: "none",
-      borderBottom: `3px solid ${view === k ? tone : "transparent"}`,
-      marginBottom: -2,
-      color: view === k ? TEXT : MUTE,
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    }
-  }, l))), view === "matchup" && lg === "sleeper" && (sl ? React.createElement(Matchup, {
+  }, "Sleeper: ", slErr), view === "matchup" && lg === "sleeper" && (sl ? React.createElement(Matchup, {
     tone: INK,
     meName: cfg.sleeperTeamName,
     meRec: myRec,
@@ -2000,7 +1993,7 @@ function App() {
     style: {
       fontSize: 14,
       padding: "5px 0",
-      borderBottom: `1px solid #EEF0F3`
+      borderBottom: `1px solid ${HAIRLINE}`
     }
   }, React.createElement("span", {
     style: {
@@ -2131,7 +2124,7 @@ function App() {
   }, h)))), React.createElement("tbody", null, season.map((r, i) => React.createElement("tr", {
     key: i,
     style: {
-      borderBottom: "1px solid #EEF0F3"
+      borderBottom: `1px solid ${HAIRLINE}`
     }
   }, React.createElement("td", {
     style: {
@@ -2177,7 +2170,81 @@ function App() {
       color: MUTE,
       marginTop: 6
     }
-  }, "Sleeper scores and bench points are computed live from Sleeper; Yahoo rows and lessons come from the Tuesday run."))), React.createElement("style", null, `@keyframes spin{to{transform:rotate(360deg)}} button:focus-visible{outline:3px solid ${FLAG};outline-offset:2px} @media (prefers-reduced-motion:reduce){*{animation:none!important}}`)));
+  }, "Sleeper scores and bench points are computed live from Sleeper; Yahoo rows and lessons come from the Tuesday run."))), React.createElement("style", null, `
+          :root{--field:#E9ECF0;--paper:#fff;--mute:#5C6470;--line:#D5D9E0;--text:#1B1F27;--ink:#14213D;--ox:#6E1F2B;--win:#1E6B3A;--amber:#7A5A00;--chip-bg:#F1F3F6;--hairline:#EEF0F3;--hilite:#F7F8FA}
+          :root[data-theme="dark"]{--field:#0B0D12;--paper:#171A21;--mute:#8A93A3;--line:#2B2F3A;--text:#E7E9EE;--ink:#7C93D8;--ox:#C4677A;--win:#4CAF6B;--amber:#E0B84D;--chip-bg:#232733;--hairline:#242833;--hilite:#1E2129}
+          @keyframes spin{to{transform:rotate(360deg)}} button:focus-visible{outline:3px solid ${FLAG};outline-offset:2px} @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+        `)), React.createElement("div", {
+    style: {
+      position: "fixed",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: PAPER,
+      borderTop: `1px solid ${LINE}`,
+      paddingBottom: "env(safe-area-inset-bottom)",
+      boxShadow: "0 -2px 10px rgba(0,0,0,0.08)"
+    }
+  }, React.createElement("div", {
+    style: {
+      maxWidth: 640,
+      margin: "0 auto",
+      padding: "0 12px"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      borderBottom: `2px solid ${LINE}`
+    }
+  }, tabs.map(([k, l]) => React.createElement("button", {
+    key: k,
+    onClick: () => setView(k),
+    style: {
+      flex: 1,
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 15,
+      padding: "7px 4px",
+      background: "none",
+      border: "none",
+      borderBottom: `3px solid ${view === k ? tone : "transparent"}`,
+      marginBottom: -2,
+      color: view === k ? TEXT : MUTE,
+      cursor: "pointer",
+      whiteSpace: "nowrap"
+    }
+  }, l))), React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 6,
+      padding: "8px 0"
+    }
+  }, [["sleeper", sl?.league?.name || "Gangstas Paradise", "Sleeper · live", INK], ["yahoo", cfg.yahooLeagueName, yahoo ? `Yahoo · screenshots ${yahooAge === 0 ? "today" : yahooAge + "d old"}` : "Yahoo · no data", OX]].map(([k, n, s, c]) => React.createElement("button", {
+    key: k,
+    onClick: () => setLg(k),
+    style: {
+      textAlign: "left",
+      padding: "10px 12px",
+      borderRadius: 8,
+      border: `2px solid ${c}`,
+      background: lg === k ? c : "transparent",
+      color: lg === k ? "#fff" : c,
+      cursor: "pointer"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 800,
+      fontSize: 16,
+      lineHeight: 1.1
+    }
+  }, n), React.createElement("div", {
+    style: {
+      fontSize: 12,
+      opacity: 0.85
+    }
+  }, s)))))));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
   }catch(e){ fail(e.message); }
