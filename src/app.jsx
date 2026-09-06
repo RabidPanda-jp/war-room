@@ -103,7 +103,7 @@ async function loadData() {
 const ESPN_TO_SLEEPER = { WSH: "WAS", JAC: "JAX", LA: "LAR" };
 const TV_SHORT = { "Prime Video": "Prime" };
 async function loadKickoffs(season, week, force) {
-  const key = `wr_kick_${season}_${week}`;
+  const key = `wr_kick2_${season}_${week}`; // v2: adds tv/state/period/clock/score — bump to bust old cached entries
   const cached = store.get(key);
   if (!force && cached && Date.now() - cached.at < 6 * 3600e3) return Object.fromEntries(Object.entries(cached.map).map(([t, k]) => [t, { ...k, at: new Date(k.at) }]));
   const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${week}&seasontype=2&dates=${season}&limit=100`);
