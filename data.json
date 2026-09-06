@@ -1,279 +1,67 @@
 {
- "updatedAt": "2026-09-05T18:45:00-07:00",
+ "updatedAt": "2026-09-05T20:41:02-07:00",
  "week": 1,
  "yahoo": {
   "updatedAt": "2026-09-05",
   "week": 1,
   "opponent": "GIBBBBBYYYY",
   "oppManager": "Arshdeep",
+  "record": "0-0-0",
+  "oppRecord": "0-0-0",
   "myProj": 103.72,
   "oppProj": 115.41,
   "myPts": 0,
   "oppPts": 0,
   "winProb": "39% underdog",
-  "record": "0-0-0",
-  "oppRecord": "0-0-0",
   "starters": [
-   {
-    "slot": "QB",
-    "name": "Matthew Stafford",
-    "team": "LAR",
-    "pos": "QB",
-    "game": "Thu 8:35p vs SF",
-    "status": "",
-    "proj": 16.51,
-    "pts": null
-   },
-   {
-    "slot": "RB",
-    "name": "Chase Brown",
-    "team": "CIN",
-    "pos": "RB",
-    "game": "Sun 1:00p vs TB",
-    "status": "",
-    "proj": 13.89,
-    "pts": null
-   },
-   {
-    "slot": "RB",
-    "name": "Travis Etienne Jr.",
-    "team": "NO",
-    "pos": "RB",
-    "game": "Sun 1:00p @ DET",
-    "status": "",
-    "proj": 11.51,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "George Pickens",
-    "team": "DAL",
-    "pos": "WR",
-    "game": "Sun 8:20p @ NYG",
-    "status": "",
-    "proj": 13,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "Garrett Wilson",
-    "team": "NYJ",
-    "pos": "WR",
-    "game": "Sun 1:00p @ TEN",
-    "status": "",
-    "proj": 9.88,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "Parker Washington",
-    "team": "JAX",
-    "pos": "WR",
-    "game": "Sun 1:00p vs CLE",
-    "status": "",
-    "proj": 9.47,
-    "pts": null
-   },
-   {
-    "slot": "TE",
-    "name": "Isaiah Likely",
-    "team": "NYG",
-    "pos": "TE",
-    "game": "Sun 8:20p vs DAL",
-    "status": "",
-    "proj": 7.39,
-    "pts": null
-   },
-   {
-    "slot": "W/R/T",
-    "name": "Quinshon Judkins",
-    "team": "CLE",
-    "pos": "RB",
-    "game": "Sun 1:00p @ JAX",
-    "status": "",
-    "proj": 10.1,
-    "pts": null
-   },
-   {
-    "slot": "K",
-    "name": "Jason Myers",
-    "team": "SEA",
-    "pos": "K",
-    "game": "Wed 8:20p vs NE",
-    "status": "",
-    "proj": 7.65,
-    "pts": null
-   },
-   {
-    "slot": "DEF",
-    "name": "49ers",
-    "team": "SF",
-    "pos": "DEF",
-    "game": "Thu 8:35p @ LAR",
-    "status": "",
-    "proj": 4.32,
-    "pts": null
-   }
+   {"slot": "QB", "name": "Matthew Stafford", "team": "LAR", "pos": "QB", "game": "Thu 8:35p vs SF", "status": "", "proj": 16.51, "pts": null},
+   {"slot": "RB", "name": "Chase Brown", "team": "CIN", "pos": "RB", "game": "Sun 1:00p vs TB", "status": "", "proj": 13.89, "pts": null},
+   {"slot": "RB", "name": "Travis Etienne Jr.", "team": "NO", "pos": "RB", "game": "Sun 1:00p @ DET", "status": "", "proj": 11.51, "pts": null},
+   {"slot": "WR", "name": "George Pickens", "team": "DAL", "pos": "WR", "game": "Sun 8:20p @ NYG", "status": "", "proj": 13.0, "pts": null},
+   {"slot": "WR", "name": "Garrett Wilson", "team": "NYJ", "pos": "WR", "game": "Sun 1:00p @ TEN", "status": "", "proj": 9.88, "pts": null},
+   {"slot": "WR", "name": "Parker Washington", "team": "JAX", "pos": "WR", "game": "Sun 1:00p vs CLE", "status": "", "proj": 9.47, "pts": null},
+   {"slot": "TE", "name": "Isaiah Likely", "team": "NYG", "pos": "TE", "game": "Sun 8:20p vs DAL", "status": "", "proj": 7.39, "pts": null},
+   {"slot": "W/R/T", "name": "Quinshon Judkins", "team": "CLE", "pos": "RB", "game": "Sun 1:00p @ JAX", "status": "", "proj": 10.1, "pts": null},
+   {"slot": "K", "name": "Jason Myers", "team": "SEA", "pos": "K", "game": "Wed 8:20p vs NE", "status": "", "proj": 7.65, "pts": null},
+   {"slot": "DEF", "name": "49ers", "team": "SF", "pos": "DEF", "game": "Thu 8:35p @ LAR", "status": "", "proj": 4.32, "pts": null}
   ],
   "bench": [
-   {
-    "slot": "BN",
-    "name": "Michael Wilson",
-    "team": "ARI",
-    "pos": "WR",
-    "game": "Sun 4:25p @ LAC",
-    "status": "",
-    "proj": null,
-    "pts": null
-   },
-   {
-    "slot": "BN",
-    "name": "Blake Corum",
-    "team": "LAR",
-    "pos": "RB",
-    "game": "Thu 8:35p vs SF",
-    "status": "",
-    "proj": null,
-    "pts": null
-   },
-   {
-    "slot": "BN",
-    "name": "Makai Lemon",
-    "team": "PHI",
-    "pos": "WR",
-    "game": "Sun 4:25p vs WAS",
-    "status": "",
-    "proj": null,
-    "pts": null
-   },
-   {
-    "slot": "BN",
-    "name": "Tank Bigsby",
-    "team": "PHI",
-    "pos": "RB",
-    "game": "Sun 4:25p vs WAS",
-    "status": "",
-    "proj": null,
-    "pts": null
-   },
-   {
-    "slot": "BN",
-    "name": "Chig Okonkwo",
-    "team": "WAS",
-    "pos": "TE",
-    "game": "Sun 4:25p @ PHI",
-    "status": "",
-    "proj": null,
-    "pts": null
-   }
+   {"slot": "BN", "name": "Michael Wilson", "team": "ARI", "pos": "WR", "game": "Sun 4:25p @ LAC", "status": "", "proj": null, "pts": null},
+   {"slot": "BN", "name": "Blake Corum", "team": "LAR", "pos": "RB", "game": "Thu 8:35p vs SF", "status": "", "proj": null, "pts": null},
+   {"slot": "BN", "name": "Makai Lemon", "team": "PHI", "pos": "WR", "game": "Sun 4:25p vs WAS", "status": "", "proj": null, "pts": null},
+   {"slot": "BN", "name": "Tank Bigsby", "team": "PHI", "pos": "RB", "game": "Sun 4:25p vs WAS", "status": "", "proj": null, "pts": null},
+   {"slot": "BN", "name": "Chig Okonkwo", "team": "WAS", "pos": "TE", "game": "Sun 4:25p @ PHI", "status": "", "proj": null, "pts": null}
   ],
   "opp": [
-   {
-    "slot": "QB",
-    "name": "Lamar Jackson",
-    "team": "BAL",
-    "pos": "QB",
-    "game": "Sun 1:00p @ IND",
-    "status": "",
-    "proj": 18.77,
-    "pts": null
-   },
-   {
-    "slot": "RB",
-    "name": "Jahmyr Gibbs",
-    "team": "DET",
-    "pos": "RB",
-    "game": "Sun 1:00p vs NO",
-    "status": "",
-    "proj": 19.2,
-    "pts": null
-   },
-   {
-    "slot": "RB",
-    "name": "Ashton Jeanty",
-    "team": "LV",
-    "pos": "RB",
-    "game": "Sun 4:25p vs MIA",
-    "status": "Q",
-    "proj": 12.58,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "Malik Nabers",
-    "team": "NYG",
-    "pos": "WR",
-    "game": "Sun 8:20p vs DAL",
-    "status": "Q",
-    "proj": 11.63,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "Terry McLaurin",
-    "team": "WAS",
-    "pos": "WR",
-    "game": "Sun 4:25p @ PHI",
-    "status": "",
-    "proj": 9.59,
-    "pts": null
-   },
-   {
-    "slot": "WR",
-    "name": "Jayden Reed",
-    "team": "GB",
-    "pos": "WR",
-    "game": "Sun 4:25p @ MIN",
-    "status": "",
-    "proj": 9.07,
-    "pts": null
-   },
-   {
-    "slot": "TE",
-    "name": "Sam LaPorta",
-    "team": "DET",
-    "pos": "TE",
-    "game": "Sun 1:00p vs NO",
-    "status": "Q",
-    "proj": 8.87,
-    "pts": null
-   },
-   {
-    "slot": "W/R/T",
-    "name": "Jaylen Warren",
-    "team": "PIT",
-    "pos": "RB",
-    "game": "Sun 1:00p vs ATL",
-    "status": "",
-    "proj": 11.28,
-    "pts": null
-   },
-   {
-    "slot": "K",
-    "name": "Eddy Pineiro",
-    "team": "SF",
-    "pos": "K",
-    "game": "Thu 8:35p @ LAR",
-    "status": "",
-    "proj": 7.13,
-    "pts": null
-   },
-   {
-    "slot": "DEF",
-    "name": "Seahawks",
-    "team": "SEA",
-    "pos": "DEF",
-    "game": "Wed 8:20p vs NE",
-    "status": "",
-    "proj": 7.29,
-    "pts": null
-   }
+   {"slot": "QB", "name": "Lamar Jackson", "team": "BAL", "pos": "QB", "game": "Sun 1:00p @ IND", "status": "", "proj": 18.77, "pts": null},
+   {"slot": "RB", "name": "Jahmyr Gibbs", "team": "DET", "pos": "RB", "game": "Sun 1:00p vs NO", "status": "", "proj": 19.2, "pts": null},
+   {"slot": "RB", "name": "Ashton Jeanty", "team": "LV", "pos": "RB", "game": "Sun 4:25p vs MIA", "status": "Q", "proj": 12.58, "pts": null},
+   {"slot": "WR", "name": "Malik Nabers", "team": "NYG", "pos": "WR", "game": "Sun 8:20p vs DAL", "status": "Q", "proj": 11.63, "pts": null},
+   {"slot": "WR", "name": "Terry McLaurin", "team": "WAS", "pos": "WR", "game": "Sun 4:25p @ PHI", "status": "", "proj": 9.59, "pts": null},
+   {"slot": "WR", "name": "Jayden Reed", "team": "GB", "pos": "WR", "game": "Sun 4:25p @ MIN", "status": "", "proj": 9.07, "pts": null},
+   {"slot": "TE", "name": "Sam LaPorta", "team": "DET", "pos": "TE", "game": "Sun 1:00p vs NO", "status": "Q", "proj": 8.87, "pts": null},
+   {"slot": "W/R/T", "name": "Jaylen Warren", "team": "PIT", "pos": "RB", "game": "Sun 1:00p vs ATL", "status": "", "proj": 11.28, "pts": null},
+   {"slot": "K", "name": "Eddy Pineiro", "team": "SF", "pos": "K", "game": "Thu 8:35p @ LAR", "status": "", "proj": 7.13, "pts": null},
+   {"slot": "DEF", "name": "Seahawks", "team": "SEA", "pos": "DEF", "game": "Wed 8:20p vs NE", "status": "", "proj": 7.29, "pts": null}
   ],
-  "standings": []
+  "standings": [
+   {"team": "Serving Punt", "record": "0-0-0", "pf": "0.00"},
+   {"team": "The White Man's Run Game", "record": "0-0-0", "pf": "0.00"},
+   {"team": "GIBBBBBYYYY", "record": "0-0-0", "pf": "0.00"},
+   {"team": "Bullseye simarpal", "record": "0-0-0", "pf": "0.00"},
+   {"team": "Mostaza Picante", "record": "0-0-0", "pf": "0.00"},
+   {"team": "FrostFosterHome", "record": "0-0-0", "pf": "0.00"},
+   {"team": "Kade", "record": "0-0-0", "pf": "0.00"},
+   {"team": "Tight End Danny", "record": "0-0-0", "pf": "0.00"},
+   {"team": "KING VERGA", "record": "0-0-0", "pf": "0.00"},
+   {"team": "First Down Syndrome", "record": "0-0-0", "pf": "0.00"},
+   {"team": "OJ Simpsons Glove Company", "record": "0-0-0", "pf": "0.00"},
+   {"team": "BigDoughSummers", "record": "0-0-0", "pf": "0.00"}
+  ]
  },
  "brief": {
-  "text": "GANGSTAS PARADISE (Sleeper) \u2014 Lineup is set; four Q tags, none look real yet\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none \u2014 first lock is Sun 10:00 AM PT\nLineup: no changes. Higgins (heel) and Flowers (quad) both expected to play; first official reports Wed. If Higgins is out, start Diggs. If Flowers is out, start Diggs. Tuten was illness only. Downs (calf) is practicing but has the weakest hold \u2014 if he's limited Friday, flip to Diggs.\n\nGAME OF THROWS (Yahoo) \u2014 Three players lock before Sunday; DEF is the weak spot\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none. Early locks: Myers Wed 5:20 PM PT (SEA vs NE); Stafford, Corum, 49ers DEF Thu 5:35 PM PT (SF @ LAR, Australia)\nLineup: no changes. Judkins stays at FLEX \u2014 if he's out, start Bigsby. 49ers DEF is the lowest-projected slot (4.32) with Kittle and Bosa back for LAR \u2014 worth a DEF stream on the Tuesday run.\n\nFYI: Chase Brown (both teams) has no injury news; Cincinnati's WRs are banged up, which pushes work his way. Judkins vs JAX DEF is a direct collision between your two teams Sunday.\nData: Sleeper live \u00b7 Yahoo screenshots from 2026-09-05",
-  "at": "2026-09-05T18:45:00-07:00",
+  "text": "GANGSTAS PARADISE (Sleeper) — Nothing new since Saturday afternoon; Tuten's Q tag is gone, Higgins/Flowers/Downs still Q, first real reports Wed\nDo now: nothing — lineup is set\nLocks next 24h: none — nothing you own plays before Sun 10:00 AM PT (opp's Henderson plays Wed 5:20 PM PT)\nLineup: no changes. Higgins (bruised heel) missed Wed+Thu but Taylor calls it minor — if Higgins is out, start Diggs. Flowers (quad) practiced Thu, on track — if Flowers is out, start Diggs. Downs (calf, \"very minor\") — if Downs is out, start Diggs; if two of the three are out, Diggs then Michael Wilson (@ LAC, 1:25 PT). Tuten's illness tag cleared on Sleeper; he stays at FLEX, JAX committee with Rodriguez/Allen is the only risk. Herbert, Hampton, Brown, Strange, Aubrey, JAX DEF: no news, all in.\n\nGAME OF THROWS (Yahoo) — Lineup is set; three players lock before Sunday\nDo now: nothing — lineup is set\nLocks next 24h: none. Early locks: Myers Wed 5:20 PM PT (SEA vs NE); Stafford, 49ers DEF, Corum (bench) Thu 5:35 PM PT (SF @ LAR, Melbourne)\nLineup: no changes. Stafford was a full camp participant, no back flare-up. Etienne is the clear NO lead with Kamara (MCL) likely out — start him with confidence. Judkins is fully back from the Dec fibula surgery and stays at FLEX — if Judkins is out, start Michael Wilson (half PPR, a real WR2 beats a backup RB). Pickens, G. Wilson, P. Washington, Likely: no news. 49ers DEF @ LAR is still your weakest slot (4.32) — nothing to do until the Tuesday waiver run.\n\nFYI: Chase Brown (both teams) is clean and gets more work if Chase/Higgins sit; Michael Wilson is your first non-Diggs option on both benches; four Jaguars across the two teams (Tuten, Strange, JAX DEF / P. Washington) and Judkins @ JAX collides with your JAX DEF. Sleeper opp AdufortheWin84 (proj 122.48 vs your 130.15, 56%) has Henderson (ankle) who missed Thu and Sat practice ahead of Wed night — Stevenson would start; CMC is fully healthy. Yahoo opp Arshdeep (115.41 vs 103.72) carries three Qs: Jeanty (ankle, HC optimistic), Nabers (knee, back in team drills), LaPorta (hip, practicing since Aug 25).\nData: Sleeper live · Yahoo screenshots from 2026-09-05 (read from the project — Drive \"War room\" folder is empty, drop them there for future runs)",
+  "at": "2026-09-05T20:41:02-07:00",
   "mode": "daily"
  },
  "waivers": null,
