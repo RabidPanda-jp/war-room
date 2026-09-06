@@ -635,7 +635,7 @@ function App() {
   const [data, setData] = useState(null), [dataErr, setDataErr] = useState(""), [dataBusy, setDataBusy] = useState(false), [dataCached, setDataCached] = useState(false);
   const [lg, setLg] = useState("sleeper"), [view, setView] = useState("matchup");
   const [sl, setSl] = useState(null), [slErr, setSlErr] = useState(""), [slBusy, setSlBusy] = useState(false);
-  const [kick, setKick] = useState(null), [ahead, setAhead] = useState(null), [history, setHistory] = useState([]);
+  const [kickRaw, setKick] = useState(null), [ahead, setAhead] = useState(null), [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
   const [fullSchedule, setFullSchedule] = useState(null);
   const [scheduleOpen, setScheduleOpen] = useState(false);
@@ -652,6 +652,16 @@ function App() {
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
   const lineup = data?.lineup || {};
   const analysis = data?.analysis || {};
+  // data.json's broadcasts (from the scheduled task, sourced off nfl.com/schedules) take priority over ESPN's
+  // own broadcasts/geoBroadcasts fields, which are undocumented and inconsistent — this is what actually shows.
+  const kick = useMemo(() => {
+    if (!kickRaw) return kickRaw;
+    const bc = data?.broadcasts;
+    if (!bc) return kickRaw;
+    const out = {};
+    Object.entries(kickRaw).forEach(([team, k]) => { out[team] = bc[team] ? { ...k, tv: bc[team] } : k; });
+    return out;
+  }, [kickRaw, data]);
 
   const refreshData = useCallback(async () => {
     setDataBusy(true); setDataErr("");
