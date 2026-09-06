@@ -1,8 +1,8 @@
 {
- "updatedAt": "2026-09-06T09:09:44-07:00",
+ "updatedAt": "2026-09-06T13:25:29-07:00",
  "week": 1,
  "yahoo": {
-  "updatedAt": "2026-09-05",
+  "updatedAt": "2026-09-06",
   "week": 1,
   "opponent": "GIBBBBBYYYY",
   "oppManager": "Arshdeep",
@@ -339,15 +339,33 @@
     "oppPts": 115.43
    },
    {
+    "week": 2,
+    "oppName": "OJ Simpsons Glove Company",
+    "myPts": 104.73,
+    "oppPts": 110.58
+   },
+   {
+    "week": 3,
+    "oppName": "Serving Punt",
+    "myPts": 105.25,
+    "oppPts": 110.44
+   },
+   {
+    "week": 4,
+    "oppName": "BigDoughSummers",
+    "myPts": 103.84,
+    "oppPts": 108.14
+   },
+   {
     "week": 5,
     "oppName": "KING VERGA",
-    "myPts": 103.70,
+    "myPts": 103.7,
     "oppPts": 113.47
    },
    {
     "week": 6,
     "oppName": "Kade",
-    "myPts": 90.80,
+    "myPts": 90.8,
     "oppPts": 87.78
    },
    {
@@ -371,7 +389,7 @@
    {
     "week": 10,
     "oppName": "First Down Syndrome",
-    "myPts": 105.10,
+    "myPts": 105.1,
     "oppPts": 96.78
    },
    {
@@ -390,7 +408,7 @@
     "week": 13,
     "oppName": "OJ Simpsons Glove Company",
     "myPts": 94.07,
-    "oppPts": 107.00
+    "oppPts": 107.0
    },
    {
     "week": 14,
@@ -401,9 +419,9 @@
   ]
  },
  "brief": {
-  "text": "GANGSTAS PARADISE (Sleeper) \u2014 lineup locked in, Higgins/Flowers/Downs/Tuten all still Questionable but trending to play\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none \u2014 first kickoff is Fri 5:00 PM PT (Herbert, Hampton vs KC, S\u00e3o Paulo), five days out\nLineup, by kickoff: Herbert (QB, LAC) \u2014 start, Fri 5:00 PM PT vs KC, no news. Hampton (RB, LAC) \u2014 start, same game; backup Mitchell/Vidal, no threat. Chase Brown (RB, CIN) \u2014 start, Sun 10:00 AM PT vs TB; backup Perine, no injury news. Higgins (WR, CIN, Q \u2014 heel contusion, still minor, no change since Friday) \u2014 start, Sun 10:00 AM PT. Flowers (WR, BAL, Q \u2014 quad, still trending to play, no change) \u2014 start, Sun 10:00 AM PT. Strange (TE, JAX) \u2014 start, Sun 10:00 AM PT vs CLE. Tuten (FLEX RB, JAX, Q \u2014 still just Questionable off the 9/2 illness, no formal downgrade found) \u2014 start, Sun 10:00 AM PT. Downs (FLEX WR, IND, Q \u2014 calf, still \"very minor,\" no change) \u2014 start, Sun 10:00 AM PT. Jaguars DEF \u2014 start, Sun 10:00 AM PT vs CLE. Aubrey (K, DAL) \u2014 start, Sun 5:20 PM PT @ NYG. If Higgins, Flowers, or Downs is out: start Diggs. If two of them are out: Diggs then Michael Wilson. If Tuten is out: start Woody Marks.\n\nGAME OF THROWS (Yahoo) \u2014 lineup locked in, 39% underdog vs GIBBBBBYYYY, no new screenshots since Friday night\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none \u2014 first kickoff is Wed 5:20 PM PT (Myers vs NE), four days out\nLineup, by kickoff: Myers (K, SEA) \u2014 start, Wed 5:20 PM PT vs NE, no news. Stafford (QB, LAR) \u2014 start, Thu 5:35 PM PT @ LAR host vs SF in Melbourne, no news. 49ers DEF \u2014 start, same Melbourne game; McCaffrey still full-practice/on-track so no game-flow risk. Chase Brown (RB, CIN) \u2014 start, Sun 10:00 AM PT. Etienne (RB, NO) \u2014 start, Sun 10:00 AM PT @ DET; still the clean lead with Kamara out. Judkins (W/R/T, CLE) \u2014 start, Sun 10:00 AM PT @ JAX. G. Wilson (WR, NYJ) \u2014 start, Sun 10:00 AM PT @ TEN. P. Washington (WR, JAX) \u2014 start, Sun 10:00 AM PT vs CLE. Pickens (WR, DAL) \u2014 start, Sun 5:20 PM PT @ NYG. Likely (TE, NYG) \u2014 start, Sun 5:20 PM PT vs DAL. No Qs on this roster, no contingencies needed.\n\nFYI: Chase Brown starts for you in both leagues; your JAX DEF (Sleeper) and Judkins' Browns (Yahoo) collide in the same CLE@JAX game. Sleeper opponent AdufortheWin84's Henderson has gotten worse, not better \u2014 hasn't practiced since Aug 24 and sat out again Saturday, contrary to the earlier \"good to go\" report \u2014 real chance he's inactive Week 1, which helps your matchup; his McCaffrey remains on track. Yahoo opponent Arshdeep's three Qs (Jeanty, Nabers, LaPorta) are still unresolved, no material change since Friday. Michael Pittman Jr. (traded to Pittsburgh) is confirmed playing Week 1 for the Sleeper opponent, minor hamstring only.\nData: Sleeper live \u00b7 Yahoo screenshots from 2026-09-05 (still the newest in Drive \u2014 send fresh ones once Yahoo posts its Week 1 report)",
-  "at": "2026-09-06T09:09:44-07:00",
-  "mode": "sunday"
+  "text": "GANGSTAS PARADISE (Sleeper) \u2014 lineup unchanged, one schedule correction: Herbert/Hampton's Week 1 opponent is ARI at home (SoFi), not KC in Brazil as an earlier report said\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none \u2014 first kickoff is Wed 5:20 PM PT (Myers vs NE on the Yahoo side), about 2.5 days out; Sleeper's first game is Herbert/Hampton Sun 1:25 PM PT vs ARI\nLineup: no changes since this morning. Higgins (heel), Flowers (quad) and Downs (calf) all still just Questionable and trending toward playing, no formal downgrades. Tuten's illness looks resolved (full practice reported) but Jacksonville hasn't lifted the tag \u2014 still starting him. If Higgins, Flowers, or Downs is out: start Diggs. If Tuten is out: start Woody Marks.\nAnalysis highlights: Hampton draws a smash matchup (ARI ~31st vs RB, 28.5 implied). Chase Brown and Higgins face a tough TB run/pass funnel but ride a 50.5-point game total. Judkins isn't in this league \u2014 no flag needed here.\n\nGAME OF THROWS (Yahoo) \u2014 lineup unchanged, still a 39% underdog vs GIBBBBBYYYY with no new screenshots since Friday\nDo now: nothing \u2014 lineup is set\nLocks next 24h: none \u2014 first kickoff is Wed 5:20 PM PT (Myers vs NE), about 2.5 days out\nLineup: no changes. No Qs on this roster. Judkins draws the toughest matchup on either roster (JAX ~2nd vs RB, only 16.75 implied as a road dog) \u2014 no better flex option on your bench, so he stays in, but don't expect a big week. Etienne is a moderate matchup (DET ~14th vs RB) but the clean lead role after Kamara's MCL injury carries him. G. Wilson gets a plus matchup vs. a leaky TEN pass defense, but it's the lowest total on the slate (39.5) so temper expectations.\n\nFYI: Chase Brown starts for you in both leagues and faces the same tough Buccaneers front twice. Your JAX pieces (Sleeper DEF/Strange/Tuten/P.Washington) and Judkins (Yahoo) collide in the same CLE\u2013JAX game \u2014 Cleveland's offense ranked 31st in the NFL last year, which is great for your Jaguars side and bad for Judkins. Sleeper opponent AdufortheWin84's RB TreVeyon Henderson has gotten worse, not better \u2014 12 days without practicing, beat writers now saying the Patriots are planning for him to sit \u2014 this helps your Week 1 matchup if it holds. His McCaffrey remains on track for the Melbourne opener. Yahoo opponent Arshdeep's three Qs (Jeanty, Nabers, LaPorta) are all trending positive (more practice reps each) but none formally cleared yet. Full Yahoo season schedule (weeks 1\u201314) is now in the app \u2014 new screenshots today filled in weeks 2\u20134.\nData: Sleeper live \u00b7 Yahoo screenshots from 2026-09-06 (schedule pages only \u2014 no new live-roster screenshot since 2026-09-05, still the current Week 1 lineup source)",
+  "at": "2026-09-06T13:25:29-07:00",
+  "mode": "daily"
  },
  "waivers": null,
  "trades": null,
@@ -416,7 +434,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "vs ARI, no news",
+    "note": "vs ARI (corrected: Sun 1:25p PT at SoFi, not Fri/Brazil as earlier reported), no news",
     "ifOut": ""
    },
    {
@@ -425,7 +443,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "vs ARI, no news",
+    "note": "vs ARI, elite matchup (~31st vs RB), no news",
     "ifOut": ""
    },
    {
@@ -470,7 +488,7 @@
     "team": "JAX",
     "status": "Q",
     "call": "start",
-    "note": "still just Questionable off the 9/2 illness, no formal downgrade found as of Sunday morning",
+    "note": "illness trending resolved \u2014 full practice reported since, still just Questionable, no formal downgrade",
     "ifOut": "Woody Marks"
    },
    {
@@ -593,6 +611,392 @@
     "call": "start",
     "note": "vs DAL",
     "ifOut": ""
+   }
+  ]
+ },
+ "analysis": {
+  "sleeper": [
+   {
+    "slot": "QB",
+    "name": "Justin Herbert",
+    "team": "LAC",
+    "pos": "QB",
+    "opp": "ARI",
+    "defRank": null,
+    "defRankNote": "No reliable vs-QB rank found for ARI this week (data gap) \u2014 aggregated DVP sources didn't surface one",
+    "weather": {
+     "impact": "none",
+     "note": "SoFi Stadium has a fixed roof \u2014 effectively indoor"
+    },
+    "vegas": {
+     "total": 45.5,
+     "spread": -11.5,
+     "impliedTeam": 28.5
+    },
+    "takeaway": "No confirmed defensive rank, but Vegas loves it \u2014 28.5 implied and an 11.5-pt favorite (DraftKings). Start with confidence."
+   },
+   {
+    "slot": "RB",
+    "name": "Omarion Hampton",
+    "team": "LAC",
+    "pos": "RB",
+    "opp": "ARI",
+    "defRank": 31,
+    "defRankNote": "ARI 2nd-most fantasy points allowed to RBs in the NFL (~28.4/gm) \u2014 aggregated DVP data",
+    "weather": {
+     "impact": "none",
+     "note": "SoFi Stadium fixed roof, no weather factor"
+    },
+    "vegas": {
+     "total": 45.5,
+     "spread": -11.5,
+     "impliedTeam": 28.5
+    },
+    "takeaway": "Smash-spot matchup (~31st vs RB) plus 28.5 implied team total \u2014 locked in as an RB1."
+   },
+   {
+    "slot": "RB",
+    "name": "Chase Brown",
+    "team": "CIN",
+    "pos": "RB",
+    "opp": "TB",
+    "defRank": 5,
+    "defRankNote": "TB top-5 fewest RB rushing yards/TDs allowed this season \u2014 Buccaneers team stats",
+    "weather": {
+     "impact": "none",
+     "note": "Cincinnati forecast ~76\u00b0F/59\u00b0F, wind 7-8mph \u2014 no concern"
+    },
+    "vegas": {
+     "total": 50.5,
+     "spread": -3.5,
+     "impliedTeam": 27.0
+    },
+    "takeaway": "Tough run-funnel matchup on paper, but 27.0 implied in the slate's highest total (50.5) covers for it \u2014 still start on volume."
+   },
+   {
+    "slot": "WR",
+    "name": "Tee Higgins",
+    "team": "CIN",
+    "pos": "WR",
+    "opp": "TB",
+    "defRank": null,
+    "defRankNote": "No confirmed WR-specific rank for TB found (data gap); raw team pass yardage allowed suggests middle-of-pack",
+    "weather": {
+     "impact": "none",
+     "note": "Cincinnati forecast ~76\u00b0F/59\u00b0F, wind 7-8mph \u2014 no concern"
+    },
+    "vegas": {
+     "total": 50.5,
+     "spread": -3.5,
+     "impliedTeam": 27.0
+    },
+    "takeaway": "No hard rank to lean on, but 27.0 implied in the highest-total game on the board \u2014 start even through the Q tag."
+   },
+   {
+    "slot": "WR",
+    "name": "Zay Flowers",
+    "team": "BAL",
+    "pos": "WR",
+    "opp": "IND",
+    "defRank": 31,
+    "defRankNote": "IND 2nd-most fantasy points allowed to WRs in the NFL (~37.4/gm) \u2014 aggregated DVP data",
+    "weather": {
+     "impact": "none",
+     "note": "Lucas Oil Stadium retractable roof, typically closed for NFL games \u2014 treat as dome"
+    },
+    "vegas": {
+     "total": 49.5,
+     "spread": -3.5,
+     "impliedTeam": 26.5
+    },
+    "takeaway": "Plus matchup (~31st vs WR) and 26.5 implied \u2014 locked in regardless of the Q tag."
+   },
+   {
+    "slot": "TE",
+    "name": "Brenton Strange",
+    "team": "JAX",
+    "pos": "TE",
+    "opp": "CLE",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-TE rank for CLE found (data gap)",
+    "weather": {
+     "impact": "minor",
+     "note": "Jacksonville forecast ~95\u00b0F with afternoon thunderstorm risk (winds calm) \u2014 heat/rain risk, not wind-driven"
+    },
+    "vegas": {
+     "total": 40.5,
+     "spread": -7.0,
+     "impliedTeam": 23.75
+    },
+    "takeaway": "No hard TE rank, but CLE's offense (31st in the NFL) means positive game script for JAX \u2014 23.75 implied, fine floor start."
+   },
+   {
+    "slot": "FLEX",
+    "name": "Bhayshul Tuten",
+    "team": "JAX",
+    "pos": "RB",
+    "opp": "CLE",
+    "defRank": 14,
+    "defRankNote": "CLE ~14th fewest fantasy points allowed to RBs \u2014 middle-of-pack, aggregated DVP data",
+    "weather": {
+     "impact": "minor",
+     "note": "Jacksonville forecast ~95\u00b0F with afternoon thunderstorm risk (winds calm)"
+    },
+    "vegas": {
+     "total": 40.5,
+     "spread": -7.0,
+     "impliedTeam": 23.75
+    },
+    "takeaway": "Middling matchup but 23.75 implied and a 7-pt home favorite \u2014 start once illness clears, which it's trending to do."
+   },
+   {
+    "slot": "FLEX",
+    "name": "Josh Downs",
+    "team": "IND",
+    "pos": "WR",
+    "opp": "BAL",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-WR rank for BAL found this run (data gap) \u2014 Ravens graded a top overall 2025 defense (11th in fantasy pts allowed, DST-wide), so lean tougher-than-average even without a WR-specific number",
+    "weather": {
+     "impact": "none",
+     "note": "Lucas Oil Stadium retractable roof, typically closed \u2014 treat as dome"
+    },
+    "vegas": {
+     "total": 49.5,
+     "spread": -3.5,
+     "impliedTeam": 23.0
+    },
+    "takeaway": "Tougher matchup than Flowers gets from the other side, but 23.0 implied in a 49.5-total game still supports the start."
+   },
+   {
+    "slot": "K",
+    "name": "Brandon Aubrey",
+    "team": "DAL",
+    "pos": "K",
+    "opp": "NYG",
+    "defRank": null,
+    "defRankNote": "Defense-vs-kicker ranks aren't published in standard DVP formats \u2014 N/A for this position",
+    "weather": {
+     "impact": "none",
+     "note": "MetLife Stadium outdoor, no red-flag forecast found for the Sept 13 night game \u2014 recheck closer to kickoff"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": -2.5,
+     "impliedTeam": 25.5
+    },
+    "takeaway": "25.5 implied team total in a game near a field-goal range script \u2014 locked in as a top-12 K."
+   },
+   {
+    "slot": "DEF",
+    "name": "Jaguars",
+    "team": "JAX",
+    "pos": "DEF",
+    "opp": "CLE",
+    "defRank": null,
+    "defRankNote": "N/A for DEF \u2014 judged on opposing offense quality below",
+    "weather": {
+     "impact": "minor",
+     "note": "Jacksonville forecast ~95\u00b0F with afternoon thunderstorm risk (winds calm)"
+    },
+    "vegas": {
+     "total": 40.5,
+     "spread": -7.0,
+     "impliedTeam": 16.75
+    },
+    "takeaway": "CLE's offense ranked 31st in the NFL in 2025 and is only implied for 16.75 here \u2014 plus start for the Jags D/ST."
+   }
+  ],
+  "yahoo": [
+   {
+    "slot": "QB",
+    "name": "Matthew Stafford",
+    "team": "LAR",
+    "pos": "QB",
+    "opp": "SF",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-QB rank for SF found (data gap); SF graded 3rd in total defense and tied-5th in sacks in 2025 \u2014 lean tougher than average even without a QB-specific number",
+    "weather": {
+     "impact": "none",
+     "note": "Melbourne Cricket Ground forecast ~59\u00b0F/45\u00b0F, 0mm rain \u2014 cool and dry, no impact"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": -3.5,
+     "impliedTeam": 26.0
+    },
+    "takeaway": "Tough front on paper, but 26.0 implied as the home favorite in Melbourne \u2014 locked in as a low-end QB1."
+   },
+   {
+    "slot": "RB",
+    "name": "Chase Brown",
+    "team": "CIN",
+    "pos": "RB",
+    "opp": "TB",
+    "defRank": 5,
+    "defRankNote": "TB top-5 fewest RB rushing yards/TDs allowed this season \u2014 Buccaneers team stats",
+    "weather": {
+     "impact": "none",
+     "note": "Cincinnati forecast ~76\u00b0F/59\u00b0F, wind 7-8mph \u2014 no concern"
+    },
+    "vegas": {
+     "total": 50.5,
+     "spread": -3.5,
+     "impliedTeam": 27.0
+    },
+    "takeaway": "Tough run-funnel matchup on paper, but 27.0 implied in the slate's highest total (50.5) covers for it \u2014 still start on volume."
+   },
+   {
+    "slot": "RB",
+    "name": "Travis Etienne Jr.",
+    "team": "NO",
+    "pos": "RB",
+    "opp": "DET",
+    "defRank": 14,
+    "defRankNote": "DET run defense ~14th fewest fantasy points allowed to RBs full-season (started elite, faded mid-pack) \u2014 aggregated DVP data",
+    "weather": {
+     "impact": "none",
+     "note": "Ford Field \u2014 dome, no weather factor"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": -7.0,
+     "impliedTeam": 20.75
+    },
+    "takeaway": "Moderate matchup and only 20.75 implied as a 7-pt road dog, but the clean lead role (Kamara out) carries him regardless \u2014 start."
+   },
+   {
+    "slot": "W/R/T",
+    "name": "Quinshon Judkins",
+    "team": "CLE",
+    "pos": "RB",
+    "opp": "JAX",
+    "defRank": 2,
+    "defRankNote": "JAX run defense ~2nd-fewest rushing yards allowed in the NFL \u2014 very tough spot, aggregated DVP/team data",
+    "weather": {
+     "impact": "minor",
+     "note": "Jacksonville forecast ~95\u00b0F with afternoon thunderstorm risk (winds calm)"
+    },
+    "vegas": {
+     "total": 40.5,
+     "spread": 7.0,
+     "impliedTeam": 16.75
+    },
+    "takeaway": "Toughest matchup on your board (~2nd vs RB) and only 16.75 implied as a 7-pt road dog \u2014 lean bench if you have a better flex option."
+   },
+   {
+    "slot": "WR",
+    "name": "Garrett Wilson",
+    "team": "NYJ",
+    "pos": "WR",
+    "opp": "TEN",
+    "defRank": 30,
+    "defRankNote": "TEN allowed a league-high 284.2 pass yds/gm and 3rd-most points in 2025 \u2014 no explicit WR-specific rank found, but strong indirect evidence of a bottom-5-caliber matchup for opposing WRs",
+    "weather": {
+     "impact": "none",
+     "note": "Nashville forecast ~92\u00b0F, dry during the 1pm kickoff window (rain arrives that night)"
+    },
+    "vegas": {
+     "total": 39.5,
+     "spread": 3.0,
+     "impliedTeam": 18.25
+    },
+    "takeaway": "Plus matchup (indirect but strong) undercut by the lowest total on the slate (39.5) and only 18.25 implied \u2014 start, but temper expectations."
+   },
+   {
+    "slot": "WR",
+    "name": "Parker Washington",
+    "team": "JAX",
+    "pos": "WR",
+    "opp": "CLE",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-WR rank for CLE found (data gap)",
+    "weather": {
+     "impact": "minor",
+     "note": "Jacksonville forecast ~95\u00b0F with afternoon thunderstorm risk (winds calm)"
+    },
+    "vegas": {
+     "total": 40.5,
+     "spread": -7.0,
+     "impliedTeam": 23.75
+    },
+    "takeaway": "No hard rank, but CLE's offense (31st in the NFL) sets up positive game flow for JAX's passing game \u2014 23.75 implied, fine floor start."
+   },
+   {
+    "slot": "WR",
+    "name": "George Pickens",
+    "team": "DAL",
+    "pos": "WR",
+    "opp": "NYG",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-WR rank for NYG found (data gap)",
+    "weather": {
+     "impact": "none",
+     "note": "MetLife Stadium outdoor, no red-flag forecast found for the Sept 13 night game \u2014 recheck closer to kickoff"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": -2.5,
+     "impliedTeam": 25.5
+    },
+    "takeaway": "No hard rank to lean on, but 25.5 implied as the favorite in a 48.5-total night game \u2014 comfortable start."
+   },
+   {
+    "slot": "TE",
+    "name": "Isaiah Likely",
+    "team": "NYG",
+    "pos": "TE",
+    "opp": "DAL",
+    "defRank": null,
+    "defRankNote": "No confirmed vs-TE rank for DAL found (data gap)",
+    "weather": {
+     "impact": "none",
+     "note": "MetLife Stadium outdoor, no red-flag forecast found for the Sept 13 night game \u2014 recheck closer to kickoff"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": 2.5,
+     "impliedTeam": 23.0
+    },
+    "takeaway": "No hard rank, but 23.0 implied as a slight underdog in the game with the widest total on this board \u2014 streamable floor at TE."
+   },
+   {
+    "slot": "K",
+    "name": "Jason Myers",
+    "team": "SEA",
+    "pos": "K",
+    "opp": "NE",
+    "defRank": null,
+    "defRankNote": "Defense-vs-kicker ranks aren't published in standard DVP formats \u2014 N/A for this position",
+    "weather": {
+     "impact": "none",
+     "note": "Seattle forecast ~75\u00b0F/61\u00b0F, wind ~7mph N \u2014 no concern"
+    },
+    "vegas": {
+     "total": 44.5,
+     "spread": -3.5,
+     "impliedTeam": 24.0
+    },
+    "takeaway": "24.0 implied as the Wednesday-opener favorite \u2014 safe weekly K1 start."
+   },
+   {
+    "slot": "DEF",
+    "name": "49ers",
+    "team": "SF",
+    "pos": "DEF",
+    "opp": "LAR",
+    "defRank": null,
+    "defRankNote": "N/A for DEF \u2014 judged on opposing offense quality below",
+    "weather": {
+     "impact": "none",
+     "note": "Melbourne Cricket Ground forecast ~59\u00b0F/45\u00b0F, 0mm rain \u2014 no impact"
+    },
+    "vegas": {
+     "total": 48.5,
+     "spread": 3.5,
+     "impliedTeam": 22.5
+    },
+    "takeaway": "Road underdog vs. a competent LAR offense (26.0 implied for them) \u2014 weakest starter on either roster, but nothing better on your bench."
    }
   ]
  }
