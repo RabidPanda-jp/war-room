@@ -812,6 +812,33 @@ async function loadHistory(sl) {
   }
   return out;
 }
+async function loadFullSchedule(sl) {
+  const lid = CONFIG.sleeperLeagueId;
+  const totalWeeks = sl.league.settings?.playoff_week_start ? sl.league.settings.playoff_week_start - 1 : 14;
+  const weeks = Array.from({
+    length: totalWeeks
+  }, (_, i) => i + 1);
+  const results = await Promise.all(weeks.map(w => j(`${SL}/league/${lid}/matchups/${w}`).catch(() => null)));
+  return weeks.map((w, i) => {
+    const ms = results[i];
+    const mine = ms?.find(m => m.roster_id === sl.myRoster.roster_id);
+    if (!mine) return {
+      week: w,
+      oppName: null,
+      myPts: null,
+      oppPts: null
+    };
+    const opp = ms.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id);
+    const oppUser = opp ? sl.userBy[opp.roster_id] : null;
+    const played = w < sl.week;
+    return {
+      week: w,
+      oppName: oppUser?.metadata?.team_name || oppUser?.display_name || "—",
+      myPts: played ? +mine.points.toFixed(2) : w === sl.week ? sl.myMatch?.points ?? null : null,
+      oppPts: played ? opp ? +opp.points.toFixed(2) : null : w === sl.week ? sl.oppMatch?.points ?? null : null
+    };
+  });
+}
 function Btn({
   children,
   onClick,
@@ -1005,6 +1032,29 @@ const Num = ({
     minWidth: 32
   }
 }, fmt(v));
+const WeekLink = ({
+  week,
+  onClick
+}) => week == null ? null : React.createElement("button", {
+  onClick: onClick,
+  style: {
+    fontFamily: cond,
+    fontWeight: 700,
+    fontSize: 13,
+    color: MUTE,
+    background: "none",
+    border: "none",
+    padding: 0,
+    cursor: "pointer",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 2
+  }
+}, "Week ", week, " ", React.createElement("span", {
+  style: {
+    fontSize: 15
+  }
+}, "\u203A"));
 function Matchup({
   tone,
   meName,
@@ -1020,7 +1070,9 @@ function Matchup({
   sub,
   kick,
   now,
-  action
+  action,
+  week,
+  onWeekClick
 }) {
   const rows = Math.max(mine.length, theirs.length);
   const live = (myPts || 0) + (oppPts || 0) > 0 && [...mine, ...theirs].some(r => started(gameState(kick, r.team, now)));
@@ -1100,6 +1152,23 @@ function Matchup({
     }
   }, "proj ", fmt(oppProj))), React.createElement("div", {
     style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingTop: 6
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 13,
+      color: MUTE
+    }
+  }, "Starters"), React.createElement(WeekLink, {
+    week: week,
+    onClick: onWeekClick
+  })), React.createElement("div", {
+    style: {
       borderTop: `1px solid ${LINE}`
     }
   }, Array.from({
@@ -1156,7 +1225,8 @@ function Team({
   contingency,
   ahead,
   week,
-  action
+  action,
+  onWeekClick
 }) {
   const Row = ({
     r
@@ -1210,6 +1280,23 @@ function Team({
       marginBottom: 8
     }
   }, meta), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 4
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 13,
+      color: MUTE
+    }
+  }, "Starters"), React.createElement(WeekLink, {
+    week: week,
+    onClick: onWeekClick
+  })), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "40px 1fr 40px 40px",
@@ -1315,6 +1402,119 @@ function Team({
       marginTop: 12
     }
   }, action));
+}
+function ScheduleModal({
+  tone,
+  title,
+  myName,
+  rows,
+  currentWeek,
+  empty,
+  onClose
+}) {
+  return React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.5)",
+      zIndex: 30,
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "center"
+    },
+    onClick: onClose
+  }, React.createElement("div", {
+    style: {
+      background: PAPER,
+      borderRadius: "14px 14px 0 0",
+      maxHeight: "80vh",
+      overflowY: "auto",
+      width: "100%",
+      maxWidth: 640,
+      padding: "16px 16px calc(16px + env(safe-area-inset-bottom))"
+    },
+    onClick: e => e.stopPropagation()
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 10
+    }
+  }, React.createElement(H, {
+    tone: tone
+  }, title), React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 22,
+      lineHeight: 1,
+      color: MUTE,
+      cursor: "pointer",
+      padding: 4
+    }
+  }, "\xD7")), !rows?.length ? React.createElement(Empty, null, empty) : rows.map(r => React.createElement("div", {
+    key: r.week,
+    style: {
+      display: "grid",
+      gridTemplateColumns: "44px 1fr auto 1fr",
+      gap: 8,
+      alignItems: "center",
+      padding: "10px 6px",
+      borderRadius: 8,
+      background: r.week === currentWeek ? HILITE : "transparent",
+      borderBottom: `1px solid ${HAIRLINE}`
+    }
+  }, React.createElement(Chip, {
+    style: {
+      textAlign: "center",
+      padding: "4px 0"
+    }
+  }, "Wk ", r.week), React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 600,
+      fontSize: 14,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }
+  }, myName), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: MUTE
+    }
+  }, fmt(r.myPts))), React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: MUTE
+    }
+  }, "vs"), React.createElement("div", {
+    style: {
+      minWidth: 0,
+      textAlign: "right"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 600,
+      fontSize: 14,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }
+  }, r.oppName ?? "—"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      color: MUTE
+    }
+  }, fmt(r.oppPts)))))));
 }
 function Rules({
   tone,
@@ -1586,6 +1786,8 @@ function App() {
     [ahead, setAhead] = useState(null),
     [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
+  const [fullSchedule, setFullSchedule] = useState(null);
+  const [scheduleOpen, setScheduleOpen] = useState(false);
   const [now, setNow] = useState(Date.now());
   const [dark, setDark] = useState(() => {
     const s = store.get("wr_dark");
@@ -1622,6 +1824,7 @@ function App() {
       loadStats(d.season, d.week).then(setStats).catch(() => {});
       loadSeasonSchedule(d.season).then(setAhead).catch(() => {});
       loadHistory(d).then(setHistory).catch(() => {});
+      loadFullSchedule(d).then(setFullSchedule).catch(() => {});
     } catch (e) {
       setSlErr(e.message);
     }
@@ -1931,7 +2134,9 @@ function App() {
     oppProj: sum(opp.starters, "proj"),
     sub: `Week ${sl.week}`,
     kick: kick,
-    now: now
+    now: now,
+    week: sl.week,
+    onWeekClick: () => setScheduleOpen(true)
   }) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, {
     tone: OX,
     meName: cfg.yahooTeamName,
@@ -1947,6 +2152,8 @@ function App() {
     sub: yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`,
     kick: kick,
     now: now,
+    week: yahoo.week,
+    onWeekClick: () => setScheduleOpen(true),
     action: React.createElement("div", {
       style: {
         fontSize: 12,
@@ -1963,7 +2170,8 @@ function App() {
     now: now,
     contingency: contingency,
     ahead: ahead,
-    week: sl.week
+    week: sl.week,
+    onWeekClick: () => setScheduleOpen(true)
   }) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, {
     tone: OX,
     name: cfg.yahooTeamName,
@@ -1974,7 +2182,8 @@ function App() {
     now: now,
     contingency: contingency,
     ahead: ahead,
-    week: week
+    week: week,
+    onWeekClick: () => setScheduleOpen(true)
   }) : yahooEmpty), view === "league" && lg === "sleeper" && (sl ? React.createElement(React.Fragment, null, React.createElement(Standings, {
     tone: INK,
     rows: sl.standings,
@@ -2244,7 +2453,23 @@ function App() {
       fontSize: 12,
       opacity: 0.85
     }
-  }, s)))))));
+  }, s)))))), scheduleOpen && lg === "sleeper" && React.createElement(ScheduleModal, {
+    tone: INK,
+    title: `${sl?.league?.name || "Gangstas Paradise"} — Schedule`,
+    myName: cfg.sleeperTeamName,
+    rows: fullSchedule,
+    currentWeek: sl?.week,
+    onClose: () => setScheduleOpen(false),
+    empty: slBusy ? "Loading schedule…" : "Sleeper didn't load."
+  }), scheduleOpen && lg === "yahoo" && React.createElement(ScheduleModal, {
+    tone: OX,
+    title: `${cfg.yahooLeagueName} — Schedule`,
+    myName: cfg.yahooTeamName,
+    rows: yahooRaw?.schedule,
+    currentWeek: yahoo?.week,
+    onClose: () => setScheduleOpen(false),
+    empty: `Add a screenshot of Yahoo's schedule/matchups page to the "War room" Drive folder to fill this in.`
+  }));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
   }catch(e){ fail(e.message); }
