@@ -1682,6 +1682,99 @@ function LineupCard({
     g: r.g
   })))));
 }
+const DEF_RANK_TONE = r => r == null ? MUTE : r <= 10 ? OX : r >= 23 ? WIN : AMBER;
+const POS_ORDER = ["QB", "RB", "WR", "TE", "K", "DEF"];
+function MatchupRow({
+  r
+}) {
+  const weatherShown = r.weather?.impact && r.weather.impact !== "none";
+  return React.createElement("div", {
+    style: {
+      padding: "10px 0",
+      borderBottom: `1px solid ${HAIRLINE}`
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      gap: 8
+    }
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, React.createElement("span", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 15
+    }
+  }, r.name), React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: MUTE
+    }
+  }, " ", r.team, r.opp ? ` vs ${r.opp}` : "")), r.defRank != null && React.createElement(Chip, {
+    tone: DEF_RANK_TONE(r.defRank),
+    bg: CHIP_BG,
+    style: {
+      flexShrink: 0
+    }
+  }, "#", r.defRank, " vs ", r.pos)), r.defRankNote && React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: MUTE,
+      marginTop: 2
+    }
+  }, r.defRankNote), (r.vegas?.total != null || r.vegas?.spread != null || r.vegas?.impliedTeam != null || weatherShown) && React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      flexWrap: "wrap",
+      marginTop: 6,
+      fontSize: 12,
+      color: MUTE
+    }
+  }, r.vegas?.total != null && React.createElement("span", null, "O/U ", r.vegas.total), r.vegas?.spread != null && React.createElement("span", null, "Spread ", r.vegas.spread > 0 ? "+" : "", r.vegas.spread), r.vegas?.impliedTeam != null && React.createElement("span", null, "Implied ", r.vegas.impliedTeam), weatherShown && React.createElement("span", {
+    style: {
+      color: r.weather.impact === "major" ? OX : AMBER,
+      fontWeight: 600
+    }
+  }, r.weather.note)), r.takeaway && React.createElement("div", {
+    style: {
+      fontSize: 14,
+      marginTop: 5,
+      lineHeight: 1.35
+    }
+  }, r.takeaway));
+}
+function Analysis({
+  tone,
+  rows
+}) {
+  if (!rows?.length) return React.createElement(Card, null, React.createElement(Empty, null, "No matchup analysis yet. The scheduled task writes this each run."));
+  const starters = rows.filter(r => r.slot !== "BN" && r.slot !== "IR");
+  const groups = POS_ORDER.map(p => [p, starters.filter(r => r.pos === p)]).filter(([, g]) => g.length);
+  const extra = starters.filter(r => !POS_ORDER.includes(r.pos));
+  if (extra.length) groups.push(["FLEX", extra]);
+  return React.createElement("div", {
+    style: {
+      display: "grid",
+      gap: 10
+    }
+  }, groups.map(([pos, g]) => React.createElement(Card, {
+    key: pos
+  }, React.createElement(H, {
+    tone: tone,
+    style: {
+      marginBottom: 4
+    }
+  }, pos), g.map((r, i) => React.createElement(MatchupRow, {
+    key: i,
+    r: r
+  })))));
+}
 function Report({
   text
 }) {
@@ -1805,6 +1898,7 @@ function App() {
     waivers = data?.waivers || null,
     trades = data?.trades || null;
   const lineup = data?.lineup || {};
+  const analysis = data?.analysis || {};
   const refreshData = useCallback(async () => {
     setDataBusy(true);
     setDataErr("");
@@ -1956,7 +2050,7 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ...(season.length ? [["season", "Season"]] : [])];
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = React.createElement(Card, null, React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."));
   return React.createElement("div", {
     style: {
@@ -2209,6 +2303,12 @@ function App() {
     ahead: ahead,
     week: week,
     onWeekClick: () => setScheduleOpen(true)
+  }) : yahooEmpty), view === "analysis" && lg === "sleeper" && React.createElement(Analysis, {
+    tone: INK,
+    rows: analysis.sleeper
+  }), view === "analysis" && lg === "yahoo" && (yahoo ? React.createElement(Analysis, {
+    tone: OX,
+    rows: analysis.yahoo
   }) : yahooEmpty), view === "league" && lg === "sleeper" && (sl ? React.createElement(React.Fragment, null, React.createElement(Standings, {
     tone: INK,
     rows: sl.standings,

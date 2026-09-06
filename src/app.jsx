@@ -1,7 +1,7 @@
 /* Fantasy War Room — one app for two leagues.
    Sleeper: live (league, rosters, matchup, projections, standings, moves, history).
    Yahoo: private league → screenshots read into structured data by the scheduled task.
-   data.json (written by the scheduled task): brief / lineup / waivers / trades / season.
+   data.json (written by the scheduled task): brief / lineup / analysis / waivers / trades / season.
    Source of truth for this file is src/app.jsx — run `npm run build` to regenerate index.html. */
 
 const { useState, useEffect, useMemo, useCallback } = React;
@@ -515,6 +515,51 @@ function LineupCard({ tone, title, rows, kick, now }) {
   );
 }
 
+// matchup context (data.analysis.<league>) rendered as an in-depth per-position breakdown of the current lineup
+const DEF_RANK_TONE = r => r == null ? MUTE : r <= 10 ? OX : r >= 23 ? WIN : AMBER; // low rank = stingy D = tough matchup = red; high rank = plus matchup = green
+const POS_ORDER = ["QB", "RB", "WR", "TE", "K", "DEF"];
+function MatchupRow({ r }) {
+  const weatherShown = r.weather?.impact && r.weather.impact !== "none";
+  return (
+    <div style={{ padding: "10px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
+        <div style={{ minWidth: 0 }}>
+          <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 15 }}>{r.name}</span>
+          <span style={{ fontSize: 12, color: MUTE }}> {r.team}{r.opp ? ` vs ${r.opp}` : ""}</span>
+        </div>
+        {r.defRank != null && <Chip tone={DEF_RANK_TONE(r.defRank)} bg={CHIP_BG} style={{ flexShrink: 0 }}>#{r.defRank} vs {r.pos}</Chip>}
+      </div>
+      {r.defRankNote && <div style={{ fontSize: 12, color: MUTE, marginTop: 2 }}>{r.defRankNote}</div>}
+      {(r.vegas?.total != null || r.vegas?.spread != null || r.vegas?.impliedTeam != null || weatherShown) && (
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 6, fontSize: 12, color: MUTE }}>
+          {r.vegas?.total != null && <span>O/U {r.vegas.total}</span>}
+          {r.vegas?.spread != null && <span>Spread {r.vegas.spread > 0 ? "+" : ""}{r.vegas.spread}</span>}
+          {r.vegas?.impliedTeam != null && <span>Implied {r.vegas.impliedTeam}</span>}
+          {weatherShown && <span style={{ color: r.weather.impact === "major" ? OX : AMBER, fontWeight: 600 }}>{r.weather.note}</span>}
+        </div>
+      )}
+      {r.takeaway && <div style={{ fontSize: 14, marginTop: 5, lineHeight: 1.35 }}>{r.takeaway}</div>}
+    </div>
+  );
+}
+function Analysis({ tone, rows }) {
+  if (!rows?.length) return <Card><Empty>No matchup analysis yet. The scheduled task writes this each run.</Empty></Card>;
+  const starters = rows.filter(r => r.slot !== "BN" && r.slot !== "IR");
+  const groups = POS_ORDER.map(p => [p, starters.filter(r => r.pos === p)]).filter(([, g]) => g.length);
+  const extra = starters.filter(r => !POS_ORDER.includes(r.pos));
+  if (extra.length) groups.push(["FLEX", extra]);
+  return (
+    <div style={{ display: "grid", gap: 10 }}>
+      {groups.map(([pos, g]) => (
+        <Card key={pos}>
+          <H tone={tone} style={{ marginBottom: 4 }}>{pos}</H>
+          {g.map((r, i) => <MatchupRow key={i} r={r} />)}
+        </Card>
+      ))}
+    </div>
+  );
+}
+
 function Report({ text }) {
   if (!text) return null;
   const label = l => l.match(/^([A-Za-z0-9 /–-]{2,24}):\s*(.*)$/);
@@ -578,6 +623,7 @@ function App() {
   const yahooRaw = data?.yahoo || null;
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
   const lineup = data?.lineup || {};
+  const analysis = data?.analysis || {};
 
   const refreshData = useCallback(async () => {
     setDataBusy(true); setDataErr("");
@@ -669,7 +715,7 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ...(season.length ? [["season", "Season"]] : [])];
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = <Card><Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty></Card>;
 
   return (
@@ -738,6 +784,9 @@ function App() {
         {view === "team" && lg === "yahoo" && (yahoo
           ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`} starters={yahoo.starters} bench={yahoo.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={week} onWeekClick={() => setScheduleOpen(true)} />
           : yahooEmpty)}
+
+        {view === "analysis" && lg === "sleeper" && <Analysis tone={INK} rows={analysis.sleeper} />}
+        {view === "analysis" && lg === "yahoo" && (yahoo ? <Analysis tone={OX} rows={analysis.yahoo} /> : yahooEmpty)}
 
         {view === "league" && lg === "sleeper" && (sl ? <>
           <Standings tone={INK} rows={sl.standings} faab={sl.league.settings.waiver_type === 2} />
