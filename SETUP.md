@@ -19,7 +19,7 @@ You never touch GitHub again after this. The scheduled task writes to it for you
 
 ## 2. Google Drive — where screenshots go (1 min)
 
-In Google Drive, make a folder named exactly **War room**. That's it. Each time you want fresh Yahoo data — at minimum Sunday morning before 9 — screenshot your Yahoo roster page and matchup page and save them into that folder from your phone's share sheet. Optional: a screenshot of the Standings page fills the League tab; a text file named `trade.txt` gets a trade proposal evaluated.
+In Google Drive, make a folder named exactly **War room**. That's it. Each time you want fresh Yahoo data — at minimum Sunday morning before 9 — screenshot your Yahoo roster page and matchup page and save them into that folder from your phone's share sheet. Optional: a screenshot of the Standings page fills the League tab, a screenshot of the schedule/matchups page fills the season schedule menu; a text file named `trade.txt` gets a trade proposal evaluated.
 
 ## 3. Claude — connect GitHub and schedule the task (5 min)
 
