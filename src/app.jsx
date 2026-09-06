@@ -559,7 +559,7 @@ function Section({ item, empty }) {
 // ---------- app ----------
 function App() {
   const cfg = CONFIG;
-  const [data, setData] = useState(null), [dataErr, setDataErr] = useState(""), [dataBusy, setDataBusy] = useState(false);
+  const [data, setData] = useState(null), [dataErr, setDataErr] = useState(""), [dataBusy, setDataBusy] = useState(false), [dataCached, setDataCached] = useState(false);
   const [lg, setLg] = useState("sleeper"), [view, setView] = useState("matchup");
   const [sl, setSl] = useState(null), [slErr, setSlErr] = useState(""), [slBusy, setSlBusy] = useState(false);
   const [kick, setKick] = useState(null), [ahead, setAhead] = useState(null), [history, setHistory] = useState([]);
@@ -579,7 +579,19 @@ function App() {
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
   const lineup = data?.lineup || {};
 
-  const refreshData = useCallback(async () => { setDataBusy(true); setDataErr(""); try { setData(await loadData()); } catch (e) { setDataErr(e.message); } setDataBusy(false); }, []);
+  const refreshData = useCallback(async () => {
+    setDataBusy(true); setDataErr("");
+    try {
+      const d = await loadData();
+      setData(d); setDataCached(false);
+      store.set("wr_last_data", d); // overwritten in place each success — never grows
+    } catch (e) {
+      const cached = store.get("wr_last_data");
+      if (cached) { setData(cached); setDataCached(true); setDataErr(`Can't reach data.json (${e.message}) — showing the last copy saved on this device.`); }
+      else { setDataErr(e.message); }
+    }
+    setDataBusy(false);
+  }, []);
   const refreshSleeper = useCallback(async () => {
     setSlBusy(true); setSlErr("");
     try {
@@ -624,6 +636,13 @@ function App() {
   const yahooAge = useMemo(() => { if (!yahooRaw?.updatedAt) return null; const d = new Date(yahooRaw.updatedAt + "T12:00:00"); return isNaN(d) ? null : Math.floor((now - d.getTime()) / 864e5); }, [yahooRaw, now]);
   const yahooStale = yahooRaw && ((yahooAge != null && yahooAge > 2) || (week && yahooRaw.week && yahooRaw.week < week));
 
+  // Pipeline health: the scheduled task writes data.json daily 7am PT (+ Sunday 9am PT).
+  // Only fires when data.json itself loaded fine but its content is old — a signal the task didn't run,
+  // as opposed to dataErr/dataCached which mean the file couldn't be reached at all.
+  const PIPELINE_STALE_MS = 27 * 3600e3;
+  const pipelineAgeMs = useMemo(() => data?.updatedAt ? now - new Date(data.updatedAt).getTime() : null, [data, now]);
+  const pipelineStale = !dataCached && pipelineAgeMs != null && pipelineAgeMs > PIPELINE_STALE_MS;
+
   // next lock across both leagues' starters
   const nextLock = useMemo(() => {
     const all = [...my.starters.map(r => ({ ...r, teamName: cfg.sleeperTeamName })), ...(yahoo?.starters || []).map(r => ({ ...r, teamName: cfg.yahooTeamName }))];
@@ -661,7 +680,7 @@ function App() {
           <div>
             <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 26, lineHeight: 1, letterSpacing: -0.5 }}>War room</div>
             <div style={{ fontSize: 13, color: MUTE, marginTop: 3 }}>
-              {sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline"} · {data ? `brief ${stamp(data.updatedAt)}` : dataBusy ? "loading data…" : "no data yet"}
+              {sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline"} · {data ? `brief ${stamp(data.updatedAt)}${dataCached ? " (cached)" : ""}` : dataBusy ? "loading data…" : "no data yet"}
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -693,6 +712,7 @@ function App() {
         )}
 
         {yahooStale && <div style={{ background: OX, color: "#fff", borderRadius: 8, padding: "10px 12px", fontSize: 14, marginBottom: 10, fontFamily: cond, fontWeight: 600 }}>Yahoo data is {yahooAge} days old (screenshots from {yahoo.updatedAt}{yahoo.week && week && yahoo.week < week ? `, Week ${yahoo.week}` : ""}). Drop fresh roster + matchup screenshots in Drive before kickoff.</div>}
+        {pipelineStale && <div style={{ background: OX, color: "#fff", borderRadius: 8, padding: "10px 12px", fontSize: 14, marginBottom: 10, fontFamily: cond, fontWeight: 600 }}>Scheduled task hasn't written new data in {Math.floor(pipelineAgeMs / 3600e3)}h (last update {stamp(data.updatedAt)}). Check that the Cowork task ran.</div>}
         {dataErr && <div style={{ background: "#FFF6D6", border: `1px solid ${FLAG}`, borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>{dataErr}</div>}
         {slErr && <div style={{ background: "#FDECEC", border: "1px solid #E8A9A9", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>Sleeper: {slErr}</div>}
 
