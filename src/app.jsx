@@ -17,9 +17,12 @@ const RefreshCw = ({ size, style }) => (
 );
 const Copy = ({ size }) => I('<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>', size);
 const Check = ({ size }) => I('<path d="M20 6 9 17l-5-5"/>', size);
+const Sun = ({ size }) => I('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>', size);
+const Moon = ({ size }) => I('<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>', size);
 
-const INK = "#14213D", OX = "#6E1F2B", FLAG = "#F2C037", FIELD = "#E9ECF0", PAPER = "#fff",
-  MUTE = "#5C6470", LINE = "#D5D9E0", WIN = "#1E6B3A", TEXT = "#1B1F27";
+const INK = "var(--ink)", OX = "var(--ox)", FLAG = "#F2C037", FIELD = "var(--field)", PAPER = "var(--paper)",
+  MUTE = "var(--mute)", LINE = "var(--line)", WIN = "var(--win)", TEXT = "var(--text)", AMBER = "var(--amber)",
+  CHIP_BG = "var(--chip-bg)", HAIRLINE = "var(--hairline)", HILITE = "var(--hilite)", FLAG_TEXT = "#1B1F27";
 const font = `"Barlow", system-ui, -apple-system, sans-serif`;
 const cond = `"Barlow Semi Condensed", "Barlow", system-ui, sans-serif`;
 
@@ -272,8 +275,8 @@ async function loadHistory(sl) {
 }
 
 // ---------- UI atoms ----------
-function Btn({ children, onClick, tone = INK, disabled, ghost, small }) {
-  return <button onClick={onClick} disabled={disabled} style={{ fontFamily: cond, fontWeight: 600, fontSize: small ? 14 : 16, padding: small ? "6px 12px" : "10px 16px", borderRadius: 6, border: `1.5px solid ${tone}`, background: ghost ? "transparent" : tone, color: ghost ? tone : "#fff", opacity: disabled ? 0.45 : 1, cursor: disabled ? "default" : "pointer", display: "inline-flex", alignItems: "center", gap: 8, whiteSpace: "nowrap" }}>{children}</button>;
+function Btn({ children, onClick, tone = INK, disabled, ghost, small, ariaLabel }) {
+  return <button onClick={onClick} disabled={disabled} aria-label={ariaLabel} style={{ fontFamily: cond, fontWeight: 600, fontSize: small ? 14 : 16, padding: small ? "6px 12px" : "10px 16px", borderRadius: 6, border: `1.5px solid ${tone}`, background: ghost ? "transparent" : tone, color: ghost ? tone : "#fff", opacity: disabled ? 0.45 : 1, cursor: disabled ? "default" : "pointer", display: "inline-flex", alignItems: "center", gap: 8, whiteSpace: "nowrap" }}>{children}</button>;
 }
 const Card = ({ children, style }) => <div style={{ background: PAPER, borderRadius: 10, padding: 14, ...style }}>{children}</div>;
 const Empty = ({ children }) => <div style={{ color: MUTE, fontSize: 15, lineHeight: 1.45 }}>{children}</div>;
@@ -288,12 +291,12 @@ function Status({ s }) {
   const bad = /^(O|IR|OUT|SUSP|PUP)/i.test(short);
   return <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 12, color: bad ? "#fff" : OX, background: bad ? OX : "#F7E3E6", padding: "1px 4px", borderRadius: 3, marginLeft: 4, verticalAlign: "middle" }}>{short}</span>;
 }
-function Chip({ children, tone = MUTE, bg = "#F1F3F6", style }) {
+function Chip({ children, tone = MUTE, bg = CHIP_BG, style }) {
   return <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 11, color: tone, background: bg, padding: "2px 6px", borderRadius: 4, whiteSpace: "nowrap", ...style }}>{children}</span>;
 }
 function Kick({ g }) { // kickoff / lock state text
   if (!g?.text) return null;
-  const c = g.phase === "soon" ? "#7A5A00" : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
+  const c = g.phase === "soon" ? AMBER : g.phase === "live" ? WIN : g.phase === "final" ? MUTE : MUTE;
   return <span style={{ color: c, fontWeight: g.phase === "soon" || g.phase === "live" ? 700 : 400 }}>{g.text}</span>;
 }
 
@@ -337,7 +340,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
           const a = mine[i], b = theirs[i];
           const ga = a && gameState(kick, a.team, now), gb = b && gameState(kick, b.team, now);
           return (
-            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 36px 38px 36px 1fr", gap: 4, alignItems: "center", padding: "7px 0", borderBottom: `1px solid #EEF0F3` }}>
+            <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 36px 38px 36px 1fr", gap: 4, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
               <PlayerCell r={a} g={ga} />
               <Num v={started(ga) ? (a?.pts ?? a?.proj) : a?.proj} strong={started(ga) && a?.pts != null} />
               <Chip style={{ textAlign: "center", padding: "3px 0", fontSize: 10 }}>{a?.slot || b?.slot}</Chip>
@@ -356,8 +359,8 @@ function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead
   const Row = ({ r }) => {
     const g = gameState(kick, r.team, now), c = contingency?.[r.name.toLowerCase()];
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, alignItems: "center", padding: "7px 0", borderBottom: `1px solid #EEF0F3` }}>
-        <Chip style={{ textAlign: "center", padding: "3px 0", background: r.slot === "BN" || r.slot === "IR" ? "transparent" : "#F1F3F6" }}>{r.slot}</Chip>
+      <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
+        <Chip style={{ textAlign: "center", padding: "3px 0", background: r.slot === "BN" || r.slot === "IR" ? "transparent" : CHIP_BG }}>{r.slot}</Chip>
         <div style={{ minWidth: 0 }}>
           <PlayerCell r={r} g={g} full />
           {c && <div style={{ marginTop: 3 }}><Chip tone="#7A5A00" bg="#FFF6D6">if out → {c}</Chip></div>}
@@ -402,7 +405,7 @@ function Rules({ tone, rows, style }) {
   return (
     <Card style={style}>
       <H tone={tone} style={{ marginBottom: 6 }}>League rules</H>
-      {rows.map(([k, v], i) => <div key={i} style={{ display: "grid", gridTemplateColumns: "104px 1fr", gap: 8, fontSize: 14, padding: "4px 0", borderBottom: i < rows.length - 1 ? "1px solid #EEF0F3" : "none" }}><span style={{ color: MUTE, fontFamily: cond, fontWeight: 600 }}>{k}</span><span>{v}</span></div>)}
+      {rows.map(([k, v], i) => <div key={i} style={{ display: "grid", gridTemplateColumns: "104px 1fr", gap: 8, fontSize: 14, padding: "4px 0", borderBottom: i < rows.length - 1 ? `1px solid ${HAIRLINE}` : "none" }}><span style={{ color: MUTE, fontFamily: cond, fontWeight: 600 }}>{k}</span><span>{v}</span></div>)}
     </Card>
   );
 }
@@ -411,7 +414,7 @@ function Standings({ tone, rows, faab }) {
     <Card>
       <H tone={tone} style={{ marginBottom: 6 }}>Standings</H>
       {rows.length === 0 ? <Empty>No standings yet.</Empty> : rows.map((r, i) => (
-        <div key={i} style={{ display: "grid", gridTemplateColumns: "24px 1fr auto auto", gap: 8, alignItems: "baseline", padding: "6px 0", borderBottom: `1px solid #EEF0F3`, background: r.mine ? "#F7F8FA" : "transparent", fontWeight: r.mine ? 700 : 400 }}>
+        <div key={i} style={{ display: "grid", gridTemplateColumns: "24px 1fr auto auto", gap: 8, alignItems: "baseline", padding: "6px 0", borderBottom: `1px solid ${HAIRLINE}`, background: r.mine ? HILITE : "transparent", fontWeight: r.mine ? 700 : 400 }}>
           <div style={{ fontFamily: cond, color: MUTE }}>{i + 1}</div>
           <div style={{ fontFamily: cond, fontSize: 15, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{r.team}</div>
           <div style={{ fontFamily: cond, fontSize: 14 }}>{r.record ?? `${r.w}-${r.l}`}</div>
@@ -426,12 +429,12 @@ function Standings({ tone, rows, faab }) {
 function LineupCard({ tone, title, rows, kick, now }) {
   if (!rows?.length) return null;
   const sorted = [...rows].map(r => ({ ...r, g: gameState(kick, r.team, now) })).sort((a, b) => (a.g.at?.getTime() || 9e15) - (b.g.at?.getTime() || 9e15));
-  const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? "#7A5A00" : WIN;
+  const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? AMBER : WIN;
   return (
     <Card style={{ marginBottom: 10 }}>
       <H tone={tone} style={{ marginBottom: 8 }}>{title}</H>
       {sorted.map((r, i) => (
-        <div key={i} style={{ display: "grid", gridTemplateColumns: "36px 1fr auto", gap: 8, alignItems: "start", padding: "7px 0", borderBottom: `1px solid #EEF0F3`, opacity: r.g.phase === "final" ? 0.55 : 1 }}>
+        <div key={i} style={{ display: "grid", gridTemplateColumns: "36px 1fr auto", gap: 8, alignItems: "start", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}`, opacity: r.g.phase === "final" ? 0.55 : 1 }}>
           <Chip style={{ textAlign: "center", padding: "3px 0", fontSize: 10, marginTop: 2 }}>{r.slot}</Chip>
           <div style={{ minWidth: 0 }}>
             <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15, lineHeight: 1.2 }}>{r.name}<Status s={r.status} /></div>
@@ -465,12 +468,12 @@ function Report({ text }) {
         const body = headIsLabel ? lines : lines.slice(1);
         return (
           <div key={i} style={{ borderLeft: `4px solid ${urgent ? FLAG : tone}`, paddingLeft: 12 }}>
-            {!headIsLabel && <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 17, color: urgent ? "#7A5A00" : tone, marginBottom: 4, lineHeight: 1.25 }}>{head}</div>}
+            {!headIsLabel && <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 17, color: urgent ? AMBER : tone, marginBottom: 4, lineHeight: 1.25 }}>{head}</div>}
             {body.map((l, k) => {
               const m = label(l);
               const hot = /^(Do now|Locks)/i.test(l) && !/nothing|none/i.test(l);
               return m
-                ? <div key={k} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 8, fontSize: 15, lineHeight: 1.4, padding: "3px 0", background: hot ? "#FFF6D6" : "transparent", borderRadius: 4 }}><span style={{ color: MUTE, fontFamily: cond, fontWeight: 600 }}>{m[1]}</span><span>{m[2]}</span></div>
+                ? <div key={k} style={{ display: "grid", gridTemplateColumns: "88px 1fr", gap: 8, fontSize: 15, lineHeight: 1.4, padding: "3px 0", background: hot ? "#FFF6D6" : "transparent", borderRadius: 4, color: hot ? FLAG_TEXT : undefined }}><span style={{ color: hot ? "#7A5A00" : MUTE, fontFamily: cond, fontWeight: 600 }}>{m[1]}</span><span>{m[2]}</span></div>
                 : <div key={k} style={{ fontSize: 15, lineHeight: 1.4, padding: "2px 0" }}>{l}</div>;
             })}
           </div>
@@ -501,6 +504,13 @@ function App() {
   const [kick, setKick] = useState(null), [ahead, setAhead] = useState(null), [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
   const [now, setNow] = useState(Date.now());
+  const [dark, setDark] = useState(() => { const s = store.get("wr_dark"); return s == null ? matchMedia("(prefers-color-scheme: dark)").matches : !!s; });
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    store.set("wr_dark", dark);
+    const m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", dark ? "#0B0D12" : "#14213D");
+  }, [dark]);
 
   const yahooRaw = data?.yahoo || null;
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
@@ -552,12 +562,12 @@ function App() {
 
   // next lock across both leagues' starters
   const nextLock = useMemo(() => {
-    const all = [...my.starters.map(r => ({ ...r, lgName: "Sleeper" })), ...(yahoo?.starters || []).map(r => ({ ...r, lgName: "Yahoo" }))];
+    const all = [...my.starters.map(r => ({ ...r, teamName: cfg.sleeperTeamName })), ...(yahoo?.starters || []).map(r => ({ ...r, teamName: cfg.yahooTeamName }))];
     const up = all.map(r => ({ r, g: gameState(kick, r.team, now) })).filter(x => x.g.at && x.g.at.getTime() > now).sort((a, b) => a.g.at - b.g.at);
     if (!up.length) return null;
     const first = up[0], same = up.filter(x => x.g.at.getTime() === first.g.at.getTime());
-    return { at: first.g.at, soon: first.g.at.getTime() - now < LOCK_SOON_MS, names: same.map(x => `${shortName(x.r.name, x.r.pos)} (${x.r.lgName[0]})`) };
-  }, [my, yahoo, kick, now]);
+    return { at: first.g.at, soon: first.g.at.getTime() - now < LOCK_SOON_MS, names: same.map(x => `${shortName(x.r.name, x.r.pos)} (${x.r.teamName})`) };
+  }, [my, yahoo, kick, now, cfg]);
   const lockedSoonQ = useMemo(() => [...my.starters, ...(yahoo?.starters || [])].filter(r => r.status && gameState(kick, r.team, now).phase === "soon"), [my, yahoo, kick, now]);
 
   const doNow = brief?.text ? (brief.text.match(/^Do now:\s*(.+)$/gm) || []).map(l => l.replace(/^Do now:\s*/, "")) : [];
@@ -581,7 +591,7 @@ function App() {
 
   return (
     <div style={{ fontFamily: font, background: FIELD, minHeight: "100vh", color: TEXT }}>
-      <div style={{ maxWidth: 640, margin: "0 auto", padding: "12px 12px 40px" }}>
+      <div style={{ maxWidth: 640, margin: "0 auto", padding: "12px 12px calc(150px + env(safe-area-inset-bottom))" }}>
         {/* header */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
           <div>
@@ -590,14 +600,19 @@ function App() {
               {sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline"} · {data ? `brief ${stamp(data.updatedAt)}` : dataBusy ? "loading data…" : "no data yet"}
             </div>
           </div>
-          <Btn ghost small tone={MUTE} onClick={() => { setNow(Date.now()); refreshData(); refreshSleeper(); }} disabled={slBusy || dataBusy}>
-            <RefreshCw size={14} style={{ animation: slBusy || dataBusy ? "spin 1s linear infinite" : "none" }} />Refresh
-          </Btn>
+          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            <Btn ghost small tone={MUTE} ariaLabel={dark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setDark(d => !d)}>
+              {dark ? <Sun size={14} /> : <Moon size={14} />}
+            </Btn>
+            <Btn ghost small tone={MUTE} onClick={() => { setNow(Date.now()); refreshData(); refreshSleeper(); }} disabled={slBusy || dataBusy}>
+              <RefreshCw size={14} style={{ animation: slBusy || dataBusy ? "spin 1s linear infinite" : "none" }} />Refresh
+            </Btn>
+          </div>
         </div>
 
         {/* next lock strip */}
         {nextLock && (
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, background: nextLock.soon ? FLAG : PAPER, borderRadius: 8, padding: "8px 12px", marginBottom: 8, fontSize: 13 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, background: nextLock.soon ? FLAG : PAPER, borderRadius: 8, padding: "8px 12px", marginBottom: 8, fontSize: 13, color: nextLock.soon ? FLAG_TEXT : TEXT }}>
             <div style={{ minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}><span style={{ fontFamily: cond, fontWeight: 700 }}>Next lock</span> · {nextLock.names.length <= 2 ? nextLock.names.join(", ") : `${nextLock.names.length} starters`}</div>
             <div style={{ fontFamily: cond, fontWeight: 800, whiteSpace: "nowrap" }}>{kickLabel(nextLock.at)} · in {rel(nextLock.at.getTime() - now)}</div>
           </div>
@@ -605,32 +620,17 @@ function App() {
 
         {/* do now */}
         {showDoNow && (
-          <div style={{ background: urgent ? FLAG : PAPER, borderRadius: 10, padding: "12px 14px", marginBottom: 10 }}>
+          <div style={{ background: urgent ? FLAG : PAPER, borderRadius: 10, padding: "12px 14px", marginBottom: 10, color: urgent ? FLAG_TEXT : TEXT }}>
             {firstLine === firstLine.toUpperCase() && !/^GANGSTAS|^GAME OF/.test(firstLine) && <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 17, marginBottom: 6 }}>{firstLine}</div>}
             {lockedSoonQ.length > 0 && <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 17, marginBottom: 6, lineHeight: 1.25 }}>{lockedSoonQ.length} questionable starter{lockedSoonQ.length > 1 ? "s" : ""} lock{lockedSoonQ.length > 1 ? "" : "s"} {gameState(kick, lockedSoonQ[0].team, now).text}: {lockedSoonQ.map(r => shortName(r.name, r.pos)).join(", ")} — check inactives</div>}
-            <div style={{ fontSize: 12, color: MUTE, marginBottom: 4 }}>Do now · {stamp(brief.at)}</div>
+            <div style={{ fontSize: 12, color: urgent ? "#7A5A00" : MUTE, marginBottom: 4 }}>Do now · {stamp(brief.at)}</div>
             {doNow.map((d, i) => <div key={i} style={{ display: "grid", gridTemplateColumns: "5px 1fr", gap: 10, marginTop: 4 }}><div style={{ background: i === 0 ? INK : OX, borderRadius: 3 }} /><div style={{ fontFamily: cond, fontWeight: 600, fontSize: 17, lineHeight: 1.25 }}>{d}</div></div>)}
           </div>
         )}
 
         {yahooStale && <div style={{ background: OX, color: "#fff", borderRadius: 8, padding: "10px 12px", fontSize: 14, marginBottom: 10, fontFamily: cond, fontWeight: 600 }}>Yahoo data is {yahooAge} days old (screenshots from {yahoo.updatedAt}{yahoo.week && week && yahoo.week < week ? `, Week ${yahoo.week}` : ""}). Drop fresh roster + matchup screenshots in Drive before kickoff.</div>}
-        {dataErr && <div style={{ background: "#FFF6D6", border: `1px solid ${FLAG}`, borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10 }}>{dataErr}</div>}
-        {slErr && <div style={{ background: "#FDECEC", border: "1px solid #E8A9A9", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10 }}>Sleeper: {slErr}</div>}
-
-        {/* league toggle */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 8 }}>
-          {[["sleeper", sl?.league?.name || "Gangstas Paradise", "Sleeper · live", INK],
-            ["yahoo", cfg.yahooLeagueName, yahoo ? `Yahoo · screenshots ${yahooAge === 0 ? "today" : yahooAge + "d old"}` : "Yahoo · no data", OX]].map(([k, n, s, c]) => (
-            <button key={k} onClick={() => setLg(k)} style={{ textAlign: "left", padding: "10px 12px", borderRadius: 8, border: `2px solid ${c}`, background: lg === k ? c : "transparent", color: lg === k ? "#fff" : c, cursor: "pointer" }}>
-              <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 16, lineHeight: 1.1 }}>{n}</div>
-              <div style={{ fontSize: 12, opacity: 0.85 }}>{s}</div>
-            </button>
-          ))}
-        </div>
-        {/* tabs */}
-        <div style={{ display: "flex", borderBottom: `2px solid ${LINE}`, marginBottom: 12 }}>
-          {tabs.map(([k, l]) => <button key={k} onClick={() => setView(k)} style={{ flex: 1, fontFamily: cond, fontWeight: 700, fontSize: 15, padding: "7px 4px", background: "none", border: "none", borderBottom: `3px solid ${view === k ? tone : "transparent"}`, marginBottom: -2, color: view === k ? TEXT : MUTE, cursor: "pointer", whiteSpace: "nowrap" }}>{l}</button>)}
-        </div>
+        {dataErr && <div style={{ background: "#FFF6D6", border: `1px solid ${FLAG}`, borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>{dataErr}</div>}
+        {slErr && <div style={{ background: "#FDECEC", border: "1px solid #E8A9A9", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>Sleeper: {slErr}</div>}
 
         {view === "matchup" && lg === "sleeper" && (sl
           ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} oppName={sl.oppUser?.metadata?.team_name || sl.oppUser?.display_name} oppRec={oppRec}
@@ -658,7 +658,7 @@ function App() {
           <Card style={{ marginTop: 10 }}>
             <H tone={INK} style={{ marginBottom: 6 }}>Moves this week</H>
             {sl.transactions.length === 0 ? <Empty>No transactions yet this week.</Empty> : sl.transactions.slice(0, 20).map((t, i) => (
-              <div key={i} style={{ fontSize: 14, padding: "5px 0", borderBottom: `1px solid #EEF0F3` }}>
+              <div key={i} style={{ fontSize: 14, padding: "5px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
                 <span style={{ fontFamily: cond, fontWeight: 600, color: MUTE }}>{t.type}{t.settings?.waiver_bid ? ` $${t.settings.waiver_bid}` : ""}</span> · {t.roster_ids?.map(r => sl.userBy[r]?.metadata?.team_name || sl.userBy[r]?.display_name).join(" ↔ ")}<br />
                 {Object.keys(t.adds || {}).length > 0 && <span style={{ color: WIN }}>+ {Object.keys(t.adds).map(p => sl.players[p]?.name).join(", ")}</span>} {Object.keys(t.drops || {}).length > 0 && <span style={{ color: OX }}>− {Object.keys(t.drops).map(p => sl.players[p]?.name).join(", ")}</span>}
               </div>))}
@@ -705,7 +705,7 @@ function App() {
           <Card style={{ padding: 8, overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
               <thead><tr style={{ fontFamily: cond, color: MUTE, textAlign: "left" }}>{["Wk", "League", "Me", "Opp", "", "Rec", "Bench", "Lesson"].map((h, i) => <th key={i} style={{ padding: "4px 6px", borderBottom: `1px solid ${LINE}`, fontWeight: 600 }}>{h}</th>)}</tr></thead>
-              <tbody>{season.map((r, i) => <tr key={i} style={{ borderBottom: "1px solid #EEF0F3" }}>
+              <tbody>{season.map((r, i) => <tr key={i} style={{ borderBottom: `1px solid ${HAIRLINE}` }}>
                 <td style={{ padding: 6 }}>{r.week}</td>
                 <td style={{ padding: 6, color: r.league === "Sleeper" ? INK : OX, fontWeight: 600 }}>{r.league}</td>
                 <td style={{ padding: 6 }}>{r.me}</td><td style={{ padding: 6 }}>{r.opp}</td>
@@ -717,7 +717,32 @@ function App() {
             <div style={{ fontSize: 12, color: MUTE, marginTop: 6 }}>Sleeper scores and bench points are computed live from Sleeper; Yahoo rows and lessons come from the Tuesday run.</div>
           </Card>
         </>}
-        <style>{`@keyframes spin{to{transform:rotate(360deg)}} button:focus-visible{outline:3px solid ${FLAG};outline-offset:2px} @media (prefers-reduced-motion:reduce){*{animation:none!important}}`}</style>
+
+        <style>{`
+          :root{--field:#E9ECF0;--paper:#fff;--mute:#5C6470;--line:#D5D9E0;--text:#1B1F27;--ink:#14213D;--ox:#6E1F2B;--win:#1E6B3A;--amber:#7A5A00;--chip-bg:#F1F3F6;--hairline:#EEF0F3;--hilite:#F7F8FA}
+          :root[data-theme="dark"]{--field:#0B0D12;--paper:#171A21;--mute:#8A93A3;--line:#2B2F3A;--text:#E7E9EE;--ink:#7C93D8;--ox:#C4677A;--win:#4CAF6B;--amber:#E0B84D;--chip-bg:#232733;--hairline:#242833;--hilite:#1E2129}
+          @keyframes spin{to{transform:rotate(360deg)}} button:focus-visible{outline:3px solid ${FLAG};outline-offset:2px} @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+        `}</style>
+      </div>
+
+      {/* bottom bar: section tabs above the league/team toggle, pinned to the bottom of the screen */}
+      <div style={{ position: "fixed", left: 0, right: 0, bottom: 0, background: PAPER, borderTop: `1px solid ${LINE}`, paddingBottom: "env(safe-area-inset-bottom)", boxShadow: "0 -2px 10px rgba(0,0,0,0.08)" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 12px" }}>
+          {/* tabs */}
+          <div style={{ display: "flex", borderBottom: `2px solid ${LINE}` }}>
+            {tabs.map(([k, l]) => <button key={k} onClick={() => setView(k)} style={{ flex: 1, fontFamily: cond, fontWeight: 700, fontSize: 15, padding: "7px 4px", background: "none", border: "none", borderBottom: `3px solid ${view === k ? tone : "transparent"}`, marginBottom: -2, color: view === k ? TEXT : MUTE, cursor: "pointer", whiteSpace: "nowrap" }}>{l}</button>)}
+          </div>
+          {/* league / team toggle */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, padding: "8px 0" }}>
+            {[["sleeper", sl?.league?.name || "Gangstas Paradise", "Sleeper · live", INK],
+              ["yahoo", cfg.yahooLeagueName, yahoo ? `Yahoo · screenshots ${yahooAge === 0 ? "today" : yahooAge + "d old"}` : "Yahoo · no data", OX]].map(([k, n, s, c]) => (
+              <button key={k} onClick={() => setLg(k)} style={{ textAlign: "left", padding: "10px 12px", borderRadius: 8, border: `2px solid ${c}`, background: lg === k ? c : "transparent", color: lg === k ? "#fff" : c, cursor: "pointer" }}>
+                <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 16, lineHeight: 1.1 }}>{n}</div>
+                <div style={{ fontSize: 12, opacity: 0.85 }}>{s}</div>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

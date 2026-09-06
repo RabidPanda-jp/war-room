@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#14213D"><title>War room</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-<style>html,body{margin:0;background:#E9ECF0} #root{min-height:100vh}</style></head>
+<style>html,body{margin:0;background:#E9ECF0} #root{min-height:100vh}
+html[data-theme="dark"],html[data-theme="dark"] body{background:#0B0D12}</style>
+<script>try{var t=localStorage.getItem("wr_dark");var dk=t!==null?JSON.parse(t):matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.setAttribute("data-theme",dk?"dark":"light");var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",dk?"#0B0D12":"#14213D");}catch(e){}</script>
+</head>
 <body><div id="root"></div>
 <script>/**
  * @license React
