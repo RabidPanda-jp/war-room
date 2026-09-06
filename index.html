@@ -1776,7 +1776,8 @@ function App() {
   const cfg = CONFIG;
   const [data, setData] = useState(null),
     [dataErr, setDataErr] = useState(""),
-    [dataBusy, setDataBusy] = useState(false);
+    [dataBusy, setDataBusy] = useState(false),
+    [dataCached, setDataCached] = useState(false);
   const [lg, setLg] = useState("sleeper"),
     [view, setView] = useState("matchup");
   const [sl, setSl] = useState(null),
@@ -1808,9 +1809,19 @@ function App() {
     setDataBusy(true);
     setDataErr("");
     try {
-      setData(await loadData());
+      const d = await loadData();
+      setData(d);
+      setDataCached(false);
+      store.set("wr_last_data", d);
     } catch (e) {
-      setDataErr(e.message);
+      const cached = store.get("wr_last_data");
+      if (cached) {
+        setData(cached);
+        setDataCached(true);
+        setDataErr(`Can't reach data.json (${e.message}) — showing the last copy saved on this device.`);
+      } else {
+        setDataErr(e.message);
+      }
     }
     setDataBusy(false);
   }, []);
@@ -1890,6 +1901,9 @@ function App() {
     return isNaN(d) ? null : Math.floor((now - d.getTime()) / 864e5);
   }, [yahooRaw, now]);
   const yahooStale = yahooRaw && (yahooAge != null && yahooAge > 2 || week && yahooRaw.week && yahooRaw.week < week);
+  const PIPELINE_STALE_MS = 27 * 3600e3;
+  const pipelineAgeMs = useMemo(() => data?.updatedAt ? now - new Date(data.updatedAt).getTime() : null, [data, now]);
+  const pipelineStale = !dataCached && pipelineAgeMs != null && pipelineAgeMs > PIPELINE_STALE_MS;
   const nextLock = useMemo(() => {
     const all = [...my.starters.map(r => ({
       ...r,
@@ -1978,7 +1992,7 @@ function App() {
       color: MUTE,
       marginTop: 3
     }
-  }, sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline", " \xB7 ", data ? `brief ${stamp(data.updatedAt)}` : dataBusy ? "loading data…" : "no data yet")), React.createElement("div", {
+  }, sl ? `Week ${sl.week} · ${sl.season}` : slBusy ? "Loading Sleeper…" : "Sleeper offline", " \xB7 ", data ? `brief ${stamp(data.updatedAt)}${dataCached ? " (cached)" : ""}` : dataBusy ? "loading data…" : "no data yet")), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -2100,7 +2114,18 @@ function App() {
       fontFamily: cond,
       fontWeight: 600
     }
-  }, "Yahoo data is ", yahooAge, " days old (screenshots from ", yahoo.updatedAt, yahoo.week && week && yahoo.week < week ? `, Week ${yahoo.week}` : "", "). Drop fresh roster + matchup screenshots in Drive before kickoff."), dataErr && React.createElement("div", {
+  }, "Yahoo data is ", yahooAge, " days old (screenshots from ", yahoo.updatedAt, yahoo.week && week && yahoo.week < week ? `, Week ${yahoo.week}` : "", "). Drop fresh roster + matchup screenshots in Drive before kickoff."), pipelineStale && React.createElement("div", {
+    style: {
+      background: OX,
+      color: "#fff",
+      borderRadius: 8,
+      padding: "10px 12px",
+      fontSize: 14,
+      marginBottom: 10,
+      fontFamily: cond,
+      fontWeight: 600
+    }
+  }, "Scheduled task hasn't written new data in ", Math.floor(pipelineAgeMs / 3600e3), "h (last update ", stamp(data.updatedAt), "). Check that the Cowork task ran."), dataErr && React.createElement("div", {
     style: {
       background: "#FFF6D6",
       border: `1px solid ${FLAG}`,
