@@ -487,6 +487,35 @@ async function loadFullSchedule(sl) {
   });
 }
 
+// a single week's actual fantasy matchup (my + opponent rosters as they were started that week, with real points) —
+// used by the Matchup/Team tabs' week arrows to browse weeks other than the live one. Sourced from the matchup
+// object itself (its own starters/players/players_points), not the current roster, so it stays accurate for past weeks.
+async function loadWeekMatchup(sl, week) {
+  const lid = CONFIG.sleeperLeagueId;
+  const matchups = await j(`${SL}/league/${lid}/matchups/${week}`);
+  const mine = matchups.find(m => m.roster_id === sl.myRoster.roster_id) || null;
+  const opp = mine ? matchups.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id) : null;
+  const oppRoster = opp ? sl.rosters.find(r => r.roster_id === opp.roster_id) : null;
+  const oppUser = oppRoster ? sl.userBy[oppRoster.roster_id] : null;
+  const need = new Set([...(mine?.players || []), ...(opp?.players || [])].filter(id => !sl.players[id]));
+  const fetched = need.size ? await loadPlayers(need) : {};
+  const players = { ...sl.players, ...fetched };
+  const slots = sl.league.roster_positions.filter(x => x !== "BN" && x !== "IR");
+  const rowsFor = match => {
+    if (!match) return { starters: [], bench: [] };
+    const row = (id, slot) => { const p = players[id] || { name: id, pos: "?", team: "?" }; return { id, slot, name: p.name, team: p.team || "FA", pos: p.pos, status: "", proj: null, pts: match.players_points?.[id] ?? null }; };
+    const starters = (match.starters || []).map((id, i) => row(id, slots[i] || "?"));
+    const bench = (match.players || []).filter(id => !(match.starters || []).includes(id)).map(id => row(id, "BN"));
+    return { starters, bench };
+  };
+  return {
+    week, myPts: mine?.points ?? null, oppPts: opp?.points ?? null,
+    oppName: oppUser?.metadata?.team_name || oppUser?.display_name || "—",
+    oppRec: oppRoster ? `${oppRoster.settings.wins}-${oppRoster.settings.losses}` : "",
+    my: rowsFor(mine), opp: rowsFor(opp),
+  };
+}
+
 // ---------- live matchup timeline ----------
 // human-readable labels for the stat keys that actually appear in YAHOO_SCORING / typical Sleeper scoring
 const STAT_LABEL = {
@@ -607,11 +636,24 @@ const WeekLink = ({ week, onClick }) => week == null ? null : (
   <button onClick={onClick} style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, background: "none", border: "none", padding: 0, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>Week {week} <Chip>Current</Chip> <span style={{ fontSize: 15 }}>›</span></button>
 );
 
-function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, oppPts, myProj, oppProj, sub, kick, now, action, week, onWeekClick, onPlayerClick, onTeamClick }) {
+// ‹ Week N › header shared by Games/Matchup/Team — tapping the week number opens WeekPicker; arrows step by one
+function WeekNav({ week, min = 1, max = 18, onChange, onOpenPicker }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+      <button onClick={() => onChange(Math.max(min, week - 1))} disabled={week <= min} aria-label="Previous week" style={{ background: "none", border: "none", fontSize: 22, color: week <= min ? MUTE : TEXT, cursor: week <= min ? "default" : "pointer", padding: "0 8px" }}>‹</button>
+      <button onClick={onOpenPicker} aria-haspopup="dialog" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}><H tone={INK}>Week {week}</H></button>
+      <button onClick={() => onChange(Math.min(max, week + 1))} disabled={week >= max} aria-label="Next week" style={{ background: "none", border: "none", fontSize: 22, color: week >= max ? MUTE : TEXT, cursor: week >= max ? "default" : "pointer", padding: "0 8px" }}>›</button>
+    </div>
+  );
+}
+
+function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, oppPts, myProj, oppProj, sub, kick, now, action, final, nav, week, onWeekClick, onPlayerClick, onTeamClick }) {
   const rows = Math.max(mine.length, theirs.length);
-  const live = (myPts || 0) + (oppPts || 0) > 0 && [...mine, ...theirs].some(r => started(gameState(kick, r.team, now)));
+  const live = !final && (myPts || 0) + (oppPts || 0) > 0 && [...mine, ...theirs].some(r => started(gameState(kick, r.team, now)));
+  const phaseLabel = final ? ((myPts != null || oppPts != null) ? "final" : "upcoming") : (live ? "live" : "proj");
   return (
     <Card>
+      {nav && <WeekNav {...nav} />}
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "center", gap: 8, marginBottom: 6 }}>
         <div><H tone={tone}>{meName}</H><div style={{ fontSize: 12, color: MUTE }}>{meRec}</div></div>
         <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 12, color: MUTE }}>vs</div>
@@ -619,7 +661,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", alignItems: "baseline", marginBottom: 2 }}>
         <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 40, lineHeight: 1, color: live && myPts > oppPts ? WIN : TEXT }}>{fmt(myPts)}</div>
-        <div style={{ fontSize: 12, color: MUTE }}>{live ? "live" : "proj"}</div>
+        <div style={{ fontSize: 12, color: MUTE }}>{phaseLabel}</div>
         <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 40, lineHeight: 1, textAlign: "right", color: live && oppPts > myPts ? WIN : TEXT }}>{fmt(oppPts)}</div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", fontSize: 13, color: MUTE, marginBottom: 10 }}>
@@ -627,18 +669,19 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 6 }}>
         <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE }}>Starters</div>
-        <WeekLink week={week} onClick={onWeekClick} />
+        {!nav && <WeekLink week={week} onClick={onWeekClick} />}
       </div>
       <div style={{ borderTop: `1px solid ${LINE}` }}>
         {Array.from({ length: rows }).map((_, i) => {
           const a = mine[i], b = theirs[i];
-          const ga = a && gameState(kick, a.team, now), gb = b && gameState(kick, b.team, now);
+          const ga = final ? null : (a && gameState(kick, a.team, now)), gb = final ? null : (b && gameState(kick, b.team, now));
+          const showA = final || started(ga), showB = final || started(gb);
           return (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 36px 38px 36px 1fr", gap: 4, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
               <PlayerCell r={a} g={ga} onClick={a && onPlayerClick && (() => onPlayerClick(a))} onTeamClick={onTeamClick} />
-              <Num v={started(ga) ? (a?.pts ?? a?.proj) : a?.proj} strong={started(ga) && a?.pts != null} />
+              <Num v={showA ? (a?.pts ?? a?.proj) : a?.proj} strong={showA && a?.pts != null} />
               <Chip style={{ textAlign: "center", padding: "3px 0", fontSize: 10 }}>{a?.slot || b?.slot}</Chip>
-              <Num v={started(gb) ? (b?.pts ?? b?.proj) : b?.proj} strong={started(gb) && b?.pts != null} />
+              <Num v={showB ? (b?.pts ?? b?.proj) : b?.proj} strong={showB && b?.pts != null} />
               <PlayerCell r={b} g={gb} align="right" onClick={b && onPlayerClick && (() => onPlayerClick(b))} onTeamClick={onTeamClick} />
             </div>
           );
@@ -649,9 +692,10 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
   );
 }
 
-function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead, week, action, onWeekClick, onPlayerClick, onTeamClick }) {
+function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead, week, action, final, nav, onWeekClick, onPlayerClick, onTeamClick }) {
   const Row = ({ r }) => {
-    const g = gameState(kick, r.team, now), c = contingency?.[r.name.toLowerCase()];
+    const g = final ? null : gameState(kick, r.team, now), c = final ? null : contingency?.[r.name.toLowerCase()];
+    const shown = final ? r.pts : (started(g) ? r.pts : null);
     return (
       <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
         <Chip style={{ textAlign: "center", padding: "3px 0", background: r.slot === "BN" || r.slot === "IR" ? "transparent" : CHIP_BG }}>{r.slot}</Chip>
@@ -659,18 +703,19 @@ function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead
           <PlayerCell r={r} g={g} full onClick={onPlayerClick && (() => onPlayerClick(r))} onTeamClick={onTeamClick} />
           {c && <div style={{ marginTop: 3 }}><Chip tone="#7A5A00" bg="#FFF6D6">if out → {c}</Chip></div>}
         </div>
-        <Num v={r.proj} /><Num v={started(g) ? r.pts : null} strong={started(g)} />
+        <Num v={r.proj} /><Num v={shown} strong={final ? r.pts != null : started(g)} />
       </div>
     );
   };
-  const weeks = [1, 2, 3].map(i => week + i).filter(w => ahead?.[w]);
+  const weeks = final ? [] : [1, 2, 3].map(i => week + i).filter(w => ahead?.[w]);
   return (
     <Card>
+      {nav && <WeekNav {...nav} />}
       <H tone={tone}>{name}</H>
       <div style={{ fontSize: 12, color: MUTE, marginBottom: 8 }}>{meta}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
         <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE }}>Starters</div>
-        <WeekLink week={week} onClick={onWeekClick} />
+        {!nav && <WeekLink week={week} onClick={onWeekClick} />}
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, fontSize: 11, color: MUTE, fontFamily: cond, fontWeight: 600, borderBottom: `1px solid ${LINE}`, paddingBottom: 4 }}>
         <div /><div /><div style={{ textAlign: "center" }}>proj</div><div style={{ textAlign: "center" }}>pts</div>
@@ -751,11 +796,25 @@ function TeamScheduleModal({ team, rows, busy, err, currentWeek, onClose }) {
     </BottomSheet>
   );
 }
-// a player's week-by-week stats & fantasy points this season, scored under both leagues' rules
-function PlayerStatsModal({ player, rows, busy, err, onClose }) {
+// a player's week-by-week stats & fantasy points this season, scored under both leagues' rules, plus any recent
+// news the scheduled task logged for them (see cowork-task-prompt.md's `news` block)
+function PlayerStatsModal({ player, rows, busy, err, news, newsAvailable, onClose }) {
   const sTot = rows?.reduce((a, r) => a + (r.sleeperPts || 0), 0), yTot = rows?.reduce((a, r) => a + (r.yahooPts || 0), 0);
   return (
     <BottomSheet tone={INK} title={`${player?.name || ""}${player?.team ? ` · ${player.team}` : ""}${player?.pos ? ` · ${player.pos}` : ""}`} onClose={onClose}>
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, marginBottom: 6 }}>Recent news</div>
+        {news.length > 0 ? news.map((n, i) => (
+          <div key={i} style={{ padding: "8px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
+            {n.headline && <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 14, lineHeight: 1.35 }}>{n.headline}</div>}
+            {n.summary && <div style={{ fontSize: 13, color: n.headline ? MUTE : TEXT, marginTop: n.headline ? 2 : 0, lineHeight: 1.4 }}>{n.summary}</div>}
+            <div style={{ fontSize: 12, color: MUTE, marginTop: 4 }}>
+              {n.source || "Source"}{n.at ? ` · ${stamp(n.at)}` : ""}
+              {n.url && <> · <a href={n.url} target="_blank" rel="noopener noreferrer" style={{ color: INK }}>Read more</a></>}
+            </div>
+          </div>
+        )) : <Empty>{newsAvailable ? "No recent news for this player." : `No player news yet — the scheduled task needs updating to log a "news" entry per player (see cowork-task-prompt.md).`}</Empty>}
+      </div>
       {err ? <Empty>{err}</Empty> : !rows?.length ? <Empty>{busy ? "Loading stats…" : "No stats yet this season."}</Empty> : <>
         <div style={{ display: "grid", gridTemplateColumns: "44px 1fr 70px 70px", gap: 8, fontSize: 11, color: MUTE, fontFamily: cond, fontWeight: 700, borderBottom: `1px solid ${LINE}`, paddingBottom: 4, marginBottom: 2 }}>
           <div>Wk</div><div /><div style={{ textAlign: "right" }}>Sleeper</div><div style={{ textAlign: "right" }}>Yahoo</div>
@@ -914,11 +973,7 @@ function Section({ item, empty }) {
 function GamesView({ week, games, busy, err, onWeekChange, onOpenPicker, onTeamClick, now }) {
   return (
     <Card>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-        <button onClick={() => onWeekChange(Math.max(1, week - 1))} disabled={week <= 1} aria-label="Previous week" style={{ background: "none", border: "none", fontSize: 22, color: week <= 1 ? MUTE : TEXT, cursor: week <= 1 ? "default" : "pointer", padding: "0 8px" }}>‹</button>
-        <button onClick={onOpenPicker} aria-haspopup="dialog" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}><H tone={INK}>Week {week}</H></button>
-        <button onClick={() => onWeekChange(Math.min(18, week + 1))} disabled={week >= 18} aria-label="Next week" style={{ background: "none", border: "none", fontSize: 22, color: week >= 18 ? MUTE : TEXT, cursor: week >= 18 ? "default" : "pointer", padding: "0 8px" }}>›</button>
-      </div>
+      <WeekNav week={week} onChange={onWeekChange} onOpenPicker={onOpenPicker} />
       {err ? <Empty>{err}</Empty> : !games?.length ? <Empty>{busy ? "Loading games…" : "No games this week."}</Empty> : games.map(g => {
         const gs = gameRowState(g, now);
         return (
@@ -937,8 +992,9 @@ function GamesView({ week, games, busy, err, onWeekChange, onOpenPicker, onTeamC
     </Card>
   );
 }
-// list of every week (1-18) for the Games tab, opened by tapping the "Week N" header — the live NFL week is tagged Current
-function GamesWeekPicker({ week, currentWeek, onSelect, onClose }) {
+// list of every week (1-18), opened by tapping a WeekNav header — the live/current week is tagged Current.
+// Shared by Games (NFL slate), Matchup and Team (fantasy roster for that week).
+function WeekPicker({ week, currentWeek, onSelect, onClose }) {
   return (
     <BottomSheet tone={INK} title="Jump to a week" onClose={onClose}>
       {Array.from({ length: 18 }, (_, i) => i + 1).map(w => (
@@ -992,6 +1048,10 @@ function App() {
   const [gamesWeek, setGamesWeek] = useState(null);
   const [weekGames, setWeekGames] = useState(null), [weekGamesBusy, setWeekGamesBusy] = useState(false), [weekGamesErr, setWeekGamesErr] = useState("");
   const [weekPickerOpen, setWeekPickerOpen] = useState(false);
+  // Matchup/Team tabs (Sleeper only): browse a fantasy week other than the live one
+  const [rosterWeek, setRosterWeek] = useState(null);
+  const [weekMatch, setWeekMatch] = useState(null), [weekMatchBusy, setWeekMatchBusy] = useState(false), [weekMatchErr, setWeekMatchErr] = useState("");
+  const [rosterPickerOpen, setRosterPickerOpen] = useState(false);
   // team-schedule modal: opened by clicking any TeamAbbrev
   const [teamScheduleFor, setTeamScheduleFor] = useState(null);
   const [teamScheduleRows, setTeamScheduleRows] = useState(null), [teamScheduleBusy, setTeamScheduleBusy] = useState(false), [teamScheduleErr, setTeamScheduleErr] = useState("");
@@ -1014,6 +1074,13 @@ function App() {
 
   const yahooRaw = data?.yahoo || null;
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
+  const newsAvailable = Array.isArray(data?.news);
+  const news = data?.news || [];
+  const playerNews = useMemo(() => {
+    if (!playerStatsFor) return [];
+    const key = normName(playerStatsFor.name);
+    return news.filter(n => normName(n.player) === key);
+  }, [news, playerStatsFor]);
   const lineup = data?.lineup || {};
   const analysis = data?.analysis || {};
   // TV/streaming network, in priority order: the baked-in season schedule (straight off the NFL's official
@@ -1108,6 +1175,19 @@ function App() {
     const t = setInterval(() => { if (document.visibilityState === "visible") loadWeekGames(sl.season, gamesWeek, true).then(setWeekGames).catch(() => {}); }, 20000);
     return () => clearInterval(t);
   }, [view, anyLive, sl, gamesWeek]);
+
+  // Matchup/Team tabs: default the browsed week to the live one, then fetch that week's actual rosters/points
+  // whenever it's not the live week (the live week already has this data loaded via `sl`).
+  useEffect(() => { if (rosterWeek == null && sl?.week != null) setRosterWeek(sl.week); }, [sl?.week]);
+  useEffect(() => {
+    if (!sl || rosterWeek == null || rosterWeek === sl.week) { setWeekMatch(null); return; }
+    let cancelled = false;
+    setWeekMatchBusy(true); setWeekMatchErr("");
+    loadWeekMatchup(sl, rosterWeek).then(r => { if (!cancelled) setWeekMatch(r); })
+      .catch(e => { if (!cancelled) setWeekMatchErr(e.message); })
+      .finally(() => { if (!cancelled) setWeekMatchBusy(false); });
+    return () => { cancelled = true; };
+  }, [sl, rosterWeek]);
 
   // team-schedule modal: fetch on open
   useEffect(() => {
@@ -1205,7 +1285,21 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
+
+  // Matchup/Team (Sleeper): ‹ Week N › nav shared by both tabs, plus the props for whichever week is browsed —
+  // the live week reuses the already-loaded sl/my/opp data, any other week uses the separately fetched weekMatch.
+  const rosterIsLive = !sl || rosterWeek == null || rosterWeek === sl.week;
+  const rosterNav = sl ? { week: rosterWeek ?? sl.week, min: 1, max: 18, onChange: setRosterWeek, onOpenPicker: () => setRosterPickerOpen(true) } : null;
+  const rosterMatchupProps = rosterIsLive
+    ? { oppName: sl?.oppUser?.metadata?.team_name || sl?.oppUser?.display_name, oppRec, mine: my.starters, theirs: opp.starters,
+        myPts: sl?.myMatch?.points ?? 0, oppPts: sl?.oppMatch?.points ?? 0, myProj: sum(my.starters, "proj"), oppProj: sum(opp.starters, "proj"),
+        sub: sl ? `Week ${sl.week}` : "", final: false }
+    : { oppName: weekMatch?.oppName, oppRec: weekMatch?.oppRec || "", mine: weekMatch?.my?.starters || [], theirs: weekMatch?.opp?.starters || [],
+        myPts: weekMatch?.myPts ?? null, oppPts: weekMatch?.oppPts ?? null, myProj: null, oppProj: null, sub: `Week ${rosterWeek}`, final: true };
+  const rosterTeamProps = rosterIsLive
+    ? { starters: my.starters, bench: my.bench, contingency, ahead, final: false }
+    : { starters: weekMatch?.my?.starters || [], bench: weekMatch?.my?.bench || [], contingency: null, ahead: null, final: true };
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = <Card><Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty></Card>;
   const openPlayer = r => setPlayerStatsFor({ id: r.id, name: r.name, team: r.team, pos: r.pos });
   const openTeam = team => setTeamScheduleFor(team);
@@ -1261,10 +1355,9 @@ function App() {
         {slErr && <div style={{ background: "#FDECEC", border: "1px solid #E8A9A9", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>Sleeper: {slErr}</div>}
 
         {view === "matchup" && lg === "sleeper" && (sl
-          ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} oppName={sl.oppUser?.metadata?.team_name || sl.oppUser?.display_name} oppRec={oppRec}
-              mine={my.starters} theirs={opp.starters} myPts={sl.myMatch?.points ?? 0} oppPts={sl.oppMatch?.points ?? 0}
-              myProj={sum(my.starters, "proj")} oppProj={sum(opp.starters, "proj")} sub={`Week ${sl.week}`} kick={kick} now={now}
-              week={sl.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+          ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} kick={kick} now={now} nav={rosterNav}
+              {...rosterMatchupProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
+              action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>{slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."}</Empty></Card>)}
         {view === "matchup" && lg === "yahoo" && (yahoo
           ? <Matchup tone={OX} meName={cfg.yahooTeamName} meRec={yahoo.record} oppName={yahoo.opponent} oppRec={yahoo.oppRecord}
@@ -1277,7 +1370,8 @@ function App() {
 
         {view === "team" && lg === "sleeper" && (sl
           ? <Team tone={INK} name={cfg.sleeperTeamName} meta={`${myRec} · ${sl.league.settings.waiver_type === 2 ? `FAAB $${sl.standings.find(x => x.mine)?.faab} left` : "priority waivers"} · ${sl.league.scoring_settings?.rec >= 1 ? "PPR" : sl.league.scoring_settings?.rec >= 0.5 ? "half PPR" : "standard"}`}
-              starters={my.starters} bench={my.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={sl.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+              kick={kick} now={now} week={sl.week} nav={rosterNav} {...rosterTeamProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
+              action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>Sleeper not loaded.</Empty></Card>)}
         {view === "team" && lg === "yahoo" && (yahoo
           ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`} starters={yahoo.starters} bench={yahoo.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
@@ -1337,14 +1431,15 @@ function App() {
             {lg === "sleeper" ? <Analysis tone={INK} rows={analysis.sleeper} />
               : (yahoo ? <Analysis tone={OX} rows={analysis.yahoo} /> : <Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty>)}
           </Collapsible>
+          <Collapsible tone={tone} title="Moves" defaultOpen={false}>
+            <div style={{ display: "grid", gap: 10 }}>
+              <H tone={tone}>Waivers</H>
+              <Section item={waivers} empty="Waiver plans are written on Tuesday and Wednesday runs." />
+              <H tone={tone}>Trades</H>
+              <Section item={trades} empty={`Trade ideas are written on Tuesday runs. To get a proposal evaluated, put a note named "trade.txt" in the Drive folder.`} />
+            </div>
+          </Collapsible>
         </>}
-
-        {view === "moves" && <div style={{ display: "grid", gap: 10 }}>
-          <H tone={tone}>Waivers</H>
-          <Section item={waivers} empty="Waiver plans are written on Tuesday and Wednesday runs." />
-          <H tone={tone}>Trades</H>
-          <Section item={trades} empty={`Trade ideas are written on Tuesday runs. To get a proposal evaluated, put a note named "trade.txt" in the Drive folder.`} />
-        </div>}
 
         {view === "season" && <>
           <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}><CopyBtn text={seasonMd()} /></div>
@@ -1406,12 +1501,16 @@ function App() {
           currentWeek={sl?.week} onClose={() => setTeamScheduleFor(null)} />
       )}
       {weekPickerOpen && (
-        <GamesWeekPicker week={gamesWeek ?? week ?? 1} currentWeek={week}
+        <WeekPicker week={gamesWeek ?? week ?? 1} currentWeek={week}
           onSelect={w => { setGamesWeek(w); setWeekPickerOpen(false); }} onClose={() => setWeekPickerOpen(false)} />
+      )}
+      {rosterPickerOpen && (
+        <WeekPicker week={rosterWeek ?? sl?.week ?? 1} currentWeek={sl?.week}
+          onSelect={w => { setRosterWeek(w); setRosterPickerOpen(false); }} onClose={() => setRosterPickerOpen(false)} />
       )}
       {playerStatsFor && (
         <PlayerStatsModal player={playerStatsFor} rows={playerStatsRows} busy={playerStatsBusy} err={playerStatsErr}
-          onClose={() => setPlayerStatsFor(null)} />
+          news={playerNews} newsAvailable={newsAvailable} onClose={() => setPlayerStatsFor(null)} />
       )}
     </div>
   );
