@@ -1328,6 +1328,27 @@ function App() {
   const rosterTeamProps = rosterIsLive
     ? { starters: my.starters, bench: my.bench, contingency, ahead, final: false }
     : { starters: weekMatch?.my?.starters || [], bench: weekMatch?.my?.bench || [], contingency: null, ahead: null, final: !weekUpcoming };
+
+  // Matchup/Team (Yahoo): shares the same `rosterWeek`/`rosterNav` as Sleeper above, so flipping weeks moves both
+  // tabs together. Yahoo has no live API to replay a past week from — data.json's scheduled task instead archives
+  // each week's roster snapshot into `yahoo.history` as it happens (see cowork-task-prompt.md). Browsing to a week
+  // strictly before Yahoo's latest known week reads that archive; browsing at/after it just keeps showing the
+  // latest known roster (today's behavior, staleness banner included), since nothing more recent exists yet.
+  const yahooCurrentWeek = yahooRaw?.week ?? null;
+  const yahooHistKey = rosterWeek != null && yahooCurrentWeek != null && rosterWeek < yahooCurrentWeek ? String(rosterWeek) : null;
+  const yahooHist = yahooHistKey ? data?.yahoo?.history?.[yahooHistKey] : null;
+  const rosterYahooMatchupProps = yahooHistKey
+    ? { oppName: yahooHist?.opponent, oppRec: yahooHist?.oppRecord || "", mine: yahooHist?.starters || [], theirs: yahooHist?.opp || [],
+        myPts: yahooHist?.myPts ?? null, oppPts: yahooHist?.oppPts ?? null, myProj: null, oppProj: null,
+        sub: `Week ${rosterWeek}`, final: true }
+    : { oppName: yahoo?.opponent, oppRec: yahoo?.oppRecord, mine: yahoo?.starters || [], theirs: yahoo?.opp || [],
+        myPts: yahoo?.myPts, oppPts: yahoo?.oppPts, myProj: yahoo?.myProj ?? sum(yahoo?.starters || [], "proj"), oppProj: yahoo?.oppProj ?? sum(yahoo?.opp || [], "proj"),
+        sub: yahoo?.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo?.week}${yahoo?.winProb ? " · " + yahoo.winProb : ""}`, final: false };
+  const rosterYahooTeamProps = yahooHistKey
+    ? { starters: yahooHist?.starters || [], bench: yahooHist?.bench || [], contingency: null, ahead: null, final: true }
+    : { starters: yahoo?.starters || [], bench: yahoo?.bench || [], contingency, ahead, final: false };
+  const yahooHistMissing = yahooHistKey && !yahooHist;
+
   const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = <Card><Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty></Card>;
   const openPlayer = r => setPlayerStatsFor({ id: r.id, name: r.name, team: r.team, pos: r.pos });
@@ -1389,12 +1410,12 @@ function App() {
               action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>{slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."}</Empty></Card>)}
         {view === "matchup" && lg === "yahoo" && (yahoo
-          ? <Matchup tone={OX} meName={cfg.yahooTeamName} meRec={yahoo.record} oppName={yahoo.opponent} oppRec={yahoo.oppRecord}
-              mine={yahoo.starters} theirs={yahoo.opp} myPts={yahoo.myPts} oppPts={yahoo.oppPts}
-              myProj={yahoo.myProj ?? sum(yahoo.starters, "proj")} oppProj={yahoo.oppProj ?? sum(yahoo.opp, "proj")}
-              sub={yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`} kick={kick} now={now}
-              week={yahoo.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam}
-              action={<div style={{ fontSize: 12, color: MUTE }}>Roster, projections and injury tags from screenshots dated {yahoo.updatedAt}. Points during games are computed from Sleeper's live stat feed with Game of Throws scoring — they track Yahoo within stat corrections. Drop new Yahoo screenshots in the "War room" Drive folder to update the roster.</div>} />
+          ? <Matchup tone={OX} meName={cfg.yahooTeamName} meRec={yahoo.record}
+              kick={rosterKick} now={now} nav={rosterNav} {...rosterYahooMatchupProps}
+              onPlayerClick={openPlayer} onTeamClick={openTeam}
+              action={yahooHistMissing
+                ? <Empty>No archived Yahoo roster for Week {rosterWeek} yet — the scheduled task now saves each week's screenshot data, so this fills in going forward.</Empty>
+                : (yahooHistKey ? undefined : <div style={{ fontSize: 12, color: MUTE }}>Roster, projections and injury tags from screenshots dated {yahoo.updatedAt}. Points during games are computed from Sleeper's live stat feed with Game of Throws scoring — they track Yahoo within stat corrections. Drop new Yahoo screenshots in the "War room" Drive folder to update the roster.</div>)} />
           : yahooEmpty)}
 
         {view === "team" && lg === "sleeper" && (sl
@@ -1403,7 +1424,9 @@ function App() {
               action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>Sleeper not loaded.</Empty></Card>)}
         {view === "team" && lg === "yahoo" && (yahoo
-          ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`} starters={yahoo.starters} bench={yahoo.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+          ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`}
+              kick={rosterKick} now={now} week={week} nav={rosterNav} {...rosterYahooTeamProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
+              action={yahooHistMissing ? <Empty>No archived Yahoo roster for Week {rosterWeek} yet.</Empty> : undefined} />
           : yahooEmpty)}
 
         {view === "games" && (

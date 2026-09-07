@@ -3127,6 +3127,46 @@ function App() {
     ahead: null,
     final: !weekUpcoming
   };
+  const yahooCurrentWeek = yahooRaw?.week ?? null;
+  const yahooHistKey = rosterWeek != null && yahooCurrentWeek != null && rosterWeek < yahooCurrentWeek ? String(rosterWeek) : null;
+  const yahooHist = yahooHistKey ? data?.yahoo?.history?.[yahooHistKey] : null;
+  const rosterYahooMatchupProps = yahooHistKey ? {
+    oppName: yahooHist?.opponent,
+    oppRec: yahooHist?.oppRecord || "",
+    mine: yahooHist?.starters || [],
+    theirs: yahooHist?.opp || [],
+    myPts: yahooHist?.myPts ?? null,
+    oppPts: yahooHist?.oppPts ?? null,
+    myProj: null,
+    oppProj: null,
+    sub: `Week ${rosterWeek}`,
+    final: true
+  } : {
+    oppName: yahoo?.opponent,
+    oppRec: yahoo?.oppRecord,
+    mine: yahoo?.starters || [],
+    theirs: yahoo?.opp || [],
+    myPts: yahoo?.myPts,
+    oppPts: yahoo?.oppPts,
+    myProj: yahoo?.myProj ?? sum(yahoo?.starters || [], "proj"),
+    oppProj: yahoo?.oppProj ?? sum(yahoo?.opp || [], "proj"),
+    sub: yahoo?.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo?.week}${yahoo?.winProb ? " · " + yahoo.winProb : ""}`,
+    final: false
+  };
+  const rosterYahooTeamProps = yahooHistKey ? {
+    starters: yahooHist?.starters || [],
+    bench: yahooHist?.bench || [],
+    contingency: null,
+    ahead: null,
+    final: true
+  } : {
+    starters: yahoo?.starters || [],
+    bench: yahoo?.bench || [],
+    contingency,
+    ahead,
+    final: false
+  };
+  const yahooHistMissing = yahooHistKey && !yahooHist;
   const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = React.createElement(Card, null, React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."));
   const openPlayer = r => setPlayerStatsFor({
@@ -3341,32 +3381,23 @@ function App() {
     onPlayerClick: openPlayer,
     onTeamClick: openTeam,
     action: !rosterIsLive && weekMatchErr ? React.createElement(Empty, null, weekMatchErr) : undefined
-  })) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, {
+  })) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, _extends({
     tone: OX,
     meName: cfg.yahooTeamName,
     meRec: yahoo.record,
-    oppName: yahoo.opponent,
-    oppRec: yahoo.oppRecord,
-    mine: yahoo.starters,
-    theirs: yahoo.opp,
-    myPts: yahoo.myPts,
-    oppPts: yahoo.oppPts,
-    myProj: yahoo.myProj ?? sum(yahoo.starters, "proj"),
-    oppProj: yahoo.oppProj ?? sum(yahoo.opp, "proj"),
-    sub: yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`,
-    kick: kick,
+    kick: rosterKick,
     now: now,
-    week: yahoo.week,
-    onWeekClick: () => setScheduleOpen(true),
+    nav: rosterNav
+  }, rosterYahooMatchupProps, {
     onPlayerClick: openPlayer,
     onTeamClick: openTeam,
-    action: React.createElement("div", {
+    action: yahooHistMissing ? React.createElement(Empty, null, "No archived Yahoo roster for Week ", rosterWeek, " yet \u2014 the scheduled task now saves each week's screenshot data, so this fills in going forward.") : yahooHistKey ? undefined : React.createElement("div", {
       style: {
         fontSize: 12,
         color: MUTE
       }
     }, "Roster, projections and injury tags from screenshots dated ", yahoo.updatedAt, ". Points during games are computed from Sleeper's live stat feed with Game of Throws scoring \u2014 they track Yahoo within stat corrections. Drop new Yahoo screenshots in the \"War room\" Drive folder to update the roster.")
-  }) : yahooEmpty), view === "team" && lg === "sleeper" && (sl ? React.createElement(Team, _extends({
+  })) : yahooEmpty), view === "team" && lg === "sleeper" && (sl ? React.createElement(Team, _extends({
     tone: INK,
     name: cfg.sleeperTeamName,
     meta: `${myRec} · ${sl.league.settings.waiver_type === 2 ? `FAAB $${sl.standings.find(x => x.mine)?.faab} left` : "priority waivers"} · ${sl.league.scoring_settings?.rec >= 1 ? "PPR" : sl.league.scoring_settings?.rec >= 0.5 ? "half PPR" : "standard"}`,
@@ -3378,21 +3409,19 @@ function App() {
     onPlayerClick: openPlayer,
     onTeamClick: openTeam,
     action: !rosterIsLive && weekMatchErr ? React.createElement(Empty, null, weekMatchErr) : undefined
-  })) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, {
+  })) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, _extends({
     tone: OX,
     name: cfg.yahooTeamName,
     meta: `${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`,
-    starters: yahoo.starters,
-    bench: yahoo.bench,
-    kick: kick,
+    kick: rosterKick,
     now: now,
-    contingency: contingency,
-    ahead: ahead,
     week: week,
-    onWeekClick: () => setScheduleOpen(true),
+    nav: rosterNav
+  }, rosterYahooTeamProps, {
     onPlayerClick: openPlayer,
-    onTeamClick: openTeam
-  }) : yahooEmpty), view === "games" && React.createElement(GamesView, {
+    onTeamClick: openTeam,
+    action: yahooHistMissing ? React.createElement(Empty, null, "No archived Yahoo roster for Week ", rosterWeek, " yet.") : undefined
+  })) : yahooEmpty), view === "games" && React.createElement(GamesView, {
     week: gamesWeek ?? week ?? 1,
     games: weekGames,
     busy: weekGamesBusy,
