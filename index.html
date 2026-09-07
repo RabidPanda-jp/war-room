@@ -1424,6 +1424,8 @@ function Matchup({
   kick,
   now,
   action,
+  week,
+  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1505,13 +1507,22 @@ function Matchup({
     }
   }, "proj ", fmt(oppProj))), React.createElement("div", {
     style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingTop: 6
+    }
+  }, React.createElement("div", {
+    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE,
-      paddingTop: 6
+      color: MUTE
     }
-  }, "Starters"), React.createElement("div", {
+  }, "Starters"), React.createElement(WeekLink, {
+    week: week,
+    onClick: onWeekClick
+  })), React.createElement("div", {
     style: {
       borderTop: `1px solid ${LINE}`
     }
@@ -1574,6 +1585,7 @@ function Team({
   ahead,
   week,
   action,
+  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1632,13 +1644,22 @@ function Team({
     }
   }, meta), React.createElement("div", {
     style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 4
+    }
+  }, React.createElement("div", {
+    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE,
-      marginBottom: 4
+      color: MUTE
     }
-  }, "Starters"), React.createElement("div", {
+  }, "Starters"), React.createElement(WeekLink, {
+    week: week,
+    onClick: onWeekClick
+  })), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "40px 1fr 40px 40px",
@@ -2906,7 +2927,6 @@ function App() {
   const timelineMyIds = new Set(lg === "sleeper" ? sl?.myRoster?.starters || [] : (yahooRaw?.starters || []).map(r => yahooIdIndex[`${r.name}|${r.team}`]).filter(Boolean));
   const timelineScoring = lg === "sleeper" ? sl?.league?.scoring_settings || {} : YAHOO_SCORING;
   const timelineLive = lg === "sleeper" ? (sl?.myRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") || (sl?.oppRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") : [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])].some(r => gameState(kick, r.team, now).phase === "live");
-  const weekBarWeek = view === "matchup" ? lg === "sleeper" ? sl?.week : yahoo?.week : view === "team" ? lg === "sleeper" ? sl?.week : week : null;
   return React.createElement("div", {
     style: {
       fontFamily: font,
@@ -3052,16 +3072,7 @@ function App() {
       fontSize: 17,
       lineHeight: 1.25
     }
-  }, d)))), weekBarWeek != null && React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "flex-end",
-      marginBottom: 8
-    }
-  }, React.createElement(WeekLink, {
-    week: weekBarWeek,
-    onClick: () => setScheduleOpen(true)
-  })), yahooStale && React.createElement("div", {
+  }, d)))), yahooStale && React.createElement("div", {
     style: {
       background: OX,
       color: "#fff",
@@ -3118,6 +3129,8 @@ function App() {
     sub: `Week ${sl.week}`,
     kick: kick,
     now: now,
+    week: sl.week,
+    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, {
@@ -3135,6 +3148,8 @@ function App() {
     sub: yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`,
     kick: kick,
     now: now,
+    week: yahoo.week,
+    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam,
     action: React.createElement("div", {
@@ -3154,6 +3169,7 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: sl.week,
+    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, {
@@ -3167,6 +3183,7 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: week,
+    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : yahooEmpty), view === "games" && React.createElement(GamesView, {
