@@ -542,70 +542,145 @@ const ESPN_TO_SLEEPER = {
 const TV_SHORT = {
   "Prime Video": "Prime"
 };
-async function loadKickoffs(season, week, force) {
-  const key = `wr_kick2_${season}_${week}`;
+async function fetchScoreboard(season, week, force) {
+  const key = `wr_scoreboard_${season}_${week}`;
   const cached = store.get(key);
-  if (!force && cached && Date.now() - cached.at < 6 * 3600e3) return Object.fromEntries(Object.entries(cached.map).map(([t, k]) => [t, {
-    ...k,
-    at: new Date(k.at)
-  }]));
+  if (!force && cached && Date.now() - cached.at < 6 * 3600e3) return cached.events;
   const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=${week}&seasontype=2&dates=${season}&limit=100`);
-  if (!r.ok) throw new Error(`schedule ${r.status}`);
+  if (!r.ok) throw new Error(`scoreboard ${r.status}`);
   const j = await r.json();
+  const events = j.events || [];
+  store.set(key, {
+    at: Date.now(),
+    events
+  });
+  return events;
+}
+function parseGame(ev) {
+  const c = ev.competitions?.[0];
+  if (!c) return null;
+  const home = c.competitors.find(x => x.homeAway === "home"),
+    away = c.competitors.find(x => x.homeAway === "away");
+  if (!home || !away) return null;
+  const at = new Date(c.date || ev.date);
+  const ab = x => {
+    const a = x.team.abbreviation;
+    return ESPN_TO_SLEEPER[a] || a;
+  };
+  let tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
+  if (tv) Object.entries(TV_SHORT).forEach(([full, short]) => {
+    tv = tv.replace(full, short);
+  });
+  const status = c.status || ev.status;
+  const state = status?.type?.state || null;
+  const halftime = status?.type?.name === "STATUS_HALFTIME";
+  const period = status?.period || null,
+    clock = status?.displayClock || null;
+  const hs = home.score != null ? Number(home.score) : null,
+    as = away.score != null ? Number(away.score) : null;
+  return {
+    id: ev.id,
+    at,
+    home: ab(home),
+    away: ab(away),
+    homeScore: hs,
+    awayScore: as,
+    tv,
+    state,
+    halftime,
+    period,
+    clock
+  };
+}
+async function loadKickoffs(season, week, force) {
+  const events = await fetchScoreboard(season, week, force);
   const map = {};
-  (j.events || []).forEach(ev => {
-    const c = ev.competitions?.[0];
-    if (!c) return;
-    const at = new Date(c.date || ev.date);
-    const home = c.competitors.find(x => x.homeAway === "home"),
-      away = c.competitors.find(x => x.homeAway === "away");
-    const ab = x => {
-      const a = x.team.abbreviation;
-      return ESPN_TO_SLEEPER[a] || a;
+  events.forEach(ev => {
+    const g = parseGame(ev);
+    if (!g) return;
+    map[g.home] = {
+      at: g.at,
+      opp: g.away,
+      home: true,
+      tv: g.tv,
+      state: g.state,
+      halftime: g.halftime,
+      period: g.period,
+      clock: g.clock,
+      myScore: g.homeScore,
+      oppScore: g.awayScore
     };
-    let tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
-    if (tv) Object.entries(TV_SHORT).forEach(([full, short]) => {
-      tv = tv.replace(full, short);
-    });
-    const status = c.status || ev.status;
-    const state = status?.type?.state || null;
-    const halftime = status?.type?.name === "STATUS_HALFTIME";
-    const period = status?.period || null,
-      clock = status?.displayClock || null;
-    const hs = home?.score != null ? Number(home.score) : null,
-      as = away?.score != null ? Number(away.score) : null;
-    if (home && away) {
-      map[ab(home)] = {
-        at,
-        opp: ab(away),
-        home: true,
-        tv,
-        state,
-        halftime,
-        period,
-        clock,
-        myScore: hs,
-        oppScore: as
-      };
-      map[ab(away)] = {
-        at,
-        opp: ab(home),
-        home: false,
-        tv,
-        state,
-        halftime,
-        period,
-        clock,
-        myScore: as,
-        oppScore: hs
-      };
-    }
+    map[g.away] = {
+      at: g.at,
+      opp: g.home,
+      home: false,
+      tv: g.tv,
+      state: g.state,
+      halftime: g.halftime,
+      period: g.period,
+      clock: g.clock,
+      myScore: g.awayScore,
+      oppScore: g.homeScore
+    };
+  });
+  return map;
+}
+async function loadWeekGames(season, week, force) {
+  const events = await fetchScoreboard(season, week, force);
+  return events.map(parseGame).filter(Boolean).sort((a, b) => a.at - b.at);
+}
+function gameRowState(g, now) {
+  const dt = g.at.getTime() - now;
+  if (dt > 0 && g.state !== "in" && g.state !== "post") return {
+    phase: "pre",
+    text: kickLabel(g.at)
+  };
+  if (g.state === "post" || !g.state && -dt >= GAME_LEN_MS) return {
+    phase: "final",
+    text: "FINAL"
+  };
+  return {
+    phase: "live",
+    text: liveText(g)
+  };
+}
+async function loadTeamSchedule(team, season, week) {
+  const key = `wr_teamsched_${team}_${season}_${week}`;
+  const cached = store.get(key);
+  if (cached && Date.now() - cached.at < 6 * 3600e3) return cached.rows;
+  const byWeek = await loadSeasonSchedule(season);
+  const maxWeek = Math.max(...Object.keys(byWeek).map(Number));
+  const weeks = Array.from({
+    length: maxWeek
+  }, (_, i) => i + 1);
+  const gamesByWeek = await Promise.all(weeks.map(w => byWeek[w][team] ? loadWeekGames(season, w).catch(() => []) : Promise.resolve(null)));
+  const rows = weeks.map((w, i) => {
+    const oppText = byWeek[w][team];
+    if (!oppText) return {
+      week: w,
+      opp: null,
+      bye: true
+    };
+    const home = oppText.startsWith("vs"),
+      opp = oppText.replace(/^(vs|@) /, "");
+    const g = gamesByWeek[i]?.find(x => x.home === team || x.away === team);
+    const myScore = g ? g.home === team ? g.homeScore : g.awayScore : null;
+    const oppScore = g ? g.home === team ? g.awayScore : g.homeScore : null;
+    const result = myScore != null && oppScore != null ? myScore > oppScore ? "W" : myScore < oppScore ? "L" : "T" : "";
+    return {
+      week: w,
+      opp,
+      home,
+      myScore,
+      oppScore,
+      result
+    };
   });
   store.set(key, {
     at: Date.now(),
-    map
+    rows
   });
-  return map;
+  return rows;
 }
 async function loadSeasonSchedule(season) {
   const key = `wr_sched_${season}`;
@@ -706,6 +781,61 @@ async function loadPlayers(need) {
     map
   });
   return map;
+}
+async function loadAllPlayersIndex() {
+  const key = "wr_players_all";
+  const cached = store.get(key);
+  if (cached && Date.now() - cached.at < 24 * 3600e3) return cached.byName;
+  const all = await j(`${SL}/players/nfl`);
+  const byName = {};
+  Object.entries(all).forEach(([id, p]) => {
+    const name = p.full_name || `${p.first_name || ""} ${p.last_name || ""}`.trim();
+    const n = normName(name);
+    if (!n) return;
+    (byName[n] = byName[n] || []).push({
+      id,
+      name,
+      team: p.team,
+      pos: p.position
+    });
+  });
+  store.set(key, {
+    at: Date.now(),
+    byName
+  });
+  return byName;
+}
+function resolvePlayerId(byName, r) {
+  const cands = byName[normName(r.name)] || [];
+  if (cands.length <= 1) return cands[0]?.id || null;
+  return (cands.find(c => c.team === r.team) || cands[0]).id;
+}
+async function loadPlayerSeasonStats(playerId, season, throughWeek, sleeperScoring) {
+  const key = `wr_pstats_${playerId}_${season}`;
+  const cached = store.get(key) || {
+    weeks: {}
+  };
+  const need = [];
+  for (let w = 1; w < throughWeek; w++) if (!cached.weeks[w]) need.push(w);
+  if (need.length) {
+    const results = await Promise.allSettled(need.map(w => j(`https://api.sleeper.com/stats/nfl/player/${playerId}?season_type=regular&season=${season}&week=${w}`)));
+    results.forEach((res, i) => {
+      if (res.status === "fulfilled" && res.value?.stats) cached.weeks[need[i]] = res.value.stats;
+    });
+    store.set(key, cached);
+  }
+  const rows = [];
+  for (let w = 1; w < throughWeek; w++) {
+    const stats = cached.weeks[w];
+    if (!stats) continue;
+    rows.push({
+      week: w,
+      sleeperPts: scoreStats(stats, sleeperScoring),
+      yahooPts: scoreStats(stats, YAHOO_SCORING),
+      stats
+    });
+  }
+  return rows;
 }
 async function loadSleeper(cfg) {
   const state = await j(`${SL}/state/nfl`);
@@ -897,6 +1027,58 @@ async function loadFullSchedule(sl) {
     };
   });
 }
+const STAT_LABEL = {
+  pass_yd: "passing yards",
+  pass_td: "passing TD",
+  pass_int: "interception thrown",
+  pass_2pt: "passing 2pt",
+  rush_yd: "rushing yards",
+  rush_td: "rushing TD",
+  rush_2pt: "rushing 2pt",
+  rec: "reception",
+  rec_yd: "receiving yards",
+  rec_td: "receiving TD",
+  rec_2pt: "receiving 2pt",
+  fum_lost: "fumble lost",
+  fum_rec_td: "fumble return TD",
+  fum_rec: "fumble recovery",
+  fgm_0_19: "field goal",
+  fgm_20_29: "field goal",
+  fgm_30_39: "field goal",
+  fgm_40_49: "field goal (40+)",
+  fgm_50p: "field goal (50+)",
+  xpm: "extra point",
+  sack: "sack",
+  int: "interception",
+  def_td: "defensive TD",
+  safe: "safety",
+  blk_kick: "blocked kick",
+  def_st_td: "special teams TD",
+  st_td: "special teams TD",
+  def_2pt: "defensive 2pt"
+};
+function weightFor(key, scoring) {
+  return scoring?.[key] || 0;
+}
+function diffStatSnapshots(prevById, nextById, playerIds, now) {
+  const out = [];
+  playerIds.forEach(id => {
+    const prev = prevById?.[id]?.stats || {},
+      next = nextById?.[id]?.stats;
+    if (!next) return;
+    Object.entries(next).forEach(([k, v]) => {
+      const before = prev[k] || 0;
+      if (typeof v !== "number" || v <= before) return;
+      out.push({
+        at: now,
+        playerId: id,
+        statKey: k,
+        delta: v - before
+      });
+    });
+  });
+  return out;
+}
 function Btn({
   children,
   onClick,
@@ -1041,11 +1223,35 @@ function Kick({
     }
   }, " \xB7 ", g.tv));
 }
+function TeamAbbrev({
+  team,
+  onClick,
+  style
+}) {
+  if (!team || !onClick) return React.createElement("span", {
+    style: style
+  }, team);
+  return React.createElement("span", {
+    onClick: e => {
+      e.stopPropagation();
+      onClick(team);
+    },
+    style: {
+      cursor: "pointer",
+      textDecoration: "underline",
+      textDecorationStyle: "dotted",
+      textUnderlineOffset: 2,
+      ...style
+    }
+  }, team);
+}
 function PlayerCell({
   r,
   g,
   align = "left",
-  full
+  full,
+  onClick,
+  onTeamClick
 }) {
   if (!r) return React.createElement("div", {
     style: {
@@ -1055,10 +1261,12 @@ function PlayerCell({
   const done = g?.phase === "final";
   const oppText = r.bye ? "BYE" : g?.opp ? `${g.home ? "vs" : "@"} ${g.opp}` : "";
   return React.createElement("div", {
+    onClick: onClick,
     style: {
       textAlign: align,
       minWidth: 0,
-      opacity: done ? 0.55 : 1
+      opacity: done ? 0.55 : 1,
+      cursor: onClick ? "pointer" : "default"
     }
   }, React.createElement("div", {
     style: {
@@ -1078,7 +1286,10 @@ function PlayerCell({
       fontWeight: 500,
       fontSize: full ? 14 : 13
     }
-  }, " \xB7 ", r.team)), React.createElement("div", {
+  }, " \xB7 ", React.createElement(TeamAbbrev, {
+    team: r.team,
+    onClick: onTeamClick
+  }))), React.createElement("div", {
     style: {
       fontSize: 12,
       color: MUTE,
@@ -1144,7 +1355,9 @@ function Matchup({
   now,
   action,
   week,
-  onWeekClick
+  onWeekClick,
+  onPlayerClick,
+  onTeamClick
 }) {
   const rows = Math.max(mine.length, theirs.length);
   const live = (myPts || 0) + (oppPts || 0) > 0 && [...mine, ...theirs].some(r => started(gameState(kick, r.team, now)));
@@ -1262,7 +1475,9 @@ function Matchup({
       }
     }, React.createElement(PlayerCell, {
       r: a,
-      g: ga
+      g: ga,
+      onClick: a && onPlayerClick && (() => onPlayerClick(a)),
+      onTeamClick: onTeamClick
     }), React.createElement(Num, {
       v: started(ga) ? a?.pts ?? a?.proj : a?.proj,
       strong: started(ga) && a?.pts != null
@@ -1278,7 +1493,9 @@ function Matchup({
     }), React.createElement(PlayerCell, {
       r: b,
       g: gb,
-      align: "right"
+      align: "right",
+      onClick: b && onPlayerClick && (() => onPlayerClick(b)),
+      onTeamClick: onTeamClick
     }));
   })), action && React.createElement("div", {
     style: {
@@ -1298,7 +1515,9 @@ function Team({
   ahead,
   week,
   action,
-  onWeekClick
+  onWeekClick,
+  onPlayerClick,
+  onTeamClick
 }) {
   const Row = ({
     r
@@ -1327,7 +1546,9 @@ function Team({
     }, React.createElement(PlayerCell, {
       r: r,
       g: g,
-      full: true
+      full: true,
+      onClick: onPlayerClick && (() => onPlayerClick(r)),
+      onTeamClick: onTeamClick
     }), c && React.createElement("div", {
       style: {
         marginTop: 3
@@ -1475,14 +1696,11 @@ function Team({
     }
   }, action));
 }
-function ScheduleModal({
+function BottomSheet({
   tone,
   title,
-  myName,
-  rows,
-  currentWeek,
-  empty,
-  onClose
+  onClose,
+  children
 }) {
   return React.createElement("div", {
     style: {
@@ -1527,7 +1745,22 @@ function ScheduleModal({
       cursor: "pointer",
       padding: 4
     }
-  }, "\xD7")), !rows?.length ? React.createElement(Empty, null, empty) : rows.map(r => React.createElement("div", {
+  }, "\xD7")), children));
+}
+function ScheduleModal({
+  tone,
+  title,
+  myName,
+  rows,
+  currentWeek,
+  empty,
+  onClose
+}) {
+  return React.createElement(BottomSheet, {
+    tone: tone,
+    title: title,
+    onClose: onClose
+  }, !rows?.length ? React.createElement(Empty, null, empty) : rows.map(r => React.createElement("div", {
     key: r.week,
     style: {
       display: "grid",
@@ -1586,7 +1819,154 @@ function ScheduleModal({
       fontSize: 13,
       color: MUTE
     }
-  }, fmt(r.oppPts)))))));
+  }, fmt(r.oppPts))))));
+}
+function TeamScheduleModal({
+  team,
+  rows,
+  busy,
+  err,
+  currentWeek,
+  onClose
+}) {
+  return React.createElement(BottomSheet, {
+    tone: INK,
+    title: `${team} — Schedule`,
+    onClose: onClose
+  }, err ? React.createElement(Empty, null, err) : !rows?.length ? React.createElement(Empty, null, busy ? "Loading schedule…" : "No schedule yet.") : rows.map(r => React.createElement("div", {
+    key: r.week,
+    style: {
+      display: "grid",
+      gridTemplateColumns: "44px 1fr auto",
+      gap: 8,
+      alignItems: "center",
+      padding: "9px 6px",
+      borderRadius: 8,
+      background: r.week === currentWeek ? HILITE : "transparent",
+      borderBottom: `1px solid ${HAIRLINE}`
+    }
+  }, React.createElement(Chip, {
+    style: {
+      textAlign: "center",
+      padding: "4px 0"
+    }
+  }, "Wk ", r.week), r.bye ? React.createElement("div", {
+    style: {
+      color: MUTE,
+      fontFamily: cond,
+      fontWeight: 600
+    }
+  }, "BYE") : React.createElement(React.Fragment, null, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 600,
+      fontSize: 14
+    }
+  }, r.home ? "vs" : "@", " ", r.opp), React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 14,
+      textAlign: "right"
+    }
+  }, r.myScore != null ? React.createElement("span", {
+    style: {
+      color: r.result === "W" ? WIN : r.result === "L" ? OX : TEXT
+    }
+  }, r.result, " ", r.myScore, "-", r.oppScore) : React.createElement("span", {
+    style: {
+      color: MUTE,
+      fontWeight: 500
+    }
+  }, kickLabel(r.at)))))));
+}
+function PlayerStatsModal({
+  player,
+  rows,
+  busy,
+  err,
+  onClose
+}) {
+  const sTot = rows?.reduce((a, r) => a + (r.sleeperPts || 0), 0),
+    yTot = rows?.reduce((a, r) => a + (r.yahooPts || 0), 0);
+  return React.createElement(BottomSheet, {
+    tone: INK,
+    title: `${player?.name || ""}${player?.team ? ` · ${player.team}` : ""}${player?.pos ? ` · ${player.pos}` : ""}`,
+    onClose: onClose
+  }, err ? React.createElement(Empty, null, err) : !rows?.length ? React.createElement(Empty, null, busy ? "Loading stats…" : "No stats yet this season.") : React.createElement(React.Fragment, null, React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "44px 1fr 70px 70px",
+      gap: 8,
+      fontSize: 11,
+      color: MUTE,
+      fontFamily: cond,
+      fontWeight: 700,
+      borderBottom: `1px solid ${LINE}`,
+      paddingBottom: 4,
+      marginBottom: 2
+    }
+  }, React.createElement("div", null, "Wk"), React.createElement("div", null), React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, "Sleeper"), React.createElement("div", {
+    style: {
+      textAlign: "right"
+    }
+  }, "Yahoo")), rows.map(r => React.createElement("div", {
+    key: r.week,
+    style: {
+      display: "grid",
+      gridTemplateColumns: "44px 1fr 70px 70px",
+      gap: 8,
+      alignItems: "center",
+      padding: "7px 0",
+      borderBottom: `1px solid ${HAIRLINE}`,
+      fontSize: 14
+    }
+  }, React.createElement("div", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 600
+    }
+  }, r.week), React.createElement("div", null), React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: cond,
+      fontWeight: 600
+    }
+  }, fmt(r.sleeperPts)), React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: cond,
+      fontWeight: 600
+    }
+  }, fmt(r.yahooPts)))), React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "44px 1fr 70px 70px",
+      gap: 8,
+      padding: "8px 0 2px",
+      fontSize: 14,
+      fontWeight: 700
+    }
+  }, React.createElement("div", {
+    style: {
+      gridColumn: "1 / 3",
+      fontFamily: cond
+    }
+  }, "Season total"), React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: cond
+    }
+  }, fmt(sTot)), React.createElement("div", {
+    style: {
+      textAlign: "right",
+      fontFamily: cond
+    }
+  }, fmt(yTot)))));
 }
 function Rules({
   tone,
@@ -1937,6 +2317,165 @@ function Section({
     text: item.text
   })) : React.createElement(Empty, null, empty));
 }
+function GamesView({
+  week,
+  games,
+  busy,
+  err,
+  onWeekChange,
+  onTeamClick,
+  now
+}) {
+  return React.createElement(Card, null, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 8
+    }
+  }, React.createElement("button", {
+    onClick: () => onWeekChange(Math.max(1, week - 1)),
+    disabled: week <= 1,
+    "aria-label": "Previous week",
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 22,
+      color: week <= 1 ? MUTE : TEXT,
+      cursor: week <= 1 ? "default" : "pointer",
+      padding: "0 8px"
+    }
+  }, "\u2039"), React.createElement(H, {
+    tone: INK
+  }, "Week ", week), React.createElement("button", {
+    onClick: () => onWeekChange(Math.min(18, week + 1)),
+    disabled: week >= 18,
+    "aria-label": "Next week",
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 22,
+      color: week >= 18 ? MUTE : TEXT,
+      cursor: week >= 18 ? "default" : "pointer",
+      padding: "0 8px"
+    }
+  }, "\u203A")), err ? React.createElement(Empty, null, err) : !games?.length ? React.createElement(Empty, null, busy ? "Loading games…" : "No games this week.") : games.map(g => {
+    const gs = gameRowState(g, now);
+    return React.createElement("div", {
+      key: g.id,
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr auto",
+        gap: 8,
+        alignItems: "center",
+        padding: "9px 0",
+        borderBottom: `1px solid ${HAIRLINE}`
+      }
+    }, React.createElement("div", {
+      style: {
+        fontFamily: cond,
+        fontWeight: 600,
+        fontSize: 15
+      }
+    }, React.createElement(TeamAbbrev, {
+      team: g.away,
+      onClick: onTeamClick
+    }), " @ ", React.createElement(TeamAbbrev, {
+      team: g.home,
+      onClick: onTeamClick
+    }), g.tv && gs.phase !== "final" && React.createElement("span", {
+      style: {
+        color: MUTE,
+        fontWeight: 400,
+        fontSize: 12
+      }
+    }, " \xB7 ", g.tv)), React.createElement("div", {
+      style: {
+        textAlign: "right"
+      }
+    }, g.awayScore != null && g.homeScore != null && React.createElement("div", {
+      style: {
+        fontFamily: cond,
+        fontWeight: 700,
+        fontSize: 15
+      }
+    }, g.awayScore, "-", g.homeScore), React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: gs.phase === "live" ? WIN : MUTE,
+        fontWeight: gs.phase === "live" ? 700 : 400
+      }
+    }, gs.text)));
+  }));
+}
+function MatchupTimeline({
+  tone,
+  entries,
+  players,
+  scoring,
+  myIds,
+  now,
+  live
+}) {
+  const scored = (entries || []).map(e => ({
+    ...e,
+    ptsDelta: Math.round(e.delta * weightFor(e.statKey, scoring) * 100) / 100
+  })).filter(e => e.ptsDelta);
+  const sorted = [...scored].sort((a, b) => b.at - a.at);
+  return React.createElement(Card, null, React.createElement(H, {
+    tone: tone,
+    style: {
+      marginBottom: 8
+    }
+  }, "Scoring feed"), !live && React.createElement(Empty, null, "No live games right now \u2014 check back during kickoff."), live && sorted.length === 0 && React.createElement(Empty, null, "No scoring plays yet \u2014 entries appear here as stats come in."), live && sorted.map((e, i) => {
+    const p = players[e.playerId] || {};
+    const mine = myIds.has(e.playerId);
+    return React.createElement("div", {
+      key: i,
+      style: {
+        display: "grid",
+        gridTemplateColumns: "4px 1fr auto",
+        gap: 10,
+        alignItems: "center",
+        padding: "8px 0",
+        borderBottom: `1px solid ${HAIRLINE}`
+      }
+    }, React.createElement("div", {
+      style: {
+        alignSelf: "stretch",
+        background: mine ? tone : MUTE,
+        borderRadius: 3
+      }
+    }), React.createElement("div", {
+      style: {
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontFamily: cond,
+        fontWeight: 600,
+        fontSize: 14
+      }
+    }, p.name || e.playerId, " ", React.createElement("span", {
+      style: {
+        color: MUTE,
+        fontWeight: 500
+      }
+    }, "\xB7 ", p.team || "")), React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MUTE
+      }
+    }, STAT_LABEL[e.statKey] || e.statKey, " \xB7 ", rel(now - e.at), " ago")), React.createElement("div", {
+      style: {
+        fontFamily: cond,
+        fontWeight: 800,
+        fontSize: 15,
+        color: e.ptsDelta > 0 ? WIN : OX
+      }
+    }, e.ptsDelta > 0 ? "+" : "", fmt(e.ptsDelta)));
+  }));
+}
 function App() {
   const cfg = CONFIG;
   const [data, setData] = useState(null),
@@ -1954,6 +2493,21 @@ function App() {
   const [stats, setStats] = useState(null);
   const [fullSchedule, setFullSchedule] = useState(null);
   const [scheduleOpen, setScheduleOpen] = useState(false);
+  const [gamesWeek, setGamesWeek] = useState(null);
+  const [weekGames, setWeekGames] = useState(null),
+    [weekGamesBusy, setWeekGamesBusy] = useState(false),
+    [weekGamesErr, setWeekGamesErr] = useState("");
+  const [teamScheduleFor, setTeamScheduleFor] = useState(null);
+  const [teamScheduleRows, setTeamScheduleRows] = useState(null),
+    [teamScheduleBusy, setTeamScheduleBusy] = useState(false),
+    [teamScheduleErr, setTeamScheduleErr] = useState("");
+  const [playerStatsFor, setPlayerStatsFor] = useState(null);
+  const [playerStatsRows, setPlayerStatsRows] = useState(null),
+    [playerStatsBusy, setPlayerStatsBusy] = useState(false),
+    [playerStatsErr, setPlayerStatsErr] = useState("");
+  const [yahooIdIndex, setYahooIdIndex] = useState({});
+  const [resolvedPlayers, setResolvedPlayers] = useState({});
+  const [timelineEntries, setTimelineEntries] = useState([]);
   const [now, setNow] = useState(Date.now());
   const [dark, setDark] = useState(() => {
     const s = store.get("wr_dark");
@@ -2084,6 +2638,117 @@ function App() {
     bench: []
   }, [sl]);
   const week = sl?.week ?? data?.week ?? null;
+  useEffect(() => {
+    if (gamesWeek == null && week != null) setGamesWeek(week);
+  }, [week]);
+  useEffect(() => {
+    if (view !== "games" || !sl || gamesWeek == null) return;
+    let cancelled = false;
+    setWeekGamesBusy(true);
+    setWeekGamesErr("");
+    loadWeekGames(sl.season, gamesWeek).then(g => {
+      if (!cancelled) setWeekGames(g);
+    }).catch(e => {
+      if (!cancelled) setWeekGamesErr(e.message);
+    }).finally(() => {
+      if (!cancelled) setWeekGamesBusy(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [view, sl, gamesWeek]);
+  useEffect(() => {
+    if (view !== "games" || !anyLive || !sl || gamesWeek !== sl.week || document.visibilityState !== "visible") return;
+    const t = setInterval(() => {
+      if (document.visibilityState === "visible") loadWeekGames(sl.season, gamesWeek, true).then(setWeekGames).catch(() => {});
+    }, 20000);
+    return () => clearInterval(t);
+  }, [view, anyLive, sl, gamesWeek]);
+  useEffect(() => {
+    if (!teamScheduleFor || !sl) return;
+    let cancelled = false;
+    setTeamScheduleBusy(true);
+    setTeamScheduleErr("");
+    setTeamScheduleRows(null);
+    loadTeamSchedule(teamScheduleFor, sl.season, sl.week).then(r => {
+      if (!cancelled) setTeamScheduleRows(r);
+    }).catch(e => {
+      if (!cancelled) setTeamScheduleErr(e.message);
+    }).finally(() => {
+      if (!cancelled) setTeamScheduleBusy(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [teamScheduleFor, sl]);
+  useEffect(() => {
+    if (!playerStatsFor || !sl) return;
+    const id = playerStatsFor.id || yahooIdIndex[`${playerStatsFor.name}|${playerStatsFor.team}`];
+    if (!id) {
+      setPlayerStatsRows(null);
+      setPlayerStatsErr("Couldn't match this player to a Sleeper ID — try again once the roster's fully loaded, or the name/team may not match.");
+      return;
+    }
+    let cancelled = false;
+    setPlayerStatsBusy(true);
+    setPlayerStatsErr("");
+    setPlayerStatsRows(null);
+    loadPlayerSeasonStats(id, sl.season, sl.week, sl.league.scoring_settings).then(r => {
+      if (!cancelled) setPlayerStatsRows(r);
+    }).catch(e => {
+      if (!cancelled) setPlayerStatsErr(e.message);
+    }).finally(() => {
+      if (!cancelled) setPlayerStatsBusy(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [playerStatsFor, sl, yahooIdIndex]);
+  useEffect(() => {
+    const rows = [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])];
+    if (!rows.length) return;
+    let cancelled = false;
+    loadAllPlayersIndex().then(byName => {
+      if (cancelled) return;
+      const idx = {},
+        resolved = {};
+      rows.forEach(r => {
+        const id = resolvePlayerId(byName, r);
+        if (id) {
+          idx[`${r.name}|${r.team}`] = id;
+          resolved[id] = {
+            name: r.name,
+            team: r.team,
+            pos: r.pos
+          };
+        }
+      });
+      setYahooIdIndex(idx);
+      setResolvedPlayers(resolved);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [yahooRaw]);
+  const timelinePlayerIds = useMemo(() => {
+    if (lg === "sleeper") return [...(sl?.myRoster?.starters || []), ...(sl?.oppRoster?.starters || [])];
+    return [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])].map(r => yahooIdIndex[`${r.name}|${r.team}`]).filter(Boolean);
+  }, [lg, sl, yahooRaw, yahooIdIndex]);
+  useEffect(() => {
+    if (!stats || !sl) return;
+    const key = `wr_timeline_${lg}_${sl.season}_${sl.week}`;
+    const stored = store.get(key) || {
+      lastSnapshot: null,
+      entries: []
+    };
+    if (stored.lastSnapshot) {
+      const fresh = diffStatSnapshots(stored.lastSnapshot, stats.byId, timelinePlayerIds, Date.now());
+      if (fresh.length) stored.entries = [...stored.entries, ...fresh].slice(-300);
+    }
+    stored.lastSnapshot = stats.byId;
+    store.set(key, stored);
+    setTimelineEntries(stored.entries);
+  }, [stats, lg, sl, timelinePlayerIds]);
   const yahooAge = useMemo(() => {
     if (!yahooRaw?.updatedAt) return null;
     const d = new Date(yahooRaw.updatedAt + "T12:00:00");
@@ -2145,8 +2810,22 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ...(season.length ? [["season", "Season"]] : [])];
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = React.createElement(Card, null, React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."));
+  const openPlayer = r => setPlayerStatsFor({
+    id: r.id,
+    name: r.name,
+    team: r.team,
+    pos: r.pos
+  });
+  const openTeam = team => setTeamScheduleFor(team);
+  const timelinePlayers = {
+    ...(sl?.players || {}),
+    ...resolvedPlayers
+  };
+  const timelineMyIds = new Set(lg === "sleeper" ? sl?.myRoster?.starters || [] : (yahooRaw?.starters || []).map(r => yahooIdIndex[`${r.name}|${r.team}`]).filter(Boolean));
+  const timelineScoring = lg === "sleeper" ? sl?.league?.scoring_settings || {} : YAHOO_SCORING;
+  const timelineLive = lg === "sleeper" ? (sl?.myRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") || (sl?.oppRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") : [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])].some(r => gameState(kick, r.team, now).phase === "live");
   return React.createElement("div", {
     style: {
       fontFamily: font,
@@ -2350,7 +3029,9 @@ function App() {
     kick: kick,
     now: now,
     week: sl.week,
-    onWeekClick: () => setScheduleOpen(true)
+    onWeekClick: () => setScheduleOpen(true),
+    onPlayerClick: openPlayer,
+    onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, {
     tone: OX,
     meName: cfg.yahooTeamName,
@@ -2368,6 +3049,8 @@ function App() {
     now: now,
     week: yahoo.week,
     onWeekClick: () => setScheduleOpen(true),
+    onPlayerClick: openPlayer,
+    onTeamClick: openTeam,
     action: React.createElement("div", {
       style: {
         fontSize: 12,
@@ -2385,7 +3068,9 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: sl.week,
-    onWeekClick: () => setScheduleOpen(true)
+    onWeekClick: () => setScheduleOpen(true),
+    onPlayerClick: openPlayer,
+    onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, {
     tone: OX,
     name: cfg.yahooTeamName,
@@ -2397,8 +3082,26 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: week,
-    onWeekClick: () => setScheduleOpen(true)
-  }) : yahooEmpty), view === "analysis" && lg === "sleeper" && React.createElement(Analysis, {
+    onWeekClick: () => setScheduleOpen(true),
+    onPlayerClick: openPlayer,
+    onTeamClick: openTeam
+  }) : yahooEmpty), view === "games" && React.createElement(GamesView, {
+    week: gamesWeek ?? week ?? 1,
+    games: weekGames,
+    busy: weekGamesBusy,
+    err: weekGamesErr,
+    now: now,
+    onWeekChange: setGamesWeek,
+    onTeamClick: openTeam
+  }), view === "timeline" && React.createElement(MatchupTimeline, {
+    tone: tone,
+    entries: timelineEntries,
+    players: timelinePlayers,
+    scoring: timelineScoring,
+    myIds: timelineMyIds,
+    now: now,
+    live: timelineLive
+  }), view === "analysis" && lg === "sleeper" && React.createElement(Analysis, {
     tone: INK,
     rows: analysis.sleeper
   }), view === "analysis" && lg === "yahoo" && (yahoo ? React.createElement(Analysis, {
@@ -2689,6 +3392,19 @@ function App() {
     currentWeek: yahoo?.week,
     onClose: () => setScheduleOpen(false),
     empty: `Add a screenshot of Yahoo's schedule/matchups page to the "War room" Drive folder to fill this in.`
+  }), teamScheduleFor && React.createElement(TeamScheduleModal, {
+    team: teamScheduleFor,
+    rows: teamScheduleRows,
+    busy: teamScheduleBusy,
+    err: teamScheduleErr,
+    currentWeek: sl?.week,
+    onClose: () => setTeamScheduleFor(null)
+  }), playerStatsFor && React.createElement(PlayerStatsModal, {
+    player: playerStatsFor,
+    rows: playerStatsRows,
+    busy: playerStatsBusy,
+    err: playerStatsErr,
+    onClose: () => setPlayerStatsFor(null)
   }));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
