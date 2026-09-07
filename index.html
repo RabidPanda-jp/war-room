@@ -1006,33 +1006,6 @@ async function loadHistory(sl) {
   }
   return out;
 }
-async function loadFullSchedule(sl) {
-  const lid = CONFIG.sleeperLeagueId;
-  const totalWeeks = sl.league.settings?.playoff_week_start ? sl.league.settings.playoff_week_start - 1 : 14;
-  const weeks = Array.from({
-    length: totalWeeks
-  }, (_, i) => i + 1);
-  const results = await Promise.all(weeks.map(w => j(`${SL}/league/${lid}/matchups/${w}`).catch(() => null)));
-  return weeks.map((w, i) => {
-    const ms = results[i];
-    const mine = ms?.find(m => m.roster_id === sl.myRoster.roster_id);
-    if (!mine) return {
-      week: w,
-      oppName: null,
-      myPts: null,
-      oppPts: null
-    };
-    const opp = ms.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id);
-    const oppUser = opp ? sl.userBy[opp.roster_id] : null;
-    const played = w < sl.week;
-    return {
-      week: w,
-      oppName: oppUser?.metadata?.team_name || oppUser?.display_name || "—",
-      myPts: played ? +mine.points.toFixed(2) : w === sl.week ? sl.myMatch?.points ?? null : null,
-      oppPts: played ? opp ? +opp.points.toFixed(2) : null : w === sl.week ? sl.oppMatch?.points ?? null : null
-    };
-  });
-}
 async function loadWeekMatchup(sl, week) {
   const lid = CONFIG.sleeperLeagueId;
   const upcoming = week > sl.week;
@@ -1448,29 +1421,6 @@ const Num = ({
     minWidth: 32
   }
 }, fmt(v));
-const WeekLink = ({
-  week,
-  onClick
-}) => week == null ? null : React.createElement("button", {
-  onClick: onClick,
-  style: {
-    fontFamily: cond,
-    fontWeight: 700,
-    fontSize: 13,
-    color: MUTE,
-    background: "none",
-    border: "none",
-    padding: 0,
-    cursor: "pointer",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6
-  }
-}, "Week ", week, " ", React.createElement(Chip, null, "Current"), " ", React.createElement("span", {
-  style: {
-    fontSize: 15
-  }
-}, "\u203A"));
 function WeekNav({
   week,
   min = 1,
@@ -1540,8 +1490,6 @@ function Matchup({
   action,
   final,
   nav,
-  week,
-  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1624,22 +1572,13 @@ function Matchup({
     }
   }, "proj ", fmt(oppProj))), React.createElement("div", {
     style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingTop: 6
-    }
-  }, React.createElement("div", {
-    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE
+      color: MUTE,
+      paddingTop: 6
     }
-  }, "Starters"), !nav && React.createElement(WeekLink, {
-    week: week,
-    onClick: onWeekClick
-  })), React.createElement("div", {
+  }, "Starters"), React.createElement("div", {
     style: {
       borderTop: `1px solid ${LINE}`
     }
@@ -1706,7 +1645,6 @@ function Team({
   action,
   final,
   nav,
-  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1766,22 +1704,13 @@ function Team({
     }
   }, meta), React.createElement("div", {
     style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: 4
-    }
-  }, React.createElement("div", {
-    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE
+      color: MUTE,
+      marginBottom: 4
     }
-  }, "Starters"), !nav && React.createElement(WeekLink, {
-    week: week,
-    onClick: onWeekClick
-  })), React.createElement("div", {
+  }, "Starters"), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "40px 1fr 40px 40px",
@@ -1938,80 +1867,6 @@ function BottomSheet({
       padding: 4
     }
   }, "\xD7")), children));
-}
-function ScheduleModal({
-  tone,
-  title,
-  myName,
-  rows,
-  currentWeek,
-  empty,
-  onClose
-}) {
-  return React.createElement(BottomSheet, {
-    tone: tone,
-    title: title,
-    onClose: onClose
-  }, !rows?.length ? React.createElement(Empty, null, empty) : rows.map(r => React.createElement("div", {
-    key: r.week,
-    style: {
-      display: "grid",
-      gridTemplateColumns: "44px 1fr auto 1fr",
-      gap: 8,
-      alignItems: "center",
-      padding: "10px 6px",
-      borderRadius: 8,
-      background: r.week === currentWeek ? HILITE : "transparent",
-      borderBottom: `1px solid ${HAIRLINE}`
-    }
-  }, React.createElement(Chip, {
-    style: {
-      textAlign: "center",
-      padding: "4px 0"
-    }
-  }, "Wk ", r.week), React.createElement("div", {
-    style: {
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    style: {
-      fontFamily: cond,
-      fontWeight: 600,
-      fontSize: 14,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
-    }
-  }, myName), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: MUTE
-    }
-  }, fmt(r.myPts))), React.createElement("div", {
-    style: {
-      fontSize: 11,
-      color: MUTE
-    }
-  }, "vs"), React.createElement("div", {
-    style: {
-      minWidth: 0,
-      textAlign: "right"
-    }
-  }, React.createElement("div", {
-    style: {
-      fontFamily: cond,
-      fontWeight: 600,
-      fontSize: 14,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
-    }
-  }, r.oppName ?? "—"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: MUTE
-    }
-  }, fmt(r.oppPts))))));
 }
 function TeamScheduleModal({
   team,
@@ -2722,8 +2577,6 @@ function App() {
     [ahead, setAhead] = useState(null),
     [history, setHistory] = useState([]);
   const [stats, setStats] = useState(null);
-  const [fullSchedule, setFullSchedule] = useState(null);
-  const [scheduleOpen, setScheduleOpen] = useState(false);
   const [gamesWeek, setGamesWeek] = useState(null);
   const [weekGames, setWeekGames] = useState(null),
     [weekGamesBusy, setWeekGamesBusy] = useState(false),
@@ -2747,6 +2600,7 @@ function App() {
   const [resolvedPlayers, setResolvedPlayers] = useState({});
   const [timelineEntries, setTimelineEntries] = useState([]);
   const [now, setNow] = useState(Date.now());
+  const [doNowOpen, setDoNowOpen] = useState(true);
   const [dark, setDark] = useState(() => {
     const s = store.get("wr_dark");
     return s == null ? matchMedia("(prefers-color-scheme: dark)").matches : !!s;
@@ -2816,7 +2670,6 @@ function App() {
       loadStats(d.season, d.week).then(setStats).catch(() => {});
       loadSeasonSchedule(d.season).then(setAhead).catch(() => {});
       loadHistory(d).then(setHistory).catch(() => {});
-      loadFullSchedule(d).then(setFullSchedule).catch(() => {});
     } catch (e) {
       setSlErr(e.message);
     }
@@ -3055,6 +2908,9 @@ function App() {
   const firstLine = brief?.text?.split("\n")[0] || "";
   const urgent = firstLine && firstLine === firstLine.toUpperCase() && !/^GANGSTAS|^GAME OF/.test(firstLine) || lockedSoonQ.length > 0;
   const showDoNow = doNow.length > 0 && (urgent || doNow.some(d => !/^nothing/i.test(d)));
+  useEffect(() => {
+    setDoNowOpen(true);
+  }, [brief?.at]);
   const contingency = useMemo(() => {
     const m = {};
     Object.values(lineup).flat().forEach(r => {
@@ -3302,13 +3158,34 @@ function App() {
       marginBottom: 6,
       lineHeight: 1.25
     }
-  }, lockedSoonQ.length, " questionable starter", lockedSoonQ.length > 1 ? "s" : "", " lock", lockedSoonQ.length > 1 ? "" : "s", " ", gameState(kick, lockedSoonQ[0].team, now).text, ": ", lockedSoonQ.map(r => shortName(r.name, r.pos)).join(", "), " \u2014 check inactives"), React.createElement("div", {
+  }, lockedSoonQ.length, " questionable starter", lockedSoonQ.length > 1 ? "s" : "", " lock", lockedSoonQ.length > 1 ? "" : "s", " ", gameState(kick, lockedSoonQ[0].team, now).text, ": ", lockedSoonQ.map(r => shortName(r.name, r.pos)).join(", "), " \u2014 check inactives"), React.createElement("button", {
+    onClick: () => setDoNowOpen(o => !o),
+    "aria-expanded": doNowOpen,
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      background: "none",
+      border: "none",
+      padding: 0,
+      cursor: "pointer",
+      textAlign: "left"
+    }
+  }, React.createElement("span", {
     style: {
       fontSize: 12,
       color: urgent ? "#7A5A00" : MUTE,
-      marginBottom: 4
+      marginBottom: doNowOpen ? 4 : 0
     }
-  }, "Do now \xB7 ", stamp(brief.at)), doNow.map((d, i) => React.createElement("div", {
+  }, "Do now \xB7 ", stamp(brief.at)), React.createElement("span", {
+    style: {
+      fontSize: 15,
+      color: urgent ? "#7A5A00" : MUTE,
+      transform: doNowOpen ? "rotate(90deg)" : "none",
+      transition: "transform 0.15s"
+    }
+  }, "\u203A")), doNowOpen && doNow.map((d, i) => React.createElement("div", {
     key: i,
     style: {
       display: "grid",
@@ -3727,23 +3604,7 @@ function App() {
       fontSize: 12,
       opacity: 0.85
     }
-  }, s)))))), scheduleOpen && lg === "sleeper" && React.createElement(ScheduleModal, {
-    tone: INK,
-    title: `${sl?.league?.name || "Gangstas Paradise"} — Schedule`,
-    myName: cfg.sleeperTeamName,
-    rows: fullSchedule,
-    currentWeek: sl?.week,
-    onClose: () => setScheduleOpen(false),
-    empty: slBusy ? "Loading schedule…" : "Sleeper didn't load."
-  }), scheduleOpen && lg === "yahoo" && React.createElement(ScheduleModal, {
-    tone: OX,
-    title: `${cfg.yahooLeagueName} — Schedule`,
-    myName: cfg.yahooTeamName,
-    rows: yahooRaw?.schedule,
-    currentWeek: yahoo?.week,
-    onClose: () => setScheduleOpen(false),
-    empty: `Add a screenshot of Yahoo's schedule/matchups page to the "War room" Drive folder to fill this in.`
-  }), teamScheduleFor && React.createElement(TeamScheduleModal, {
+  }, s)))))), teamScheduleFor && React.createElement(TeamScheduleModal, {
     team: teamScheduleFor,
     rows: teamScheduleRows,
     busy: teamScheduleBusy,
