@@ -523,6 +523,35 @@ function Btn({ children, onClick, tone = INK, disabled, ghost, small, ariaLabel 
 const Card = ({ children, style }) => <div style={{ background: PAPER, borderRadius: 10, padding: 14, ...style }}>{children}</div>;
 const Empty = ({ children }) => <div style={{ color: MUTE, fontSize: 15, lineHeight: 1.45 }}>{children}</div>;
 const H = ({ tone, children, style }) => <div style={{ fontFamily: cond, fontWeight: 800, fontSize: 18, color: tone, lineHeight: 1.1, ...style }}>{children}</div>;
+// expand/collapse container — top-level sections render as their own Card with a clickable header; `nested` renders
+// a lighter row (divider instead of a card) for sub-sections living inside another Collapsible (e.g. per-position
+// groups inside the Analysis section)
+function Collapsible({ tone, title, defaultOpen = false, nested, badge, children }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const header = (
+    <button onClick={() => setOpen(o => !o)} aria-expanded={open} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", background: "none", border: "none", padding: 0, cursor: "pointer", textAlign: "left" }}>
+      {nested ? <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 14, color: tone }}>{title}</span> : <H tone={tone}>{title}</H>}
+      <span style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+        {badge}
+        <span style={{ fontSize: 15, color: MUTE, display: "inline-block", transform: open ? "rotate(90deg)" : "none", transition: "transform 0.15s" }}>›</span>
+      </span>
+    </button>
+  );
+  if (nested) {
+    return (
+      <div style={{ borderTop: `1px solid ${HAIRLINE}`, padding: "10px 0" }}>
+        {header}
+        {open && <div style={{ marginTop: 8 }}>{children}</div>}
+      </div>
+    );
+  }
+  return (
+    <Card style={{ marginBottom: 10 }}>
+      {header}
+      {open && <div style={{ marginTop: 10 }}>{children}</div>}
+    </Card>
+  );
+}
 function CopyBtn({ text }) {
   const [ok, setOk] = useState(false);
   return <Btn ghost small tone={MUTE} onClick={async () => { try { await navigator.clipboard.writeText(text); setOk(true); setTimeout(() => setOk(false), 1500); } catch {} }}>{ok ? <Check size={14} /> : <Copy size={14} />}{ok ? "Copied" : "Copy"}</Btn>;
@@ -773,32 +802,27 @@ function Standings({ tone, rows, faab }) {
 }
 
 // structured lineup call (data.lineup.<league>) rendered as a kickoff-ordered checklist
-function LineupCard({ tone, title, rows, kick, now }) {
-  if (!rows?.length) return null;
+function LineupCard({ rows, kick, now }) {
+  if (!rows?.length) return <Empty>No lineup call yet.</Empty>;
   const sorted = [...rows].map(r => ({ ...r, g: gameState(kick, r.team, now) })).sort((a, b) => (a.g.at?.getTime() || 9e15) - (b.g.at?.getTime() || 9e15));
   const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? AMBER : WIN;
-  return (
-    <Card style={{ marginBottom: 10 }}>
-      <H tone={tone} style={{ marginBottom: 8 }}>{title}</H>
-      {sorted.map((r, i) => (
-        <div key={i} style={{ display: "grid", gridTemplateColumns: "36px 1fr auto", gap: 8, alignItems: "start", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}`, opacity: r.g.phase === "final" ? 0.55 : 1 }}>
-          <Chip style={{ textAlign: "center", padding: "3px 0", fontSize: 10, marginTop: 2 }}>{r.slot}</Chip>
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15, lineHeight: 1.2 }}>{r.name}<Status s={r.status} /></div>
-            <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2 }}>
-              <span style={{ color: callTone(r.call || ""), fontWeight: 700, fontFamily: cond }}>{r.call || "start"}</span>
-              {r.note ? <span style={{ color: TEXT }}> — {r.note}</span> : null}
-            </div>
-            {r.ifOut && <div style={{ marginTop: 3 }}><Chip tone="#7A5A00" bg="#FFF6D6">if out → {r.ifOut}</Chip></div>}
-          </div>
-          <div style={{ fontSize: 12, textAlign: "right", whiteSpace: "nowrap", color: MUTE }}>
-            <div>{r.team}</div>
-            <Kick g={r.g} />
-          </div>
+  return sorted.map((r, i) => (
+    <div key={i} style={{ display: "grid", gridTemplateColumns: "36px 1fr auto", gap: 8, alignItems: "start", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}`, opacity: r.g.phase === "final" ? 0.55 : 1 }}>
+      <Chip style={{ textAlign: "center", padding: "3px 0", fontSize: 10, marginTop: 2 }}>{r.slot}</Chip>
+      <div style={{ minWidth: 0 }}>
+        <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15, lineHeight: 1.2 }}>{r.name}<Status s={r.status} /></div>
+        <div style={{ fontSize: 13, lineHeight: 1.35, marginTop: 2 }}>
+          <span style={{ color: callTone(r.call || ""), fontWeight: 700, fontFamily: cond }}>{r.call || "start"}</span>
+          {r.note ? <span style={{ color: TEXT }}> — {r.note}</span> : null}
         </div>
-      ))}
-    </Card>
-  );
+        {r.ifOut && <div style={{ marginTop: 3 }}><Chip tone="#7A5A00" bg="#FFF6D6">if out → {r.ifOut}</Chip></div>}
+      </div>
+      <div style={{ fontSize: 12, textAlign: "right", whiteSpace: "nowrap", color: MUTE }}>
+        <div>{r.team}</div>
+        <Kick g={r.g} />
+      </div>
+    </div>
+  ));
 }
 
 // matchup context (data.analysis.<league>) rendered as an in-depth per-position breakdown of the current lineup
@@ -829,18 +853,17 @@ function MatchupRow({ r }) {
   );
 }
 function Analysis({ tone, rows }) {
-  if (!rows?.length) return <Card><Empty>No matchup analysis yet. The scheduled task writes this each run.</Empty></Card>;
+  if (!rows?.length) return <Empty>No matchup analysis yet. The scheduled task writes this each run.</Empty>;
   const starters = rows.filter(r => r.slot !== "BN" && r.slot !== "IR");
   const groups = POS_ORDER.map(p => [p, starters.filter(r => r.pos === p)]).filter(([, g]) => g.length);
   const extra = starters.filter(r => !POS_ORDER.includes(r.pos));
   if (extra.length) groups.push(["FLEX", extra]);
   return (
-    <div style={{ display: "grid", gap: 10 }}>
+    <div>
       {groups.map(([pos, g]) => (
-        <Card key={pos}>
-          <H tone={tone} style={{ marginBottom: 4 }}>{pos}</H>
+        <Collapsible key={pos} nested tone={tone} title={pos} defaultOpen={false}>
           {g.map((r, i) => <MatchupRow key={i} r={r} />)}
-        </Card>
+        </Collapsible>
       ))}
     </div>
   );
@@ -1168,7 +1191,7 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = <Card><Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty></Card>;
   const openPlayer = r => setPlayerStatsFor({ id: r.id, name: r.name, team: r.team, pos: r.pos });
   const openTeam = team => setTeamScheduleFor(team);
@@ -1256,9 +1279,6 @@ function App() {
             myIds={timelineMyIds} now={now} live={timelineLive} />
         )}
 
-        {view === "analysis" && lg === "sleeper" && <Analysis tone={INK} rows={analysis.sleeper} />}
-        {view === "analysis" && lg === "yahoo" && (yahoo ? <Analysis tone={OX} rows={analysis.yahoo} /> : yahooEmpty)}
-
         {view === "league" && lg === "sleeper" && (sl ? <>
           <Standings tone={INK} rows={sl.standings} faab={sl.league.settings.waiver_type === 2} />
           <Card style={{ marginTop: 10 }}>
@@ -1288,15 +1308,21 @@ function App() {
         </> : yahooEmpty)}
 
         {view === "brief" && <>
-          <LineupCard tone={tone} title={lg === "sleeper" ? "Lineup — Gangstas Paradise" : "Lineup — Game of Throws"} rows={lineup[lg]} kick={kick} now={now} />
-          <Card>
+          <Collapsible tone={tone} title="Lineup" defaultOpen={false}>
+            <LineupCard rows={lineup[lg]} kick={kick} now={now} />
+          </Collapsible>
+          <Collapsible tone={tone} title="Brief" defaultOpen={false}>
             {brief ? <>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, gap: 8 }}>
                 <div style={{ fontSize: 12, color: MUTE }}>{brief.mode || "daily"} brief · {stamp(brief.at)}</div><CopyBtn text={brief.text} />
               </div>
               <Report text={brief.text} />
             </> : <Empty>No brief yet. The scheduled task writes one every morning at 7 AM and again Sunday 9 AM Pacific.</Empty>}
-          </Card>
+          </Collapsible>
+          <Collapsible tone={tone} title="Analysis" defaultOpen={false}>
+            {lg === "sleeper" ? <Analysis tone={INK} rows={analysis.sleeper} />
+              : (yahoo ? <Analysis tone={OX} rows={analysis.yahoo} /> : <Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty>)}
+          </Collapsible>
         </>}
 
         {view === "moves" && <div style={{ display: "grid", gap: 10 }}>

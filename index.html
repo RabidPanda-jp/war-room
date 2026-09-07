@@ -1144,6 +1144,76 @@ const H = ({
     ...style
   }
 }, children);
+function Collapsible({
+  tone,
+  title,
+  defaultOpen = false,
+  nested,
+  badge,
+  children
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+  const header = React.createElement("button", {
+    onClick: () => setOpen(o => !o),
+    "aria-expanded": open,
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      background: "none",
+      border: "none",
+      padding: 0,
+      cursor: "pointer",
+      textAlign: "left"
+    }
+  }, nested ? React.createElement("span", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 14,
+      color: tone
+    }
+  }, title) : React.createElement(H, {
+    tone: tone
+  }, title), React.createElement("span", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexShrink: 0
+    }
+  }, badge, React.createElement("span", {
+    style: {
+      fontSize: 15,
+      color: MUTE,
+      display: "inline-block",
+      transform: open ? "rotate(90deg)" : "none",
+      transition: "transform 0.15s"
+    }
+  }, "\u203A")));
+  if (nested) {
+    return React.createElement("div", {
+      style: {
+        borderTop: `1px solid ${HAIRLINE}`,
+        padding: "10px 0"
+      }
+    }, header, open && React.createElement("div", {
+      style: {
+        marginTop: 8
+      }
+    }, children));
+  }
+  return React.createElement(Card, {
+    style: {
+      marginBottom: 10
+    }
+  }, header, open && React.createElement("div", {
+    style: {
+      marginTop: 10
+    }
+  }, children));
+}
 function CopyBtn({
   text
 }) {
@@ -2048,28 +2118,17 @@ function Standings({
   }, typeof r.pf === "number" ? r.pf.toFixed(1) : r.pf, faab && r.faab != null ? ` · $${r.faab}` : ""))));
 }
 function LineupCard({
-  tone,
-  title,
   rows,
   kick,
   now
 }) {
-  if (!rows?.length) return null;
+  if (!rows?.length) return React.createElement(Empty, null, "No lineup call yet.");
   const sorted = [...rows].map(r => ({
     ...r,
     g: gameState(kick, r.team, now)
   })).sort((a, b) => (a.g.at?.getTime() || 9e15) - (b.g.at?.getTime() || 9e15));
   const callTone = c => /^sit|^bench|^out/i.test(c) ? OX : /^watch|^check|^if/i.test(c) ? AMBER : WIN;
-  return React.createElement(Card, {
-    style: {
-      marginBottom: 10
-    }
-  }, React.createElement(H, {
-    tone: tone,
-    style: {
-      marginBottom: 8
-    }
-  }, title), sorted.map((r, i) => React.createElement("div", {
+  return sorted.map((r, i) => React.createElement("div", {
     key: i,
     style: {
       display: "grid",
@@ -2132,7 +2191,7 @@ function LineupCard({
     }
   }, React.createElement("div", null, r.team), React.createElement(Kick, {
     g: r.g
-  })))));
+  }))));
 }
 const DEF_RANK_TONE = r => r == null ? MUTE : r <= 10 ? OX : r >= 23 ? WIN : AMBER;
 const POS_ORDER = ["QB", "RB", "WR", "TE", "K", "DEF"];
@@ -2205,24 +2264,18 @@ function Analysis({
   tone,
   rows
 }) {
-  if (!rows?.length) return React.createElement(Card, null, React.createElement(Empty, null, "No matchup analysis yet. The scheduled task writes this each run."));
+  if (!rows?.length) return React.createElement(Empty, null, "No matchup analysis yet. The scheduled task writes this each run.");
   const starters = rows.filter(r => r.slot !== "BN" && r.slot !== "IR");
   const groups = POS_ORDER.map(p => [p, starters.filter(r => r.pos === p)]).filter(([, g]) => g.length);
   const extra = starters.filter(r => !POS_ORDER.includes(r.pos));
   if (extra.length) groups.push(["FLEX", extra]);
-  return React.createElement("div", {
-    style: {
-      display: "grid",
-      gap: 10
-    }
-  }, groups.map(([pos, g]) => React.createElement(Card, {
-    key: pos
-  }, React.createElement(H, {
+  return React.createElement("div", null, groups.map(([pos, g]) => React.createElement(Collapsible, {
+    key: pos,
+    nested: true,
     tone: tone,
-    style: {
-      marginBottom: 4
-    }
-  }, pos), g.map((r, i) => React.createElement(MatchupRow, {
+    title: pos,
+    defaultOpen: false
+  }, g.map((r, i) => React.createElement(MatchupRow, {
     key: i,
     r: r
   })))));
@@ -2810,7 +2863,7 @@ function App() {
   const tone = lg === "sleeper" ? INK : OX;
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
-  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["analysis", "Analysis"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
+  const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["moves", "Moves"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = React.createElement(Card, null, React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."));
   const openPlayer = r => setPlayerStatsFor({
     id: r.id,
@@ -3101,13 +3154,7 @@ function App() {
     myIds: timelineMyIds,
     now: now,
     live: timelineLive
-  }), view === "analysis" && lg === "sleeper" && React.createElement(Analysis, {
-    tone: INK,
-    rows: analysis.sleeper
-  }), view === "analysis" && lg === "yahoo" && (yahoo ? React.createElement(Analysis, {
-    tone: OX,
-    rows: analysis.yahoo
-  }) : yahooEmpty), view === "league" && lg === "sleeper" && (sl ? React.createElement(React.Fragment, null, React.createElement(Standings, {
+  }), view === "league" && lg === "sleeper" && (sl ? React.createElement(React.Fragment, null, React.createElement(Standings, {
     tone: INK,
     rows: sl.standings,
     faab: sl.league.settings.waiver_type === 2
@@ -3182,13 +3229,19 @@ function App() {
       marginTop: 10
     },
     rows: [["Scoring", YAHOO_RULES.scoring], ["Slots", YAHOO_RULES.slots], ["Waivers", YAHOO_RULES.waivers], ["Trade deadline", YAHOO_RULES.tradeDeadline], ["Playoffs", YAHOO_RULES.playoffs]]
-  })) : yahooEmpty), view === "brief" && React.createElement(React.Fragment, null, React.createElement(LineupCard, {
+  })) : yahooEmpty), view === "brief" && React.createElement(React.Fragment, null, React.createElement(Collapsible, {
     tone: tone,
-    title: lg === "sleeper" ? "Lineup — Gangstas Paradise" : "Lineup — Game of Throws",
+    title: "Lineup",
+    defaultOpen: false
+  }, React.createElement(LineupCard, {
     rows: lineup[lg],
     kick: kick,
     now: now
-  }), React.createElement(Card, null, brief ? React.createElement(React.Fragment, null, React.createElement("div", {
+  })), React.createElement(Collapsible, {
+    tone: tone,
+    title: "Brief",
+    defaultOpen: false
+  }, brief ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "space-between",
@@ -3205,7 +3258,17 @@ function App() {
     text: brief.text
   })), React.createElement(Report, {
     text: brief.text
-  })) : React.createElement(Empty, null, "No brief yet. The scheduled task writes one every morning at 7 AM and again Sunday 9 AM Pacific."))), view === "moves" && React.createElement("div", {
+  })) : React.createElement(Empty, null, "No brief yet. The scheduled task writes one every morning at 7 AM and again Sunday 9 AM Pacific.")), React.createElement(Collapsible, {
+    tone: tone,
+    title: "Analysis",
+    defaultOpen: false
+  }, lg === "sleeper" ? React.createElement(Analysis, {
+    tone: INK,
+    rows: analysis.sleeper
+  }) : yahoo ? React.createElement(Analysis, {
+    tone: OX,
+    rows: analysis.yahoo
+  }) : React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."))), view === "moves" && React.createElement("div", {
     style: {
       display: "grid",
       gap: 10
