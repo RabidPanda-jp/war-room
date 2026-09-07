@@ -100,6 +100,90 @@ async function loadData() {
 }
 
 // ---------- schedule / kickoffs ----------
+// Full-season TV/streaming schedule, straight off the NFL's official release — the network per game is set
+// months ahead, so there's no need to guess at it from ESPN's undocumented broadcast JSON. Rows are
+// [week, away, home, network]; network is null for games not yet flexed/announced (mostly weeks 16-18).
+const NETWORK_SCHEDULE_ROWS = [
+  [1,"NE","SEA","NBC"],[1,"SF","LAR","Netflix"],[1,"CHI","CAR","FOX"],[1,"TB","CIN","FOX"],
+  [1,"NO","DET","FOX"],[1,"ATL","PIT","FOX"],[1,"BUF","HOU","CBS"],[1,"BAL","IND","CBS"],
+  [1,"CLE","JAX","CBS"],[1,"NYJ","TEN","CBS"],[1,"ARI","LAC","CBS"],[1,"GB","MIN","CBS"],
+  [1,"MIA","LV","FOX"],[1,"WAS","PHI","FOX"],[1,"DAL","NYG","NBC"],[1,"DEN","KC","ESPN"],
+  [2,"DET","BUF","Prime"],[2,"CAR","ATL","FOX"],[2,"NO","BAL","CBS"],[2,"MIN","CHI","FOX"],
+  [2,"CIN","HOU","CBS"],[2,"PIT","NE","CBS"],[2,"GB","NYJ","FOX"],[2,"CLE","TB","CBS"],
+  [2,"PHI","TEN","FOX"],[2,"JAX","DEN","CBS"],[2,"LV","LAC","CBS"],[2,"SEA","ARI","FOX"],
+  [2,"WAS","DAL","FOX"],[2,"MIA","SF","FOX"],[2,"IND","KC","NBC"],[2,"NYG","LAR","ESPN"],
+  [3,"ATL","GB","Prime"],[3,"LAC","BUF","FOX"],[3,"CAR","CLE","FOX"],[3,"NYJ","DET","FOX"],
+  [3,"HOU","IND","CBS"],[3,"NE","JAX","CBS"],[3,"KC","MIA","CBS"],[3,"TEN","NYG","CBS"],
+  [3,"CIN","PIT","CBS"],[3,"SEA","WAS","FOX"],[3,"ARI","SF","FOX"],[3,"MIN","TB","FOX"],
+  [3,"LV","NO","CBS"],[3,"BAL","DAL","CBS"],[3,"LAR","DEN","NBC"],[3,"PHI","CHI","ESPN"],
+  [4,"PIT","CLE","Prime"],[4,"IND","WAS","NFL Network"],[4,"TEN","BAL","CBS"],[4,"NE","BUF","CBS"],
+  [4,"NYJ","CHI","FOX"],[4,"JAX","CIN","CBS"],[4,"DAL","HOU","FOX"],[4,"ARI","NYG","CBS"],
+  [4,"LAR","PHI","FOX"],[4,"GB","TB","FOX"],[4,"MIA","MIN","FOX"],[4,"KC","LV","CBS"],
+  [4,"LAC","SEA","CBS"],[4,"DEN","SF","CBS"],[4,"DET","CAR","NBC"],[4,"ATL","NO","ESPN"],
+  [5,"TB","DAL","Prime"],[5,"PHI","JAX","NFL Network"],[5,"CIN","MIA","FOX"],[5,"LV","NE","CBS"],
+  [5,"MIN","NO","FOX"],[5,"CLE","NYJ","CBS"],[5,"IND","PIT","CBS"],[5,"HOU","TEN","CBS"],
+  [5,"NYG","WAS","FOX"],[5,"DEN","LAC","CBS"],[5,"DET","ARI","FOX"],[5,"CHI","GB","FOX"],
+  [5,"SF","SEA","FOX"],[5,"BAL","ATL","NBC"],[5,"BUF","LAR","ESPN"],
+  [6,"SEA","DEN","Prime"],[6,"HOU","JAX","NFL Network"],[6,"CHI","ATL","FOX"],[6,"BAL","CLE","FOX"],
+  [6,"TEN","IND","FOX"],[6,"NYJ","NE","CBS"],[6,"NO","NYG","FOX"],[6,"CAR","PHI","CBS"],
+  [6,"PIT","TB","CBS"],[6,"ARI","LAR","FOX"],[6,"LAC","KC","CBS"],[6,"BUF","LV","CBS"],
+  [6,"DAL","GB","NBC"],[6,"WAS","SF","ESPN"],
+  [7,"NE","CHI","Prime"],[7,"PIT","NO","NFL Network"],[7,"SF","ATL","FOX"],[7,"CIN","BAL","CBS"],
+  [7,"TB","CAR","FOX"],[7,"NYG","HOU","FOX"],[7,"IND","MIN","CBS"],[7,"MIA","NYJ","CBS"],
+  [7,"CLE","TEN","CBS"],[7,"DEN","ARI","CBS"],[7,"GB","DET","FOX"],[7,"LAR","LV","FOX"],
+  [7,"KC","SEA","NBC"],[7,"DAL","PHI","ESPN"],
+  [8,"CAR","GB","Prime"],[8,"BAL","BUF","CBS"],[8,"TEN","CIN","CBS"],[8,"ARI","DAL","FOX"],
+  [8,"MIN","DET","FOX"],[8,"IND","JAX","CBS"],[8,"LV","NYJ","FOX"],[8,"CLE","PIT","CBS"],
+  [8,"ATL","TB","FOX"],[8,"LAC","LAR","FOX"],[8,"KC","DEN","CBS"],[8,"NE","MIA","CBS"],
+  [8,"PHI","WAS","NBC"],[8,"CHI","SEA","ESPN"],
+  [9,"JAX","BAL","Prime"],[9,"CIN","ATL","NFL Network"],[9,"DEN","CAR","CBS"],[9,"DAL","IND","FOX"],
+  [9,"NYJ","KC","CBS"],[9,"DET","MIA","FOX"],[9,"CLE","NO","CBS"],[9,"NYG","PHI","FOX"],
+  [9,"LAR","WAS","FOX"],[9,"HOU","LAC","CBS"],[9,"LV","SF","CBS"],[9,"GB","NE","FOX"],
+  [9,"ARI","SEA","FOX"],[9,"TB","CHI","NBC"],[9,"BUF","MIN","ESPN"],
+  [10,"WAS","NYG","Prime"],[10,"NE","DET","FOX"],[10,"KC","ATL","CBS"],[10,"HOU","CLE","FOX"],
+  [10,"MIN","GB","FOX"],[10,"MIA","IND","CBS"],[10,"CAR","NO","FOX"],[10,"BUF","NYJ","CBS"],
+  [10,"JAX","TEN","FOX"],[10,"LAR","ARI","CBS"],[10,"SEA","LV","CBS"],[10,"SF","DAL","FOX"],
+  [10,"PIT","CIN","NBC"],[10,"LAC","BAL","ESPN"],
+  [11,"IND","HOU","Prime"],[11,"MIA","BUF","FOX"],[11,"BAL","CAR","FOX"],[11,"NO","CHI","FOX"],
+  [11,"TEN","DAL","FOX"],[11,"TB","DET","CBS"],[11,"ARI","KC","CBS"],[11,"JAX","NYG","CBS"],
+  [11,"NYJ","LAC","FOX"],[11,"LV","DEN","CBS"],[11,"PIT","PHI","CBS"],[11,"MIN","SF","NBC"],
+  [11,"CIN","WAS","ESPN"],
+  [12,"GB","LAR","Netflix"],[12,"CHI","DET","CBS"],[12,"PHI","DAL","FOX"],[12,"KC","BUF","NBC"],
+  [12,"DEN","PIT","Prime"],[12,"NO","CIN","CBS"],[12,"LV","CLE","FOX"],[12,"BAL","HOU","CBS"],
+  [12,"NYG","IND","FOX"],[12,"NYJ","MIA","CBS"],[12,"ATL","MIN","FOX"],[12,"TEN","JAX","CBS"],
+  [12,"WAS","ARI","FOX"],[12,"SEA","SF","FOX"],[12,"NE","LAC","NBC"],[12,"CAR","TB","ESPN"],
+  [13,"KC","LAR","Prime"],[13,"DET","ATL","CBS"],[13,"JAX","CHI","FOX"],[13,"CIN","CLE","CBS"],
+  [13,"GB","NO","FOX"],[13,"SF","NYG","FOX"],[13,"LAC","TB","CBS"],[13,"WAS","TEN","CBS"],
+  [13,"PHI","ARI","FOX"],[13,"MIA","DEN","FOX"],[13,"CAR","MIN","CBS"],[13,"BUF","NE","CBS"],
+  [13,"HOU","PIT","NBC"],[13,"DAL","SEA","ESPN"],
+  [14,"MIN","NE","Prime"],[14,"TB","BAL","FOX"],[14,"NO","CAR","CBS"],[14,"ATL","CLE","CBS"],
+  [14,"TEN","DET","FOX"],[14,"CHI","MIA","CBS"],[14,"DEN","NYJ","CBS"],[14,"IND","PHI","FOX"],
+  [14,"HOU","WAS","CBS"],[14,"LAC","LV","CBS"],[14,"KC","CIN","FOX"],[14,"NYG","SEA","FOX"],
+  [14,"LAR","SF","FOX"],[14,"BUF","GB","NBC"],[14,"PIT","JAX","ESPN"],
+  [15,"SF","LAC","Prime"],[15,"SEA","PHI","FOX"],[15,"CHI","BUF","CBS"],[15,"CIN","CAR","FOX"],
+  [15,"MIA","GB","FOX"],[15,"JAX","HOU","CBS"],[15,"CLE","NYG","CBS"],[15,"BAL","PIT","CBS"],
+  [15,"NO","TB","FOX"],[15,"IND","TEN","CBS"],[15,"ATL","WAS","FOX"],[15,"NYJ","ARI","FOX"],
+  [15,"DAL","LAR","CBS"],[15,"DEN","LV","CBS"],[15,"DET","MIN","NBC"],[15,"NE","KC","ESPN"],
+  [16,"HOU","PHI","Prime"],[16,"GB","CHI","Netflix"],[16,"BUF","DEN","Netflix"],[16,"LAR","SEA","FOX"],
+  [16,"CLE","BAL","CBS"],[16,"LAC","MIA","FOX"],[16,"ARI","NO","FOX"],[16,"NE","NYJ","CBS"],
+  [16,"TEN","LV","FOX"],[16,"SF","KC","CBS"],[16,"JAX","DAL","NBC"],[16,"NYG","DET","ESPN"],
+  [16,"TB","ATL",null],[16,"CIN","IND",null],[16,"WAS","MIN",null],[16,"CAR","PIT",null],
+  [17,"BAL","CIN","Prime"],[17,"NO","ATL","FOX"],[17,"SEA","CAR","FOX"],[17,"IND","CLE","FOX"],
+  [17,"NYG","DAL","FOX"],[17,"BUF","MIA","CBS"],[17,"MIN","NYJ","CBS"],[17,"PIT","TEN","CBS"],
+  [17,"LV","ARI","CBS"],[17,"DET","CHI","FOX"],[17,"PHI","SF","NBC"],[17,"HOU","GB","ESPN"],
+  [17,"WAS","JAX",null],[17,"KC","LAC",null],[17,"DEN","NE",null],[17,"LAR","TB",null],
+  [18,"SF","ARI",null],[18,"PIT","BAL",null],[18,"NYJ","BUF",null],[18,"ATL","CAR",null],
+  [18,"CLE","CIN",null],[18,"LAC","DEN",null],[18,"DET","GB",null],[18,"TEN","HOU",null],
+  [18,"JAX","IND",null],[18,"LV","KC",null],[18,"SEA","LAR",null],[18,"CHI","MIN",null],
+  [18,"MIA","NE",null],[18,"TB","NO",null],[18,"PHI","NYG",null],[18,"DAL","WAS",null]
+];
+const BROADCASTS_BY_WEEK = {};
+NETWORK_SCHEDULE_ROWS.forEach(([w, a, h, n]) => {
+  if (!n) return;
+  const wk = (BROADCASTS_BY_WEEK[w] = BROADCASTS_BY_WEEK[w] || {});
+  wk[a] = n; wk[h] = n;
+});
+
 const ESPN_TO_SLEEPER = { WSH: "WAS", JAC: "JAX", LA: "LAR" };
 const TV_SHORT = { "Prime Video": "Prime" };
 async function loadKickoffs(season, week, force) {
@@ -652,16 +736,22 @@ function App() {
   const brief = data?.brief || null, waivers = data?.waivers || null, trades = data?.trades || null;
   const lineup = data?.lineup || {};
   const analysis = data?.analysis || {};
-  // data.json's broadcasts (from the scheduled task, sourced off nfl.com/schedules) take priority over ESPN's
-  // own broadcasts/geoBroadcasts fields, which are undocumented and inconsistent — this is what actually shows.
+  // TV/streaming network, in priority order: the baked-in season schedule (straight off the NFL's official
+  // release), then data.json's broadcasts (the scheduled task's day-of catch for flex games the season table
+  // has as null), then whatever ESPN's own undocumented broadcast fields happened to return.
   const kick = useMemo(() => {
     if (!kickRaw) return kickRaw;
-    const bc = data?.broadcasts;
-    if (!bc) return kickRaw;
+    const wk = sl?.week ?? data?.week ?? null;
+    const staticBc = wk != null ? BROADCASTS_BY_WEEK[wk] : null;
+    const dailyBc = data?.broadcasts;
+    if (!staticBc && !dailyBc) return kickRaw;
     const out = {};
-    Object.entries(kickRaw).forEach(([team, k]) => { out[team] = bc[team] ? { ...k, tv: bc[team] } : k; });
+    Object.entries(kickRaw).forEach(([team, k]) => {
+      const tv = staticBc?.[team] || dailyBc?.[team] || k.tv;
+      out[team] = tv !== k.tv ? { ...k, tv } : k;
+    });
     return out;
-  }, [kickRaw, data]);
+  }, [kickRaw, data, sl]);
 
   const refreshData = useCallback(async () => {
     setDataBusy(true); setDataErr("");
