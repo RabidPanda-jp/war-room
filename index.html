@@ -1401,9 +1401,9 @@ const WeekLink = ({
     cursor: "pointer",
     display: "inline-flex",
     alignItems: "center",
-    gap: 2
+    gap: 6
   }
-}, "Week ", week, " ", React.createElement("span", {
+}, "Week ", week, " ", React.createElement(Chip, null, "Current"), " ", React.createElement("span", {
   style: {
     fontSize: 15
   }
@@ -1424,8 +1424,6 @@ function Matchup({
   kick,
   now,
   action,
-  week,
-  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1507,22 +1505,13 @@ function Matchup({
     }
   }, "proj ", fmt(oppProj))), React.createElement("div", {
     style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingTop: 6
-    }
-  }, React.createElement("div", {
-    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE
+      color: MUTE,
+      paddingTop: 6
     }
-  }, "Starters"), React.createElement(WeekLink, {
-    week: week,
-    onClick: onWeekClick
-  })), React.createElement("div", {
+  }, "Starters"), React.createElement("div", {
     style: {
       borderTop: `1px solid ${LINE}`
     }
@@ -1585,7 +1574,6 @@ function Team({
   ahead,
   week,
   action,
-  onWeekClick,
   onPlayerClick,
   onTeamClick
 }) {
@@ -1644,22 +1632,13 @@ function Team({
     }
   }, meta), React.createElement("div", {
     style: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: 4
-    }
-  }, React.createElement("div", {
-    style: {
       fontFamily: cond,
       fontWeight: 700,
       fontSize: 13,
-      color: MUTE
+      color: MUTE,
+      marginBottom: 4
     }
-  }, "Starters"), React.createElement(WeekLink, {
-    week: week,
-    onClick: onWeekClick
-  })), React.createElement("div", {
+  }, "Starters"), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "40px 1fr 40px 40px",
@@ -2376,6 +2355,7 @@ function GamesView({
   busy,
   err,
   onWeekChange,
+  onOpenPicker,
   onTeamClick,
   now
 }) {
@@ -2398,9 +2378,18 @@ function GamesView({
       cursor: week <= 1 ? "default" : "pointer",
       padding: "0 8px"
     }
-  }, "\u2039"), React.createElement(H, {
+  }, "\u2039"), React.createElement("button", {
+    onClick: onOpenPicker,
+    "aria-haspopup": "dialog",
+    style: {
+      background: "none",
+      border: "none",
+      padding: 0,
+      cursor: "pointer"
+    }
+  }, React.createElement(H, {
     tone: INK
-  }, "Week ", week), React.createElement("button", {
+  }, "Week ", week)), React.createElement("button", {
     onClick: () => onWeekChange(Math.min(18, week + 1)),
     disabled: week >= 18,
     "aria-label": "Next week",
@@ -2460,6 +2449,43 @@ function GamesView({
       }
     }, gs.text)));
   }));
+}
+function GamesWeekPicker({
+  week,
+  currentWeek,
+  onSelect,
+  onClose
+}) {
+  return React.createElement(BottomSheet, {
+    tone: INK,
+    title: "Jump to a week",
+    onClose: onClose
+  }, Array.from({
+    length: 18
+  }, (_, i) => i + 1).map(w => React.createElement("button", {
+    key: w,
+    onClick: () => onSelect(w),
+    style: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: 8,
+      background: w === week ? HILITE : "transparent",
+      border: "none",
+      borderRadius: 8,
+      padding: "10px 10px",
+      cursor: "pointer",
+      textAlign: "left"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontFamily: cond,
+      fontWeight: 700,
+      fontSize: 15,
+      color: TEXT
+    }
+  }, "Week ", w), w === currentWeek && React.createElement(Chip, null, "Current"))));
 }
 function MatchupTimeline({
   tone,
@@ -2550,6 +2576,7 @@ function App() {
   const [weekGames, setWeekGames] = useState(null),
     [weekGamesBusy, setWeekGamesBusy] = useState(false),
     [weekGamesErr, setWeekGamesErr] = useState("");
+  const [weekPickerOpen, setWeekPickerOpen] = useState(false);
   const [teamScheduleFor, setTeamScheduleFor] = useState(null);
   const [teamScheduleRows, setTeamScheduleRows] = useState(null),
     [teamScheduleBusy, setTeamScheduleBusy] = useState(false),
@@ -2879,6 +2906,7 @@ function App() {
   const timelineMyIds = new Set(lg === "sleeper" ? sl?.myRoster?.starters || [] : (yahooRaw?.starters || []).map(r => yahooIdIndex[`${r.name}|${r.team}`]).filter(Boolean));
   const timelineScoring = lg === "sleeper" ? sl?.league?.scoring_settings || {} : YAHOO_SCORING;
   const timelineLive = lg === "sleeper" ? (sl?.myRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") || (sl?.oppRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") : [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])].some(r => gameState(kick, r.team, now).phase === "live");
+  const weekBarWeek = view === "matchup" ? lg === "sleeper" ? sl?.week : yahoo?.week : view === "team" ? lg === "sleeper" ? sl?.week : week : null;
   return React.createElement("div", {
     style: {
       fontFamily: font,
@@ -3024,7 +3052,16 @@ function App() {
       fontSize: 17,
       lineHeight: 1.25
     }
-  }, d)))), yahooStale && React.createElement("div", {
+  }, d)))), weekBarWeek != null && React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      marginBottom: 8
+    }
+  }, React.createElement(WeekLink, {
+    week: weekBarWeek,
+    onClick: () => setScheduleOpen(true)
+  })), yahooStale && React.createElement("div", {
     style: {
       background: OX,
       color: "#fff",
@@ -3081,8 +3118,6 @@ function App() {
     sub: `Week ${sl.week}`,
     kick: kick,
     now: now,
-    week: sl.week,
-    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."))), view === "matchup" && lg === "yahoo" && (yahoo ? React.createElement(Matchup, {
@@ -3100,8 +3135,6 @@ function App() {
     sub: yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`,
     kick: kick,
     now: now,
-    week: yahoo.week,
-    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam,
     action: React.createElement("div", {
@@ -3121,7 +3154,6 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: sl.week,
-    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : React.createElement(Card, null, React.createElement(Empty, null, "Sleeper not loaded."))), view === "team" && lg === "yahoo" && (yahoo ? React.createElement(Team, {
@@ -3135,7 +3167,6 @@ function App() {
     contingency: contingency,
     ahead: ahead,
     week: week,
-    onWeekClick: () => setScheduleOpen(true),
     onPlayerClick: openPlayer,
     onTeamClick: openTeam
   }) : yahooEmpty), view === "games" && React.createElement(GamesView, {
@@ -3145,6 +3176,7 @@ function App() {
     err: weekGamesErr,
     now: now,
     onWeekChange: setGamesWeek,
+    onOpenPicker: () => setWeekPickerOpen(true),
     onTeamClick: openTeam
   }), view === "timeline" && React.createElement(MatchupTimeline, {
     tone: tone,
@@ -3462,6 +3494,14 @@ function App() {
     err: teamScheduleErr,
     currentWeek: sl?.week,
     onClose: () => setTeamScheduleFor(null)
+  }), weekPickerOpen && React.createElement(GamesWeekPicker, {
+    week: gamesWeek ?? week ?? 1,
+    currentWeek: week,
+    onSelect: w => {
+      setGamesWeek(w);
+      setWeekPickerOpen(false);
+    },
+    onClose: () => setWeekPickerOpen(false)
   }), playerStatsFor && React.createElement(PlayerStatsModal, {
     player: playerStatsFor,
     rows: playerStatsRows,

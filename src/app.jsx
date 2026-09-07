@@ -604,10 +604,10 @@ function PlayerCell({ r, g, align = "left", full, onClick, onTeamClick }) {
 const Num = ({ v, strong }) => <div style={{ fontFamily: cond, fontWeight: strong ? 700 : 500, fontSize: strong ? 15 : 13, color: strong ? TEXT : MUTE, textAlign: "center", minWidth: 32 }}>{fmt(v)}</div>;
 
 const WeekLink = ({ week, onClick }) => week == null ? null : (
-  <button onClick={onClick} style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, background: "none", border: "none", padding: 0, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 2 }}>Week {week} <span style={{ fontSize: 15 }}>›</span></button>
+  <button onClick={onClick} style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, background: "none", border: "none", padding: 0, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 6 }}>Week {week} <Chip>Current</Chip> <span style={{ fontSize: 15 }}>›</span></button>
 );
 
-function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, oppPts, myProj, oppProj, sub, kick, now, action, week, onWeekClick, onPlayerClick, onTeamClick }) {
+function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, oppPts, myProj, oppProj, sub, kick, now, action, onPlayerClick, onTeamClick }) {
   const rows = Math.max(mine.length, theirs.length);
   const live = (myPts || 0) + (oppPts || 0) > 0 && [...mine, ...theirs].some(r => started(gameState(kick, r.team, now)));
   return (
@@ -625,10 +625,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
       <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", fontSize: 13, color: MUTE, marginBottom: 10 }}>
         <div>proj {fmt(myProj)}</div><div>{sub}</div><div style={{ textAlign: "right" }}>proj {fmt(oppProj)}</div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 6 }}>
-        <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE }}>Starters</div>
-        <WeekLink week={week} onClick={onWeekClick} />
-      </div>
+      <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, paddingTop: 6 }}>Starters</div>
       <div style={{ borderTop: `1px solid ${LINE}` }}>
         {Array.from({ length: rows }).map((_, i) => {
           const a = mine[i], b = theirs[i];
@@ -649,7 +646,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
   );
 }
 
-function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead, week, action, onWeekClick, onPlayerClick, onTeamClick }) {
+function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead, week, action, onPlayerClick, onTeamClick }) {
   const Row = ({ r }) => {
     const g = gameState(kick, r.team, now), c = contingency?.[r.name.toLowerCase()];
     return (
@@ -668,10 +665,7 @@ function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead
     <Card>
       <H tone={tone}>{name}</H>
       <div style={{ fontSize: 12, color: MUTE, marginBottom: 8 }}>{meta}</div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-        <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE }}>Starters</div>
-        <WeekLink week={week} onClick={onWeekClick} />
-      </div>
+      <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 13, color: MUTE, marginBottom: 4 }}>Starters</div>
       <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, fontSize: 11, color: MUTE, fontFamily: cond, fontWeight: 600, borderBottom: `1px solid ${LINE}`, paddingBottom: 4 }}>
         <div /><div /><div style={{ textAlign: "center" }}>proj</div><div style={{ textAlign: "center" }}>pts</div>
       </div>
@@ -911,12 +905,12 @@ function Section({ item, empty }) {
 }
 
 // full NFL slate for one week, paged, with clickable team abbreviations
-function GamesView({ week, games, busy, err, onWeekChange, onTeamClick, now }) {
+function GamesView({ week, games, busy, err, onWeekChange, onOpenPicker, onTeamClick, now }) {
   return (
     <Card>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
         <button onClick={() => onWeekChange(Math.max(1, week - 1))} disabled={week <= 1} aria-label="Previous week" style={{ background: "none", border: "none", fontSize: 22, color: week <= 1 ? MUTE : TEXT, cursor: week <= 1 ? "default" : "pointer", padding: "0 8px" }}>‹</button>
-        <H tone={INK}>Week {week}</H>
+        <button onClick={onOpenPicker} aria-haspopup="dialog" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}><H tone={INK}>Week {week}</H></button>
         <button onClick={() => onWeekChange(Math.min(18, week + 1))} disabled={week >= 18} aria-label="Next week" style={{ background: "none", border: "none", fontSize: 22, color: week >= 18 ? MUTE : TEXT, cursor: week >= 18 ? "default" : "pointer", padding: "0 8px" }}>›</button>
       </div>
       {err ? <Empty>{err}</Empty> : !games?.length ? <Empty>{busy ? "Loading games…" : "No games this week."}</Empty> : games.map(g => {
@@ -935,6 +929,19 @@ function GamesView({ week, games, busy, err, onWeekChange, onTeamClick, now }) {
         );
       })}
     </Card>
+  );
+}
+// list of every week (1-18) for the Games tab, opened by tapping the "Week N" header — the live NFL week is tagged Current
+function GamesWeekPicker({ week, currentWeek, onSelect, onClose }) {
+  return (
+    <BottomSheet tone={INK} title="Jump to a week" onClose={onClose}>
+      {Array.from({ length: 18 }, (_, i) => i + 1).map(w => (
+        <button key={w} onClick={() => onSelect(w)} style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, background: w === week ? HILITE : "transparent", border: "none", borderRadius: 8, padding: "10px 10px", cursor: "pointer", textAlign: "left" }}>
+          <span style={{ fontFamily: cond, fontWeight: 700, fontSize: 15, color: TEXT }}>Week {w}</span>
+          {w === currentWeek && <Chip>Current</Chip>}
+        </button>
+      ))}
+    </BottomSheet>
   );
 }
 // reverse-chronological feed of fantasy-point-scoring stat changes for the active matchup, built by diffing
@@ -978,6 +985,7 @@ function App() {
   // Games tab: full NFL slate for a chosen week
   const [gamesWeek, setGamesWeek] = useState(null);
   const [weekGames, setWeekGames] = useState(null), [weekGamesBusy, setWeekGamesBusy] = useState(false), [weekGamesErr, setWeekGamesErr] = useState("");
+  const [weekPickerOpen, setWeekPickerOpen] = useState(false);
   // team-schedule modal: opened by clicking any TeamAbbrev
   const [teamScheduleFor, setTeamScheduleFor] = useState(null);
   const [teamScheduleRows, setTeamScheduleRows] = useState(null), [teamScheduleBusy, setTeamScheduleBusy] = useState(false), [teamScheduleErr, setTeamScheduleErr] = useState("");
@@ -1201,6 +1209,8 @@ function App() {
   const timelineLive = lg === "sleeper"
     ? (sl?.myRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live") || (sl?.oppRoster?.starters || []).some(id => gameState(kick, sl.players[id]?.team, now).phase === "live")
     : [...(yahooRaw?.starters || []), ...(yahooRaw?.opp || [])].some(r => gameState(kick, r.team, now).phase === "live");
+  // matchup/team tabs: which week the relocated "Week N" link (below Do Now) points at
+  const weekBarWeek = view === "matchup" ? (lg === "sleeper" ? sl?.week : yahoo?.week) : view === "team" ? (lg === "sleeper" ? sl?.week : week) : null;
 
   return (
     <div style={{ fontFamily: font, background: FIELD, minHeight: "100vh", color: TEXT }}>
@@ -1241,6 +1251,13 @@ function App() {
           </div>
         )}
 
+        {/* week selector for matchup/team — sits below Do Now, above the scores/roster card */}
+        {weekBarWeek != null && (
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 8 }}>
+            <WeekLink week={weekBarWeek} onClick={() => setScheduleOpen(true)} />
+          </div>
+        )}
+
         {yahooStale && <div style={{ background: OX, color: "#fff", borderRadius: 8, padding: "10px 12px", fontSize: 14, marginBottom: 10, fontFamily: cond, fontWeight: 600 }}>Yahoo data is {yahooAge} days old (screenshots from {yahoo.updatedAt}{yahoo.week && week && yahoo.week < week ? `, Week ${yahoo.week}` : ""}). Drop fresh roster + matchup screenshots in Drive before kickoff.</div>}
         {pipelineStale && <div style={{ background: OX, color: "#fff", borderRadius: 8, padding: "10px 12px", fontSize: 14, marginBottom: 10, fontFamily: cond, fontWeight: 600 }}>Scheduled task hasn't written new data in {Math.floor(pipelineAgeMs / 3600e3)}h (last update {stamp(data.updatedAt)}). Check that the Cowork task ran.</div>}
         {dataErr && <div style={{ background: "#FFF6D6", border: `1px solid ${FLAG}`, borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>{dataErr}</div>}
@@ -1250,28 +1267,28 @@ function App() {
           ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} oppName={sl.oppUser?.metadata?.team_name || sl.oppUser?.display_name} oppRec={oppRec}
               mine={my.starters} theirs={opp.starters} myPts={sl.myMatch?.points ?? 0} oppPts={sl.oppMatch?.points ?? 0}
               myProj={sum(my.starters, "proj")} oppProj={sum(opp.starters, "proj")} sub={`Week ${sl.week}`} kick={kick} now={now}
-              week={sl.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+              onPlayerClick={openPlayer} onTeamClick={openTeam} />
           : <Card><Empty>{slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."}</Empty></Card>)}
         {view === "matchup" && lg === "yahoo" && (yahoo
           ? <Matchup tone={OX} meName={cfg.yahooTeamName} meRec={yahoo.record} oppName={yahoo.opponent} oppRec={yahoo.oppRecord}
               mine={yahoo.starters} theirs={yahoo.opp} myPts={yahoo.myPts} oppPts={yahoo.oppPts}
               myProj={yahoo.myProj ?? sum(yahoo.starters, "proj")} oppProj={yahoo.oppProj ?? sum(yahoo.opp, "proj")}
               sub={yahoo.live ? `Wk ${yahoo.week} · live est.` : `Week ${yahoo.week}${yahoo.winProb ? " · " + yahoo.winProb : ""}`} kick={kick} now={now}
-              week={yahoo.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam}
+              onPlayerClick={openPlayer} onTeamClick={openTeam}
               action={<div style={{ fontSize: 12, color: MUTE }}>Roster, projections and injury tags from screenshots dated {yahoo.updatedAt}. Points during games are computed from Sleeper's live stat feed with Game of Throws scoring — they track Yahoo within stat corrections. Drop new Yahoo screenshots in the "War room" Drive folder to update the roster.</div>} />
           : yahooEmpty)}
 
         {view === "team" && lg === "sleeper" && (sl
           ? <Team tone={INK} name={cfg.sleeperTeamName} meta={`${myRec} · ${sl.league.settings.waiver_type === 2 ? `FAAB $${sl.standings.find(x => x.mine)?.faab} left` : "priority waivers"} · ${sl.league.scoring_settings?.rec >= 1 ? "PPR" : sl.league.scoring_settings?.rec >= 0.5 ? "half PPR" : "standard"}`}
-              starters={my.starters} bench={my.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={sl.week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+              starters={my.starters} bench={my.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={sl.week} onPlayerClick={openPlayer} onTeamClick={openTeam} />
           : <Card><Empty>Sleeper not loaded.</Empty></Card>)}
         {view === "team" && lg === "yahoo" && (yahoo
-          ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`} starters={yahoo.starters} bench={yahoo.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={week} onWeekClick={() => setScheduleOpen(true)} onPlayerClick={openPlayer} onTeamClick={openTeam} />
+          ? <Team tone={OX} name={cfg.yahooTeamName} meta={`${yahoo.record || ""} · half PPR · from screenshots ${yahoo.updatedAt}`} starters={yahoo.starters} bench={yahoo.bench} kick={kick} now={now} contingency={contingency} ahead={ahead} week={week} onPlayerClick={openPlayer} onTeamClick={openTeam} />
           : yahooEmpty)}
 
         {view === "games" && (
           <GamesView week={gamesWeek ?? week ?? 1} games={weekGames} busy={weekGamesBusy} err={weekGamesErr} now={now}
-            onWeekChange={setGamesWeek} onTeamClick={openTeam} />
+            onWeekChange={setGamesWeek} onOpenPicker={() => setWeekPickerOpen(true)} onTeamClick={openTeam} />
         )}
 
         {view === "timeline" && (
@@ -1390,6 +1407,10 @@ function App() {
       {teamScheduleFor && (
         <TeamScheduleModal team={teamScheduleFor} rows={teamScheduleRows} busy={teamScheduleBusy} err={teamScheduleErr}
           currentWeek={sl?.week} onClose={() => setTeamScheduleFor(null)} />
+      )}
+      {weekPickerOpen && (
+        <GamesWeekPicker week={gamesWeek ?? week ?? 1} currentWeek={week}
+          onSelect={w => { setGamesWeek(w); setWeekPickerOpen(false); }} onClose={() => setWeekPickerOpen(false)} />
       )}
       {playerStatsFor && (
         <PlayerStatsModal player={playerStatsFor} rows={playerStatsRows} busy={playerStatsBusy} err={playerStatsErr}
