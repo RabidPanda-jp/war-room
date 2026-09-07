@@ -2425,13 +2425,10 @@ function GamesView({
       }
     }, React.createElement("div", {
       style: {
-        minWidth: 0
-      }
-    }, React.createElement("div", {
-      style: {
         fontFamily: cond,
         fontWeight: 600,
-        fontSize: 15
+        fontSize: 15,
+        minWidth: 0
       }
     }, React.createElement(TeamAbbrev, {
       team: g.away,
@@ -2451,12 +2448,13 @@ function GamesView({
         fontWeight: 400,
         fontSize: 12
       }
-    }, " (", g.homeRec, ")")), (gs.phase === "pre" || g.tv && gs.phase !== "final") && React.createElement("div", {
+    }, " (", g.homeRec, ")"), (gs.phase === "pre" || g.tv && gs.phase !== "final") && React.createElement("span", {
       style: {
         color: MUTE,
+        fontWeight: 400,
         fontSize: 12
       }
-    }, [gs.phase === "pre" ? gs.text : null, g.tv].filter(Boolean).join(" · "))), React.createElement("div", {
+    }, " \xB7 ", [gs.phase === "pre" ? gs.text : null, g.tv].filter(Boolean).join(" · "))), React.createElement("div", {
       style: {
         textAlign: "right"
       }
