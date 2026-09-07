@@ -568,6 +568,7 @@ function parseGame(ev) {
     const a = x.team.abbreviation;
     return ESPN_TO_SLEEPER[a] || a;
   };
+  const rec = x => x.records?.find(r => r.type === "total")?.summary || x.records?.[0]?.summary || null;
   let tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
   if (tv) Object.entries(TV_SHORT).forEach(([full, short]) => {
     tv = tv.replace(full, short);
@@ -584,6 +585,8 @@ function parseGame(ev) {
     at,
     home: ab(home),
     away: ab(away),
+    homeRec: rec(home),
+    awayRec: rec(away),
     homeScore: hs,
     awayScore: as,
     tv,
@@ -2422,6 +2425,10 @@ function GamesView({
       }
     }, React.createElement("div", {
       style: {
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
         fontFamily: cond,
         fontWeight: 600,
         fontSize: 15
@@ -2429,16 +2436,27 @@ function GamesView({
     }, React.createElement(TeamAbbrev, {
       team: g.away,
       onClick: onTeamClick
-    }), " @ ", React.createElement(TeamAbbrev, {
-      team: g.home,
-      onClick: onTeamClick
-    }), g.tv && gs.phase !== "final" && React.createElement("span", {
+    }), g.awayRec && React.createElement("span", {
       style: {
         color: MUTE,
         fontWeight: 400,
         fontSize: 12
       }
-    }, " \xB7 ", g.tv)), React.createElement("div", {
+    }, " (", g.awayRec, ")"), " @ ", React.createElement(TeamAbbrev, {
+      team: g.home,
+      onClick: onTeamClick
+    }), g.homeRec && React.createElement("span", {
+      style: {
+        color: MUTE,
+        fontWeight: 400,
+        fontSize: 12
+      }
+    }, " (", g.homeRec, ")")), (gs.phase === "pre" || g.tv && gs.phase !== "final") && React.createElement("div", {
+      style: {
+        color: MUTE,
+        fontSize: 12
+      }
+    }, [gs.phase === "pre" ? gs.text : null, g.tv].filter(Boolean).join(" · "))), React.createElement("div", {
       style: {
         textAlign: "right"
       }
@@ -2448,7 +2466,7 @@ function GamesView({
         fontWeight: 700,
         fontSize: 15
       }
-    }, g.awayScore, "-", g.homeScore), React.createElement("div", {
+    }, g.awayScore, "-", g.homeScore), gs.phase !== "pre" && React.createElement("div", {
       style: {
         fontSize: 12,
         color: gs.phase === "live" ? WIN : MUTE,

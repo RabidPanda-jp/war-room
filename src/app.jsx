@@ -204,6 +204,7 @@ function parseGame(ev) {
   if (!home || !away) return null;
   const at = new Date(c.date || ev.date);
   const ab = x => { const a = x.team.abbreviation; return ESPN_TO_SLEEPER[a] || a; };
+  const rec = x => x.records?.find(r => r.type === "total")?.summary || x.records?.[0]?.summary || null;
   let tv = c.broadcasts?.[0]?.names?.join("/") || c.geoBroadcasts?.find(g => g.type?.shortName === "TV")?.media?.shortName || null;
   if (tv) Object.entries(TV_SHORT).forEach(([full, short]) => { tv = tv.replace(full, short); });
   const status = c.status || ev.status;
@@ -211,7 +212,7 @@ function parseGame(ev) {
   const halftime = status?.type?.name === "STATUS_HALFTIME";
   const period = status?.period || null, clock = status?.displayClock || null;
   const hs = home.score != null ? Number(home.score) : null, as = away.score != null ? Number(away.score) : null;
-  return { id: ev.id, at, home: ab(home), away: ab(away), homeScore: hs, awayScore: as, tv, state, halftime, period, clock };
+  return { id: ev.id, at, home: ab(home), away: ab(away), homeRec: rec(home), awayRec: rec(away), homeScore: hs, awayScore: as, tv, state, halftime, period, clock };
 }
 async function loadKickoffs(season, week, force) {
   const events = await fetchScoreboard(season, week, force);
@@ -943,13 +944,17 @@ function GamesView({ week, games, busy, err, onWeekChange, onOpenPicker, onTeamC
         const gs = gameRowState(g, now);
         return (
           <div key={g.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center", padding: "9px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
-            <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15 }}>
-              <TeamAbbrev team={g.away} onClick={onTeamClick} /> @ <TeamAbbrev team={g.home} onClick={onTeamClick} />
-              {g.tv && gs.phase !== "final" && <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> · {g.tv}</span>}
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15 }}>
+                <TeamAbbrev team={g.away} onClick={onTeamClick} />{g.awayRec && <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> ({g.awayRec})</span>} @ <TeamAbbrev team={g.home} onClick={onTeamClick} />{g.homeRec && <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> ({g.homeRec})</span>}
+              </div>
+              {(gs.phase === "pre" || (g.tv && gs.phase !== "final")) && (
+                <div style={{ color: MUTE, fontSize: 12 }}>{[gs.phase === "pre" ? gs.text : null, g.tv].filter(Boolean).join(" · ")}</div>
+              )}
             </div>
             <div style={{ textAlign: "right" }}>
               {g.awayScore != null && g.homeScore != null && <div style={{ fontFamily: cond, fontWeight: 700, fontSize: 15 }}>{g.awayScore}-{g.homeScore}</div>}
-              <div style={{ fontSize: 12, color: gs.phase === "live" ? WIN : MUTE, fontWeight: gs.phase === "live" ? 700 : 400 }}>{gs.text}</div>
+              {gs.phase !== "pre" && <div style={{ fontSize: 12, color: gs.phase === "live" ? WIN : MUTE, fontWeight: gs.phase === "live" ? 700 : 400 }}>{gs.text}</div>}
             </div>
           </div>
         );
