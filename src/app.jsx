@@ -280,10 +280,21 @@ async function loadSeasonSchedule(season) {
 // ---------- sleeper ----------
 const SL = "https://api.sleeper.app/v1";
 // League-scored projections for a week (opponent/date included) — shared by loadSleeper (current week) and
-// loadWeekMatchup (any browsed week), since the same Sleeper endpoint answers both.
+// loadWeekMatchup (any browsed week), since the same Sleeper endpoint answers both. loadSleeper is also the
+// function the live-game 60s poll re-runs in full, so the raw rows are cached briefly (they don't move on a
+// per-minute cadence) — cached by the unfiltered rows, not the `need`-filtered result, so a later call with a
+// wider `need` set still gets a complete answer instead of a stale subset.
+async function fetchProjectionsRows(season, week, key) {
+  const cacheKey = `wr_proj_${season}_${week}_${key}`;
+  const cached = store.get(cacheKey);
+  if (cached && Date.now() - cached.at < 15 * 60e3) return cached.rows;
+  const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
+  store.set(cacheKey, { at: Date.now(), rows });
+  return rows;
+}
 async function fetchProjections(season, week, scoring, need) {
   const key = scoring?.rec >= 1 ? "pts_ppr" : scoring?.rec >= 0.5 ? "pts_half_ppr" : "pts_std";
-  const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
+  const rows = await fetchProjectionsRows(season, week, key);
   const proj = {};
   rows.forEach(r => {
     if (need && !need.has(r.player_id)) return;
@@ -338,11 +349,19 @@ function yahooLive(rows, stats, kick, now) {
     return { ...r, pts: st ? (scoreStats(st.stats, YAHOO_SCORING) ?? 0) : 0, live: true };
   });
 }
+// Sleeper's full player dict is a multi-MB payload it asks callers not to fetch often; loadPlayers() and
+// loadAllPlayersIndex() both need it but keep separately-shaped, separately-cached derived maps, so this just
+// dedupes concurrent in-flight requests (e.g. both firing on a cold-cache page load) into one network call.
+let allPlayersInFlight = null;
+function fetchAllPlayersRaw() {
+  if (!allPlayersInFlight) allPlayersInFlight = j(`${SL}/players/nfl`).finally(() => { allPlayersInFlight = null; });
+  return allPlayersInFlight;
+}
 async function loadPlayers(need) {
   const cached = store.get("wr_players");
   const fresh = cached && Date.now() - cached.at < 12 * 3600e3;
   if (fresh && [...need].every(id => cached.map[id])) return cached.map;
-  const all = await j(`${SL}/players/nfl`);
+  const all = await fetchAllPlayersRaw();
   const map = { ...(cached?.map || {}) };
   need.forEach(id => {
     const p = all[id];
@@ -359,7 +378,7 @@ async function loadAllPlayersIndex() {
   const key = "wr_players_all";
   const cached = store.get(key);
   if (cached && Date.now() - cached.at < 24 * 3600e3) return cached.byName;
-  const all = await j(`${SL}/players/nfl`);
+  const all = await fetchAllPlayersRaw();
   const byName = {};
   Object.entries(all).forEach(([id, p]) => {
     const name = p.full_name || `${p.first_name || ""} ${p.last_name || ""}`.trim();
@@ -458,19 +477,28 @@ function optimalPoints(slots, pool) { // pool: [{pos, pts}]
   strict.forEach(s => take(ELIG[s])); flex.forEach(s => take(ELIG[s]));
   return total;
 }
+// loadHistory is called by refreshSleeper, which the live-game poll re-runs every 60s — but a past week's
+// matchup result never changes once sl.week has moved beyond it, so each week's computed row is cached
+// indefinitely (keyed by league/season/week) and fetched in parallel rather than re-fetched one-by-one every tick.
 async function loadHistory(sl) {
-  const lid = CONFIG.sleeperLeagueId, out = [];
+  const lid = CONFIG.sleeperLeagueId;
   const slots = sl.league.roster_positions.filter(x => x !== "BN" && x !== "IR");
-  for (let w = 1; w < sl.week; w++) {
-    const ms = await j(`${SL}/league/${lid}/matchups/${w}`).catch(() => null); if (!ms) continue;
-    const mine = ms.find(m => m.roster_id === sl.myRoster.roster_id); if (!mine) continue;
+  const weeks = Array.from({ length: sl.week - 1 }, (_, i) => i + 1);
+  const rows = await Promise.all(weeks.map(async w => {
+    const cacheKey = `wr_history_${lid}_${sl.season}_${w}`;
+    const cached = store.get(cacheKey);
+    if (cached) return cached;
+    const ms = await j(`${SL}/league/${lid}/matchups/${w}`).catch(() => null); if (!ms) return null;
+    const mine = ms.find(m => m.roster_id === sl.myRoster.roster_id); if (!mine) return null;
     const opp = ms.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id);
     const pool = Object.entries(mine.players_points || {}).map(([id, pts]) => ({ pos: sl.players[id]?.pos || "?", pts: pts || 0 }));
     const optimal = optimalPoints(slots, pool);
-    out.push({ week: w, league: "Sleeper", me: +mine.points.toFixed(2), opp: opp ? +opp.points.toFixed(2) : null,
-      result: opp ? (mine.points > opp.points ? "W" : mine.points < opp.points ? "L" : "T") : "", bench: `${(optimal - mine.points).toFixed(1)} left`, computed: true });
-  }
-  return out;
+    const row = { week: w, league: "Sleeper", me: +mine.points.toFixed(2), opp: opp ? +opp.points.toFixed(2) : null,
+      result: opp ? (mine.points > opp.points ? "W" : mine.points < opp.points ? "L" : "T") : "", bench: `${(optimal - mine.points).toFixed(1)} left`, computed: true };
+    store.set(cacheKey, row);
+    return row;
+  }));
+  return rows.filter(Boolean);
 }
 
 // a single week's actual fantasy matchup (my + opponent rosters as they were started that week, with real points) —
