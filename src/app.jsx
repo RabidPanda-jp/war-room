@@ -278,6 +278,18 @@ async function loadSeasonSchedule(season) {
 
 // ---------- sleeper ----------
 const SL = "https://api.sleeper.app/v1";
+// League-scored projections for a week (opponent/date included) — shared by loadSleeper (current week) and
+// loadWeekMatchup (any browsed week), since the same Sleeper endpoint answers both.
+async function fetchProjections(season, week, scoring, need) {
+  const key = scoring?.rec >= 1 ? "pts_ppr" : scoring?.rec >= 0.5 ? "pts_half_ppr" : "pts_std";
+  const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
+  const proj = {};
+  rows.forEach(r => {
+    if (need && !need.has(r.player_id)) return;
+    proj[r.player_id] = { pts: scoreStats(r.stats, scoring) ?? r.stats?.[key] ?? null, opp: r.opponent || null, date: r.date || null };
+  });
+  return proj;
+}
 // Score a projected stat line with the league's own scoring_settings (what Sleeper does for "league projections").
 function scoreStats(stats, scoring) {
   if (!stats || !scoring) return null;
@@ -409,12 +421,7 @@ async function loadSleeper(cfg) {
   const players = await loadPlayers(need);
 
   let proj = {};
-  try {
-    const sc = league.scoring_settings || {};
-    const key = sc.rec >= 1 ? "pts_ppr" : sc.rec >= 0.5 ? "pts_half_ppr" : "pts_std";
-    const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
-    rows.forEach(r => { if (need.has(r.player_id)) proj[r.player_id] = { pts: scoreStats(r.stats, sc) ?? r.stats?.[key] ?? null, opp: r.opponent || null, date: r.date || null }; });
-  } catch { proj = {}; }
+  try { proj = await fetchProjections(season, week, league.scoring_settings || {}, need); } catch { proj = {}; }
 
   const rostered = new Set(); rosters.forEach(r => (r.players || []).forEach(p => rostered.add(p)));
   const userBy = Object.fromEntries(rosters.map(r => [r.roster_id, users.find(u => u.user_id === r.owner_id)]));
@@ -489,10 +496,16 @@ async function loadFullSchedule(sl) {
 
 // a single week's actual fantasy matchup (my + opponent rosters as they were started that week, with real points) —
 // used by the Matchup/Team tabs' week arrows to browse weeks other than the live one. Sourced from the matchup
-// object itself (its own starters/players/players_points), not the current roster, so it stays accurate for past weeks.
+// object itself (its own starters/players/players_points), not the current roster, so it stays accurate for past
+// weeks. For a week that hasn't happened yet, also pulls the same projections/injury status the live week uses
+// (`upcoming`), so browsing ahead shows opponent/proj detail instead of a bare, all-zero roster.
 async function loadWeekMatchup(sl, week) {
   const lid = CONFIG.sleeperLeagueId;
-  const matchups = await j(`${SL}/league/${lid}/matchups/${week}`);
+  const upcoming = week > sl.week;
+  const [matchups, proj] = await Promise.all([
+    j(`${SL}/league/${lid}/matchups/${week}`),
+    upcoming ? fetchProjections(sl.season, week, sl.league.scoring_settings || {}).catch(() => ({})) : Promise.resolve({}),
+  ]);
   const mine = matchups.find(m => m.roster_id === sl.myRoster.roster_id) || null;
   const opp = mine ? matchups.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id) : null;
   const oppRoster = opp ? sl.rosters.find(r => r.roster_id === opp.roster_id) : null;
@@ -503,13 +516,17 @@ async function loadWeekMatchup(sl, week) {
   const slots = sl.league.roster_positions.filter(x => x !== "BN" && x !== "IR");
   const rowsFor = match => {
     if (!match) return { starters: [], bench: [] };
-    const row = (id, slot) => { const p = players[id] || { name: id, pos: "?", team: "?" }; return { id, slot, name: p.name, team: p.team || "FA", pos: p.pos, status: "", proj: null, pts: match.players_points?.[id] ?? null }; };
+    const row = (id, slot) => {
+      const p = players[id] || { name: id, pos: "?", team: "?" };
+      const pr = proj[id] || {};
+      return { id, slot, name: p.name, team: p.team || "FA", pos: p.pos, status: upcoming ? (p.inj || "") : "", proj: pr.pts ?? null, pts: match.players_points?.[id] ?? null, bye: pr.opp === "BYE" };
+    };
     const starters = (match.starters || []).map((id, i) => row(id, slots[i] || "?"));
     const bench = (match.players || []).filter(id => !(match.starters || []).includes(id)).map(id => row(id, "BN"));
     return { starters, bench };
   };
   return {
-    week, myPts: mine?.points ?? null, oppPts: opp?.points ?? null,
+    week, upcoming, myPts: mine?.points ?? null, oppPts: opp?.points ?? null,
     oppName: oppUser?.metadata?.team_name || oppUser?.display_name || "—",
     oppRec: oppRoster ? `${oppRoster.settings.wins}-${oppRoster.settings.losses}` : "",
     my: rowsFor(mine), opp: rowsFor(opp),
@@ -674,7 +691,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
       <div style={{ borderTop: `1px solid ${LINE}` }}>
         {Array.from({ length: rows }).map((_, i) => {
           const a = mine[i], b = theirs[i];
-          const ga = final ? null : (a && gameState(kick, a.team, now)), gb = final ? null : (b && gameState(kick, b.team, now));
+          const ga = a && gameState(kick, a.team, now), gb = b && gameState(kick, b.team, now);
           const showA = final || started(ga), showB = final || started(gb);
           return (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 36px 38px 36px 1fr", gap: 4, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
@@ -694,7 +711,7 @@ function Matchup({ tone, meName, meRec, oppName, oppRec, mine, theirs, myPts, op
 
 function Team({ tone, name, meta, starters, bench, kick, now, contingency, ahead, week, action, final, nav, onWeekClick, onPlayerClick, onTeamClick }) {
   const Row = ({ r }) => {
-    const g = final ? null : gameState(kick, r.team, now), c = final ? null : contingency?.[r.name.toLowerCase()];
+    const g = gameState(kick, r.team, now), c = contingency?.[r.name.toLowerCase()];
     const shown = final ? r.pts : (started(g) ? r.pts : null);
     return (
       <div style={{ display: "grid", gridTemplateColumns: "40px 1fr 40px 40px", gap: 6, alignItems: "center", padding: "7px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
@@ -1051,6 +1068,7 @@ function App() {
   // Matchup/Team tabs (Sleeper only): browse a fantasy week other than the live one
   const [rosterWeek, setRosterWeek] = useState(null);
   const [weekMatch, setWeekMatch] = useState(null), [weekMatchBusy, setWeekMatchBusy] = useState(false), [weekMatchErr, setWeekMatchErr] = useState("");
+  const [weekKick, setWeekKick] = useState(null);
   const [rosterPickerOpen, setRosterPickerOpen] = useState(false);
   // team-schedule modal: opened by clicking any TeamAbbrev
   const [teamScheduleFor, setTeamScheduleFor] = useState(null);
@@ -1177,15 +1195,18 @@ function App() {
   }, [view, anyLive, sl, gamesWeek]);
 
   // Matchup/Team tabs: default the browsed week to the live one, then fetch that week's actual rosters/points
-  // whenever it's not the live week (the live week already has this data loaded via `sl`).
+  // whenever it's not the live week (the live week already has this data loaded via `sl`). Kickoff/opponent/TV
+  // metadata is fetched per browsed week too (loadKickoffs works for any past or future week, not just the
+  // current one) so the roster rows show the same opponent/time detail regardless of which week is open.
   useEffect(() => { if (rosterWeek == null && sl?.week != null) setRosterWeek(sl.week); }, [sl?.week]);
   useEffect(() => {
-    if (!sl || rosterWeek == null || rosterWeek === sl.week) { setWeekMatch(null); return; }
+    if (!sl || rosterWeek == null || rosterWeek === sl.week) { setWeekMatch(null); setWeekKick(null); return; }
     let cancelled = false;
     setWeekMatchBusy(true); setWeekMatchErr("");
     loadWeekMatchup(sl, rosterWeek).then(r => { if (!cancelled) setWeekMatch(r); })
       .catch(e => { if (!cancelled) setWeekMatchErr(e.message); })
       .finally(() => { if (!cancelled) setWeekMatchBusy(false); });
+    loadKickoffs(sl.season, rosterWeek).then(k => { if (!cancelled) setWeekKick(k); }).catch(() => {});
     return () => { cancelled = true; };
   }, [sl, rosterWeek]);
 
@@ -1287,18 +1308,26 @@ function App() {
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
 
   // Matchup/Team (Sleeper): ‹ Week N › nav shared by both tabs, plus the props for whichever week is browsed —
-  // the live week reuses the already-loaded sl/my/opp data, any other week uses the separately fetched weekMatch.
+  // the live week reuses the already-loaded sl/my/opp data, any other week uses the separately fetched weekMatch
+  // (and weekKick for that week's opponent/kickoff/TV detail). A future browsed week is treated like the live
+  // week for display purposes (`final: false`) since it hasn't been played yet — only a genuinely past week is
+  // "final" (box score only, no projections).
   const rosterIsLive = !sl || rosterWeek == null || rosterWeek === sl.week;
+  const rosterKick = rosterIsLive ? kick : weekKick;
+  const weekUpcoming = weekMatch ? weekMatch.upcoming : (sl && rosterWeek != null && rosterWeek > sl.week);
   const rosterNav = sl ? { week: rosterWeek ?? sl.week, min: 1, max: 18, onChange: setRosterWeek, onOpenPicker: () => setRosterPickerOpen(true) } : null;
   const rosterMatchupProps = rosterIsLive
     ? { oppName: sl?.oppUser?.metadata?.team_name || sl?.oppUser?.display_name, oppRec, mine: my.starters, theirs: opp.starters,
         myPts: sl?.myMatch?.points ?? 0, oppPts: sl?.oppMatch?.points ?? 0, myProj: sum(my.starters, "proj"), oppProj: sum(opp.starters, "proj"),
         sub: sl ? `Week ${sl.week}` : "", final: false }
     : { oppName: weekMatch?.oppName, oppRec: weekMatch?.oppRec || "", mine: weekMatch?.my?.starters || [], theirs: weekMatch?.opp?.starters || [],
-        myPts: weekMatch?.myPts ?? null, oppPts: weekMatch?.oppPts ?? null, myProj: null, oppProj: null, sub: `Week ${rosterWeek}`, final: true };
+        myPts: weekMatch?.myPts ?? null, oppPts: weekMatch?.oppPts ?? null,
+        myProj: weekUpcoming ? sum(weekMatch?.my?.starters || [], "proj") : null,
+        oppProj: weekUpcoming ? sum(weekMatch?.opp?.starters || [], "proj") : null,
+        sub: `Week ${rosterWeek}`, final: !weekUpcoming };
   const rosterTeamProps = rosterIsLive
     ? { starters: my.starters, bench: my.bench, contingency, ahead, final: false }
-    : { starters: weekMatch?.my?.starters || [], bench: weekMatch?.my?.bench || [], contingency: null, ahead: null, final: true };
+    : { starters: weekMatch?.my?.starters || [], bench: weekMatch?.my?.bench || [], contingency: null, ahead: null, final: !weekUpcoming };
   const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = <Card><Empty>No Yahoo data yet. Drop roster + matchup screenshots in the "War room" Drive folder; the next scheduled run reads them.</Empty></Card>;
   const openPlayer = r => setPlayerStatsFor({ id: r.id, name: r.name, team: r.team, pos: r.pos });
@@ -1355,7 +1384,7 @@ function App() {
         {slErr && <div style={{ background: "#FDECEC", border: "1px solid #E8A9A9", borderRadius: 6, padding: "10px 12px", fontSize: 14, marginBottom: 10, color: FLAG_TEXT }}>Sleeper: {slErr}</div>}
 
         {view === "matchup" && lg === "sleeper" && (sl
-          ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} kick={kick} now={now} nav={rosterNav}
+          ? <Matchup tone={INK} meName={cfg.sleeperTeamName} meRec={myRec} kick={rosterKick} now={now} nav={rosterNav}
               {...rosterMatchupProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
               action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>{slBusy ? "Loading your Sleeper matchup…" : "Sleeper didn't load."}</Empty></Card>)}
@@ -1370,7 +1399,7 @@ function App() {
 
         {view === "team" && lg === "sleeper" && (sl
           ? <Team tone={INK} name={cfg.sleeperTeamName} meta={`${myRec} · ${sl.league.settings.waiver_type === 2 ? `FAAB $${sl.standings.find(x => x.mine)?.faab} left` : "priority waivers"} · ${sl.league.scoring_settings?.rec >= 1 ? "PPR" : sl.league.scoring_settings?.rec >= 0.5 ? "half PPR" : "standard"}`}
-              kick={kick} now={now} week={sl.week} nav={rosterNav} {...rosterTeamProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
+              kick={rosterKick} now={now} week={sl.week} nav={rosterNav} {...rosterTeamProps} onPlayerClick={openPlayer} onTeamClick={openTeam}
               action={!rosterIsLive && weekMatchErr ? <Empty>{weekMatchErr}</Empty> : undefined} />
           : <Card><Empty>Sleeper not loaded.</Empty></Card>)}
         {view === "team" && lg === "yahoo" && (yahoo

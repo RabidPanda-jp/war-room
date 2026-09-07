@@ -703,6 +703,20 @@ async function loadSeasonSchedule(season) {
   return byWeek;
 }
 const SL = "https://api.sleeper.app/v1";
+async function fetchProjections(season, week, scoring, need) {
+  const key = scoring?.rec >= 1 ? "pts_ppr" : scoring?.rec >= 0.5 ? "pts_half_ppr" : "pts_std";
+  const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
+  const proj = {};
+  rows.forEach(r => {
+    if (need && !need.has(r.player_id)) return;
+    proj[r.player_id] = {
+      pts: scoreStats(r.stats, scoring) ?? r.stats?.[key] ?? null,
+      opp: r.opponent || null,
+      date: r.date || null
+    };
+  });
+  return proj;
+}
 function scoreStats(stats, scoring) {
   if (!stats || !scoring) return null;
   let total = 0,
@@ -870,16 +884,7 @@ async function loadSleeper(cfg) {
   const players = await loadPlayers(need);
   let proj = {};
   try {
-    const sc = league.scoring_settings || {};
-    const key = sc.rec >= 1 ? "pts_ppr" : sc.rec >= 0.5 ? "pts_half_ppr" : "pts_std";
-    const rows = await j(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular&position[]=QB&position[]=RB&position[]=WR&position[]=TE&position[]=K&position[]=DEF&order_by=${key}`);
-    rows.forEach(r => {
-      if (need.has(r.player_id)) proj[r.player_id] = {
-        pts: scoreStats(r.stats, sc) ?? r.stats?.[key] ?? null,
-        opp: r.opponent || null,
-        date: r.date || null
-      };
-    });
+    proj = await fetchProjections(season, week, league.scoring_settings || {}, need);
   } catch {
     proj = {};
   }
@@ -1030,7 +1035,8 @@ async function loadFullSchedule(sl) {
 }
 async function loadWeekMatchup(sl, week) {
   const lid = CONFIG.sleeperLeagueId;
-  const matchups = await j(`${SL}/league/${lid}/matchups/${week}`);
+  const upcoming = week > sl.week;
+  const [matchups, proj] = await Promise.all([j(`${SL}/league/${lid}/matchups/${week}`), upcoming ? fetchProjections(sl.season, week, sl.league.scoring_settings || {}).catch(() => ({})) : Promise.resolve({})]);
   const mine = matchups.find(m => m.roster_id === sl.myRoster.roster_id) || null;
   const opp = mine ? matchups.find(m => m.matchup_id === mine.matchup_id && m.roster_id !== mine.roster_id) : null;
   const oppRoster = opp ? sl.rosters.find(r => r.roster_id === opp.roster_id) : null;
@@ -1053,15 +1059,17 @@ async function loadWeekMatchup(sl, week) {
         pos: "?",
         team: "?"
       };
+      const pr = proj[id] || {};
       return {
         id,
         slot,
         name: p.name,
         team: p.team || "FA",
         pos: p.pos,
-        status: "",
-        proj: null,
-        pts: match.players_points?.[id] ?? null
+        status: upcoming ? p.inj || "" : "",
+        proj: pr.pts ?? null,
+        pts: match.players_points?.[id] ?? null,
+        bye: pr.opp === "BYE"
       };
     };
     const starters = (match.starters || []).map((id, i) => row(id, slots[i] || "?"));
@@ -1073,6 +1081,7 @@ async function loadWeekMatchup(sl, week) {
   };
   return {
     week,
+    upcoming,
     myPts: mine?.points ?? null,
     oppPts: opp?.points ?? null,
     oppName: oppUser?.metadata?.team_name || oppUser?.display_name || "—",
@@ -1639,8 +1648,8 @@ function Matchup({
   }).map((_, i) => {
     const a = mine[i],
       b = theirs[i];
-    const ga = final ? null : a && gameState(kick, a.team, now),
-      gb = final ? null : b && gameState(kick, b.team, now);
+    const ga = a && gameState(kick, a.team, now),
+      gb = b && gameState(kick, b.team, now);
     const showA = final || started(ga),
       showB = final || started(gb);
     return React.createElement("div", {
@@ -1704,8 +1713,8 @@ function Team({
   const Row = ({
     r
   }) => {
-    const g = final ? null : gameState(kick, r.team, now),
-      c = final ? null : contingency?.[r.name.toLowerCase()];
+    const g = gameState(kick, r.team, now),
+      c = contingency?.[r.name.toLowerCase()];
     const shown = final ? r.pts : started(g) ? r.pts : null;
     return React.createElement("div", {
       style: {
@@ -2724,6 +2733,7 @@ function App() {
   const [weekMatch, setWeekMatch] = useState(null),
     [weekMatchBusy, setWeekMatchBusy] = useState(false),
     [weekMatchErr, setWeekMatchErr] = useState("");
+  const [weekKick, setWeekKick] = useState(null);
   const [rosterPickerOpen, setRosterPickerOpen] = useState(false);
   const [teamScheduleFor, setTeamScheduleFor] = useState(null);
   const [teamScheduleRows, setTeamScheduleRows] = useState(null),
@@ -2905,6 +2915,7 @@ function App() {
   useEffect(() => {
     if (!sl || rosterWeek == null || rosterWeek === sl.week) {
       setWeekMatch(null);
+      setWeekKick(null);
       return;
     }
     let cancelled = false;
@@ -2917,6 +2928,9 @@ function App() {
     }).finally(() => {
       if (!cancelled) setWeekMatchBusy(false);
     });
+    loadKickoffs(sl.season, rosterWeek).then(k => {
+      if (!cancelled) setWeekKick(k);
+    }).catch(() => {});
     return () => {
       cancelled = true;
     };
@@ -3068,6 +3082,8 @@ function App() {
   const myRec = sl ? `${sl.myRoster.settings.wins}-${sl.myRoster.settings.losses}` : "";
   const oppRec = sl?.oppRoster ? `${sl.oppRoster.settings.wins}-${sl.oppRoster.settings.losses}` : "";
   const rosterIsLive = !sl || rosterWeek == null || rosterWeek === sl.week;
+  const rosterKick = rosterIsLive ? kick : weekKick;
+  const weekUpcoming = weekMatch ? weekMatch.upcoming : sl && rosterWeek != null && rosterWeek > sl.week;
   const rosterNav = sl ? {
     week: rosterWeek ?? sl.week,
     min: 1,
@@ -3093,10 +3109,10 @@ function App() {
     theirs: weekMatch?.opp?.starters || [],
     myPts: weekMatch?.myPts ?? null,
     oppPts: weekMatch?.oppPts ?? null,
-    myProj: null,
-    oppProj: null,
+    myProj: weekUpcoming ? sum(weekMatch?.my?.starters || [], "proj") : null,
+    oppProj: weekUpcoming ? sum(weekMatch?.opp?.starters || [], "proj") : null,
     sub: `Week ${rosterWeek}`,
-    final: true
+    final: !weekUpcoming
   };
   const rosterTeamProps = rosterIsLive ? {
     starters: my.starters,
@@ -3109,7 +3125,7 @@ function App() {
     bench: weekMatch?.my?.bench || [],
     contingency: null,
     ahead: null,
-    final: true
+    final: !weekUpcoming
   };
   const tabs = [["matchup", "Matchup"], ["team", "Team"], ["league", "League"], ["brief", "Brief"], ["games", "Games"], ["timeline", "Live"], ...(season.length ? [["season", "Season"]] : [])];
   const yahooEmpty = React.createElement(Card, null, React.createElement(Empty, null, "No Yahoo data yet. Drop roster + matchup screenshots in the \"War room\" Drive folder; the next scheduled run reads them."));
@@ -3318,7 +3334,7 @@ function App() {
     tone: INK,
     meName: cfg.sleeperTeamName,
     meRec: myRec,
-    kick: kick,
+    kick: rosterKick,
     now: now,
     nav: rosterNav
   }, rosterMatchupProps, {
@@ -3354,7 +3370,7 @@ function App() {
     tone: INK,
     name: cfg.sleeperTeamName,
     meta: `${myRec} · ${sl.league.settings.waiver_type === 2 ? `FAAB $${sl.standings.find(x => x.mine)?.faab} left` : "priority waivers"} · ${sl.league.scoring_settings?.rec >= 1 ? "PPR" : sl.league.scoring_settings?.rec >= 0.5 ? "half PPR" : "standard"}`,
-    kick: kick,
+    kick: rosterKick,
     now: now,
     week: sl.week,
     nav: rosterNav
