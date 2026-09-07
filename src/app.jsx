@@ -944,7 +944,7 @@ function GamesView({ week, games, busy, err, onWeekChange, onOpenPicker, onTeamC
         const gs = gameRowState(g, now);
         return (
           <div key={g.id} style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center", padding: "9px 0", borderBottom: `1px solid ${HAIRLINE}` }}>
-            <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15, minWidth: 0 }}>
+            <div style={{ fontFamily: cond, fontWeight: 600, fontSize: 15, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               <TeamAbbrev team={g.away} onClick={onTeamClick} />{g.awayRec && <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> ({g.awayRec})</span>} @ <TeamAbbrev team={g.home} onClick={onTeamClick} />{g.homeRec && <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> ({g.homeRec})</span>}
               {(gs.phase === "pre" || (g.tv && gs.phase !== "final")) && (
                 <span style={{ color: MUTE, fontWeight: 400, fontSize: 12 }}> · {[gs.phase === "pre" ? gs.text : null, g.tv].filter(Boolean).join(" · ")}</span>

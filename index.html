@@ -2428,7 +2428,10 @@ function GamesView({
         fontFamily: cond,
         fontWeight: 600,
         fontSize: 15,
-        minWidth: 0
+        minWidth: 0,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
       }
     }, React.createElement(TeamAbbrev, {
       team: g.away,
