@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-10T07:14:40-07:00",
+ "updatedAt": "2026-09-11T07:11:26-07:00",
  "week": 1,
  "yahoo": {
   "updatedAt": "2026-09-06",
@@ -419,8 +419,8 @@
   ]
  },
  "brief": {
-  "text": "Yahoo screenshots are now 4 days old (from Sept 6) — send fresh ones from the War room Drive folder; Sleeper data below is fully live.\n\nGANGSTAS PARADISE (Sleeper) — clean sweep: Higgins, Tuten, and Downs all cleared the injury report Thursday, only Flowers still carries a tag\nDo now: nothing — lineup is set, not a waiver/trade day\nLocks next 24h: none — first Sleeper kickoff is Sunday\nLineup: no starter changes. Higgins (heel) took every rep in full practice Thursday and is no longer trending toward a tag. Tuten (illness) isn't even on Jacksonville's first injury report, and his own backup LeQuint Allen may sit too, which only helps his workload. Downs (calf) is confirmed fully off Indianapolis's injury report. Flowers (quad) stayed limited Thursday but told reporters he expects to play Sunday at Indy, who own the NFL's 2nd-most generous pass defense to WRs — start through the tag. If Flowers is out: start Stefon Diggs.\nWaivers / trades: not a waiver day — see the Waivers tab for Tuesday's still-standing plan (TE remains the one real hole).\n\nGAME OF THROWS (Yahoo) — Stafford and the Niners D lock in tonight at 5:35 PM PT, rest of the lineup holds\nDo now: nothing needs a change before tonight's kickoff\nLocks next 24h: Matthew Stafford (LAR) and 49ers DEF, tonight 5:35 PM PT in Melbourne — the only lock of the next day\nLineup: no changes. Etienne's workload is safe regardless of Kamara's final call — Kellen Moore has already named him the clear early-down back, with Kamara only having \"a shot\" to play Sunday after a limited Thursday practice. Judkins still carries the week's toughest matchup and lowest implied total (16.0) but stays in for lack of a better flex. Garrett Wilson's forecast actually improved (86°F, light wind, down from the earlier heat-index scare). Everyone else is clean.\nWaivers / trades: not a waiver day — see the Waivers tab; still no Yahoo free-agent visibility until you drop a fresh Available-Players screenshot.\n\nFYI: Chase Brown starts in both leagues facing a tougher-than-expected 5th-ranked TB run defense; Michael Wilson sits on both benches; four Jacksonville pieces are rostered across the two leagues (Strange, Tuten, Jaguars D/ST, Parker Washington). Chargers backup Keaton Mitchell is expected back Week 1, no change to Hampton's workhorse role.\nData: Sleeper live · Yahoo screenshots from 2026-09-06 (now 4 days old — send fresh ones before Sunday)",
-  "at": "2026-09-10T07:14:40-07:00",
+  "text": "GANGSTAS PARADISE (Sleeper) — clean bill of health: Flowers fully cleared, Tuten stays clean, nothing to change\nDo now: nothing — lineup is set\nLocks next 24h: none — earliest kickoff is Sunday 10:00 AM PT (Herbert/Hampton vs ARI)\nLineup: no changes. Flowers (hamstring) was upgraded to full practice Friday and carries zero injury tag now — no more discount, he's a clean start into IND's soft pass D. Tuten wasn't even on Jacksonville's injury report; his backup LeQuint Allen is a game-time call and only grows Tuten's role if he sits. Downs (calf) is fully clear too. Everyone else unchanged from mid-week.\n\nGAME OF THROWS (Yahoo) — Stafford's Thursday nightmare is already banked (15/25, 155 yds, 1 INT, 0 TD in a 27-7 loss), rest of the lineup is clean for Sunday\nDo now: nothing needs a change\nLocks next 24h: none — Stafford and the 49ers DEF already played and are final; the rest of the lineup kicks off Sunday\nLineup: no changes. Etienne's workload is safe regardless of Kamara, who's still just limited in practice — Kellen Moore has already handed him the workhorse job. Judkins remains the week's toughest matchup (16.0 implied) with no better flex option, so he stays in. Wilson's Nashville forecast is now clean (93°F, light wind, no heat flag). Everyone else holds.\n\nFYI: Chase Brown starts in both leagues facing a tougher-than-expected 5th-ranked TB run defense; four Jacksonville pieces are rostered across the two leagues (Strange, Tuten, Jaguars D/ST, Parker Washington); Cleveland's Dylan Sampson is a passing-down complement to Judkins, not a threat to his role.\nData: Sleeper live · Yahoo screenshots from 2026-09-06 (now 5 days old, still no fresh screenshots in the War room folder — send new ones before Sunday's games)",
+  "at": "2026-09-11T07:11:26-07:00",
   "mode": "daily"
  },
  "waivers": {
@@ -440,7 +440,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "vs ARI, fully healthy; best offensive environment on the board (28.5 implied, 10-pt favorite)",
+    "note": "vs ARI, fully healthy; 28.0 implied as a 9.5-pt favorite (46.5 total) — best offensive environment on the board",
     "ifOut": ""
    },
    {
@@ -449,7 +449,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "vs ARI, smash matchup — ARI allowed the NFL's 2nd-most fantasy points/gm to RBs in 2025, 28.5 implied",
+    "note": "vs ARI, smash matchup — ARI allowed the NFL's 2nd-most fantasy points/gm to RBs in 2025; Keaton Mitchell (hamstring) back at practice but still Hampton's clear RB1, 28.0 implied",
     "ifOut": ""
    },
    {
@@ -458,7 +458,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "vs TB — tougher than expected: TB graded 5th-stingiest run D in 2025, but 27.5 implied in the week's highest total keeps him a top-12 start on volume",
+    "note": "vs TB — tougher than expected (TB graded 5th-stingiest run D in 2025), but 27.0 implied in the week's highest total keeps him a top-12 start on volume",
     "ifOut": ""
    },
    {
@@ -467,17 +467,17 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "heel is a non-issue now — full practice Thursday, no longer trending toward a tag; TB's pass D graded among the league's softest",
+    "note": "vs TB — heel/no injury tag, full practice all week; TB's pass D graded among the league's softest, 27.0 implied",
     "ifOut": ""
    },
    {
     "slot": "WR",
     "name": "Zay Flowers",
     "team": "BAL",
-    "status": "Q",
+    "status": "",
     "call": "start",
-    "note": "stayed limited Thursday (quad) but told reporters he expects to play; IND allowed the NFL's 2nd-most fantasy points/gm to WRs in 2025 — start through the tag",
-    "ifOut": "Stefon Diggs"
+    "note": "FULLY CLEARED — upgraded to full practice Friday, no injury tag; IND allowed the NFL's 2nd-most fantasy points/gm to WRs in 2025, 25.5 implied. No more discount needed.",
+    "ifOut": ""
    },
    {
     "slot": "TE",
@@ -485,7 +485,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "vs CLE, no new injury news; Cleveland graded a soft 30th vs TE (13.8 FPA/gm allowed) — plus streaming spot",
+    "note": "vs CLE, no injury tag; Cleveland graded a soft 30th vs TE (13.8 FPA/gm allowed) — plus streaming spot, 24.5 implied",
     "ifOut": ""
    },
    {
@@ -494,7 +494,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "illness fully resolved — not even on Jacksonville's first injury report; backup LeQuint Allen (soft-tissue) may also sit, which only grows Tuten's role",
+    "note": "illness fully resolved, no injury tag; backup LeQuint Allen (soft-tissue/hip) is a game-time decision and coach Coen said he'd be \"pleasantly surprised\" if Allen plays — only grows Tuten's role, 24.5 implied",
     "ifOut": ""
    },
    {
@@ -503,7 +503,7 @@
     "team": "IND",
     "status": "",
     "call": "start",
-    "note": "calf fully cleared — confirmed off Indianapolis's injury report entirely; profiles as a favorable slot matchup vs BAL",
+    "note": "no injury designation for Sunday after a minor camp calf issue; Keenan Allen's arrival and Alec Pierce's (ankle) snaps are the only things capping his ceiling, not health — start, 25.5 implied",
     "ifOut": ""
    },
    {
@@ -512,7 +512,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "@ NYG Sunday night; line ticked to DAL -2.5 (from -3.0) but 25.5 implied still projects a strong week, no confirmed wind threat this run",
+    "note": "@ NYG Sunday night; DAL -3, 48.0 total — 25.5 implied, no injury or confirmed severe-wind concern this run",
     "ifOut": ""
    },
    {
@@ -522,7 +522,7 @@
     "pos": "DEF",
     "status": "",
     "call": "start",
-    "note": "vs CLE, unchanged — one of the league's worst offenses across from them, 16.0 implied, best defensive stream of the week",
+    "note": "vs CLE, unchanged — JAX -8.5, 40.5 total, 16.0 implied for Cleveland's bottom-tier offense — best defensive stream of the week",
     "ifOut": ""
    }
   ],
@@ -533,7 +533,7 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "vs SF TONIGHT in Melbourne (kicks 5:35 PM PT) — SF's pass rush graded worst in the NFL in 2025 (fewest sacks, 32nd sack rate), clean weather, 26.0 implied",
+    "note": "GAME FINAL: 15/25, 155 yds, 1 INT, 0 TD, pulled late in a 27-7 loss to SF — one of his worst weeks in years. Locked in already; nothing to decide.",
     "ifOut": ""
    },
    {
@@ -542,7 +542,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "vs TB — tougher matchup than expected (5th-stingiest run D) but 27.5 implied keeps him locked in",
+    "note": "vs TB — tougher matchup than expected (5th-stingiest run D) but 27.0 implied keeps him locked in",
     "ifOut": ""
    },
    {
@@ -551,7 +551,7 @@
     "team": "NO",
     "status": "",
     "call": "start",
-    "note": "@ DET — Kamara (knee) stayed limited Thursday and only has \"a shot\" to play; Kellen Moore has already named Etienne the workhorse regardless — lock him in",
+    "note": "@ DET — Kamara (knee) still limited Thursday and only trending toward a maybe; Kellen Moore has already named Etienne the workhorse regardless — lock him in, 21.5 implied",
     "ifOut": ""
    },
    {
@@ -560,7 +560,7 @@
     "team": "CLE",
     "status": "",
     "call": "start",
-    "note": "@ JAX, still the toughest matchup and lowest implied total (16.0) on the roster plus heat/storm risk, but no better bench flex",
+    "note": "@ JAX, still the toughest matchup and lowest implied total (16.0) on the roster; Dylan Sampson is CLE's passing-down back but that doesn't touch Judkins' early-down/goal-line role — no better bench flex, stays in",
     "ifOut": ""
    },
    {
@@ -569,7 +569,7 @@
     "team": "NYJ",
     "status": "",
     "call": "start",
-    "note": "@ TEN — forecast improved to a milder 86°F with light wind, down from the earlier heat-index scare; matchup context unchanged",
+    "note": "@ TEN — TEN -1.5, 39.5 total, 19.0 implied; forecast is a mild 93°F with light wind, no heat-index concern",
     "ifOut": ""
    },
    {
@@ -578,7 +578,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "vs CLE, clean injury report, plus game script as an 8.5-pt home favorite",
+    "note": "vs CLE, no injury tag, plus game script as an 8.5-pt home favorite, 24.5 implied",
     "ifOut": ""
    },
    {
@@ -587,7 +587,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "@ NYG Sunday night; line ticked to DAL -2.5 but still 25.5 implied against a bottom-third pass D; no confirmed severe wind this run",
+    "note": "@ NYG Sunday night; DAL -3, 48.0 total, 25.5 implied against a bottom-third pass D; no severe wind confirmed (SSW 10-15mph forecast)",
     "ifOut": ""
    },
    {
@@ -596,7 +596,7 @@
     "team": "NYG",
     "status": "",
     "call": "start",
-    "note": "vs DAL Sunday night, confirmed healthy Giants TE1 against a defense that graded near the bottom of the league last year",
+    "note": "vs DAL Sunday night, confirmed healthy Giants TE1 against a defense that graded near the bottom of the league last year, 22.5 implied",
     "ifOut": ""
    },
    {
@@ -615,7 +615,7 @@
     "pos": "DEF",
     "status": "",
     "call": "start",
-    "note": "@ LAR TONIGHT (kicks 5:35 PM PT) — road underdog vs a hot LAR offense, weakest starter on the roster, but nothing better on the bench",
+    "note": "GAME FINAL: held LAR to 7 points, 1 INT, 1 fumble recovery (Warner forced, White recovered) in a 27-7 win — a strong week already banked.",
     "ifOut": ""
    }
   ]
@@ -635,11 +635,11 @@
      "note": "SoFi Stadium fixed roof — indoor, no weather factor"
     },
     "vegas": {
-     "total": 47.0,
-     "spread": -10.0,
-     "impliedTeam": 28.5
+     "total": 46.5,
+     "spread": -9.5,
+     "impliedTeam": 28.0
     },
-    "takeaway": "Best offensive environment on the board — soft-ish pass D, 10-pt favorite, 28.5 implied — locked in as a low-end QB1."
+    "takeaway": "Best offensive environment on the board — soft-ish pass D, 9.5-pt favorite, 28.0 implied — locked in as a low-end QB1."
    },
    {
     "slot": "RB",
@@ -654,11 +654,11 @@
      "note": "SoFi Stadium fixed roof, no weather factor"
     },
     "vegas": {
-     "total": 47.0,
-     "spread": -10.0,
-     "impliedTeam": 28.5
+     "total": 46.5,
+     "spread": -9.5,
+     "impliedTeam": 28.0
     },
-    "takeaway": "Smash-spot matchup (2nd-most generous RB defense in the league) plus 28.5 implied — locked in as an RB1."
+    "takeaway": "Smash-spot matchup (2nd-most generous RB defense in the league) plus 28.0 implied — locked in as an RB1. Keaton Mitchell's return doesn't threaten the role."
    },
    {
     "slot": "RB",
@@ -673,11 +673,11 @@
      "note": "Paycor Stadium outdoor; forecast is 86°F/67°F, partly cloudy, 0% precip — no flag"
     },
     "vegas": {
-     "total": 51.5,
+     "total": 50.5,
      "spread": -3.5,
-     "impliedTeam": 27.5
+     "impliedTeam": 27.0
     },
-    "takeaway": "Tougher defense than expected (5th vs the run), but 27.5 implied in the week's highest total keeps him a top-12 start on volume."
+    "takeaway": "Tougher defense than expected (5th vs the run), but 27.0 implied in the week's highest total keeps him a top-12 start on volume."
    },
    {
     "slot": "WR",
@@ -692,11 +692,11 @@
      "note": "Paycor Stadium outdoor; forecast is 86°F/67°F, partly cloudy, 0% precip — no flag"
     },
     "vegas": {
-     "total": 51.5,
+     "total": 50.5,
      "spread": -3.5,
-     "impliedTeam": 27.5
+     "impliedTeam": 27.0
     },
-    "takeaway": "Heel is a non-issue after Thursday's full practice, and TB's pass D is one of the league's softest — locked in, no more injury discount."
+    "takeaway": "No injury tag, full practice all week, and TB's pass D is one of the league's softest — locked in."
    },
    {
     "slot": "WR",
@@ -715,7 +715,7 @@
      "spread": -3.5,
      "impliedTeam": 25.5
     },
-    "takeaway": "Matchup is about as soft as it gets at WR, and he told reporters after Thursday's limited practice he expects to play — start through the Q tag."
+    "takeaway": "Upgraded to full participation on Friday's injury report — no tag at all now. Matchup is about as soft as it gets at WR. Fully locked in, no discount."
    },
    {
     "slot": "TE",
@@ -753,7 +753,7 @@
      "spread": -8.5,
      "impliedTeam": 24.5
     },
-    "takeaway": "Illness is fully behind him — not even on Jacksonville's injury report — and backup LeQuint Allen may also sit, which matters more for his workload than the so-so CLE matchup grade."
+    "takeaway": "Not on the injury report at all — illness fully behind him. Backup LeQuint Allen is a game-time decision (coach says he'd be \"pleasantly surprised\" if Allen plays), which only helps Tuten's workload regardless of the so-so CLE matchup grade."
    },
    {
     "slot": "FLEX",
@@ -770,9 +770,9 @@
     "vegas": {
      "total": 47.5,
      "spread": -3.5,
-     "impliedTeam": 22.0
+     "impliedTeam": 25.5
     },
-    "takeaway": "Calf is fully cleared — confirmed off the injury report — and the slot matchup context still favors him. Comfortable start."
+    "takeaway": "No injury designation for Sunday. Keenan Allen's arrival and Alec Pierce's snap share are the real cap on his ceiling, not health — comfortable start."
    },
    {
     "slot": "K",
@@ -787,11 +787,11 @@
      "note": "MetLife Stadium outdoor; no confirmed forecast for 9/13 surfaced this run (only seasonal norms, mid-70s/60s) — earlier gust warnings didn't reappear, recheck closer to kickoff"
     },
     "vegas": {
-     "total": 48.5,
-     "spread": -2.5,
+     "total": 48.0,
+     "spread": -3.0,
      "impliedTeam": 25.5
     },
-    "takeaway": "Line ticked toward NYG (-2.5 from -3.0) but 25.5 implied still projects a strong week — no injury or confirmed weather concern."
+    "takeaway": "Line held at DAL -3, 25.5 implied still projects a strong week — no injury or confirmed weather concern."
    },
    {
     "slot": "DEF",
@@ -831,7 +831,7 @@
      "spread": -3.5,
      "impliedTeam": 26.0
     },
-    "takeaway": "Tonight's the lock — worst pass rush in the league across from him and clean Melbourne conditions, 26.0 implied, low-end QB1 floor with upside."
+    "takeaway": "GAME FINAL: 15/25, 155 yds, 1 INT, 0 TD in a 27-7 loss — SF's defense (1 INT, 1 forced-and-recovered fumble) shut him down all night. Locked score, nothing to decide."
    },
    {
     "slot": "RB",
@@ -846,11 +846,11 @@
      "note": "Paycor Stadium outdoor; forecast is 86°F/67°F, partly cloudy, 0% precip — no flag"
     },
     "vegas": {
-     "total": 51.5,
+     "total": 50.5,
      "spread": -3.5,
-     "impliedTeam": 27.5
+     "impliedTeam": 27.0
     },
-    "takeaway": "Tougher defense than expected (5th vs the run), but 27.5 implied in the week's highest total keeps him locked in."
+    "takeaway": "Tougher defense than expected (5th vs the run), but 27.0 implied in the week's highest total keeps him locked in."
    },
    {
     "slot": "RB",
@@ -865,11 +865,11 @@
      "note": "Ford Field — dome, no weather factor"
     },
     "vegas": {
-     "total": 49.5,
+     "total": 50.0,
      "spread": -7.0,
-     "impliedTeam": 21.25
+     "impliedTeam": 21.5
     },
-    "takeaway": "Kamara (knee) stayed limited Thursday and only has \"a shot\" to play — Kellen Moore has already handed Etienne the workhorse role regardless. Lock him in even at a modest 21.25 implied."
+    "takeaway": "Kamara (knee) stayed limited Thursday and remains a maybe — Kellen Moore has already handed Etienne the workhorse role regardless. Lock him in even at a modest 21.5 implied."
    },
    {
     "slot": "W/R/T",
@@ -888,7 +888,7 @@
      "spread": 8.5,
      "impliedTeam": 16.0
     },
-    "takeaway": "Still the toughest matchup and lowest implied total (16.0) of the week as a road dog, plus heat/storm risk — no better bench flex, so he stays in, but temper expectations hard."
+    "takeaway": "Still the toughest matchup and lowest implied total (16.0) of the week as a road dog, plus heat/storm risk. Dylan Sampson works as CLE's passing-down back but doesn't threaten Judkins' early-down role — stays in, temper expectations."
    },
    {
     "slot": "WR",
@@ -907,7 +907,7 @@
      "spread": 1.5,
      "impliedTeam": 19.0
     },
-    "takeaway": "Matchup still favorable and the heat concern eased — 19.0 implied is modest but the floor is safer than it looked Tuesday."
+    "takeaway": "Matchup still favorable and the heat concern is fully gone (93°F, light wind, clear) — 19.0 implied is modest but the floor is safe."
    },
    {
     "slot": "WR",
@@ -941,11 +941,11 @@
      "note": "MetLife Stadium outdoor; no confirmed severe forecast for 9/13 surfaced this run (only seasonal norms) — earlier gust warnings didn't reappear, recheck closer to kickoff"
     },
     "vegas": {
-     "total": 48.5,
-     "spread": -2.5,
+     "total": 48.0,
+     "spread": -3.0,
      "impliedTeam": 25.5
     },
-    "takeaway": "Still a plus matchup on a below-average NYG pass D; line ticked toward NYG but he's still projected for 25.5 — comfortable start."
+    "takeaway": "Still a plus matchup on a below-average NYG pass D at 25.5 implied; forecast shows 10-15mph wind, not enough to flag — comfortable start."
    },
    {
     "slot": "TE",
@@ -960,11 +960,11 @@
      "note": "MetLife Stadium outdoor; same forecast caveat as above — no confirmed severe conditions"
     },
     "vegas": {
-     "total": 48.5,
-     "spread": 2.5,
-     "impliedTeam": 23.0
+     "total": 48.0,
+     "spread": 3.0,
+     "impliedTeam": 22.5
     },
-    "takeaway": "Healthy Giants TE1 against a defense that graded near the bottom of the league last year — 23.0 implied, real weekly upside, no change."
+    "takeaway": "Healthy Giants TE1 against a defense that graded near the bottom of the league last year — 22.5 implied, real weekly upside, no change."
    },
    {
     "slot": "K",
@@ -1002,82 +1002,91 @@
      "spread": 3.5,
      "impliedTeam": 22.5
     },
-    "takeaway": "Road underdog vs. a hot LAR offense (26.0 implied for them) — weakest starter on either roster, but nothing better on your bench. Locks tonight at 5:35 PM PT."
+    "takeaway": "GAME FINAL: held LAR to just 7 points, forced an INT and a fumble (Warner forced/White recovered) in the 27-7 win — a strong week already in the bank."
    }
   ]
  },
  "news": [
   {
-   "player": "Tee Higgins",
-   "team": "CIN",
-   "headline": "Bengals vs. Buccaneers Thursday Injury Report",
-   "summary": "Higgins returned to full practice Thursday and is no longer trending toward a game-status tag for Sunday's opener.",
-   "source": "Cincy Jungle",
-   "url": "https://www.cincyjungle.com/198393/bengals-vs-buccaneers-injury-report-emeka-egbuka-rueben-bain",
-   "at": "2026-09-10T07:14:40-07:00"
-  },
-  {
    "player": "Zay Flowers",
    "team": "BAL",
-   "headline": "Zay Flowers, Devontez Walker pop up on Ravens' 1st 2026 injury report",
-   "summary": "Flowers was limited again Thursday with the quad injury but told reporters afterward he expects to play Sunday at Indianapolis.",
+   "headline": "Zay Flowers upgraded on Baltimore Ravens' Week 1 injury report",
+   "summary": "Flowers was upgraded to full participation on Friday after being limited earlier in the week with a hamstring issue, clearing him for Sunday's opener at Indianapolis.",
    "source": "Baltimore Beatdown",
-   "url": "https://www.baltimorebeatdown.com/baltimore-ravens-injuries/84838/zay-flowers-devontez-walker-pop-up-on-ravens-1st-2026-injury-report",
-   "at": "2026-09-10T07:14:40-07:00"
+   "url": "https://www.baltimorebeatdown.com/baltimore-ravens-news/84864/zay-flowers-upgraded-on-ravens-week-1-injury-report",
+   "at": "2026-09-11T07:11:26-07:00"
   },
   {
    "player": "Bhayshul Tuten",
    "team": "JAX",
-   "headline": "Jaguar Report: What Latest Injury Report Means",
-   "summary": "Tuten didn't appear on Jacksonville's first Week 1 injury report at all, fully clearing the illness that sent him home Wednesday, and backup LeQuint Allen may also be out with a soft-tissue injury.",
-   "source": "SI / OnSI",
-   "url": "https://www.si.com/nfl/jaguars/onsi/jacksonville-what-latest-injury-report-means-bhayshul-tuten",
-   "at": "2026-09-10T07:14:40-07:00"
+   "headline": "Bhayshul Tuten, Chris Rodriguez, LeQuint Allen All Face Week 1 Jaguars RB Problems",
+   "summary": "Tuten was not on Jacksonville's Week 1 injury report at all, confirming the illness that sidelined him midweek is fully behind him.",
+   "source": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/articles/bhayshul-tuten-chris-rodriguez-lequint-143935675.html",
+   "at": "2026-09-11T07:11:26-07:00"
   },
   {
-   "player": "Josh Downs",
-   "team": "IND",
-   "headline": "Colts vs. Ravens Week 1 Injury Report: Clean Bill of Health to Start Week",
-   "summary": "Downs is confirmed off the injury report entirely for Sunday's opener against Baltimore.",
-   "source": "Yahoo Sports",
-   "url": "https://sports.yahoo.com/articles/colts-vs-ravens-week-1-204023246.html",
-   "at": "2026-09-10T07:14:40-07:00"
+   "player": "LeQuint Allen",
+   "team": "JAX",
+   "headline": "How the Jaguars Can Answer Week 1 Injury Questions for Cole Van Lanen, LeQuint Allen",
+   "summary": "Allen (hip/soft-tissue) didn't practice Wednesday and head coach Liam Coen said he'd be \"pleasantly surprised\" if Allen is ready, making him a game-time decision Sunday and a boost to Tuten's workload if he sits.",
+   "source": "SI / OnSI",
+   "url": "https://www.si.com/nfl/jaguars/onsi/jacksonville-how-can-answer-week-1-injury-questions-for-cole-van-lanen-lequint-allen",
+   "at": "2026-09-11T07:11:26-07:00"
   },
   {
    "player": "Alvin Kamara",
    "team": "NO",
-   "headline": "Saints news: Cam Jordan officially ruled out, Alvin Kamara 'has a shot' for Week 1",
-   "summary": "Kamara is limited in practice with the knee and only has \"a shot\" to play Sunday, but coach Kellen Moore has already named Travis Etienne the workhorse back regardless of Kamara's final status.",
-   "source": "ClutchPoints",
-   "url": "https://clutchpoints.com/nfl/new-orleans-saints/saints-news-cam-jordan-ruled-out-alvin-kamara-has-shot-week-1-lions",
-   "at": "2026-09-10T07:14:40-07:00"
+   "headline": "Is Alvin Kamara Playing in Week 1? Saints Injury News Comes With Questionable Status",
+   "summary": "Kamara remained a limited practice participant Thursday with the knee injury and is trending toward a game-time call, but Kellen Moore has already named Travis Etienne the clear workhorse back regardless of Kamara's status.",
+   "source": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/articles/alvin-kamara-playing-week-1-141521700.html",
+   "at": "2026-09-11T07:11:26-07:00"
   },
   {
-   "player": "Zachariah Branch",
-   "team": "ATL",
-   "headline": "Falcons injury report: Zachariah Branch, Brandon Dorlus limited as Steelers prep begins",
-   "summary": "Branch was limited in Wednesday's practice with a hamstring injury; coaches are treating it as early-week caution rather than a red flag, but it's worth watching Friday's report.",
-   "source": "Atlanta Falcons",
-   "url": "https://www.atlantafalcons.com/news/falcons-injury-report-zachariah-branch-brandon-dorlus-limited-pittsburgh-steelers",
-   "at": "2026-09-10T07:14:40-07:00"
-  },
-  {
-   "player": "Samaje Perine",
-   "team": "CIN",
-   "headline": "Bengals' Samaje Perine: Practices fully Thursday",
-   "summary": "Perine practiced without limitation Thursday and poses no threat to Chase Brown's workload this week.",
+   "player": "Josh Downs",
+   "team": "IND",
+   "headline": "Colts' Josh Downs: Practices fully",
+   "summary": "Downs practiced without limitation this week and carries no injury designation into Sunday's opener, though Indianapolis's addition of Keenan Allen and Alec Pierce's snap share are worth watching for his target share.",
    "source": "CBS Sports",
-   "url": "https://www.cbssports.com/fantasy/football/news/bengals-samaje-perine-practices-fully-thursday/",
-   "at": "2026-09-10T07:14:40-07:00"
+   "url": "https://www.cbssports.com/fantasy/football/news/colts-josh-downs-practices-fully-listed-as-questionable",
+   "at": "2026-09-11T07:11:26-07:00"
   },
   {
-   "player": "Keaton Mitchell",
+   "player": "Omarion Hampton",
    "team": "LAC",
-   "headline": "Chargers' Keaton Mitchell injury may open a door for Kimani Vidal",
-   "summary": "Mitchell returned to practice Monday after missing six sessions and is expected to play Week 1, leaving no change to Omarion Hampton's workhorse role.",
+   "headline": "Chargers' Keaton Mitchell injury may open a desperately needed door for Kimani Vidal",
+   "summary": "Mitchell (hamstring) was limited again at Wednesday's practice, so the Chargers' backup RB picture behind Hampton stays muddled between Mitchell and Vidal — no change to Hampton's workhorse role.",
    "source": "Boltbeat",
    "url": "https://boltbeat.com/chargers-keaton-mitchell-injury-may-open-a-desperately-needed-door-for-kimani-vidal",
-   "at": "2026-09-10T07:14:40-07:00"
+   "at": "2026-09-11T07:11:26-07:00"
+  },
+  {
+   "player": "Matthew Stafford",
+   "team": "LAR",
+   "headline": "Rams vs. 49ers takeaways: Matthew Stafford pulled late in blowout loss for L.A.",
+   "summary": "Stafford finished 15-of-25 for just 155 yards with an interception and no touchdowns as San Francisco's defense throttled the Rams 27-7 in the season opener in Melbourne.",
+   "source": "CBS Sports",
+   "url": "https://www.cbssports.com/nfl/news/rams-vs-49ers-live-updates-score-australia/live/",
+   "at": "2026-09-11T07:11:26-07:00"
+  },
+  {
+   "player": "49ers",
+   "team": "SF",
+   "headline": "49ers Open 2026 With 27-7 Win Over Rams in Melbourne; Takeaways from #SFvsLAR",
+   "summary": "San Francisco's defense held the Rams to 7 points, intercepted Stafford, and recovered a Fred Warner-forced fumble (Keion White) in a dominant season-opening win.",
+   "source": "49ers.com",
+   "url": "https://www.49ers.com/news/49ers-open-2026-with-27-7-win-over-rams-in-melbourne-takeaways-from-larvssf",
+   "at": "2026-09-11T07:11:26-07:00"
+  },
+  {
+   "player": "Quinshon Judkins",
+   "team": "CLE",
+   "headline": "Browns roster: RB depth chart and expectations",
+   "summary": "Judkins sits atop Cleveland's RB depth chart with Dylan Sampson working as the passing-down back behind him — a role split that doesn't threaten Judkins' early-down and goal-line volume.",
+   "source": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/articles/browns-roster-rb-depth-chart-112306110.html",
+   "at": "2026-09-11T07:11:26-07:00"
   }
  ]
 }
