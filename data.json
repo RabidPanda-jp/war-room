@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-20T09:09:10-07:00",
+ "updatedAt": "2026-09-21T07:17:36-07:00",
  "week": 2,
  "yahoo": {
   "updatedAt": "2026-09-13",
@@ -318,9 +318,9 @@
   ]
  },
  "brief": {
-  "text": "GANGSTAS PARADISE (Sleeper) \u2014 CHASE BROWN + TEE HIGGINS LOCK IN UNDER AN HOUR (10:00AM PT, CIN @ HOU)\nDo now: nothing to click \u2014 lineup is set, every starter clean, no injury tags.\nLineup, ordered by kickoff:\n10:00am PT \u2014 Chase Brown (RB, CIN @ HOU): start, Joe Burrow officially active. Tee Higgins (WR, CIN @ HOU): start, same.\n1:05pm PT \u2014 Justin Herbert (QB, LAC vs LV): start, no tag. Omarion Hampton (RB, LAC vs LV): start, no tag. Brenton Strange (TE, JAX @ DEN): start, only TE on roster. Bhayshul Tuten (FLEX RB, JAX @ DEN): start, led Week 1 touches. Jaguars DEF (JAX @ DEN): start, Bo Nix turnover-prone.\n1:25pm PT \u2014 Stefon Diggs (FLEX WR, WAS @ DAL): start, smash matchup vs worst pass D. Brandon Aubrey (K, DAL vs WAS): start, best K matchup on the roster. Michael Wilson (WR, ARI vs SEA): start, correcting prior runs \u2014 Brissett has been AZ's QB all season, not an injury swap.\nCorrection from prior runs: Kyler Murray was never a Week 2 injury story \u2014 he was released by Arizona before this season started. No lineup impact, just fixing the record.\n\nGAME OF THROWS (Yahoo) \u2014 CHASE BROWN, TRAVIS ETIENNE, GARRETT WILSON, QUINSHON JUDKINS ALL LOCK IN UNDER AN HOUR (10:00AM PT)\nDo now: nothing to click \u2014 best-effort lineup (still no fresh screenshot) is clean start-to-finish.\nLineup, ordered by kickoff:\n10:00am PT \u2014 Chase Brown (RB, CIN @ HOU): start, Burrow officially active. Travis Etienne Jr. (RB, NO @ BAL): start, still projected lead back over Kamara. Garrett Wilson (WR, NYJ vs GB): start, favorable matchup. Quinshon Judkins (W/R/T, CLE @ TB): start, lead back, storm/heat watch not a bench call.\n1:05pm PT \u2014 Parker Washington (WR, JAX @ DEN): start, confirmed WR1 role.\n1:25pm PT \u2014 George Pickens (WR, DAL vs WAS): start, smash spot. Jason Myers (K, SEA @ ARI): start, no bench K. 49ers DEF (SF vs MIA): start, biggest spread on the roster.\nMon 5:15pm PT \u2014 Matthew Stafford (QB, LAR vs NYG): start, bounce-back spot. Isaiah Likely (TE, NYG @ LAR): start, no bench alternative.\nStill no fresh Yahoo screenshot \u2014 working off public schedule/Vegas data only, not your live roster or score.\n\nFYI: Chase Brown (RB, CIN) starts in both leagues, same 10:00am PT kickoff at Houston, now with Burrow confirmed active. The JAX @ DEN game (1:05pm PT) has three total exposures across your two rosters \u2014 Strange and Tuten on Sleeper, Parker Washington on Yahoo. Judkins' Tampa storm/heat watch from prior runs still stands, not a bench call.\nData: Sleeper live (Week 2 pre-game, Sunday morning) \u00b7 Yahoo screenshots unchanged since 2026-09-13 \u2014 7 days stale, please drop new screenshots in the War room folder.",
-  "at": "2026-09-20T09:09:10-07:00",
-  "mode": "sunday"
+  "text": "GANGSTAS PARADISE (Sleeper) \u2014 Week 2 locked in at 115.5, trailing 127.8 with only your opponent's TE still to play MNF\nDo now: Zay Flowers (WR, BAL) is still officially Out with no IR move filed \u2014 stash him on IR to free a bench spot ahead of Wednesday's waiver clear; nothing else to click, Week 2 is played out.\nLocks next 24h: none of your Sleeper starters \u2014 all ten already played Sunday. Heads up though: your opponent (\"Im sorry miss Jackson!\") still has Isaiah Likely (NYG TE) playing tonight's Monday Nighter, so the 115.48\u2013127.80 margin can still move against you.\nLineup: no changes \u2014 Week 2 is final for every Sleeper starter. Two things worth carrying into Week 3 prep: Jayden Daniels (WAS QB) dislocated his elbow and is out, clouding Stefon Diggs' efficiency behind Marcus Mariota; and Chase Brown was shut out of the passing game (2 targets) even while running for 80 yards, worth a glance if Cincinnati's game script tightens again.\n\nGAME OF THROWS (Yahoo) \u2014 Stafford and Likely lock in tonight at 5:15pm PT, both clean \u2014 Kamara's return already squeezing Etienne's role\nDo now: nothing to click \u2014 Stafford (LAR) and Likely (NYG) both carry clean injury reports for tonight's Monday Nighter, and the rest of the week is already played out.\nLocks next 24h: Matthew Stafford (QB, LAR vs NYG) and Isaiah Likely (TE, NYG @ LAR), both 5:15pm PT tonight, both active with no designation.\nLineup: no changes \u2014 Sunday's eight starters are final. Worth flagging for Week 3: Alvin Kamara out-touched Travis Etienne 14-8 in his Saints return, a real committee threat to your RB2 going forward; Parker Washington is emerging as JAX's clear WR1 (12-181-1 through two games), a nice hold. Still no fresh Yahoo screenshot, so this is public schedule/Vegas data, not your live roster or score.\n\nFYI: Jayden Daniels (WAS QB) dislocated his elbow and is out, Marcus Mariota now starts \u2014 clouds both Stefon Diggs (Sleeper FLEX) and Chig Okonkwo (Yahoo bench, himself now Out with a hamstring) for Week 3; Saquon Barkley's stinger opened a real look for Tank Bigsby (Yahoo bench) if it lingers; four Jaguars exposures across your two rosters (Strange/Tuten/Jaguars DEF on Sleeper, Parker Washington on Yahoo) as Washington emerges as JAX's WR1.\nData: Sleeper live (Week 2 final, MNF pending) \u00b7 Yahoo screenshots unchanged since 2026-09-13 \u2014 8 days stale, please drop new screenshots in the War room folder.",
+  "at": "2026-09-21T07:17:36-07:00",
+  "mode": "daily"
  },
  "lineup": {
   "sleeper": [
@@ -330,7 +330,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "Home vs Las Vegas, Chargers -7, 43.5 total (25.3 implied) \u2014 no injury designation, comfortable start. Kicks 1:05pm PT.",
+    "note": "Home vs Las Vegas turned into a 26-14 loss \u2014 Herbert struggled (15/27, 192 yds, 1 TD, 2 INT) but was clean pregame with no better bench option. Final.",
     "ifOut": ""
    },
    {
@@ -339,7 +339,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "Same plus game script as Herbert, no injury tag \u2014 bell-cow touches regardless of matchup. Kicks 1:05pm PT.",
+    "note": "23 carries, 94 yds, TD but a costly late fumble in the loss \u2014 bell-cow volume confirmed regardless of the loss. Final.",
     "ifOut": ""
    },
    {
@@ -348,7 +348,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Tough matchup (Houston, consensus #1 D) but Joe Burrow is now OFFICIALLY ACTIVE for Week 2 (back, full practice Friday, no restrictions) \u2014 Cincinnati's offense is at full strength. Clear bell-cow start. Kicks 10:00am PT \u2014 LOCKS IN UNDER AN HOUR.",
+    "note": "20 carries/80 yds, shut out of the passing game (2 targets/2 yds) in a 20-6 win at Houston \u2014 role as unquestioned CIN1 reaffirmed (36 carries, 11 targets through 2 games). Final.",
     "ifOut": ""
    },
    {
@@ -357,7 +357,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Joe Burrow is officially active for Week 2 (back, no restrictions) \u2014 Higgins locked into Cincinnati's full passing-game role vs Houston. Kicks 10:00am PT \u2014 LOCKS IN UNDER AN HOUR.",
+    "note": "Led Bengals with 5 catches/95 yds on 10 targets in the win. Final.",
     "ifOut": ""
    },
    {
@@ -366,7 +366,7 @@
     "team": "ARI",
     "status": "",
     "call": "start",
-    "note": "Correction from prior runs: Kyler Murray is NOT on Arizona's 2026 roster \u2014 he was shut down for 2025 with a foot injury and released by the Cardinals before this season began. Jacoby Brissett has been Arizona's starting QB all year; this is not an in-week injury swap, just standing fact. No change to the call \u2014 Wilson remains the right side of the Josh Downs alternative. Home vs Seattle (Drew Lock starting, Sam Darnold out with a hip injury), kicks 1:25pm PT.",
+    "note": "Quiet day (2 catches/18 yds on 7 targets, drew 2 DPI calls, QB overthrew him twice) in a 31-7 blowout loss to Seattle \u2014 volume was fine, results weren't. Final.",
     "ifOut": ""
    },
    {
@@ -375,7 +375,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "Road matchup at Denver's elite secondary is tough, but he's the clear JAX TE1 with zero bench alternative. Kicks 1:05pm PT.",
+    "note": "Just 2 targets/17 yds as Parker Washington and Brian Thomas Jr. combined for 20 targets in the loss to Denver \u2014 still the clear JAX TE1, just touchdown-dependent. Final.",
     "ifOut": ""
    },
    {
@@ -384,7 +384,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "Denver's run defense is stingy and Chris Rodriguez remains a committee-mate (no change to the split this week), but Tuten led touches Week 1 \u2014 still the start. Kicks 1:05pm PT.",
+    "note": "13 carries/65 yds/TD, clear lead back over Chris Rodriguez for a 2nd straight week in the loss. Final.",
     "ifOut": ""
    },
    {
@@ -393,7 +393,7 @@
     "team": "WAS",
     "status": "",
     "call": "start",
-    "note": "Road at Dallas (AT&T Stadium) \u2014 corrected from prior runs, this is Commanders AT Cowboys, not a Washington home game \u2014 50.5 total and Washington's own implied total (23.0) is fine on its own regardless of venue. Kicks 1:25pm PT.",
+    "note": "5 catches/47 yds/2 TD in the loss to Dallas \u2014 but Jayden Daniels dislocated his elbow late in that game and is out, with Marcus Mariota now starting. Real downgrade risk to Diggs' Week 3 efficiency \u2014 watch Wednesday's practice report before locking him back in.",
     "ifOut": ""
    },
    {
@@ -402,7 +402,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "Home vs Washington, line moved to Cowboys -4.5 on a 50.5 total (27.5 implied) \u2014 one of the week's best matchups at the position. Kicks 1:25pm PT.",
+    "note": "Hit a 60-yard field goal (his 7th career from 60+, an NFL record) in the 37-20 win over Washington. Final.",
     "ifOut": ""
    },
    {
@@ -412,7 +412,7 @@
     "pos": "DEF",
     "status": "",
     "call": "start",
-    "note": "Road dog at Denver, but Bo Nix opened 2026 turnover-prone \u2014 real takeaway upside, no stream needed",
+    "note": "20-13 loss to Denver \u2014 Jourdan Lewis had a red-zone pick but the D allowed 14 4th-quarter points. B.J. Green II landed on IR (elbow), a depth loss, not scoring-relevant. Final.",
     "ifOut": ""
    }
   ],
@@ -423,7 +423,7 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "Home vs a Giants defense that traded away Dexter Lawrence, Rams now -9.5/47.5 (28.5 implied) \u2014 bounce-back spot after a quiet Week 1. Monday Night, kicks 5:15pm PT.",
+    "note": "Clean injury report, no designation \u2014 the Rams' only real question is Puka Nacua (groin/hip, Questionable), not Stafford himself. Locks 5:15pm PT tonight vs Giants.",
     "ifOut": ""
    },
    {
@@ -432,7 +432,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Same as Sleeper \u2014 Joe Burrow is officially active for Week 2, no restrictions. Start on volume vs Houston's #1 defense. Kicks 10:00am PT \u2014 LOCKS IN UNDER AN HOUR.",
+    "note": "Same as your Sleeper roster \u2014 20 carries/80 yds in the 20-6 win at Houston, role fully intact. Final.",
     "ifOut": ""
    },
    {
@@ -441,7 +441,7 @@
     "team": "NO",
     "status": "",
     "call": "start",
-    "note": "Road at Baltimore, Ravens -8.5/47.5 (19.5 implied for NO). Alvin Kamara's passing-down role is now locked in for today's game (off the injury report, full practice all week) \u2014 a notch tougher for Etienne's ceiling, but he outsnapped Kamara in Week 1 and remains the projected lead back \u2014 still the start. Kicks 10:00am PT, under 3 hours out.",
+    "note": "Just 8 carries/25 yds as Alvin Kamara (back from a MCL sprain) out-touched him 14-8 in the 24-17 win over Baltimore \u2014 real committee concern to watch into Week 3, though volume was fixed either way this week. Final.",
     "ifOut": ""
    },
    {
@@ -450,7 +450,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "Home vs Washington, line moved to Cowboys -4.5/50.5 (27.5 implied) \u2014 Commanders WR1 Terry McLaurin remains questionable (quad), no bearing on Pickens either way, still the smash spot. Kicks 1:25pm PT.",
+    "note": "6 catches/40 yds in the win over Washington, clear #2 behind a red-hot CeeDee Lamb (8-153-2). Final.",
     "ifOut": ""
    },
    {
@@ -459,7 +459,7 @@
     "team": "NYJ",
     "status": "",
     "call": "start",
-    "note": "Green Bay favored by 3.5 on a 44.5 total (20.5 implied for NYJ) \u2014 no injury concerns, favorable spot off a clean Week 1. Kicks 10:00am PT, under 3 hours out.",
+    "note": "5 catches/57 yds/TD in the 20-17 OT loss to Green Bay \u2014 has both of Geno Smith's TD passes through two weeks. Final.",
     "ifOut": ""
    },
    {
@@ -468,16 +468,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "Confirmed JAX's every-down WR1 in new OC Liam Coen's offense \u2014 tough road matchup at Denver's secondary. Brian Thomas Jr. (shoulder) remains fully cleared, so no target-share bump materializes \u2014 unchanged outlook. Kicks 1:05pm PT.",
-    "ifOut": ""
-   },
-   {
-    "slot": "W/R/T",
-    "name": "Quinshon Judkins",
-    "team": "CLE",
-    "status": "",
-    "call": "start",
-    "note": "Big road dog at Tampa Bay (-8.5/40.5, 16.0 implied) and Tampa's forecast now confirms scattered thunderstorms and a 103\u00b0 heat index Sunday \u2014 worth a game-flow watch, not a bench call. His own backfield reshaped this week: Dylan Sampson landed on IR (knee, 4+ weeks) and Raheim Sanders is now the clear #2, but Judkins' workload is unaffected \u2014 still the confirmed lead back.",
+    "note": "Led Jacksonville with 7 catches/98 yds/TD on 12 targets in the loss to Denver \u2014 12-181-1 through two games, clearly emerging as JAX's WR1. Final.",
     "ifOut": ""
    },
    {
@@ -486,7 +477,16 @@
     "team": "NYG",
     "status": "",
     "call": "start",
-    "note": "Road at the Rams' #1-graded defense on Monday night, line now Rams -9.5/47.5 (19.0 implied for NYG) \u2014 tough spot, but role is secure (8 targets, 2 TD in Week 1) and the position is thin \u2014 no bench alternative. Kicks 5:15pm PT Monday.",
+    "note": "Clean injury report, no designation on the Giants' Week 2 report. Locks 5:15pm PT tonight at the Rams.",
+    "ifOut": ""
+   },
+   {
+    "slot": "W/R/T",
+    "name": "Quinshon Judkins",
+    "team": "CLE",
+    "status": "",
+    "call": "start",
+    "note": "12 carries/21 yds, 5 catches/27 yds in the 23-19 win over Tampa Bay \u2014 inefficient (2.3 YPC through 2 weeks) but still the unquestioned lead back with Dylan Sampson on IR. Final.",
     "ifOut": ""
    },
    {
@@ -495,7 +495,7 @@
     "team": "SEA",
     "status": "",
     "call": "start",
-    "note": "Road at Arizona \u2014 Sam Darnold (hip) is OUT for Seattle, Drew Lock starts; Arizona starts Jacoby Brissett, who has been AZ's QB all season (Kyler Murray was released before 2026, not an in-week injury as prior runs implied). Total 41.5, competitive but not a shootout script. Start, no bench K. Kicks 1:25pm PT.",
+    "note": "Seahawks blew out Arizona 31-7 \u2014 clean box-score environment, no injury concerns. Final.",
     "ifOut": ""
    },
    {
@@ -505,7 +505,7 @@
     "pos": "DEF",
     "status": "",
     "call": "start",
-    "note": "Home vs Miami, line moved to SF -13.5/44.5 \u2014 biggest spread on either roster this week, clear blowout game-script smash spot",
+    "note": "Blew out Miami 35-13, the #1 fantasy DST performance of the week with Bosa/Warner/Greenlaw all healthy. Final.",
     "ifOut": ""
    }
   ]
@@ -898,31 +898,247 @@
  },
  "news": [
   {
+   "player": "Justin Herbert",
+   "team": "LAC",
+   "headline": "Game-long struggles in loss",
+   "summary": "Herbert threw for just 192 yards with a touchdown and two picks as the Chargers fell 26-14 to the Raiders.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/justin-herbert-news-game-long-struggles-in-loss-638377",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Omarion Hampton",
+   "team": "LAC",
+   "headline": "Mixed performance in Week 2 loss",
+   "summary": "Hampton ran 23 times for 94 yards and a touchdown but lost a costly late fumble in the loss to Las Vegas.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/omarion-hampton-news-mixed-performance-in-week-2-loss-638353",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
    "player": "Chase Brown",
    "team": "CIN",
-   "headline": "Joe Burrow officially active for Week 2",
-   "summary": "Burrow (back) was upgraded from questionable to officially active ahead of kickoff at Houston, confirming Cincinnati's offense is at full strength for Brown's workload.",
+   "headline": "Effective on the ground, erased from the passing game",
+   "summary": "Brown ran 20 times for 80 yards but managed just 2 yards on two targets as Cincinnati beat Houston 20-6.",
    "source": "NBC Sports",
-   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/joe-burrow-back-officially-active-for-week-2",
-   "at": "2026-09-20T09:00:00-07:00"
+   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/brown-effective-but-erased-from-passing-game",
+   "at": "2026-09-20T12:00:00-07:00"
   },
   {
    "player": "Tee Higgins",
    "team": "CIN",
-   "headline": "Joe Burrow officially active for Week 2",
-   "summary": "Burrow (back) is officially active for Sunday's game at Houston, locking Higgins into Cincinnati's full passing-game role.",
-   "source": "NBC Sports",
-   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/joe-burrow-back-officially-active-for-week-2",
-   "at": "2026-09-20T09:00:00-07:00"
+   "headline": "Team-high yardage in Week 2 win",
+   "summary": "Higgins caught 5 of 10 targets for 95 yards, leading all Bengals receivers in the win over Houston.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/tee-higgins-news-team-high-yardage-in-week-2-win-638255",
+   "at": "2026-09-20T12:00:00-07:00"
   },
   {
    "player": "Michael Wilson",
    "team": "ARI",
-   "headline": "Correction: Kyler Murray isn't on Arizona's 2026 roster",
-   "summary": "Murray was shut down for the 2025 season with a foot injury and released by the Cardinals before 2026 began, so Jacoby Brissett starting at QB vs Seattle is not a fresh in-week injury swap as prior runs implied \u2014 no change to Wilson's start call.",
-   "source": "NFL.com",
-   "url": "https://www.nfl.com/news/cardinals-inform-qb-kyler-murray-they-will-release-him-at-start-of-new-league-year",
-   "at": "2026-09-20T09:09:10-07:00"
+   "headline": "Goes 2/18, faces 2 DPI calls, 2 overthrows",
+   "summary": "Wilson caught only 2 of 7 targets for 18 yards, drawing two defensive pass interference calls in a 31-7 loss to Seattle.",
+   "source": "NBC Sports",
+   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/wilson-goes-2-18-faces-2-dpi-calls-2-overthrows",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Brenton Strange",
+   "team": "JAX",
+   "headline": "Just two targets in Week 2 loss",
+   "summary": "Strange saw only 2 targets for 17 yards as Parker Washington and Brian Thomas Jr. combined for 20 looks in the loss to Denver.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/brenton-strange-news-just-two-targets-in-week-2-loss-638417",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Bhayshul Tuten",
+   "team": "JAX",
+   "headline": "Records rushing TD in loss",
+   "summary": "Tuten ran 13 times for 65 yards and a touchdown, holding a clear lead over Chris Rodriguez for a second straight week.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/bhayshul-tuten-news-records-rush-td-in-loss-638397",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Stefon Diggs",
+   "team": "WAS",
+   "headline": "Commanders QB Jayden Daniels suffers dislocated elbow vs. Cowboys",
+   "summary": "Diggs caught 5 passes for 47 yards and 2 touchdowns, but starting QB Jayden Daniels dislocated his elbow late in the loss and is out, with Marcus Mariota now under center for Washington.",
+   "source": "ESPN",
+   "url": "https://www.espn.com/nfl/story/_/id/49993422/commanders-qb-jayden-daniels-suffers-elbow-injury-cowboys",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Brandon Aubrey",
+   "team": "DAL",
+   "headline": "Drills 60-yard field goal",
+   "summary": "Aubrey connected from 60 yards out in Dallas's 37-20 win over Washington, his 7th career field goal from 60+ yards, an NFL record.",
+   "source": "DallasCowboys.com",
+   "url": "https://www.dallascowboys.com/news/starlights-big-play-tracker-for-cowboys-commanders",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Jaguars",
+   "team": "JAX",
+   "headline": "Game Report, 2026 Week 2: Broncos 20, Jaguars 13",
+   "summary": "Jacksonville fell 20-13 to Denver despite a red-zone interception from Jourdan Lewis, allowing 14 fourth-quarter points; DL B.J. Green II landed on IR with an elbow injury.",
+   "source": "Jaguars.com",
+   "url": "https://www.jaguars.com/news/game-report-2026-week-2-broncos-20-jaguars-13",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Zay Flowers",
+   "team": "BAL",
+   "headline": "Ruled out for Sunday's game",
+   "summary": "Flowers was ruled out with his hamstring injury and missed Baltimore's 24-17 loss to New Orleans; no IR move has been announced, so a Week 3 practice-report signal is the next update.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/zay-flowers-injury-ruled-out-for-sundays-game-638059",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Samaje Perine",
+   "team": "CIN",
+   "headline": "Three touches for 22 yards",
+   "summary": "Perine saw only 3 touches for 22 yards as Chase Brown handled the bulk of Cincinnati's backfield work.",
+   "source": "NBC Sports",
+   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/samaje-perine-has-three-touches-for-22-yards",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Chris Rodriguez",
+   "team": "JAX",
+   "headline": "Minimal output again in Week 2",
+   "summary": "Rodriguez managed just 6 carries for 13 yards, remaining a clear, uninspiring RB2 behind Bhayshul Tuten.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/chris-rodriguez-news-minimal-output-again-in-week-2-638395",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Matthew Stafford",
+   "team": "LAR",
+   "headline": "Rams Injury Report, Week 2 vs. Giants",
+   "summary": "Stafford carries no injury designation into tonight's Monday Night Football game; the Rams' notable flag is WR Puka Nacua (groin/hip), listed Questionable.",
+   "source": "TheRams.com",
+   "url": "https://www.therams.com/news/rams-injury-report-week-2-vs-giants-kam-kinchens-ruled-out-jordan-whittington-doubtful-puka-nacua-questionable-for-monday-night-football-vs-giants",
+   "at": "2026-09-21T07:17:36-07:00"
+  },
+  {
+   "player": "Travis Etienne Jr.",
+   "team": "NO",
+   "headline": "Limited volume in Baltimore",
+   "summary": "Etienne carried just 8 times for 25 yards as Alvin Kamara, back from a MCL sprain, out-touched him 14-8 in the win over Baltimore.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/travis-etienne-news-limited-volume-in-baltimore-638235",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "George Pickens",
+   "team": "DAL",
+   "headline": "Slight improvement in Week 2 win",
+   "summary": "Pickens caught 6 of 8 targets for 40 yards, playing clear #2 behind a resurgent CeeDee Lamb in the win over Washington.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/george-pickens-news-slight-improvement-in-week-2-win-638386",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Garrett Wilson",
+   "team": "NYJ",
+   "headline": "Scores in Week 2 loss",
+   "summary": "Wilson caught 5 of 7 targets for 57 yards and a touchdown in the Jets' 20-17 OT loss to Green Bay, and has both of Geno Smith's TD passes this season.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/garrett-wilson-news-scores-in-week-2-loss-638254",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Parker Washington",
+   "team": "JAX",
+   "headline": "Stands out in tough matchup",
+   "summary": "Washington led Jacksonville with 7 catches for 98 yards and a touchdown on 12 targets, putting him at 12-181-1 through two games and clearly emerging as the Jaguars' top receiving option.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/parker-washington-news-stands-out-in-tough-matchup-638400",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Isaiah Likely",
+   "team": "NYG",
+   "headline": "Giants Week 2 injury report vs. Rams: What it means for fantasy football",
+   "summary": "Likely carries no injury designation into tonight's Monday Night Football game at Los Angeles.",
+   "source": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/articles/giants-week-2-injury-report-160301327.html",
+   "at": "2026-09-21T07:17:36-07:00"
+  },
+  {
+   "player": "Quinshon Judkins",
+   "team": "CLE",
+   "headline": "Inefficient with 17 touches",
+   "summary": "Judkins gained just 48 total yards on 17 touches (2.3 YPC through two games) in the win over Tampa Bay, but remains the unquestioned lead back with Dylan Sampson on IR.",
+   "source": "RotoWire",
+   "url": "https://www.rotowire.com/football/headlines/quinshon-judkins-news-inefficient-with-17-touches-638314",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "49ers",
+   "team": "SF",
+   "headline": "49ers 35-13 Dolphins (Sep 20, 2026) Game Recap",
+   "summary": "San Francisco blew out Miami 35-13 for the week's #1 fantasy DST performance, with Bosa, Warner and Greenlaw all healthy and active.",
+   "source": "ESPN",
+   "url": "https://www.espn.com/nfl/recap?gameId=401872942",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Blake Corum",
+   "team": "LAR",
+   "headline": "Week 2 Outlook for Fantasy Football",
+   "summary": "Corum hasn't played Week 2 yet with the Rams' game tonight; in Week 1 he ran 10 times for 54 yards on a ~23% snap share in a timeshare with Kyren Williams.",
+   "source": "RotoBaller",
+   "url": "https://www.rotoballer.com/player-news/blake-corum-gets-a-tougher-matchup-amid-volume-increase/1945367",
+   "at": "2026-09-21T07:17:36-07:00"
+  },
+  {
+   "player": "Makai Lemon",
+   "team": "PHI",
+   "headline": "Barely heard from in Tennessee",
+   "summary": "Lemon caught just 1 pass for 14 yards in Philadelphia's 24-20 win over Tennessee, remaining a clear WR3 behind Smith and Wicks.",
+   "source": "NBC Sports",
+   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/makai-lemon-barely-heard-from-in-tennessee",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Tank Bigsby",
+   "team": "PHI",
+   "headline": "Eagles' Saquon Barkley (stinger) returns after halftime vs. Titans",
+   "summary": "Bigsby took over after Barkley left with a stinger on Philadelphia's first offensive snap, going for 13 carries/33 yards/TD plus 2 catches; Barkley returned but isn't guaranteed full health for Week 3.",
+   "source": "CBS Sports",
+   "url": "https://www.cbssports.com/nfl/news/eagles-saquon-barkley-exits-game-vs-titans-questionable-to-return/",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Chig Okonkwo",
+   "team": "WAS",
+   "headline": "Frankie Luvu, Chig Okonkwo ruled out for Week 2 vs. Cowboys",
+   "summary": "Okonkwo was ruled out with a hamstring injury and missed the Cowboys game; Washington will reassess him for Week 3 against Seattle, with the QB change to Mariota adding further uncertainty.",
+   "source": "Commanders.com",
+   "url": "https://www.commanders.com/news/game-status-commanders-cowboys-week-2-2026",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Alvin Kamara",
+   "team": "NO",
+   "headline": "Kamara leads Saints RBs with 14 touches in return",
+   "summary": "Kamara made his 2026 debut after an MCL sprain and immediately out-touched Travis Etienne 14-8 (9 carries/15 yards, 5 catches/7 yards) in the win over Baltimore.",
+   "source": "NBC Sports",
+   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-20/kamara-leads-saints-rbs-with-14-touches-in-return",
+   "at": "2026-09-20T12:00:00-07:00"
+  },
+  {
+   "player": "Raheim Sanders",
+   "team": "CLE",
+   "headline": "Takes on bigger role with Dylan Sampson placed on IR",
+   "summary": "Sanders moved into the clear #2 running back job behind Quinshon Judkins after Dylan Sampson landed on IR with a knee injury (out 4+ games).",
+   "source": "BrownsZone",
+   "url": "https://www.brownszone.com/2026/09/15/raheim-sanders-takes-on-bigger-role-with-dylan-sampson-placed-on-ir/",
+   "at": "2026-09-15T12:00:00-07:00"
   }
  ],
  "waivers": {
