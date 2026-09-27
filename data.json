@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-27T07:18:32-07:00",
+ "updatedAt": "2026-09-27T09:22:17-07:00",
  "week": 3,
  "yahoo": {
   "updatedAt": "2026-09-13",
@@ -350,10 +350,10 @@
     "slot": "WR",
     "name": "Tee Higgins",
     "team": "CIN",
-    "status": "Q",
-    "call": "watch",
-    "note": "NEW this week: added to the injury report Friday with a quad issue and is officially Questionable at Pittsburgh \u2014 a real downgrade from a clean bill of health last week. Steelers' pass D is only middle-of-the-pack (22nd in yards allowed), so the matchup isn't the concern, his health is. Recheck inactives before the 10 AM PT lock.",
-    "ifOut": "Stefon Diggs"
+    "status": "",
+    "call": "start",
+    "note": "CLEARED: not on the Bengals' Week 3 inactive list (only Newton, Lew, Hinton, Endries, Hill, Robinson are out) and he arrived at Acrisure Stadium for the game \u2014 Sleeper's live feed has already dropped his quad tag. Confident start.",
+    "ifOut": ""
    },
    {
     "slot": "WR",
@@ -378,8 +378,8 @@
     "name": "Zay Flowers",
     "team": "BAL",
     "status": "Q",
-    "call": "watch",
-    "note": "Downgrade from earlier in the week: Ravens sources now call this a true pregame decision, and ESPN's Jeremy Fowler reports he'll likely be on a snap/pitch count even if active, with Rio field conditions also a factor. Inactives don't drop until 90 minutes before the 1:25 PM PT kickoff. Elite matchup if he goes (28.0 implied, Dallas' pass D is a real question mark post-Parsons trade), but this is a genuine game-time call, not a lock. Diggs is the swap.",
+    "call": "sit",
+    "note": "Trending worse this morning: Schefter and Rapoport both call it a true pregame decision, and multiple reports (RotoWire, CBS) say the Ravens don't sound like they expect him to play — Rio field conditions are also working against him. The call isn't official until ~90 min before the 1:25 PM PT kickoff, but the signal is bad enough to make the swap now. Start Diggs.",
     "ifOut": "Stefon Diggs"
    },
    {
@@ -498,7 +498,7 @@
     "team": "SF",
     "status": "",
     "call": "start",
-    "note": "Nick Bosa is out again (calf) and could land on IR, a real dent in the pass rush. Still, SF is an 8.5-point home favorite in a 47.5-point game against a shaky Arizona O-line \u2014 top-tier DEF matchup regardless. Start.",
+    "note": "Nick Bosa is officially out again (calf) \u2014 SF is keeping him off IR, expected back in a few weeks. Still, SF is an 8.5-point home favorite in a 47.5-point game against a shaky Arizona O-line \u2014 top-tier DEF matchup regardless. Start.",
     "ifOut": ""
    }
   ]
@@ -579,7 +579,7 @@
      "spread": 3.5,
      "impliedTeam": 23.0
     },
-    "takeaway": "Matchup is playable (22nd-ranked pass D) but the real question is health \u2014 new Questionable tag (quad) as of Friday. Recheck inactives."
+    "takeaway": "Cleared \u2014 active and off the inactive list, matchup is playable (22nd-ranked pass D). No longer a concern, start with confidence."
    },
    {
     "slot": "WR",
@@ -636,7 +636,7 @@
      "spread": 3.5,
      "impliedTeam": 28.0
     },
-    "takeaway": "Elite matchup and the week's highest implied total (28.0) if he plays, but this is now a true pregame decision with a likely snap/pitch count even if active \u2014 not a confident start."
+    "takeaway": "Elite matchup and the week's highest implied total (28.0) if he plays, but multiple insiders now say the Ravens don't sound like they expect him to play \u2014 sit him, start Diggs."
    },
    {
     "slot": "FLEX",
@@ -885,73 +885,37 @@
      "spread": 8.5,
      "impliedTeam": 28.0
     },
-    "takeaway": "Bosa is out again (calf, IR possible) \u2014 a real dent \u2014 but an 8.5-point home favorite vs. a shaky O-line keeps this a top-tier DEF start."
+    "takeaway": "Bosa (calf) is officially out again \u2014 SF is keeping him off IR, expected back in a few weeks, not today \u2014 but an 8.5-point home favorite vs. a shaky Cardinals O-line keeps this a top-tier DEF start."
    }
   ]
  },
  "news": [
   {
-   "player": "Zay Flowers",
-   "team": "BAL",
-   "headline": "Zay Flowers (hamstring) on snap count if active",
-   "summary": "Flowers is a true pregame decision for Sunday's game in Rio and would likely play on a limited snap/pitch count even if he's active, with Brazil field conditions also a factor in the final call.",
-   "source": "NBC Sports",
-   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-26/zay-flowers-hamstring-on-snap-count-if-active",
-   "at": "2026-09-26T09:00:00-07:00"
-  },
-  {
    "player": "Tee Higgins",
    "team": "CIN",
-   "headline": "Bengals WR Tee Higgins questionable with quad injury",
-   "summary": "Higgins was limited in practice Friday with a new quad injury and carries an official Questionable tag into Sunday's game at Pittsburgh.",
-   "source": "ESPN",
-   "url": "https://www.espn.com/nfl/story/_/id/42000406/bengals-wr-tee-higgins-questionable-quad-injury",
-   "at": "2026-09-25T14:00:00-07:00"
+   "headline": "Bengals reveal Week 3 inactives",
+   "summary": "Higgins is not among the Bengals' six inactives and arrived at Acrisure Stadium for the game, clearing him of the Friday quad tag entirely.",
+   "source": "Yahoo Sports",
+   "url": "https://sports.yahoo.com/articles/bengals-announce-inactives-week-3-153044754.html",
+   "at": "2026-09-27T09:00:00-07:00"
   },
   {
-   "player": "Josh Downs",
-   "team": "IND",
-   "headline": "Nine targets for Josh Downs after Pierce departure",
-   "summary": "With Alec Pierce now on injured reserve (heel), Downs is set up as the Colts' clear top target, having led the team in targets, catches, and yards in the game Pierce exited.",
-   "source": "NBC Sports",
-   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-21/nine-targets-for-josh-downs-after-pierce-departure",
-   "at": "2026-09-21T09:00:00-07:00"
-  },
-  {
-   "player": "Quinshon Judkins",
-   "team": "CLE",
-   "headline": "Browns' Quinshon Judkins: Facing 26th-ranked rush defense",
-   "summary": "Judkins is off the injury report and full-go for Sunday against a Carolina run defense ranked 26th in the NFL, allowing 6.3 yards per carry.",
+   "player": "Zay Flowers",
+   "team": "BAL",
+   "headline": "Ravens' Zay Flowers: Status remains murky for Week 3",
+   "summary": "Flowers will take a pregame workout to decide his status, but Schefter and Rapoport both frame it as a true game-time call and the Ravens don't sound like they expect him to play.",
    "source": "CBS Sports",
-   "url": "https://www.cbssports.com/fantasy/football/news/browns-quinshon-judkins-facing-26th-ranked-rush-defense",
-   "at": "2026-09-26T10:00:00-07:00"
-  },
-  {
-   "player": "Travis Etienne",
-   "team": "NO",
-   "headline": "Travis Etienne (hamstring) will play in Week 3",
-   "summary": "Head coach Kellen Moore confirmed Etienne is fully cleared of the hamstring issue and off the injury report for Sunday's game against the Raiders.",
-   "source": "NBC Sports",
-   "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-09-25/travis-etienne-hamstring-will-play-in-week-3",
-   "at": "2026-09-25T09:00:00-07:00"
+   "url": "https://www.cbssports.com/fantasy/football/news/ravens-zay-flowers-status-remains-murky-for-week-3/",
+   "at": "2026-09-27T08:30:00-07:00"
   },
   {
    "player": "Nick Bosa",
    "team": "SF",
-   "headline": "49ers Rule Out Nick Bosa and 3 Other Players Against Arizona",
-   "summary": "Bosa is officially ruled out again this week with the calf strain suffered in practice, and the team is considering an IR move.",
-   "source": "Yahoo Sports",
-   "url": "https://sports.yahoo.com/articles/49ers-rule-nick-bosa-3-224040718.html",
-   "at": "2026-09-26T12:00:00-07:00"
-  },
-  {
-   "player": "Jason Myers",
-   "team": "SEA",
-   "headline": "Jason Myers will have plenty of scoring opportunities in Week 3",
-   "summary": "Washington's defense has already allowed 61 points and 22 fantasy points to opposing kickers through two games, setting up a plus matchup for Myers as a healthy road favorite.",
-   "source": "RotoBaller",
-   "url": "https://www.rotoballer.com/player-news/jason-myers-will-have-plenty-of-scoring-opportunities-in-week-3/1950668",
-   "at": "2026-09-24T09:00:00-07:00"
+   "headline": "5 Out, 3 More Questionable on 49ers-Cardinals Week 3 Injury Report",
+   "summary": "Bosa (calf) is ruled out for a second straight week, but the 49ers have decided against an IR move and expect him back within a few weeks.",
+   "source": "SI.com",
+   "url": "https://www.si.com/nfl/cardinals/onsi/5-out-3-more-questionable-san-francisco-49ers-arizona-cardinals-week-3-injury-report",
+   "at": "2026-09-27T07:00:00-07:00"
   }
  ],
  "waivers": {
@@ -985,8 +949,8 @@
   }
  ],
  "brief": {
-  "text": "MOST OF YOUR SLEEPER LINEUP LOCKS IN UNDER 3 HOURS (10:00 AM PT) \u2014 TEE HIGGINS IS A NEW QUESTIONABLE (QUAD), CHECK INACTIVES BEFORE KICKOFF; ZAY FLOWERS IS STILL A TRUE GAME-TIME CALL FOR THE 1:25 PM PT RIO GAME.\n\nGANGSTAS PARADISE (Sleeper) \u2014 Tee Higgins is a new Questionable (quad) as 8 of your 10 starters lock at 10 AM PT; Zay Flowers remains a true game-time call in Rio\nDo now: Recheck the Bengals' inactives before the 10 AM PT lock \u2014 if Higgins sits, start Stefon Diggs. Zay Flowers is no longer a confident starter: Ravens sources call it a true pregame decision and ESPN reports he'll likely play on a snap/pitch count even if active; inactives don't drop until 90 minutes before the 1:25 PM PT kickoff. Only one Diggs covers one slot \u2014 if BOTH Higgins and Flowers sit, Michael Wilson is your second fill-in. Everyone else has no new injury flags.\nLocks next 24h: Herbert, Hampton, Chase Brown, Higgins, Downs, Strange, Tuten, and Jaguars DEF all lock 10:00 AM PT (about 2h45m out). Flowers and Aubrey lock 1:25 PM PT in Rio.\nLineup: Otherwise unchanged. Downs' role actually grew this week (Alec Pierce landed on IR, heel) even though Houston has emerged as the league's best-graded defense. Tuten gets a plus matchup against a Patriots run defense that's been a weak spot in each of their last two games. Jaguars DEF is a good streaming matchup against a Patriots offense already sitting on 5 giveaways this season. If Higgins is out: start Diggs. If Flowers is out: start Diggs (or Wilson if both are out).\nWaivers / trades: not a Tue/Wed run \u2014 see the Waivers and Trades tabs for last week's still-live plan.\n\nGAME OF THROWS (Yahoo) \u2014 SCREENSHOTS ARE NOW 14 DAYS STALE, please drop fresh ones; George Pickens draws the league's softest pass defense (Baltimore, 31st) this week\nDo now: Send fresh Yahoo screenshots (current roster, matchup, and free-agent list) to the War room folder. This section is still projected off your last-known Sept 13 roster onto this week's real schedule and opponent \u2014 treat it as a best-effort estimate, not verified truth, until you do.\nLocks next 24h: Chase Brown, Garrett Wilson, Parker Washington, Isaiah Likely, and Judkins all lock 10:00 AM PT. Etienne and Pickens lock 1:25 PM PT (Rio/Vegas games). 49ers DEF locks 1:05 PM PT. Stafford is the late one \u2014 5:20 PM PT Sunday Night Football.\nLineup: No forced changes. Pickens has the best matchup on your entire roster this week \u2014 Baltimore's pass defense ranks dead last, 31st in the NFL. Etienne is fully cleared of his hamstring but still timesharing with Kamara/Donaldson, so treat him as a floor play, not a ceiling play. 49ers DEF still starts even with Bosa out again (calf, could land on IR) \u2014 Arizona's shaky O-line and an 8.5-point home spread keep it a top matchup.\nWaivers / trades: not a Tue/Wed run \u2014 see the Waivers and Trades tabs for last week's still-live plan.\n\nFYI: Chase Brown starts on both your rosters again with no new injury concern; his backup Samaje Perine is fully clear too. Four Jaguars are in play across your two leagues (Strange, Tuten, Jaguars DEF on Sleeper; Parker Washington on Yahoo) as Jacksonville hosts New England. Aubrey (Sleeper) and Pickens (Yahoo) both play in the same Rio game as Flowers \u2014 same turf/heat wildcard applies to all three.\nData: Sleeper live (Week 3 roster and matchup confirmed via API, you're 0-2 vs. ericlimmy/\"Quinshon's Webkinz,\" also 0-2) \u00b7 Yahoo screenshots unchanged since 2026-09-13 \u2014 now 14 days stale, please drop fresh screenshots (roster, free-agent list, current matchup) in the War room folder.",
-  "at": "2026-09-27T07:18:32-07:00",
-  "mode": "daily"
+  "text": "TEE HIGGINS IS CLEARED AND ACTIVE (QUAD TAG GONE) \u2014 8 OF YOUR 10 SLEEPER STARTERS LOCK IN ABOUT 35 MINUTES (10:00 AM PT); ZAY FLOWERS IS TRENDING TOWARD SITTING FOR THE 1:25 PM PT RIO GAME \u2014 START STEFON DIGGS IN HIS SPOT NOW.\n\nGANGSTAS PARADISE (Sleeper) \u2014 Higgins cleared and starting; bench Flowers for Diggs, everyone else locked in\nDo now: Swap Diggs in for Flowers. Schefter and Rapoport both call Flowers a true pregame decision, and multiple reports say the Ravens don't sound like they expect him to play \u2014 don't wait for the 90-minutes-out call, make the swap now. Higgins is fully cleared: not on the Bengals' 6-man inactive list and he's at the stadium, so the quad scare is over \u2014 start him with confidence.\nLocks next 24h: 8 starters lock 10:00 AM PT, kickoff order irrelevant since they're simultaneous \u2014 Herbert, Hampton, Chase Brown, Higgins, Downs, Strange, Tuten, Jaguars DEF. Flowers/Diggs decision and Aubrey lock 1:25 PM PT in Rio.\nLineup, in kickoff order:\n10:00 AM PT \u2014 QB Justin Herbert: no tag, start. RB Omarion Hampton: no tag, start. RB Chase Brown: no tag, start. WR Tee Higgins: CLEARED, no tag, start. WR Josh Downs: no tag, start (Pierce still on IR, role is his). TE Brenton Strange: no tag, start (only option). FLEX Bhayshul Tuten: no tag, start (plus matchup vs. NE run D). DEF Jaguars: start (NE has 5 giveaways already).\n1:25 PM PT (Rio) \u2014 FLEX Zay Flowers: Q, trending OUT \u2014 SIT, start Stefon Diggs instead. K Brandon Aubrey: no tag, start.\nIf Higgins were to scratch late (unlikely, he's already at the stadium): start Diggs there too, but you only have one Diggs \u2014 Michael Wilson is the second fallback if both Higgins and Flowers end up out.\nWaivers / trades: unchanged this run \u2014 see the Waivers and Trades tabs for the still-live plan.\n\nGAME OF THROWS (Yahoo) \u2014 screenshots still 14 days stale; nothing new on injuries since this morning, lineup is locked as-is\nDo now: Send fresh Yahoo screenshots (current roster, matchup, free-agent list) to the War room folder \u2014 still running on the Sept 13 roster projected onto this week's real schedule.\nLineup, in kickoff order:\n10:00 AM PT \u2014 RB Chase Brown: no tag, start. WR Garrett Wilson: no tag, start. WR Parker Washington: no tag, start. TE Isaiah Likely: no tag, start. W/R/T Quinshon Judkins: no tag, start (plus matchup vs. CAR run D).\n1:25 PM PT \u2014 RB Travis Etienne Jr.: no tag, start (cleared hamstring, floor play in a timeshare). WR George Pickens: no tag, start (best matchup on the roster, Baltimore 31st vs. WR).\n1:05 PM PT \u2014 DEF 49ers: start. Bosa (calf) is out again but staying off IR, expected back in a few weeks \u2014 doesn't change the matchup call.\n5:20 PM PT (Sunday Night) \u2014 QB Matthew Stafford: no tag, start (tough Denver D but 23.5 implied keeps him playable, no better option).\nWaivers / trades: unchanged this run \u2014 see the Waivers and Trades tabs for the still-live plan.\n\nFYI: Chase Brown starts on both rosters with no injury concern, backup Samaje Perine fully clear. Four Jaguars are in play across your two leagues as Jacksonville hosts New England (Strange, Tuten, Jaguars DEF on Sleeper; Parker Washington on Yahoo). Aubrey (Sleeper) and Pickens (Yahoo) play in the same Rio game as the Flowers decision \u2014 same turf/heat wildcard for both, but neither is banged up himself.\nData: Sleeper live (Week 3 roster, matchup, and inactives confirmed via API/search, you're 0-2) \u00b7 Yahoo screenshots unchanged since 2026-09-13 \u2014 now 14 days stale, please drop fresh screenshots (roster, free-agent list, current matchup) in the War room folder.",
+  "at": "2026-09-27T09:22:17-07:00",
+  "mode": "sunday"
  }
 }
