@@ -1,18 +1,18 @@
 {
- "updatedAt": "2026-09-30T07:14:59-07:00",
+ "updatedAt": "2026-10-01T07:14:33-07:00",
  "week": 4,
  "yahoo": {
   "updatedAt": "2026-09-13",
   "week": 4,
   "opponent": "BigDoughSummers",
   "oppManager": "unknown — no screenshot data",
-  "record": "unknown — Yahoo screenshots stale since 2026-09-13 (now 16 days)",
-  "oppRecord": "unknown — Yahoo screenshots stale since 2026-09-13 (now 16 days)",
+  "record": "unknown — Yahoo screenshots stale since 2026-09-13 (now 18 days)",
+  "oppRecord": "unknown — Yahoo screenshots stale since 2026-09-13 (now 18 days)",
   "myProj": 103.84,
   "oppProj": 108.14,
   "myPts": null,
   "oppPts": null,
-  "winProb": "unknown — no live Yahoo data this run (screenshots 16 days stale)",
+  "winProb": "unknown — no live Yahoo data this run (screenshots 18 days stale)",
   "starters": [
    {
     "slot": "QB",
@@ -325,7 +325,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "Second day running your live Sleeper app has Tyler Shough started here instead — revert now. Herbert has no injury tag and is a clean start over a Saints spot-starter even against a Seahawks defense that's allowed the 11th-most fantasy points to QBs this year.",
+    "note": "Third day running your live Sleeper lineup still has Tyler Shough started here instead — revert now. Herbert has no injury tag; Seattle is now only a 3-point favorite (was 6.5), which makes the live benching look even worse.",
     "ifOut": ""
    },
    {
@@ -334,7 +334,7 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "Also still benched live for Michael Wilson — revert this too. No injury; Hampton remains the Chargers' clear lead back. A bell-cow RB beats a bench WR every time here.",
+    "note": "Also still benched live for Michael Wilson — third day, revert this too. No injury; Hampton remains the Chargers' clear lead back (Kimani Vidal is the real handcuff if that ever changes).",
     "ifOut": ""
    },
    {
@@ -343,7 +343,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "No injury. Samaje Perine is healthy again and will eat into the workload some, but Brown is still the lead back, and the JAX-CIN total just jumped to 51 (from 45.5) — the richest environment on your roster. Confident start.",
+    "note": "No injury. The JAX-CIN line actually tightened toward Cincinnati since yesterday's read (now CIN -7.5, not -2.5), pushing Brown's implied total up to 26.5. Confident start.",
     "ifOut": ""
    },
    {
@@ -352,7 +352,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "No injury. Same JAX-CIN game, now a 51-point total — start.",
+    "note": "No injury. Same CIN game, 26.5 implied — start.",
     "ifOut": ""
    },
    {
@@ -361,7 +361,7 @@
     "team": "IND",
     "status": "",
     "call": "start",
-    "note": "No injury, IND's clear WR1. Colts confirmed 3.5-point favorites in London; no total posted yet. Early 6:30am PT kickoff Sunday — lock it in Saturday night.",
+    "note": "No injury, IND's clear WR1. Colts confirmed -3.5 in London with a 46.5 total (25.0 implied) against a Washington defense now graded 31st overall. Early 6:30am PT kickoff Sunday — lock it in Saturday night.",
     "ifOut": ""
    },
    {
@@ -370,17 +370,17 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "No injury. The JAX-CIN total soaring to 51 (was 45.5) makes this the best environment on your roster, and he's still your only real TE — start.",
+    "note": "No injury. Correction from the last two runs: the JAX-CIN total actually settled at 45.5, not 51, and Cincinnati is now a full -7.5 favorite — a tougher game than it looked. Still your only real TE, still a start.",
     "ifOut": ""
    },
    {
     "slot": "FLEX",
     "name": "Zay Flowers",
     "team": "BAL",
-    "status": "",
+    "status": "Q",
     "call": "start",
-    "note": "No injury. Line tightened even further in Baltimore's favor (Ravens now -11.5, total 43.5) — still your best implied total (27.5) and best play of the week.",
-    "ifOut": ""
+    "note": "NEW this run: Flowers now carries a Questionable/hamstring tag — the same hamstring that's bothered him since Week 1. Ravens are still -10.5 (27.5 implied, your best environment), so start him if he's active, but check Friday's practice report before locking Sunday.",
+    "ifOut": "Michael Wilson"
    },
    {
     "slot": "FLEX",
@@ -388,7 +388,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "No injury. Real three-man committee with Chris Rodriguez (and LeQuint Allen) continues, but JAX's implied total jumping to 24.25 (from 19.0) on that 51-point game total makes this a much better spot than it looked yesterday. Start.",
+    "note": "No injury. Same CIN-favored line pulls Tuten's implied total down to 19.0 (from the 24.25 misread). Real three-man committee with Rodriguez/Allen persists, but still your best FLEX alternative — start.",
     "ifOut": ""
    },
    {
@@ -397,7 +397,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "No injury. Big reversal from last week's dip — the DAL-HOU total jumped to 47.5 and Houston's number shrank to -2.5, pushing Dallas' implied total back up to 22.5 (from 16.75). Confident start.",
+    "note": "No injury. HOU -3, total 47.5 — Dallas implied 22.25. Confident start.",
     "ifOut": ""
    },
    {
@@ -406,7 +406,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "Cincinnati's implied total also rose (to 26.75) in that shootout-shaped 51-point game, which caps the points-allowed ceiling further — but real sack/takeaway equity keeps this your only real option. Start.",
+    "note": "Cincinnati's implied total (26.5) caps the points-allowed ceiling in a game JAX is now a 7.5-point underdog in — your weakest DEF matchup of the four games on your roster this week, but still the only option. Start.",
     "ifOut": ""
    }
   ],
@@ -417,7 +417,7 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "No injury. First confirmed line of the week for this game — LAR -2, total 46 (implied 24.0) on the road against a top-5 Philly defense. Playable QB1, no better option.",
+    "note": "No injury. LAR -1.5, total 45.5 (implied 23.5) on the road at a top-5 Eagles defense. Heavy rain (2-4in) and thunderstorms are forecast for Sunday in Philadelphia — could cap garbage-time volume — but still the only real option. Start.",
     "ifOut": ""
    },
    {
@@ -426,7 +426,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Same read as your Sleeper roster — JAX-CIN total exploded to 51, the richest game on the board. Start.",
+    "note": "Same read as your Sleeper roster — CIN now -7.5, implied 26.5. Start.",
     "ifOut": ""
    },
    {
@@ -435,7 +435,7 @@
     "team": "NO",
     "status": "O",
     "call": "sit",
-    "note": "Still officially OUT — hamstring, no new timeline surfaced this run. Kamara is the Saints' clear RB1. Start Corum instead.",
+    "note": "Still officially OUT — hamstring, no new timeline surfaced this run (expect Kamara/Miller/Donaldson to soak up the touches). Corum is your real starter here.",
     "ifOut": "Blake Corum"
    },
    {
@@ -444,7 +444,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "No injury. Real reversal from last week — Dallas' implied total jumped to 22.5 (from 16.75) as the DAL-HOU total rose to 47.5 and Houston's number shrank to -2.5. Clear #1 target, confident start now.",
+    "note": "No injury. HOU -3, total 47.5, Dallas implied 22.25 — dome game (NRG roof closed), no weather concern. Clear #1 target, confident start.",
     "ifOut": ""
    },
    {
@@ -453,7 +453,7 @@
     "team": "NYJ",
     "status": "",
     "call": "start",
-    "note": "No new injury found this run. Line moved in the Jets' favor — Chicago's number shrank to -3 (total 43, from -8.5/45.5), reportedly tied to Caleb Williams' Wednesday DNP. Still capped as a road underdog, but a better spot than it looked. No severe weather confirmed yet for Chicago — recheck Friday.",
+    "note": "No injury found this run. CHI -3.5, total 43.5 (NYJ implied 20.0). Playable WR2 as a road underdog. No severe weather confirmed for Chicago yet — recheck Friday.",
     "ifOut": ""
    },
    {
@@ -462,7 +462,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "No injury. Trevor Lawrence's clear #1 target in the week's highest-total game on either roster (51) — confident start.",
+    "note": "No injury. Correction from recent runs: JAX-CIN total is really 45.5 with CIN -7.5, not the 51-point shootout previously logged — tougher spot, implied just 19.0. Still Trevor Lawrence's clear #1 target with no real competition for targets — start.",
     "ifOut": ""
    },
    {
@@ -471,7 +471,7 @@
     "team": "NYG",
     "status": "",
     "call": "start",
-    "note": "No injury. No fresh sportsbook total confirmed this run for ARI-NYG (last seen: 45.5, NYG -7) — still your only rostered TE, start.",
+    "note": "No injury. NYG -2.5, total 43.5 (implied 23.0) vs Arizona. Still your only rostered TE — start.",
     "ifOut": ""
    },
    {
@@ -480,7 +480,7 @@
     "team": "CLE",
     "status": "",
     "call": "start",
-    "note": "No new injury signal found this run — fully past last year's leg injury. Short week, lowest implied total on this sheet (17.5, PIT -2.5/37.5 total), but full workload keeps him a start. Your earliest lock — Thursday 8:15pm ET / 5:15pm PT, set it the night before.",
+    "note": "No injury signal found this run — fully past last year's leg injury. Your earliest lock tonight (Thu 5:15pm PT vs PIT) — and the total has dropped 5 points (41.5 to 36.5) on a rain/snow forecast for Cleveland. Full workload still keeps him a start, but don't expect a shootout.",
     "ifOut": ""
    },
    {
@@ -489,7 +489,7 @@
     "team": "SEA",
     "status": "",
     "call": "start",
-    "note": "No injury. Line ticked up slightly (SEA -6.5, total 43.5, implied 25.0) — confident start.",
+    "note": "No injury. SEA -3, total 45.5 (implied 24.25) vs the Chargers. Confident start.",
     "ifOut": ""
    },
    {
@@ -498,7 +498,7 @@
     "team": "SF",
     "status": "",
     "call": "start",
-    "note": "Bosa (calf) is now confirmed officially on IR — doesn't change this pick. SF -2.5 vs Denver, no total posted yet — still a top-tier DST start.",
+    "note": "Bosa (calf) remains on IR — doesn't change this pick. SF -2.5, total 46.5 (implied 24.5) vs a Denver offense with real third-down/turnover issues. Top-tier DST start.",
     "ifOut": ""
    }
   ]
@@ -512,17 +512,17 @@
     "pos": "QB",
     "opp": "SEA",
     "defRank": 11,
-    "defRankNote": "Seattle has allowed the 11th-most fantasy points to QBs this season — not the shutdown unit reputation suggests (EstablishTheRun)",
+    "defRankNote": "Seattle has allowed the 11th-most fantasy points to QBs this season (EstablishTheRun)",
     "weather": {
      "impact": "none",
-     "note": "Lumen Field, outdoor — mild, no severe forecast"
+     "note": "Lumen Field, outdoor — no severe forecast"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": 6.5,
-     "impliedTeam": 18.5
+     "total": 45.5,
+     "spread": -3.0,
+     "impliedTeam": 21.25
     },
-    "takeaway": "Still your lowest implied total on the sheet (18.5), which makes the live benching for Shough worse, not better. Start."
+    "takeaway": "Line softened toward LAC (SEA now only -3, was -6.5) — better spot than it's looked all week. Start."
    },
    {
     "slot": "RB",
@@ -531,17 +531,17 @@
     "pos": "RB",
     "opp": "SEA",
     "defRank": null,
-    "defRankNote": "No RB-specific DVP number found; SEA's DST ranks top-3 in overall fantasy scoring but that's turnover/points-driven, not run-stop specific",
+    "defRankNote": "No RB-specific DVP number found; SEA's defense grades out strong overall but that's turnover/points-driven, not run-stop specific",
     "weather": {
      "impact": "none",
      "note": "Lumen Field, outdoor — no severe forecast"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": 6.5,
-     "impliedTeam": 18.5
+     "total": 45.5,
+     "spread": -3.0,
+     "impliedTeam": 21.25
     },
-    "takeaway": "Clear lead back. Better play than the Michael Wilson swap currently sitting in your live lineup — start."
+    "takeaway": "Clear lead back in an improved game environment (implied 21.25, up from 18.5). Still a far better play than the live Michael Wilson swap — start."
    },
    {
     "slot": "RB",
@@ -556,11 +556,11 @@
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": -2.5,
-     "impliedTeam": 26.75
+     "total": 45.5,
+     "spread": -7.5,
+     "impliedTeam": 26.5
     },
-    "takeaway": "Tough run front, but the game total jumping to 51 (from 45.5) lifts the implied total to 26.75 — confident start."
+    "takeaway": "Tough run front, but CIN is now a 7.5-point favorite with the highest implied total on either roster (26.5) — confident start."
    },
    {
     "slot": "WR",
@@ -569,17 +569,17 @@
     "pos": "WR",
     "opp": "JAX",
     "defRank": null,
-    "defRankNote": "No clean WR-specific JAX rank found; their D grades tougher against the run than the air this year",
+    "defRankNote": "No clean WR-specific JAX rank found; their defense grades tougher against the run than the air this year",
     "weather": {
      "impact": "none",
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": -2.5,
-     "impliedTeam": 26.75
+     "total": 45.5,
+     "spread": -7.5,
+     "impliedTeam": 26.5
     },
-    "takeaway": "Now the highest-total game on either roster (51) — start with confidence."
+    "takeaway": "Highest implied total on either roster (26.5) in a game CIN is heavily favored to control — start with confidence."
    },
    {
     "slot": "WR",
@@ -587,18 +587,18 @@
     "team": "IND",
     "pos": "WR",
     "opp": "WAS",
-    "defRank": 28,
-    "defRankNote": "WAS pass D allowed the 30th-most yards/attempt and 29th-highest TD rate in 2025; DST graded 28th overall to open 2026 (SharpFootballAnalysis)",
+    "defRank": 31,
+    "defRankNote": "Washington's defense now graded 31st overall for 2026 (SharpFootballAnalysis) — down from last check's 28th",
     "weather": {
      "impact": "none",
-     "note": "Tottenham Hotspur Stadium (London), open pitch — mild, no severe forecast found this far out"
+     "note": "Tottenham Hotspur Stadium (London), open pitch — no severe forecast found this far out, recheck Friday"
     },
     "vegas": {
-     "total": null,
+     "total": 46.5,
      "spread": -3.5,
-     "impliedTeam": null
+     "impliedTeam": 25.0
     },
-    "takeaway": "Plus matchup holds (WAS 28th). Colts now confirmed 3.5-point favorites, though no total is posted yet. Early 6:30am PT kickoff — set it Saturday night."
+    "takeaway": "Plus matchup just got plus-er (WAS now 31st). Colts confirmed -3.5 with a fresh 46.5 total (implied 25.0). Early 6:30am PT kickoff — set it Saturday night."
    },
    {
     "slot": "TE",
@@ -607,17 +607,17 @@
     "pos": "TE",
     "opp": "CIN",
     "defRank": null,
-    "defRankNote": "No CIN defense-vs-TE number found in search this week",
+    "defRankNote": "No clean CIN defense-vs-TE number found this week",
     "weather": {
      "impact": "none",
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": 2.5,
-     "impliedTeam": 24.25
+     "total": 45.5,
+     "spread": 7.5,
+     "impliedTeam": 19.0
     },
-    "takeaway": "Matchup data thin, but the game total soaring to 51 lifts JAX's implied total to 24.25 (from 19.0) — best environment your only real TE has seen. Start."
+    "takeaway": "Correction from recent runs — the game total settled at 45.5, not 51, and JAX is now a full 7.5-point underdog (implied just 19.0). Weakest environment on your roster, but still your only real TE. Start."
    },
    {
     "slot": "FLEX",
@@ -626,17 +626,17 @@
     "pos": "WR",
     "opp": "TEN",
     "defRank": 25,
-    "defRankNote": "TEN DST ranks 25th overall in fantasy defense, allowed the 5th-most points per game in 2025 (SI/Onsi)",
+    "defRankNote": "TEN ranks ~25th overall in fantasy defense, allowed the 5th-most points per game in 2025 (SI/Onsi)",
     "weather": {
      "impact": "none",
      "note": "M&T Bank Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": -11.5,
+     "total": 44.5,
+     "spread": -10.5,
      "impliedTeam": 27.5
     },
-    "takeaway": "Line tightened even further Baltimore's way (now -11.5) — still your best play of the week."
+    "takeaway": "Best implied total on your sheet (27.5) hasn't moved, but Flowers is now Questionable with the hamstring that's dogged him since Week 1 — check Friday's practice report before you lock this in."
    },
    {
     "slot": "FLEX",
@@ -651,11 +651,11 @@
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": 2.5,
-     "impliedTeam": 24.25
+     "total": 45.5,
+     "spread": 7.5,
+     "impliedTeam": 19.0
     },
-    "takeaway": "Real three-man committee with Rodriguez/Allen persists, but the total jump to 51 (implied 24.25, up from 19.0) makes this a materially better spot than a day ago. Start."
+    "takeaway": "Real three-man committee with Rodriguez/Allen persists, and the implied total actually fell to 19.0 (correcting the earlier 24.25 misread) now that CIN is a bigger favorite. Still start — no better option."
    },
    {
     "slot": "K",
@@ -667,14 +667,14 @@
     "defRankNote": "N/A for kickers — Houston's stout D is a mild drag at most",
     "weather": {
      "impact": "none",
-     "note": "NRG Stadium — roof reported closed/climate-controlled, treat as a dome"
+     "note": "NRG Stadium — roof closed, treat as a dome"
     },
     "vegas": {
      "total": 47.5,
-     "spread": 2.5,
-     "impliedTeam": 22.5
+     "spread": -3.0,
+     "impliedTeam": 22.25
     },
-    "takeaway": "Big reversal — DAL's implied total jumped back to 22.5 (from 16.75) as the total rose to 47.5 and HOU's number shrank to -2.5. Confident start."
+    "takeaway": "HOU -3, total 47.5 (DAL implied 22.25). Confident start."
    },
    {
     "slot": "DEF",
@@ -683,17 +683,17 @@
     "pos": "DEF",
     "opp": "CIN",
     "defRank": null,
-    "defRankNote": "N/A — Cincinnati's O-line remains a pressure-rate liability",
+    "defRankNote": "N/A — Cincinnati's O-line remains a pressure-rate liability even as favorites",
     "weather": {
      "impact": "none",
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": 2.5,
-     "impliedTeam": 24.25
+     "total": 45.5,
+     "spread": 7.5,
+     "impliedTeam": 19.0
     },
-    "takeaway": "Bengals now implied for 26.75 in a 51-point shootout — caps the points-allowed ceiling further, but real sack/takeaway equity keeps this a start."
+    "takeaway": "Bengals implied for 26.5 as a 7.5-point favorite — caps the points-allowed ceiling more than any other matchup on your roster this week, but sack/takeaway equity keeps this your only real option. Start."
    }
   ],
   "yahoo": [
@@ -706,15 +706,15 @@
     "defRank": 5,
     "defRankNote": "PHI DST graded top-5 overall to open 2026, pass D allowed 8th-fewest yards/gm in 2025 (RotoBaller/SharpFootballAnalysis)",
     "weather": {
-     "impact": "minor",
-     "note": "Lincoln Financial Field, outdoor — light rain possible, no wind/severe risk flagged"
+     "impact": "major",
+     "note": "Lincoln Financial Field, outdoor — 2-4in of rain forecast with thunderstorms and flooding risk Sunday; expect a run-heavier, lower-passing-volume game"
     },
     "vegas": {
-     "total": 46.0,
-     "spread": -2.0,
-     "impliedTeam": 24.0
+     "total": 45.5,
+     "spread": -1.5,
+     "impliedTeam": 23.5
     },
-    "takeaway": "First confirmed line this week — LAR -2, total 46 (implied 24.0) on the road against a top-5 D. Playable QB1, no better option."
+    "takeaway": "Playable QB1 against a top-5 D, but heavy rain forecast for Sunday caps the passing-volume ceiling — no better option, start anyway."
    },
    {
     "slot": "RB",
@@ -729,11 +729,11 @@
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": -2.5,
-     "impliedTeam": 26.75
+     "total": 45.5,
+     "spread": -7.5,
+     "impliedTeam": 26.5
     },
-    "takeaway": "Elite run front doesn't matter at this volume, and the total exploding to 51 only helps — start."
+    "takeaway": "Elite run front doesn't matter at this volume, and CIN being a bigger favorite (-7.5) only helps — start."
    },
    {
     "slot": "RB",
@@ -744,15 +744,15 @@
     "defRank": 12,
     "defRankNote": "PHI run D allowed 4.2 YPC (12th) in 2025 but ranks 28th forcing negative runs (SharpFootballAnalysis)",
     "weather": {
-     "impact": "minor",
-     "note": "Lincoln Financial Field, outdoor — light rain possible, no wind/severe risk flagged"
+     "impact": "major",
+     "note": "Lincoln Financial Field, outdoor — same Sunday rain/thunderstorm forecast as Stafford; heavy rain often tilts game-script toward the run"
     },
     "vegas": {
-     "total": 46.0,
-     "spread": -2.0,
-     "impliedTeam": 24.0
+     "total": 45.5,
+     "spread": -1.5,
+     "impliedTeam": 23.5
     },
-    "takeaway": "Etienne still out — Corum is your real starter here with legitimate touch equity in a 24.0-implied game. Start."
+    "takeaway": "Etienne still out — Corum is your real starter with legitimate touch equity, and a sloppy, rainy field could mean more called runs, not fewer. Start."
    },
    {
     "slot": "WR",
@@ -764,14 +764,14 @@
     "defRankNote": "Houston regarded as a top-tier D; no isolated WR-specific numeric rank found",
     "weather": {
      "impact": "none",
-     "note": "NRG Stadium — roof reported closed, treat as a dome"
+     "note": "NRG Stadium — roof closed, treat as a dome"
     },
     "vegas": {
      "total": 47.5,
-     "spread": 2.5,
-     "impliedTeam": 22.5
+     "spread": -3.0,
+     "impliedTeam": 22.25
     },
-    "takeaway": "Real reversal — Dallas' implied total jumped to 22.5 (from 16.75) as the total rose to 47.5 and HOU's number shrank to -2.5. Clear #1 target, confident start now."
+    "takeaway": "HOU -3, total 47.5 — implied 22.25. Clear #1 target, confident start."
    },
    {
     "slot": "WR",
@@ -780,17 +780,17 @@
     "pos": "WR",
     "opp": "CHI",
     "defRank": null,
-    "defRankNote": "No numeric CHI WR-DVP found; Bears defense graded bottom-tier in yards/points allowed last year (RotoBaller)",
+    "defRankNote": "No numeric CHI WR-DVP found this run",
     "weather": {
-     "impact": "minor",
+     "impact": "none",
      "note": "Soldier Field — no severe forecast confirmed this far out; recheck Friday"
     },
     "vegas": {
-     "total": 43.0,
-     "spread": 3.0,
+     "total": 43.5,
+     "spread": 3.5,
      "impliedTeam": 20.0
     },
-    "takeaway": "Line moved in the Jets' favor — CHI shrank to -3 (total 43, from -8.5/45.5), reportedly tied to Caleb Williams' Wednesday DNP. Playable WR2, better spot than it looked."
+    "takeaway": "Road underdog (CHI -3.5), implied 20.0 — playable WR2, no real alternative on your bench."
    },
    {
     "slot": "WR",
@@ -799,17 +799,17 @@
     "pos": "WR",
     "opp": "CIN",
     "defRank": null,
-    "defRankNote": "No confirmed numeric CIN WR-DVP rank — see JAX team-context notes above",
+    "defRankNote": "No confirmed numeric CIN WR-DVP rank found — see JAX team-context notes above",
     "weather": {
      "impact": "none",
      "note": "Paycor Stadium, outdoor — no flag"
     },
     "vegas": {
-     "total": 51.0,
-     "spread": 2.5,
-     "impliedTeam": 24.25
+     "total": 45.5,
+     "spread": 7.5,
+     "impliedTeam": 19.0
     },
-    "takeaway": "Clear #1 target for Lawrence in the week's highest-total game on either roster — confident start."
+    "takeaway": "Correction from recent runs — this is a 45.5-point game with JAX a 7.5-point dog, not the 51-point shootout logged earlier. Still Lawrence's clear #1 target with no real competition — start, tempered expectations."
    },
    {
     "slot": "TE",
@@ -824,11 +824,11 @@
      "note": "MetLife Stadium, outdoor — no severe forecast"
     },
     "vegas": {
-     "total": 45.5,
-     "spread": -7.0,
-     "impliedTeam": 26.25
+     "total": 43.5,
+     "spread": -2.5,
+     "impliedTeam": 23.0
     },
-    "takeaway": "No fresh sportsbook total confirmed this run (prediction markets have NYG as a ~55% favorite; last confirmed book line: 45.5/NYG -7) — still your only rostered TE, start."
+    "takeaway": "NYG -2.5, total 43.5 (implied 23.0) — still your only rostered TE, start."
    },
    {
     "slot": "W/R/T",
@@ -839,15 +839,15 @@
     "defRank": null,
     "defRankNote": "No confirmed numeric PIT run-D rank found — as much a Cleveland O-line story as a Pittsburgh-D one",
     "weather": {
-     "impact": "none",
-     "note": "Huntington Bank Field, outdoor — mild, short-week Thursday game"
+     "impact": "major",
+     "note": "Huntington Bank Field, outdoor — rain/snow forecast has pulled the total down 5 points (41.5 to 36.5) ahead of tonight's kickoff"
     },
     "vegas": {
-     "total": 37.5,
-     "spread": -2.5,
-     "impliedTeam": 17.5
+     "total": 36.5,
+     "spread": -3.5,
+     "impliedTeam": 16.5
     },
-    "takeaway": "Short week, lowest implied total on this sheet (17.5, PIT -2.5), but full workload and no new injury signal keep him a start. Your earliest lock — Thursday 5:15pm PT."
+    "takeaway": "Lowest implied total on this sheet (16.5) after the weather-driven line move, but full workload on a short week keeps him a start. Locks tonight — 5:15pm PT."
    },
    {
     "slot": "K",
@@ -862,11 +862,11 @@
      "note": "Lumen Field, outdoor — no severe forecast"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": -6.5,
-     "impliedTeam": 25.0
+     "total": 45.5,
+     "spread": -3.0,
+     "impliedTeam": 24.25
     },
-    "takeaway": "Line ticked up slightly (implied 25.0) — confident start."
+    "takeaway": "SEA -3, total 45.5 (implied 24.25) — confident start."
    },
    {
     "slot": "DEF",
@@ -881,32 +881,23 @@
      "note": "Levi's Stadium, outdoor — mild, no flag"
     },
     "vegas": {
-     "total": null,
+     "total": 46.5,
      "spread": -2.5,
-     "impliedTeam": null
+     "impliedTeam": 24.5
     },
-    "takeaway": "Bosa (calf) now confirmed officially on IR — doesn't change this pick. SF -2.5 vs Denver, no total posted yet — still a solid DST start."
+    "takeaway": "Bosa (calf) remains on IR — doesn't change this pick. SF -2.5, total 46.5 — still a solid DST start."
    }
   ]
  },
  "news": [
   {
-   "player": "Nick Bosa",
-   "team": "SF",
-   "headline": "49ers' Nick Bosa: Officially sent to IR",
-   "summary": "San Francisco has formally placed Bosa on injured reserve for the calf injury that will keep him out at least four weeks, upgrading last week's 'team still deciding' report to a confirmed move.",
-   "source": "CBS Sports",
-   "url": "https://www.cbssports.com/fantasy/football/news/49ers-nick-bosa-officially-sent-to-ir",
-   "at": "2026-09-30T07:14:59-07:00"
-  },
-  {
-   "player": "Chig Okonkwo",
-   "team": "WAS",
-   "headline": "Chig Okonkwo to Miss a Second Straight Game",
-   "summary": "Okonkwo remains sidelined by the hamstring injury that has now cost him practice all season, with Washington ruling him out for a second consecutive week and no clear timetable to return.",
-   "source": "RotoBaller",
-   "url": "https://www.rotoballer.com/player-news/chig-okonkwo-to-miss-a-second-straight-game/1950763",
-   "at": "2026-09-30T07:14:59-07:00"
+   "player": "Zay Flowers",
+   "team": "BAL",
+   "headline": "Ravens WR Zay Flowers questionable with recurring hamstring injury",
+   "summary": "Flowers popped up Questionable again with the same hamstring he's been managing since Week 1, missing practice time this week ahead of Sunday's game against Tennessee.",
+   "source": "NBC Sports (ProFootballTalk)",
+   "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/jesse-minter-calls-zay-flowers-day-to-day-with-hamstring-injury",
+   "at": "2026-10-01T07:14:33-07:00"
   }
  ],
  "waivers": {
@@ -950,8 +941,8 @@
   }
  ],
  "brief": {
-  "text": "GANGSTAS PARADISE (Sleeper) — Herbert and Hampton are STILL sitting on your bench for a second day running — fix it before Sunday.\nDo now: Revert your Week 4 lineup — start Justin Herbert (QB) and Omarion Hampton (RB), bench Tyler Shough and Michael Wilson. Both Herbert and Hampton are fully healthy; this was never injury-driven, and the mistake is now two days old.\nLocks next 24h: none — your earliest Sleeper lock is Sunday 6:30am PT (Josh Downs, London).\nLineup: once you fix the swap above, the rest is clean. Biggest line move of the week: JAX-CIN's total exploded from 45.5 to 51 with the spread shrinking to CIN -2.5 — great news for Tuten, Strange, and Chase Brown/Higgins, though it caps your Jaguars DEF's points-allowed ceiling a bit. Zay Flowers stays your best play (BAL now -11.5).\nWaivers / trades: Wednesday processing day — see the Waivers tab. Your top 3 picks from Tuesday (Gordon, Sadiq, Mitchell) all got scooped by other teams; fresh board is up, headlined by Tyler Higbee at TE.\n\nGAME OF THROWS (Yahoo) — Etienne still out, Corum starts — but your screenshots are now 17 days stale.\nDo now: nothing new — Travis Etienne remains OUT (hamstring), Blake Corum stays in as your starter. Nick Bosa is now confirmed officially on IR for San Francisco, which doesn't change your DEF pick.\nLocks next 24h: none — Judkins' Thursday game (Oct 1, 5:15pm PT) is your earliest lock, about 34 hours out on a short week; watch Wednesday's first injury report.\nLineup: real reversal on the Dallas line — Pickens' (and Aubrey's) implied total jumped back up to 22.5 from last week's 16.75 dip. Garrett Wilson's matchup also improved slightly as Chicago's number shrank after Caleb Williams' Wednesday DNP. No severe weather confirmed yet for Chicago or London — recheck Friday.\nWaivers / trades: see the Waivers tab for two names worth checking on your own free-agent pool — no Yahoo trade idea this run (still no roster visibility, and today isn't a trade day).\n\nFYI: Chase Brown starts on both rosters — Samaje Perine is healthy again and will chip into the workload, but Brown keeps the job. Four Jaguars are in play across your two leagues again (Strange, Tuten, Jaguars DEF on Sleeper; Parker Washington on Yahoo) in a game whose total just jumped to the highest number on either sheet (51). Nick Bosa is now officially on IR for San Francisco. Chig Okonkwo has missed practice all season with the same hamstring — a real IR candidate if you need the Yahoo bench spot.\nData: Sleeper live (Week 4 games haven't kicked off yet — you're 1-2 on the season; roster, matchups, transactions, and injury designations confirmed via API) · Yahoo screenshots unchanged since 2026-09-13 — now 17 days stale, please drop fresh screenshots (roster, free-agent list, current matchup, and Week 1-3 final scores so I can backfill your season tracker).",
-  "at": "2026-09-30T07:14:59-07:00",
+  "text": "GANGSTAS PARADISE (Sleeper) — Herbert and Hampton are STILL sitting on your bench for a THIRD straight day — fix it before Sunday.\nDo now: Revert your Week 4 lineup — start Justin Herbert (QB) and Omarion Hampton (RB), bench Tyler Shough and Michael Wilson. Both are fully healthy; this has now sat wrong for three days running. New this run: Zay Flowers (FLEX) is Questionable with the same hamstring that's bothered him since Week 1 — check Friday's practice report; if he sits, start Michael Wilson in his place.\nLocks next 24h: none — your earliest Sleeper lock is Sunday 6:30am PT (Josh Downs, London).\nLineup: Once you fix the QB/RB swap above, the rest is clean. Correction from the last two runs — the JAX-CIN total actually settled at 45.5 with Cincinnati now a full -7.5 favorite, not the 51-point pick'em it looked like; that trims Strange/Tuten/Jaguars DEF's ceiling a bit, while Chase Brown and Higgins (CIN side) still have the best matchup on your roster at 26.5 implied. Herbert/Hampton's Seattle line also softened in their favor (SEA now only -3, was -6.5).\nWaivers / trades: not a processing day — see the Waivers and Trades tabs for the last plan still on the board (FAAB, Tyler Higbee, and the unsent Downs-for-Kincaid trade).\n\nGAME OF THROWS (Yahoo) — Judkins locks tonight into a rain/snow game that just lost 5 points off the total; your screenshots are now 18 days stale.\nDo now: nothing injury-driven — Etienne remains OUT (hamstring) with Corum correctly started. Watch the Cleveland weather: the CLE-PIT total dropped from 41.5 to 36.5 on a rain/snow forecast, but Judkins' workload still makes him a start.\nLocks next 24h: Quinshon Judkins — tonight, 5:15pm PT vs Pittsburgh, in deteriorating weather.\nLineup: Heavy rain (2-4in) and thunderstorms are forecast for Sunday in Philadelphia, where both Stafford and Corum play — could mean a run-heavier, lower-passing script; start both anyway, no better options. Parker Washington's JAX-CIN game is also a tougher spot than recently logged (CIN -7.5, not a pick'em).\nWaivers / trades: not a processing day — see the Waivers tab for two free-agent names worth checking on your own pool once you drop fresh screenshots.\n\nFYI: Chase Brown starts on both rosters in the week's best matchup (CIN -7.5, 26.5 implied). Four Jaguars are still in play across your two leagues (Strange, Tuten, Jaguars DEF on Sleeper; Parker Washington on Yahoo) but that whole game got tougher since the last run — Cincinnati is now a real favorite, not a pick'em. Chig Okonkwo remains out for Washington with no clear hamstring timetable — still a real IR candidate for your Yahoo bench spot. Nick Bosa remains on IR for San Francisco; doesn't change your DEF pick.\nData: Sleeper live (Week 4 games haven't kicked off; roster, matchups, transactions, and injury designations confirmed via API) · Yahoo screenshots unchanged since 2026-09-13 — now 18 days stale, please drop fresh screenshots (roster, free-agent list, current matchup, and Week 1-3 final scores so I can backfill your season tracker).",
+  "at": "2026-10-01T07:14:33-07:00",
   "mode": "daily"
  }
 }
