@@ -1,18 +1,18 @@
 {
- "updatedAt": "2026-10-12T07:40:00-07:00",
- "week": 5,
+ "updatedAt": "2026-10-13T07:19:36-07:00",
+ "week": 6,
  "yahoo": {
   "updatedAt": "2026-09-13",
-  "week": 5,
-  "opponent": "KING VERGA",
-  "oppManager": "unknown \u2014 no screenshot data",
-  "record": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 27 days)",
-  "oppRecord": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 27 days)",
-  "myProj": 103.7,
-  "oppProj": 113.47,
+  "week": 6,
+  "opponent": "Kade",
+  "oppManager": "unknown — no screenshot data",
+  "record": "unknown — Yahoo screenshots stale since 2026-09-13 (now 30 days)",
+  "oppRecord": "unknown — Yahoo screenshots stale since 2026-09-13 (now 30 days)",
+  "myProj": 90.8,
+  "oppProj": 87.78,
   "myPts": null,
   "oppPts": null,
-  "winProb": "unknown \u2014 no live Yahoo data this run (screenshots 27 days stale)",
+  "winProb": "slight favorite on stale pre-season projections only (90.8 vs 87.78) — not a real read, screenshots are 30 days stale",
   "starters": [
    {
     "slot": "QB",
@@ -325,7 +325,16 @@
     "team": "LAC",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 11.24 pts vs Denver. Already played; nothing left to decide.",
+    "note": "LINEUP ERROR, FIX NOW: Tyler Shough is live in your QB slot, Herbert is benched. Herbert's ankle is fully cleared (full practice participant, no injury designation) — there is no reason to start a Saints backup over him. Move Herbert in before Sunday.",
+    "ifOut": ""
+   },
+   {
+    "slot": "BN",
+    "name": "Tyler Shough",
+    "team": "NO",
+    "status": "",
+    "call": "sit",
+    "note": "Currently started by mistake (carried over from an old week). Bench him for Herbert — Shough is a fine QB2, not a start over a top-12 option.",
     "ifOut": ""
    },
    {
@@ -334,25 +343,25 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 11.6 pts in London vs a shorthanded Eagles front.",
+    "note": "Jacksonville's clear lead back. Early 6:30a PT kickoff in London vs Houston — first lock of your week.",
     "ifOut": ""
    },
    {
     "slot": "RB",
-    "name": "Chase Brown",
-    "team": "CIN",
+    "name": "Woody Marks",
+    "team": "HOU",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 7.0 pts, well under the 27.5-implied ceiling; Bengals leaned on the pass in a lopsided game.",
+    "note": "Correctly in over Omarion Hampton — Hampton's Chargers snap share has collapsed to 3rd in his own backfield (18 of 73 snaps Week 5, behind Kimani Vidal's 26 and Keaton Mitchell's 19). Marks is the better real-world option right now.",
     "ifOut": ""
    },
    {
     "slot": "WR",
-    "name": "Tee Higgins",
-    "team": "CIN",
+    "name": "Devaughn Vele",
+    "team": "NO",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 4.2 pts. Cleared the injury report and played, but a quiet target share.",
+    "note": "91% offensive snap share last week, Saints' clear #1 target. Easy start.",
     "ifOut": ""
    },
    {
@@ -361,7 +370,7 @@
     "team": "ARI",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 7.28 pts vs Detroit.",
+    "note": "No injury designation. Tough spot on paper (Rams' defense graded top-5), but he's your best healthy option at the position this week with Higgins and Chase Brown's whole offense on bye.",
     "ifOut": ""
    },
    {
@@ -370,7 +379,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 13.8 pts, your best value play of the week against the league's stingiest TE defense (Philadelphia).",
+    "note": "Locked-in TE1, same early London kickoff as Tuten.",
     "ifOut": ""
    },
    {
@@ -379,7 +388,7 @@
     "team": "IND",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 7.7 pts vs Pittsburgh.",
+    "note": "Healthy, IND's clear slot receiver. No change.",
     "ifOut": ""
    },
    {
@@ -388,7 +397,7 @@
     "team": "BAL",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 14.6 pts, your top scorer. Played through the foot issue with no setback.",
+    "note": "Healthy, Ravens' clear WR1. No change.",
     "ifOut": ""
    },
    {
@@ -397,7 +406,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 5.0 pts, locked in since Thursday.",
+    "note": "No change, elite weekly floor.",
     "ifOut": ""
    },
    {
@@ -406,90 +415,18 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "FINAL \u2014 2.0 pts. Elite matchup on paper but Philly's backups moved the ball enough to deny the boom.",
+    "note": "Only defense on your roster, no decision to make. Last start before their Week 7 bye — line up a streamer now (see Waivers).",
     "ifOut": ""
    }
   ],
   "yahoo": [
-   {
-    "slot": "WR",
-    "name": "George Pickens",
-    "team": "DAL",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 Cowboys beat Tampa Bay 27-20 Thursday night.",
-    "ifOut": ""
-   },
-   {
-    "slot": "WR",
-    "name": "Parker Washington",
-    "team": "JAX",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 London game complete. Jacksonville's clear top healthy target with Hunter out for the year.",
-    "ifOut": ""
-   },
-   {
-    "slot": "RB",
-    "name": "Chase Brown",
-    "team": "CIN",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 same elite Bengals matchup as your Sleeper roster, now in the books.",
-    "ifOut": ""
-   },
-   {
-    "slot": "W/R/T",
-    "name": "Quinshon Judkins",
-    "team": "CLE",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 Cleveland-Jets game complete.",
-    "ifOut": ""
-   },
-   {
-    "slot": "WR",
-    "name": "Garrett Wilson",
-    "team": "NYJ",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 toughest individual matchup on this roster, still your clear starter.",
-    "ifOut": ""
-   },
-   {
-    "slot": "TE",
-    "name": "Isaiah Likely",
-    "team": "NYG",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 plus matchup vs a TE-leaky Washington defense.",
-    "ifOut": ""
-   },
-   {
-    "slot": "K",
-    "name": "Jason Myers",
-    "team": "SEA",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 Seahawks favored at home, game complete.",
-    "ifOut": ""
-   },
-   {
-    "slot": "DEF",
-    "name": "49ers",
-    "team": "SF",
-    "status": "",
-    "call": "start",
-    "note": "FINAL \u2014 same Seattle game as Myers, now complete.",
-    "ifOut": ""
-   },
    {
     "slot": "QB",
     "name": "Matthew Stafford",
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "Kicks tonight 5:15p PT vs Buffalo (MNF) \u2014 your last lock of the week. Rams -2.5/-3 on a 54.5 total (DraftKings/SportsLine consensus), implied 28.5 in a dome. Start with confidence.",
+    "note": "Home vs Arizona, Rams favored by ~12.5 on the week's highest total (52.5). Confident start.",
     "ifOut": ""
    },
    {
@@ -498,7 +435,88 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "Kicks tonight 5:15p PT, same Rams-Bills game as Stafford. Etienne is confirmed out until at least Nov. 8 (hamstring, IR) \u2014 Corum keeps the RB2 job in a plus scoring environment, ceiling capped only by the Kyren Williams split.",
+    "note": "Same game as Stafford, plus environment. No change.",
+    "ifOut": ""
+   },
+   {
+    "slot": "RB",
+    "name": "Quinshon Judkins",
+    "team": "CLE",
+    "status": "",
+    "call": "start",
+    "note": "MOVE HIM INTO YOUR OPEN RB SLOT: Chase Brown's Bengals are on a Week 6 bye, so your RB2 spot is empty. Judkins (currently parked in your W/R/T flex) is a real NFL starter — slide him to RB and backfill the flex with Makai Lemon (below).",
+    "ifOut": ""
+   },
+   {
+    "slot": "BN",
+    "name": "Chase Brown",
+    "team": "CIN",
+    "status": "",
+    "call": "sit",
+    "note": "Cincinnati is on a Week 6 bye — he can't play. This is why your RB slot needs Judkins moved into it.",
+    "ifOut": ""
+   },
+   {
+    "slot": "WR",
+    "name": "George Pickens",
+    "team": "DAL",
+    "status": "",
+    "call": "start",
+    "note": "Cowboys at Green Bay, 27.0-implied. No change.",
+    "ifOut": ""
+   },
+   {
+    "slot": "WR",
+    "name": "Garrett Wilson",
+    "team": "NYJ",
+    "status": "",
+    "call": "start",
+    "note": "Jets are a big home underdog to New England but Wilson is force-fed targets regardless of game script. Start with confidence.",
+    "ifOut": ""
+   },
+   {
+    "slot": "WR",
+    "name": "Parker Washington",
+    "team": "JAX",
+    "status": "",
+    "call": "start",
+    "note": "Jacksonville's clear top healthy receiver, early London kickoff (6:30a PT) — locks first.",
+    "ifOut": ""
+   },
+   {
+    "slot": "W/R/T",
+    "name": "Makai Lemon",
+    "team": "PHI",
+    "status": "",
+    "call": "watch",
+    "note": "Promoted into the flex to cover for Judkins moving to RB. Thin bench, no better option — he's a low-end WR3 for Philly (10 targets through 4 games). Check the Eagles' Friday injury report on DeVonta Smith/Dallas Goedert; if either sits, Lemon's price goes up and this is an easy call. If both are healthy, this is a low-confidence flex.",
+    "ifOut": ""
+   },
+   {
+    "slot": "TE",
+    "name": "Isaiah Likely",
+    "team": "NYG",
+    "status": "",
+    "call": "start",
+    "note": "Giants host New Orleans. No change.",
+    "ifOut": ""
+   },
+   {
+    "slot": "K",
+    "name": "Jason Myers",
+    "team": "SEA",
+    "status": "",
+    "call": "start",
+    "note": "LOCKS THURSDAY: Seahawks play Thursday night, Oct 15, 5:15p PT at Denver — your first lock of the week, well ahead of the Sunday slate.",
+    "ifOut": ""
+   },
+   {
+    "slot": "DEF",
+    "name": "49ers",
+    "team": "SF",
+    "status": "",
+    "call": "start",
+    "note": "Monday night home favorite (-5.5) vs Washington. No change.",
     "ifOut": ""
    }
   ]
@@ -510,190 +528,190 @@
     "name": "Justin Herbert",
     "team": "LAC",
     "pos": "QB",
-    "opp": "DEN",
+    "opp": "KC",
     "defRank": 2,
-    "defRankNote": "Denver graded the #2 overall fantasy defense entering the week (FantasyPros/Rotoworld tiers).",
+    "defRankNote": "Chiefs graded a top-2 overall fantasy defense entering Week 6 (ProFootballNetwork/SI).",
     "weather": {
      "impact": "none",
-     "note": "SoFi Stadium, closed roof \u2014 dome, no weather factor"
+     "note": "Arrowhead Stadium, outdoor — no severe system found this far out"
     },
     "vegas": {
      "total": 42.5,
-     "spread": -3.5,
-     "impliedTeam": 19.5
+     "spread": 8.5,
+     "impliedTeam": 17.0
     },
-    "takeaway": "Final: 11.24 pts against a top-2 defense \u2014 about what the modest 19.5-implied total pointed to."
+    "takeaway": "Tough matchup on paper (17.0 implied as a road underdog vs a top-2 D) but still the obvious start over a Saints backup — the matchup argument cuts for upgrading bench depth, not for sitting Herbert."
    },
    {
     "slot": "RB",
     "name": "Bhayshul Tuten",
     "team": "JAX",
     "pos": "RB",
-    "opp": "PHI",
-    "defRank": null,
-    "defRankNote": "Philadelphia allows 17.8 fantasy pts/gm to RBs this season (RotoBaller team-defense grades).",
+    "opp": "HOU",
+    "defRank": 9,
+    "defRankNote": "Texans graded 9th overall fantasy defense (ProFootballNetwork); no RB-specific split confirmed.",
     "weather": {
      "impact": "none",
-     "note": "Tottenham Stadium, London, outdoor \u2014 no severe system"
+     "note": "Wembley Stadium, London, outdoor — forecast winds only 5-6 mph, no severe system"
     },
     "vegas": {
-     "total": 42.0,
-     "spread": -7.5,
-     "impliedTeam": 24.75
+     "total": 42.5,
+     "spread": -2.5,
+     "impliedTeam": 22.5
     },
-    "takeaway": "Final: 11.6 pts. Clear lead back in a game Jacksonville controlled against a Barkley-less Eagles D."
+    "takeaway": "Moderate matchup, 22.5 implied as the home favorite. Lead-back volume makes this an easy start regardless."
    },
    {
     "slot": "RB",
-    "name": "Chase Brown",
-    "team": "CIN",
+    "name": "Woody Marks",
+    "team": "HOU",
     "pos": "RB",
-    "opp": "MIA",
-    "defRank": null,
-    "defRankNote": "No fresh RB-specific split found; Miami's overall D/ST graded 25th-28th in the league (SI.com/theScore).",
+    "opp": "JAX",
+    "defRank": 7,
+    "defRankNote": "Jaguars graded 7th overall fantasy defense (ProFootballNetwork), 10th per SI; no RB-specific split confirmed.",
     "weather": {
      "impact": "none",
-     "note": "Hard Rock Stadium, open-air \u2014 warm, no weather concern"
+     "note": "Same London game as Tuten — mild forecast, no severe system"
     },
     "vegas": {
-     "total": 46.5,
-     "spread": -8.5,
-     "impliedTeam": 27.5
+     "total": 42.5,
+     "spread": 2.5,
+     "impliedTeam": 20.0
     },
-    "takeaway": "Final: 7.0 pts, underneath the 27.5-implied ceiling as Cincinnati pulled away through the air."
+    "takeaway": "Tougher matchup than Tuten's side of the ball and the lower implied total (20.0), but he's still the clear better real-world option over a buried Omarion Hampton."
    },
    {
     "slot": "WR",
-    "name": "Tee Higgins",
-    "team": "CIN",
+    "name": "Devaughn Vele",
+    "team": "NO",
     "pos": "WR",
-    "opp": "MIA",
-    "defRank": null,
-    "defRankNote": "Miami graded as the league's toughest defense vs. WRs in 2025 (RotoBaller); no fresh split confirmed.",
+    "opp": "NYG",
+    "defRank": 17,
+    "defRankNote": "Giants graded a middling 17th overall defense (ProFootballNetwork) — more a streamable unit than a shutdown one.",
     "weather": {
      "impact": "none",
-     "note": "Hard Rock Stadium, open-air \u2014 warm, no weather concern"
+     "note": "MetLife Stadium, outdoor — no severe system found"
     },
     "vegas": {
-     "total": 46.5,
-     "spread": -8.5,
-     "impliedTeam": 27.5
+     "total": 45.5,
+     "spread": -1.0,
+     "impliedTeam": 23.25
     },
-    "takeaway": "Final: 4.2 pts. Played after clearing the injury report, but a quiet target share in the blowout."
-   },
-   {
-    "slot": "WR",
-    "name": "Josh Downs",
-    "team": "IND",
-    "pos": "WR",
-    "opp": "PIT",
-    "defRank": null,
-    "defRankNote": "No clean numeric WR split found; Pittsburgh's secondary down two safeties and Darius Slay this season.",
-    "weather": {
-     "impact": "none",
-     "note": "Acrisure Stadium, outdoor \u2014 no severe system confirmed"
-    },
-    "vegas": {
-     "total": 44.5,
-     "spread": -2.5,
-     "impliedTeam": 21.0
-    },
-    "takeaway": "Final: 7.7 pts in a competitive game that stayed close to the 21.0-implied number."
-   },
-   {
-    "slot": "TE",
-    "name": "Brenton Strange",
-    "team": "JAX",
-    "pos": "TE",
-    "opp": "PHI",
-    "defRank": 1,
-    "defRankNote": "Philadelphia allows just 3.9 fantasy pts/gm to TEs, fewest in the league (RotoBaller team-defense grades).",
-    "weather": {
-     "impact": "none",
-     "note": "Tottenham Stadium, London, outdoor \u2014 no severe system"
-    },
-    "vegas": {
-     "total": 42.0,
-     "spread": -7.5,
-     "impliedTeam": 24.75
-    },
-    "takeaway": "Final: 13.8 pts \u2014 blew past the toughest individual matchup on your whole roster. Best value play of the week."
+    "takeaway": "Plus matchup and a healthy 23.25-implied total for a player drawing 91% of the snaps. Confident start."
    },
    {
     "slot": "WR",
     "name": "Michael Wilson",
     "team": "ARI",
     "pos": "WR",
-    "opp": "DET",
-    "defRank": null,
-    "defRankNote": "No clean 2026 WR-specific rank found for Detroit; overall defense quality disputed between sources.",
+    "opp": "LAR",
+    "defRank": 1,
+    "defRankNote": "Rams graded the #1 overall fantasy defense by SI (3rd-5th per other outlets) — the toughest matchup on your roster.",
     "weather": {
      "impact": "none",
-     "note": "State Farm Stadium, retractable roof \u2014 treated as a dome"
+     "note": "SoFi Stadium, closed roof — dome, no weather factor"
     },
     "vegas": {
      "total": 52.5,
-     "spread": -5.5,
-     "impliedTeam": 23.5
+     "spread": 12.5,
+     "impliedTeam": 20.0
     },
-    "takeaway": "Final: 7.28 pts, underneath the 23.5-implied number in a game Arizona trailed most of the way."
+    "takeaway": "Hardest matchup on the roster this week, but with Higgins and the whole Bengals passing game on bye, he's still your best healthy WR option. Start him, temper expectations."
+   },
+   {
+    "slot": "TE",
+    "name": "Brenton Strange",
+    "team": "JAX",
+    "pos": "TE",
+    "opp": "HOU",
+    "defRank": 9,
+    "defRankNote": "Texans graded 9th overall fantasy defense (ProFootballNetwork); no TE-specific split confirmed.",
+    "weather": {
+     "impact": "none",
+     "note": "Wembley Stadium, London — mild forecast, no severe system"
+    },
+    "vegas": {
+     "total": 42.5,
+     "spread": -2.5,
+     "impliedTeam": 22.5
+    },
+    "takeaway": "Moderate matchup, locked-in TE1 role either way."
+   },
+   {
+    "slot": "FLEX",
+    "name": "Josh Downs",
+    "team": "IND",
+    "pos": "WR",
+    "opp": "TEN",
+    "defRank": null,
+    "defRankNote": "No clean 2026 defensive split found for Tennessee this run.",
+    "weather": {
+     "impact": "none",
+     "note": "Lucas Oil Stadium, retractable roof — treated as a dome"
+    },
+    "vegas": {
+     "total": 44.0,
+     "spread": -7.0,
+     "impliedTeam": 25.5
+    },
+    "takeaway": "Big home favorite with a 25.5-implied total. Good spot for volume."
    },
    {
     "slot": "FLEX",
     "name": "Zay Flowers",
     "team": "BAL",
     "pos": "WR",
-    "opp": "ATL",
+    "opp": "CLE",
     "defRank": null,
-    "defRankNote": "No clean 2026 WR-specific rank found for Atlanta this run.",
+    "defRankNote": "Browns graded among the Week 6 top-tier fantasy defenses per Lindy's Sports (alongside BAL, PIT, NE, JAX) — tough individual matchup.",
     "weather": {
      "impact": "none",
-     "note": "Mercedes-Benz Stadium \u2014 retractable roof, treated as a dome"
+     "note": "Huntington Bank Field, outdoor — no severe system found"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": -3.0,
-     "impliedTeam": 20.25
+     "total": 41.5,
+     "spread": -4.5,
+     "impliedTeam": 23.0
     },
-    "takeaway": "Final: 14.6 pts, your top scorer of the week \u2014 played through the foot issue with no setback."
+    "takeaway": "Tough D on paper but 23.0 implied and he's Baltimore's clear WR1 regardless of matchup grade. Start."
    },
    {
     "slot": "K",
     "name": "Brandon Aubrey",
     "team": "DAL",
     "pos": "K",
-    "opp": "TB",
+    "opp": "GB",
     "defRank": null,
     "defRankNote": "N/A for kickers.",
     "weather": {
      "impact": "none",
-     "note": "AT&T Stadium, retractable roof \u2014 closed for primetime, treated as a dome"
+     "note": "Lambeau Field, outdoor — no severe system found this far out, re-check closer to Sunday night"
     },
     "vegas": {
-     "total": 47.5,
-     "spread": -9.5,
-     "impliedTeam": 28.5
+     "total": 52.5,
+     "spread": -1.5,
+     "impliedTeam": 25.5
     },
-    "takeaway": "Final: 5.0 pts \u2014 in the books since Thursday's 27-20 win over Tampa Bay."
+    "takeaway": "Second-highest total on the board (52.5). Plenty of scoring chances either way."
    },
    {
     "slot": "DEF",
     "name": "Jaguars",
     "team": "JAX",
     "pos": "DEF",
-    "opp": "PHI",
+    "opp": "HOU",
     "defRank": null,
-    "defRankNote": "N/A \u2014 Jacksonville's own defense ranks top-tier; Philadelphia's offense missing Barkley plus Goedert/Smith.",
+    "defRankNote": "Jacksonville's own defense graded top-10 fantasy (ProFootballNetwork/SI); Houston's offense unremarkable on the road.",
     "weather": {
      "impact": "none",
-     "note": "Tottenham Stadium, London, outdoor \u2014 no severe system"
+     "note": "Wembley Stadium, London — mild forecast, no severe system"
     },
     "vegas": {
-     "total": 42.0,
-     "spread": -7.5,
-     "impliedTeam": 17.25
+     "total": 42.5,
+     "spread": -2.5,
+     "impliedTeam": 20.0
     },
-    "takeaway": "Final: 2.0 pts \u2014 a disappointing floor given how shorthanded Philly was; backups still moved the ball enough to deny the boom."
+    "takeaway": "Houston implied for only 20.0 as road underdogs. Last start before the Week 7 bye — decent floor to close on."
    }
   ],
   "yahoo": [
@@ -702,190 +720,190 @@
     "name": "Matthew Stafford",
     "team": "LAR",
     "pos": "QB",
-    "opp": "BUF",
+    "opp": "ARI",
     "defRank": null,
-    "defRankNote": "No reliable current Bills pass-defense split found this run; treat as roughly middle-of-pack.",
+    "defRankNote": "No confirmed current Arizona pass-defense split this run.",
     "weather": {
      "impact": "none",
-     "note": "SoFi Stadium, closed roof \u2014 dome, no weather factor"
+     "note": "SoFi Stadium, closed roof — dome, no weather factor"
     },
     "vegas": {
-     "total": 54.5,
-     "spread": -2.5,
-     "impliedTeam": 28.5
+     "total": 52.5,
+     "spread": -12.5,
+     "impliedTeam": 32.5
     },
-    "takeaway": "Kicks tonight 5:15p PT. Highest total on the board this week (54.5) with Rams -2.5/-3 (DraftKings/SportsLine) \u2014 implied 28.5 in a dome. Start with confidence."
-   },
-   {
-    "slot": "RB",
-    "name": "Chase Brown",
-    "team": "CIN",
-    "pos": "RB",
-    "opp": "MIA",
-    "defRank": null,
-    "defRankNote": "No fresh RB-specific split found; Miami's overall D/ST graded 25th-28th in the league (SI.com/theScore).",
-    "weather": {
-     "impact": "none",
-     "note": "Hard Rock Stadium, open-air \u2014 warm, no weather concern"
-    },
-    "vegas": {
-     "total": 46.5,
-     "spread": -8.5,
-     "impliedTeam": 27.5
-    },
-    "takeaway": "Final \u2014 same Bengals game as your Sleeper roster, already in the books."
+    "takeaway": "Highest implied total on your whole roster (32.5) as a 12.5-point home favorite. Easy start."
    },
    {
     "slot": "RB",
     "name": "Blake Corum",
     "team": "LAR",
     "pos": "RB",
-    "opp": "BUF",
+    "opp": "ARI",
     "defRank": null,
-    "defRankNote": "No fresh current Bills run-defense split confirmed this run.",
+    "defRankNote": "No confirmed current Arizona run-defense split this run.",
     "weather": {
      "impact": "none",
-     "note": "SoFi Stadium, closed roof \u2014 dome, no weather factor"
+     "note": "SoFi Stadium, closed roof — dome, no weather factor"
     },
     "vegas": {
-     "total": 54.5,
-     "spread": -2.5,
-     "impliedTeam": 28.5
+     "total": 52.5,
+     "spread": -12.5,
+     "impliedTeam": 32.5
     },
-    "takeaway": "Kicks tonight 5:15p PT. Plus environment (28.5 implied) as Etienne's full-time replacement \u2014 Saints' hamstring IR stint runs at least to Nov. 8, so this role is stable for weeks. Confident start, ceiling capped only by the Kyren Williams split."
+    "takeaway": "Same plus environment as Stafford. Ceiling still shared with Kyren Williams, but the game script should keep touches flowing."
+   },
+   {
+    "slot": "RB",
+    "name": "Quinshon Judkins",
+    "team": "CLE",
+    "pos": "RB",
+    "opp": "BAL",
+    "defRank": null,
+    "defRankNote": "Ravens graded among the Week 6 top-tier fantasy defenses per Lindy's Sports — tough matchup.",
+    "weather": {
+     "impact": "none",
+     "note": "Huntington Bank Field, outdoor — no severe system found"
+    },
+    "vegas": {
+     "total": 41.5,
+     "spread": 4.5,
+     "impliedTeam": 18.5
+    },
+    "takeaway": "Tough matchup and lowest implied total (18.5) of your starters, but still your only real RB2 option with Chase Brown on bye — start regardless."
    },
    {
     "slot": "WR",
     "name": "George Pickens",
     "team": "DAL",
     "pos": "WR",
-    "opp": "TB",
+    "opp": "GB",
     "defRank": null,
-    "defRankNote": "Tampa Bay's pass defense graded around 26th in the league (single-source read, unchanged).",
+    "defRankNote": "No confirmed current Green Bay pass-defense split this run.",
     "weather": {
      "impact": "none",
-     "note": "AT&T Stadium, retractable roof \u2014 closed for Thursday night, treated as a dome"
+     "note": "Lambeau Field, outdoor — no severe system found this far out"
     },
     "vegas": {
-     "total": 47.5,
-     "spread": -9.5,
-     "impliedTeam": 28.5
+     "total": 52.5,
+     "spread": 1.5,
+     "impliedTeam": 25.5
     },
-    "takeaway": "Final \u2014 Cowboys beat Tampa Bay 27-20 Thursday, Pickens' second straight strong game as a Cowboy."
+    "takeaway": "Second-highest total on the board. Good spot."
    },
    {
     "slot": "WR",
     "name": "Garrett Wilson",
     "team": "NYJ",
     "pos": "WR",
-    "opp": "CLE",
+    "opp": "NE",
     "defRank": null,
-    "defRankNote": "Cleveland's pass defense graded among the league's best in prior weeks (Sharp Football Analysis/FanDuel, not re-verified this run).",
+    "defRankNote": "No confirmed current New England pass-defense split this run.",
     "weather": {
      "impact": "none",
-     "note": "MetLife Stadium, outdoor \u2014 no severe system confirmed"
+     "note": "Gillette Stadium, outdoor — no severe system found"
     },
     "vegas": {
-     "total": 39.5,
-     "spread": -2.5,
-     "impliedTeam": 21.0
+     "total": 42.5,
+     "spread": 9.5,
+     "impliedTeam": 16.5
     },
-    "takeaway": "Final \u2014 toughest individual matchup on this roster in the lowest-scoring game of the week, now complete."
+    "takeaway": "Lowest team total on your roster (16.5 implied) as a big road underdog, but he still soaks up targets in garbage time. Start, temper expectations."
    },
    {
     "slot": "WR",
     "name": "Parker Washington",
     "team": "JAX",
     "pos": "WR",
-    "opp": "PHI",
-    "defRank": null,
-    "defRankNote": "Philadelphia allows 24.0 fantasy pts/gm to WRs, among the most in the league (RotoBaller team-defense grades).",
+    "opp": "HOU",
+    "defRank": 9,
+    "defRankNote": "Texans graded 9th overall fantasy defense (ProFootballNetwork); no WR-specific split confirmed.",
     "weather": {
      "impact": "none",
-     "note": "Tottenham Stadium, London, outdoor \u2014 no severe system"
+     "note": "Wembley Stadium, London — mild forecast, no severe system"
     },
     "vegas": {
-     "total": 42.0,
-     "spread": -7.5,
-     "impliedTeam": 17.25
+     "total": 42.5,
+     "spread": -2.5,
+     "impliedTeam": 22.5
     },
-    "takeaway": "Final \u2014 plus matchup against a leaky-vs-WR Eagles D, now in the books."
+    "takeaway": "Jacksonville's top healthy receiver, moderate matchup, 22.5 implied. Start."
+   },
+   {
+    "slot": "W/R/T",
+    "name": "Makai Lemon",
+    "team": "PHI",
+    "pos": "WR",
+    "opp": "CAR",
+    "defRank": null,
+    "defRankNote": "Carolina has generally graded a bottom-tier fantasy defense this season; not re-verified this run.",
+    "weather": {
+     "impact": "none",
+     "note": "Lincoln Financial Field, outdoor — no severe system found"
+    },
+    "vegas": {
+     "total": 43.5,
+     "spread": -6.5,
+     "impliedTeam": 25.0
+    },
+    "takeaway": "Plus matchup and a 25.0-implied total work in his favor, but his own target share (10 through 4 games) is the real risk, not the defense. Check Friday's injury report on Smith/Goedert before locking this in."
    },
    {
     "slot": "TE",
     "name": "Isaiah Likely",
     "team": "NYG",
     "pos": "TE",
-    "opp": "WAS",
-    "defRank": 31,
-    "defRankNote": "Washington has allowed among the most fantasy points to TEs in the league (SharpFootballAnalysis/FantasyPros, not re-verified this run).",
+    "opp": "NO",
+    "defRank": null,
+    "defRankNote": "No confirmed current New Orleans TE-defense split this run.",
     "weather": {
      "impact": "none",
-     "note": "Northwest Stadium, outdoor \u2014 no severe system confirmed"
+     "note": "MetLife Stadium, outdoor — no severe system found"
     },
     "vegas": {
-     "total": 43.5,
-     "spread": 3.5,
-     "impliedTeam": 20.0
+     "total": 45.5,
+     "spread": -1.0,
+     "impliedTeam": 22.25
     },
-    "takeaway": "Final \u2014 plus matchup against a TE-leaky Washington defense, now complete."
-   },
-   {
-    "slot": "W/R/T",
-    "name": "Quinshon Judkins",
-    "team": "CLE",
-    "pos": "RB",
-    "opp": "NYJ",
-    "defRank": 26,
-    "defRankNote": "The Jets' run defense has graded among the weaker units in the league in prior weeks (Sharp Football Analysis, not re-verified this run).",
-    "weather": {
-     "impact": "none",
-     "note": "MetLife Stadium, outdoor \u2014 no severe system confirmed"
-    },
-    "vegas": {
-     "total": 39.5,
-     "spread": -2.5,
-     "impliedTeam": 18.5
-    },
-    "takeaway": "Final \u2014 plus matchup even in a low-scoring game; Cleveland leaned run-heavy regardless of script."
+    "takeaway": "Started 22.25-implied, middling matchup. Locked-in TE1 regardless."
    },
    {
     "slot": "K",
     "name": "Jason Myers",
     "team": "SEA",
     "pos": "K",
-    "opp": "SF",
+    "opp": "DEN",
     "defRank": null,
-    "defRankNote": "N/A for kickers \u2014 Myers has been a top-10 fantasy K through the first month.",
+    "defRankNote": "N/A for kickers.",
     "weather": {
      "impact": "none",
-     "note": "Lumen Field, partially-covered outdoor \u2014 no severe system expected"
+     "note": "Empower Field at Mile High, outdoor — mild forecast, no severe system found; Thursday night, re-check gameday wind"
     },
     "vegas": {
-     "total": 47.5,
-     "spread": -3.0,
-     "impliedTeam": 25.25
+     "total": 43.5,
+     "spread": -1.5,
+     "impliedTeam": 22.5
     },
-    "takeaway": "Final \u2014 moderate-to-high-scoring home game, now complete."
+    "takeaway": "Thursday night road favorite in a fine scoring environment (43.5 total). First lock of your week."
    },
    {
     "slot": "DEF",
     "name": "49ers",
     "team": "SF",
     "pos": "DEF",
-    "opp": "SEA",
+    "opp": "WAS",
     "defRank": null,
-    "defRankNote": "N/A \u2014 SF's defensive line reportedly banged up; Seattle's offense had some sack/turnover issues this year (unchanged read).",
+    "defRankNote": "N/A — San Francisco's own defense; Washington on the road as a 5.5-point underdog.",
     "weather": {
      "impact": "none",
-     "note": "Lumen Field, partially-covered outdoor \u2014 no severe system expected"
+     "note": "Levi's Stadium, outdoor — no severe system found; Monday night, re-check gameday weather"
     },
     "vegas": {
-     "total": 47.5,
-     "spread": 3.0,
-     "impliedTeam": 22.25
+     "total": 50.5,
+     "spread": -5.5,
+     "impliedTeam": 28.0
     },
-    "takeaway": "Final \u2014 short-handed up front as road underdogs, game complete."
+    "takeaway": "Home favorite on a high total (50.5) — plenty of volume, but that cuts both ways for a DEF start. Still the right call, no other option on your bench."
    }
   ]
  },
@@ -894,19 +912,55 @@
    "player": "Travis Etienne Jr.",
    "team": "NO",
    "headline": "Saints put Travis Etienne Jr. on injured reserve",
-   "summary": "New Orleans placed Etienne on IR with a hamstring injury, making him ineligible to return before Week 9 (earliest Nov. 8 vs. Cleveland) and locking in Blake Corum's bigger role for your Yahoo lineup in the meantime.",
+   "summary": "New Orleans placed Etienne on IR with a hamstring injury, ineligible to return before Week 9 (earliest Nov. 8), keeping Blake Corum entrenched as the Yahoo lineup's starting RB2 in the meantime.",
    "source": "NBC Sports / ProFootballTalk",
    "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/saints-put-travis-etienne-on-injured-reserve",
    "at": "2026-10-12T07:40:00-07:00"
+  },
+  {
+   "player": "Justin Herbert",
+   "team": "LAC",
+   "headline": "Chargers QB Justin Herbert clears ankle injury, full participant in practice",
+   "summary": "Herbert's lingering ankle issue is resolved — he was a full practice participant and carries no injury designation, confirming he's the right start over Tyler Shough this week.",
+   "source": "Sportskeeda",
+   "url": "https://www.sportskeeda.com/nfl/is-justin-herbert-playing-week-6-chargers-qb-s-status-revealed-broncos-showdown",
+   "at": "2026-10-13T07:19:36-07:00"
+  },
+  {
+   "player": "Omarion Hampton",
+   "team": "LAC",
+   "headline": "Omarion Hampton's role keeps shrinking in the Chargers backfield",
+   "summary": "Hampton played only 18 of 73 Chargers snaps in Week 5, trailing both Kimani Vidal (26) and Keaton Mitchell (19), and was shut out of the end zone on 14 carries for 33 yards — he's now the clear RB3 in his own backfield.",
+   "source": "DraftSharks",
+   "url": "https://www.draftsharks.com/fantasy-football-news/83357/omarion-hamptons-role-keeps-shrinking",
+   "at": "2026-10-13T07:19:36-07:00"
+  },
+  {
+   "player": "Kimani Vidal",
+   "team": "LAC",
+   "headline": "Kimani Vidal takes over the Chargers backfield",
+   "summary": "With Hampton fading, Vidal posted 18 carries for 124 yards plus a receiving touchdown and now leads the LA backfield in snaps — he's an unrostered must-add in your league given the direct line to touches.",
+   "source": "Underdog Fantasy (via X)",
+   "url": "https://x.com/Underdog/status/2106896846228742390",
+   "at": "2026-10-13T07:19:36-07:00"
+  },
+  {
+   "player": "Devaughn Vele",
+   "team": "NO",
+   "headline": "Devaughn Vele continues to carve out important role in Saints' offense",
+   "summary": "Vele played 278 of the Saints' 306 offensive snaps (91%) last week and caught a touchdown, cementing himself as New Orleans' clear top target.",
+   "source": "RotoBaller",
+   "url": "https://www.rotoballer.com/?p=1962943",
+   "at": "2026-10-13T07:19:36-07:00"
   }
  ],
  "waivers": {
-  "text": "SLEEPER \u2014 FAAB: $87 of $100 remaining. Waivers process this week \u2014 get claims in today. Top 5:\n1. Mike Gesicki (TE, CIN) \u2014 FAAB $9. Still unclaimed from Tuesday's recommendation \u2014 resubmit now before it's gone. Noah Fant left for New Orleans, Gesicki's the clear top receiving TE in Cincinnati, ran a route on the highest snap rate of any NFL TE last year. Drop Darnell Washington (buried PIT TE2).\n2. Dohnte Meyers (WR, CIN) \u2014 FAAB $4. New add \u2014 #2 most-added player league-wide the last 24 hours. He's Cincinnati's clear WR3 behind Chase and Higgins with Andrei Iosivas on IR, and direct insurance given Higgins' recurring injury flags (adductor strain, unresolved as of this morning). Drop Woody Marks (buried Houston RB3).\n3. Cleveland DEF \u2014 FAAB $3. Still available. Your real problem is Week 7: JAX (your only DEF), LAC (Herbert/Hampton), and WAS (Diggs) are all on bye the same week \u2014 Cleveland is a soft Week 7 stream. Lower priority than Gesicki/Meyers; grab if FAAB allows.\n4. Deshaun Watson (QB, CLE) \u2014 FAAB $2, speculative. Pure depth behind Herbert/Shough given the QB slot has been mismanaged repeatedly this season. Only if you have a free bench spot after the above.\n5. Michael Mayer (TE, LV) \u2014 FAAB $1, speculative. Backup plan only if the Gesicki claim fails.\nHeads up: Will Shipley (last week's #2 target) is gone \u2014 your Week 5 opponent (Weak Homie Quon) grabbed him first. Don't chase him again.\n\nYAHOO \u2014 still no free-agent visibility (private league, no login) and the newest screenshot in your Drive folder is still from Sept 13 (now 24 days old). I can't verify Yahoo waivers this week \u2014 drop a fresh screenshot of the free-agent pool if you want real bid guidance there. Two things worth your own look in the meantime: Blake Corum's ceiling is capped by a near-even timeshare with Kyren Williams, not a clean workhorse role; and Tank Bigsby (your own bench RB) is out til at least Week 9 post core-muscle surgery \u2014 drop him for anything you need the spot for.",
-  "at": "2026-10-07T07:15:44-07:00"
+  "text": "SLEEPER — FAAB: $87 of $100 remaining. Mike Gesicki claim from last Tuesday went through (he's on your roster now) — good, that's your TE hole patched. Waivers process Wednesday. Top 5:\n1. Kimani Vidal (RB, LAC) — FAAB $20. Unrostered league-wide. He's now the clear lead back in his own backfield (18 carries/124 yards + a receiving TD last week) while your own Omarion Hampton has fallen to 3rd in snaps on his own team. Drop Hampton for him directly — this is addition by subtraction on your own roster.\n2. Samaje Perine (RB, CIN) — FAAB $5. Direct early-down/passing-work insurance on Chase Brown, who's on bye this week but is your RB1 the rest of the way. Drop Darnell Washington (buried TE3 behind Strange and Gesicki, no path to playing time).\n3. Dameon Pierce (RB, PHI) — FAAB $2, speculative depth behind an Eagles backfield that's banged up. Only if you have a free spot after the above two.\n4. Denver Broncos DEF — FAAB $1. Stash it now while unclaimed: your only defense (Jacksonville) is on bye Week 7 alongside your QB1 (Herbert/LAC), and Denver's graded a top defense this season — lock in a Week 7 streamer before anyone else grabs it.\n5. Germie Bernard or Efton Chism (WR, depth) — FAAB $1, pure speculative bench stash if FAAB allows after the above.\n\nYAHOO — still no free-agent visibility (private league, no login) and the newest screenshot in your Drive folder is still from Sept 13 (now 30 days old). Drop fresh screenshots if you want real Yahoo waiver guidance. One thing I can tell you without a screenshot: Tank Bigsby (your own bench RB) is done for the season after core-muscle surgery — drop him for anything, he has zero path back this year.",
+  "at": "2026-10-13T07:19:36-07:00"
  },
  "trades": {
-  "text": "SLEEPER \u2014 Same trade as the last three runs, now even more worth sending: Josh Downs (WR, IND) to AdufortheWin84 (roster_id 12) for Dalton Kincaid (TE, BUF). Confirmed their roster is still exactly this stacked: three QBs (Josh Allen, Jalen Hurts, Dak Prescott) and three TEs (Kincaid, Oronde Gadsden, Juwan Johnson), but only three real WRs (Matthew Golden, Michael Pittman, Drake London). Downs solves their WR need; Kincaid solves your TE problem outright \u2014 you'd go from Strange/D.Washington to Strange/Kincaid, a real upgrade given Strange just drew the single toughest matchup on your entire roster this week. Weeks 15-17 check: this only touches WR4/TE2 depth, doesn't weaken your playoff core either direction. Downs is buried on your bench behind Diggs and Wilson with zero standalone value to you right now \u2014 stop sitting on this and send it.\n\nYAHOO \u2014 still no visibility into other rosters (private league, no login) and no trade.txt in the War room folder. No trade idea this run.",
-  "at": "2026-10-06T07:28:00-07:00"
+  "text": "SLEEPER — Standing down on the Josh Downs-for-Dalton Kincaid trade I've pushed the last several runs. Why: you added Mike Gesicki last week, so the TE hole that trade was solving is patched (Strange/Gesicki is a real TE1/TE2 now, not Strange/D.Washington). Downs is also an every-week flex starter for you, not bench depth — giving him up for a position you no longer need weakens a roster spot that's actually producing. AdufortheWin84 (roster_id 12) is still thin at WR (Golden/Pittman/London, no depth) if you want to revisit a different package later, but this specific deal no longer makes sense for you. No trade.txt in the War room folder either, so no second idea to evaluate.\n\nYAHOO — still no visibility into other rosters (private league, no login) and no trade.txt. No trade idea this run.",
+  "at": "2026-10-13T07:19:36-07:00"
  },
  "season": [
   {
@@ -917,7 +971,7 @@
    "result": "L",
    "record": "0-1",
    "bench": "56.3",
-   "lesson": "Started Josh Downs (5.7) over Stefon Diggs sitting on the bench (15.5) in the flex \u2014 9.8 points left on the table. Separately, Zay Flowers' 26-point day ended in a hamstring re-injury that's now clouding Week 2; watch practice reports closely on players who leave games early even when the box score looks great."
+   "lesson": "Started Josh Downs (5.7) over Stefon Diggs sitting on the bench (15.5) in the flex — 9.8 points left on the table. Separately, Zay Flowers' 26-point day ended in a hamstring re-injury that's now clouding Week 2; watch practice reports closely on players who leave games early even when the box score looks great."
   },
   {
    "week": 2,
@@ -927,7 +981,7 @@
    "result": "L",
    "record": "0-2",
    "bench": "56.48",
-   "lesson": "Tyler Shough (22.38, waiver QB stash) outscored started QB Justin Herbert (9.88) by 12.5 \u2014 not a real swap given Shough's a Saints starter you don't play, but the bigger miss was starting Michael Wilson (3.8) over bench WR Josh Downs (14.2), a 10.4-point gap; the Week 3 lineup already has that fixed. Also: Zay Flowers stayed rostered through a scoreless Week 2 (ruled Out, no IR move) \u2014 a wasted bench spot two weeks running."
+   "lesson": "Tyler Shough (22.38, waiver QB stash) outscored started QB Justin Herbert (9.88) by 12.5 — not a real swap given Shough's a Saints starter you don't play, but the bigger miss was starting Michael Wilson (3.8) over bench WR Josh Downs (14.2), a 10.4-point gap; the Week 3 lineup already has that fixed. Also: Zay Flowers stayed rostered through a scoreless Week 2 (ruled Out, no IR move) — a wasted bench spot two weeks running."
   },
   {
    "week": 3,
@@ -937,7 +991,7 @@
    "result": "W",
    "record": "1-2",
    "bench": "73.5",
-   "lesson": "Michael Wilson (25.9) outscored started Josh Downs (12.7) by 13.2 on the bench \u2014 the second straight week a bench WR beat a starter by double digits. Backup QB Tyler Shough (24.8) also beat Herbert (13.74) again. Tempting as that pattern looks, don't chase last week's points by benching your clearly better asset \u2014 that exact overcorrection sat live in your Week 4 lineup for five straight days (Shough over Herbert) until this run flagged it again."
+   "lesson": "Michael Wilson (25.9) outscored started Josh Downs (12.7) by 13.2 on the bench — the second straight week a bench WR beat a starter by double digits. Backup QB Tyler Shough (24.8) also beat Herbert (13.74) again. Tempting as that pattern looks, don't chase last week's points by benching your clearly better asset — that exact overcorrection sat live in your Week 4 lineup for five straight days (Shough over Herbert) until this run flagged it again."
   },
   {
    "week": 4,
@@ -947,12 +1001,22 @@
    "result": "W",
    "record": "2-2",
    "bench": "86.6",
-   "lesson": "Left the QB slot completely empty all week (Shough would've scored 15.94 sitting there unused) and started Josh Downs (4.6) over Omarion Hampton (13.3) in the flex \u2014 an 8.7-point unforced error stacked on a totally wasted roster slot. A win over a weak opponent papered over the worst bench-management week of the season so far; double-check every single slot is filled before Thursday lock, every week, no exceptions."
+   "lesson": "Left the QB slot completely empty all week (Shough would've scored 15.94 sitting there unused) and started Josh Downs (4.6) over Omarion Hampton (13.3) in the flex — an 8.7-point unforced error stacked on a totally wasted roster slot. A win over a weak opponent papered over the worst bench-management week of the season so far; double-check every single slot is filled before Thursday lock, every week, no exceptions."
+  },
+  {
+   "week": 5,
+   "league": "Sleeper",
+   "me": 84.42,
+   "opp": 130.2,
+   "result": "L",
+   "record": "2-3",
+   "bench": "36.44",
+   "lesson": "Nothing was mismanaged this week (Herbert/Tuten/Brown/Higgins/Wilson/Strange/Downs/Flowers/Aubrey/Jaguars was the right call going in) — Weak Homie Quon just had a bigger week. First game with Mike Gesicki rostered: he scored 7.4 on the bench in his debut, real TE depth for the first time all season. Separately, Jaguars DEF cratered to 2.0 for the second time in three weeks despite a plus matchup grade — stop trusting the defRank alone for that unit, check the actual opposing offense's health too."
   }
  ],
  "brief": {
-  "text": "GANGSTAS PARADISE (Sleeper) \u2014 Week 5's over and it's a loss; Flowers and Strange were the lone bright spots.\nDo now: nothing \u2014 every starter has already played. You're down 84.42-116.9 to Weak Homie Quon, who still has Tyler Higbee (LAR TE) going in tonight's Rams-Bills game and can only add to the margin.\nLocks next 24h: none.\nLineup: no changes, full recap \u2014 Herbert 11.24, Tuten 11.6, Chase Brown 7.0, Higgins 4.2, M. Wilson 7.28, Strange 13.8 (best value play of the week, torched the league's toughest TE defense), Downs 7.7, Flowers 14.6 (your top scorer, played through the foot issue clean), Aubrey 5.0, Jaguars DEF 2.0 (disappointing floor given how shorthanded Philly was).\n\nGAME OF THROWS (Yahoo) \u2014 Lineup's final except tonight's MNF; Stafford and Corum close out the week at SoFi.\nDo now: nothing yet. Pickens, Parker Washington, Chase Brown, Judkins, Garrett Wilson, Likely, Myers and the 49ers DEF are all final. Stafford and Corum are your last two starters, both in tonight's Rams-Bills game.\nLocks next 24h: Matthew Stafford, Blake Corum \u2014 5:15p PT tonight at SoFi vs Buffalo (MNF). Rams -2.5/-3 on a 54.5 total (DraftKings/SportsLine consensus), implied 28.5 in a dome \u2014 highest total on the board all week, no weather risk.\nLineup: no changes. Etienne's hamstring IR stint runs at least to Nov. 8, so Corum keeps the RB2 job in a plus environment tonight; ceiling still capped by the Kyren Williams timeshare.\n\nFYI: Chase Brown is rostered on both your teams and is already final for the week (7.0 Sleeper pts in a Bengals blowout). Four Jaguars-adjacent plays (Tuten, Strange, Jaguars DEF, Parker Washington) all came out of the same London game against a Barkley-less Eagles team.\nData: Sleeper live (Week 5 matchups/transactions via API, Monday odds via web search) \u00b7 Yahoo screenshots unchanged since 2026-09-13 \u2014 now 29 days stale, please drop fresh ones in the War room Drive folder.",
-  "at": "2026-10-12T07:40:00-07:00",
-  "mode": "daily"
+  "text": "GANGSTAS PARADISE (Sleeper) — Week 5 recap: lost to Weak Homie Quon 84.42-130.2, now 2-3. Nothing was mismanaged — they just had the bigger week. Mike Gesicki's waiver debut (7.4 on the bench) means your TE hole is finally patched.\nDo now: fix your Week 6 lineup — Tyler Shough is live at QB instead of Justin Herbert. Herbert's ankle is fully cleared (no injury designation); there's no reason to start a Saints backup over him. Move him in.\nLocks next 24h: none — your earliest Week 6 kickoff is Sunday 6:30a PT (Tuten/Strange/Jaguars DEF, London).\nLineup: Herbert in for Shough at QB. Everything else is correctly set — Marks over Hampton is right (Hampton's down to 18 snaps, 3rd in his own backfield), Vele/Wilson/Downs/Flowers/Strange/Aubrey/Jaguars all start as-is. If Wilson's ruled out, there's no real replacement on your bench — Higgins is on bye.\nWaivers / trades: see the Waivers tab — Kimani Vidal (LAC) is the one to chase. Trade idea stood down this week, see Trades tab.\n\nGAME OF THROWS (Yahoo) — Chase Brown's Bengals are on bye — your RB slot is empty unless you fix it before Sunday.\nDo now: move Quinshon Judkins from your W/R/T flex into the open RB spot (Chase Brown's bye leaves it empty), then plug Makai Lemon into the vacated flex — he's the only healthy bench option you've got.\nLocks next 24h: none yet, but Jason Myers (SEA) kicks off Thursday 5:15p PT at Denver — your first lock of the week, well ahead of the Sunday slate.\nLineup: Judkins to RB, Lemon to flex, Chase Brown sits (bye). Stafford/Corum (home vs Arizona, highest total on the board), Pickens, Garrett Wilson, Parker Washington, Likely, Myers, and the 49ers DEF all start as normal.\nWaivers / trades: no Yahoo visibility this run (screenshots now 30 days stale — drop fresh ones in the War room Drive folder if you want real waiver/trade guidance there).\n\nFYI: Chase Brown, Tee Higgins, and your new TE Mike Gesicki are all on bye this week (Bengals) — across both leagues, that's three Cincinnati players out at once. Jacksonville's Parker Washington and Brenton Strange/Bhayshul Tuten/Jaguars DEF are all in the same early London game Sunday — last trip before JAX (and Herbert's Chargers) hit their Week 7 bye.\nData: Sleeper live (Week 6 rosters/matchups via API, odds/injury/defense context via web search) · Yahoo screenshots unchanged since 2026-09-13 — now 30 days stale, please drop fresh ones in the War room Drive folder.",
+  "at": "2026-10-13T07:19:36-07:00",
+  "mode": "tuesday"
  }
 }
