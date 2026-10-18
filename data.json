@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-18T07:35:00-07:00",
+ "updatedAt": "2026-10-18T09:22:00-07:00",
  "week": 6,
  "yahoo": {
   "updatedAt": "2026-09-13",
@@ -325,7 +325,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "LIVE in London (kicked off 6:30a PT) — 1.0 pts so far. Healthy, still JAX's top back in a 3-way committee with Rodriguez/Allen.",
+    "note": "LIVE in London — 22.9 pts already, a monster day. Healthy, still JAX's top back.",
     "ifOut": ""
    },
    {
@@ -334,7 +334,7 @@
     "team": "HOU",
     "status": "",
     "call": "start",
-    "note": "LIVE in London — 1.1 pts so far. David Montgomery (groin) officially OUT, Marks confirmed as Houston's bell-cow (19 touches last week).",
+    "note": "LIVE in London — 2.9 pts banked via Sleeper's live-scoring feed. But the Sleeper roster page right now shows Chase Brown (CIN) started in this slot instead, not Marks — that's the same CIN-players lineup error flagged Oct 14, back again. Open the app and confirm Marks is actually set: Montgomery (groin) is officially OUT, Marks is Houston's bell-cow, and he's already scoring live while Chase Brown's game (CIN) hasn't even kicked off yet.",
     "ifOut": ""
    },
    {
@@ -343,7 +343,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "LIVE in London — 5.4 pts already, best start of your morning. Locked-in TE1, last game before your Week 7 bye.",
+    "note": "LIVE in London — 5.9 pts so far. Locked-in TE1, last game before your Week 7 bye.",
     "ifOut": ""
    },
    {
@@ -352,7 +352,7 @@
     "team": "JAX",
     "status": "",
     "call": "start",
-    "note": "LIVE in London — 4.0 pts so far vs a Houston offense that remains one of the league's worst (1-4) without Montgomery.",
+    "note": "LIVE in London — bleeding at -1.0 so far vs Houston, but still the right DST start on roster depth; no better option benched.",
     "ifOut": ""
    },
    {
@@ -361,7 +361,7 @@
     "team": "NO",
     "status": "",
     "call": "start",
-    "note": "Locks 10:00a PT. Fully cleared all week, no game designation. Saints favored at home vs a leaky Giants pass D (23.5 implied) — start over Herbert.",
+    "note": "Locks 10:00a PT. Fully cleared all week, no game designation. Saints favored at home vs a leaky Giants pass D (23.5 implied) — start over Herbert. SAME WARNING AS MARKS: the Sleeper roster page currently shows Herbert (LAC) started here, not Shough. Fix it before the 10:00a PT lock.",
     "ifOut": ""
    },
    {
@@ -370,7 +370,7 @@
     "team": "NO",
     "status": "",
     "call": "start",
-    "note": "Locks 10:00a PT. New Orleans' clear WR1, full go, same favorable Giants matchup as Shough.",
+    "note": "Locks 10:00a PT. New Orleans' clear WR1, full go, same favorable Giants matchup as Shough. SAME WARNING: the Sleeper roster page currently shows Tee Higgins (CIN) started here instead of Vele. Fix it before the 10:00a PT lock.",
     "ifOut": ""
    },
    {
@@ -970,8 +970,8 @@
   }
  ],
  "brief": {
-  "text": "JUDKINS (CLE) IS STILL A GAME-TIME CALL FOR GAME OF THROWS, LOCKING 10:00 AM PT — CHECK CLEVELAND'S INACTIVE LIST, NO ROSTERED BACKUP IF HE SITS.\n\nGANGSTAS PARADISE (Sleeper) — Full lineup cleared, four starters already live in London.\nDo now: nothing to execute — every starter carries no injury designation this week.\nLocks next 24h, in order: Tuten/Marks/Strange/Jaguars DEF kicked off 6:30a PT in London and are already live (11.5 team pts so far — Strange leading with 5.4, Jaguars DEF 4.0, Marks 1.1, Tuten 1.0, vs opponent's 8.2). Shough/Vele/M.Wilson/Downs/Flowers lock 10:00a PT. Aubrey locks tonight at 5:20p PT.\nLineup: no changes — Shough over Herbert, Flowers in the flex despite Huntley at QB for Baltimore, Tuten/Marks/Vele/M.Wilson/Downs/Strange/Aubrey/Jaguars DEF all hold. Nobody carries a game designation, so no \"if X is out\" contingencies needed this week.\nWaivers / trades: not a Tue/Wed run — see the Waivers/Trades tabs for the standing plan.\n\nGAME OF THROWS (Yahoo) — Everything's set except Judkins, a genuine game-time call.\nDo now: check Cleveland's inactive list before the 10:00a PT lock. Judkins (ankle) has been Questionable all week with no new update since Friday's limited practice; Cleveland signed RB Audric Estime as insurance, so McLaughlin/Estime would share the backfield if he's inactive — you have no rostered replacement at RB either way.\nLocks next 24h, in order: Myers (K) already played Thursday, final. Parker Washington kicked off 6:30a PT in London, already live. Stafford/Corum/Judkins/Garrett Wilson/Likely lock 10:00a PT. Pickens locks tonight at 5:20p PT. 49ers DEF locks Monday night.\nLineup: no swaps. Judkins starts as a game-time gamble since there's no better option rostered — if he's ruled out you're simply down a man at RB this week; Yahoo gives no free-agent visibility to find a replacement. Correction on the 49ers DEF: Bosa is NOT confirmed out as recent runs assumed — Shanahan said this week he \"has a chance\" to play Monday — but it doesn't change the start call either way.\nWaivers / trades: not a Tue/Wed run.\n\nFYI: Real correlation risk live right now — Tuten, Strange, and the Jaguars DEF (Sleeper) plus Parker Washington (Yahoo) are all riding the same JAX-HOU London game; a Jacksonville collapse hurts four roster spots across both leagues at once.\nData: Sleeper live (Week 6 rosters/matchups/live scoring via API, injury news via web search) · Yahoo screenshots unchanged since 2026-09-13 — now 35 days stale, please drop fresh ones in the War room Drive folder.",
-  "at": "2026-10-18T07:35:00-07:00",
+  "text": "YOUR SLEEPER ROSTER PAGE CURRENTLY SHOWS HERBERT / CHASE BROWN / HIGGINS STARTING — NOT SHOUGH / MARKS / VELE. MARKS IS ALREADY LIVE IN LONDON BANKING POINTS. FIX IT BEFORE THE 10:00 AM PT LOCK.\nJUDKINS (CLE) IS STILL A GAME-TIME CALL FOR GAME OF THROWS, ALSO LOCKING 10:00 AM PT — CHECK CLEVELAND'S INACTIVE LIST, NO ROSTERED BACKUP IF HE SITS.\n\nGANGSTAS PARADISE (Sleeper) — Lineup reverted to the wrong players this morning, fix it now.\nDo now: Sleeper's live-scoring feed has your team at 30.7 pts so far (Tuten 22.9, Strange 5.9, Marks 2.9, Jaguars DEF -1.0), but the roster page itself lists Herbert, Chase Brown and Higgins as your QB/RB2/WR2 — the same CIN-players lineup error flagged on Oct 14, recurring again on game day. Open the Sleeper app now and confirm Shough-Marks-Vele are actually set before the 10:00a PT lock, or you'll start scoring zeros in those slots the moment Herbert's and Chase Brown's/Higgins' CIN and LAC games kick off.\nLocks next 24h, in order: Tuten/Marks/Strange/Jaguars DEF kicked off 6:30a PT in London and are already live (your 30.7 vs opponent's 8.2). Shough/Vele/M.Wilson/Downs/Flowers lock 10:00a PT — fix the QB/RB2/WR2 swap before then. Aubrey locks tonight at 5:20p PT.\nLineup: Shough over Herbert (no game designation, 23.5 implied vs Giants), Marks over Chase Brown (Montgomery officially OUT, Marks confirmed HOU bell-cow and already scoring live), Vele over Higgins (NO's clear WR1, same plus Giants matchup as Shough). M.Wilson/Downs/Flowers/Strange/Aubrey/Jaguars DEF all hold as before — nobody else carries a game designation.\nWaivers / trades: unchanged — see those tabs for the standing plan.\n\nGAME OF THROWS (Yahoo) — Everything's set except Judkins, a genuine game-time call.\nDo now: check Cleveland's inactive list before the 10:00a PT lock. Judkins (ankle) has been Questionable all week with no new update since Friday's limited practice; Cleveland signed RB Audric Estime as insurance, so McLaughlin/Estime would share the backfield if he's inactive — you have no rostered replacement at RB either way.\nLocks next 24h, in order: Myers (K) already played Thursday, final. Parker Washington kicked off 6:30a PT in London, already live. Stafford/Corum/Judkins/Garrett Wilson/Likely lock 10:00a PT. Pickens locks tonight at 5:20p PT. 49ers DEF locks Monday night.\nLineup: no swaps. Judkins starts as a game-time gamble since there's no better option rostered — if he's ruled out you're simply down a man at RB this week; Yahoo gives no free-agent visibility to find a replacement. Bosa remains unconfirmed for the 49ers DEF's Monday game (Shanahan: \"a chance\"), but it doesn't change the start call either way.\nWaivers / trades: unchanged — see those tabs.\n\nFYI: Same JAX-HOU London correlation risk as recent runs — Tuten, Strange, and the Jaguars DEF (Sleeper) plus Parker Washington (Yahoo) are all riding that one game; a Jacksonville collapse hurts four roster spots across both leagues at once.\nData: Sleeper live (Week 6 rosters/matchups/live scoring via API — flagging a roster-vs-matchups mismatch this run, see Do Now above) · Yahoo screenshots unchanged since 2026-09-13 — now 35 days stale, please drop fresh ones in the War room Drive folder.",
+  "at": "2026-10-18T09:22:00-07:00",
   "mode": "sunday"
  }
 }
