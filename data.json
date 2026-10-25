@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-25T07:15:00-07:00",
+ "updatedAt": "2026-10-25T09:12:00-07:00",
  "week": 7,
  "yahoo": {
   "updatedAt": "2026-09-13",
@@ -315,7 +315,7 @@
     "team": "NE",
     "status": "",
     "call": "start",
-    "note": "Game final (Thu @ CHI) — caught two touchdowns, 14.1 pts, his third straight game with a score. Nothing left to do here.",
+    "note": "FINAL (Thu @ CHI) — caught two touchdowns, 14.1 pts, his third straight game with a score. Locked, nothing to do.",
     "ifOut": ""
    },
    {
@@ -324,7 +324,7 @@
     "team": "CHI",
     "status": "",
     "call": "start",
-    "note": "Game final (Thu vs NE) — finished with 1.3 points as Chicago's complementary back. Nothing left to do here.",
+    "note": "FINAL (Thu vs NE) — finished with 1.3 points as Chicago's complementary back. Locked, nothing to do.",
     "ifOut": ""
    },
    {
@@ -333,16 +333,7 @@
     "team": "NO",
     "status": "",
     "call": "start",
-    "note": "In progress right now in Paris vs PIT (1.44 pts through early action). Locked in as your only healthy QB — nothing to do.",
-    "ifOut": ""
-   },
-   {
-    "slot": "FLEX",
-    "name": "Woody Marks",
-    "team": "HOU",
-    "status": "",
-    "call": "start",
-    "note": "Locking now — 10:00a ET/7:00a PT vs NYG. David Montgomery (groin) still hasn't practiced since Week 5; Marks keeps the Houston backfield. Confident start.",
+    "note": "Paris game vs Pittsburgh is in the 4th quarter, Steelers leading 16-10. Locked in as your only healthy QB — nothing to do now.",
     "ifOut": ""
    },
    {
@@ -351,7 +342,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Locks 1p ET/10a PT @ Baltimore. Full workload expected regardless of Baltimore's own QB situation (see Flowers note below for context on the game). Confident start.",
+    "note": "Locks 10:00a PT @ Baltimore — inside the hour. Full workload expected regardless of Baltimore's own QB mess (see Flowers below). Confident start.",
     "ifOut": ""
    },
    {
@@ -360,7 +351,7 @@
     "team": "CIN",
     "status": "",
     "call": "start",
-    "note": "Locks 1p ET/10a PT @ Baltimore. Same game as Brown. Confident start.",
+    "note": "Locks 10:00a PT @ Baltimore — inside the hour, same game as Brown. Confident start.",
     "ifOut": ""
    },
    {
@@ -369,7 +360,16 @@
     "team": "BAL",
     "status": "",
     "call": "start",
-    "note": "ACTIONABLE NEWS, same call — Ravens officially downgraded Lamar Jackson to OUT Saturday (high ankle sprain, 3rd straight missed game); Tyler Huntley starts at QB. Flowers' passing-game ceiling drops with Huntley under center (he settled for a modest floor-only day the last time Huntley started), but he's still clearly your best play here — nothing better on the bench. Locks 1p ET/10a PT vs Cincinnati.",
+    "note": "Locks 10:00a PT vs Cincinnati — inside the hour. Lamar Jackson is officially OUT (ankle, 3rd straight missed game), Tyler Huntley starts at QB. Flowers' ceiling is capped with Huntley under center, but he's still clearly your best play here — nothing better on the bench.",
+    "ifOut": ""
+   },
+   {
+    "slot": "FLEX",
+    "name": "Woody Marks",
+    "team": "HOU",
+    "status": "",
+    "call": "start",
+    "note": "Locks 10:00a PT vs NYG — inside the hour. David Montgomery (groin) is still not confirmed healthy; Marks keeps the Houston backfield. Confident start.",
     "ifOut": ""
    },
    {
@@ -378,7 +378,7 @@
     "team": "CLE",
     "status": "",
     "call": "start",
-    "note": "Locks 1p ET/10a PT vs Tennessee. Titans still project as one of the league's weaker offensive environments — confident streaming start.",
+    "note": "Locks 10:00a PT @ Tennessee — inside the hour. Your own Judkins getting cleared doesn't change this call; Tennessee's offense still projects as one of the league's weakest. Confident streaming start.",
     "ifOut": ""
    },
    {
@@ -387,7 +387,7 @@
     "team": "SEA",
     "status": "",
     "call": "start",
-    "note": "Locks 5:20p PT (SNF) vs KC. No line movement — still the best kicker matchup on this roster.",
+    "note": "Locks 5:20p PT (SNF) vs KC. No change — still the best kicker matchup on this roster.",
     "ifOut": ""
    },
    {
@@ -395,8 +395,8 @@
     "name": "Dameon Pierce",
     "team": "PHI",
     "status": "",
-    "call": "watch",
-    "note": "Locks Monday 5:15p PT @ Dallas. Jalen Hurts is OUT (blood clot), Tanner McKee starts for Philly, and Saquon Barkley (hamstring) still has no confirmed clearance as of this run. Still the start — no better bench option — but recheck Monday's inactives before the late lock.",
+    "call": "start",
+    "note": "Locks Monday 5:15p PT vs Dallas. Major update: Jalen Hurts is done for the SEASON (blood clots in both lungs, not just a one-week issue) — Tanner McKee is Philly's QB going forward. Saquon Barkley (hamstring) still has no confirmed clearance. Still the start, nothing better on the bench.",
     "ifOut": ""
    }
   ],
@@ -407,7 +407,7 @@
     "team": "NYJ",
     "status": "",
     "call": "start",
-    "note": "Locks 10:00a PT vs Miami. Line held (NYJ -4.5, ~39 total) — still a plus matchup against a secondary graded the league's worst. Confident WR1 start.",
+    "note": "Locks 10:00a PT vs Miami — inside the hour. Still a plus matchup against a secondary graded the league's worst. Confident WR1 start.",
     "ifOut": ""
    },
    {
@@ -416,7 +416,7 @@
     "team": "NYG",
     "status": "",
     "call": "start",
-    "note": "Locks 10:00a PT @ HOU. No line movement (HOU -9.5, 43.0 total) — still your clear TE1 with nothing better on the bench, but an ugly road-underdog script for the Giants' passing game.",
+    "note": "Locks 10:00a PT @ Houston — inside the hour. Still your clear TE1 with nothing better on the bench, despite a tough road-underdog script for the Giants' passing game.",
     "ifOut": ""
    },
    {
@@ -425,17 +425,17 @@
     "team": "SF",
     "status": "",
     "call": "start",
-    "note": "Locks 10:00a PT Sunday @ ATL. Total eased slightly to 49.5 but 49ers still favored on the road. Brock Purdy (toe) is out again with Mac Jones making his 5th start — that's their offense, not the defense, which remains the call here. Bosa's snap-count status is still unconfirmed. Confident DST start.",
+    "note": "Locks 10:00a PT @ Atlanta — inside the hour. Nick Bosa (knee/calf) is ruled OUT, a real dent in the pass rush, and Brock Purdy's own availability is still unresolved — but neither changes the call on the defensive unit. Confident DST start.",
     "ifOut": ""
    },
    {
     "slot": "RB",
     "name": "Quinshon Judkins",
     "team": "CLE",
-    "status": "Q",
+    "status": "",
     "call": "start",
-    "note": "ACTIONABLE — still no official Friday designation found this run. Todd Monken remains optimistic he plays Sunday vs Tennessee, but Dylan Sampson (knee) is working back from IR this week and projects as a complementary/third-down piece if activated, which trims Judkins' ceiling even if he suits up. Recheck before the 10a PT Sunday lock.",
-    "ifOut": "If downgraded Friday/Saturday, you have no rostered backup RB on this Yahoo roster — would need to grab his handcuff (e.g. Dylan Sampson or Jaleel McLaughlin, if available) off waivers, but availability is unconfirmed without Yahoo login."
+    "note": "RESOLVED — Judkins was officially taken off Cleveland's injury report Friday with no designation; he said he's \"good to go.\" Dylan Sampson (knee) is active off IR too but projects as a complementary/third-down role only. Locks 10:00a PT @ Tennessee — inside the hour. Confident start.",
+    "ifOut": ""
    },
    {
     "slot": "W/R/T",
@@ -443,7 +443,7 @@
     "team": "ARI",
     "status": "",
     "call": "start",
-    "note": "Locks 1:05p PT vs Denver. No line movement — still a stingy, 7th-ranked defense. Flex-only floor play, shared tough-matchup exposure with your Sleeper bench.",
+    "note": "Locks 1:05p PT vs Denver. No change — still a stingy, 7th-ranked defense. Flex-only floor play, shared tough-matchup exposure with your Sleeper bench.",
     "ifOut": ""
    },
    {
@@ -452,7 +452,7 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "Locks 1:25p PT @ LV. Lines converged around LAR -5, total 47.5 — still a plus matchup in a dome. Confident start.",
+    "note": "Locks 1:25p PT @ Las Vegas. Still a plus matchup in a dome. Confident start.",
     "ifOut": ""
    },
    {
@@ -461,7 +461,7 @@
     "team": "LAR",
     "status": "",
     "call": "start",
-    "note": "Locks 1:25p PT. Same game context (LAR -5, 47.5 total) — still touchdown-dependent behind Kyren Williams, started for lack of a better option.",
+    "note": "Locks 1:25p PT @ Las Vegas, same game as Stafford. Still touchdown-dependent behind Kyren Williams, started for lack of a better option.",
     "ifOut": ""
    },
    {
@@ -470,7 +470,7 @@
     "team": "SEA",
     "status": "",
     "call": "start",
-    "note": "Locks 5:20p PT Sunday. No line movement — still the best kicker matchup on this roster.",
+    "note": "Locks 5:20p PT Sunday night vs KC. No change — still the best kicker matchup on this roster, shared exposure with your Sleeper team.",
     "ifOut": ""
    },
    {
@@ -479,7 +479,7 @@
     "team": "DAL",
     "status": "",
     "call": "start",
-    "note": "Locks 5:15p PT Monday. Big swing since Wednesday: Jalen Hurts is OUT (blood clot) and Tanner McKee starts for Philly — the total crashed from 52 to 44.5. Dallas is still favored and Pickens is still your clear WR2, but it's a smaller game than it looked a few days ago.",
+    "note": "Locks Monday 5:15p PT @ Philadelphia. Same Jalen Hurts news as Lemon below — he's done for the SEASON, not just this week, so this is a lower-scoring Eagles offense going forward with Tanner McKee at QB. Dallas still favored; Pickens still your clear WR2.",
     "ifOut": ""
    },
    {
@@ -488,7 +488,7 @@
     "team": "PHI",
     "status": "",
     "call": "start",
-    "note": "Locks 5:15p PT Monday. Same Hurts-out, McKee-starting swing that hit Pickens — Philly's implied total dropped from 23.75 to 20.0. Still your only other rosterable WR with Washington on bye, but temper expectations.",
+    "note": "Locks Monday 5:15p PT vs Dallas. Major update: Jalen Hurts is out for the SEASON (blood clots, both lungs) — this is now a season-long Tanner McKee era for Philly's offense, not a one-week blip. Still your only other startable WR with Washington on bye; temper expectations further than last week.",
     "ifOut": ""
    }
   ]
@@ -550,7 +550,7 @@
      "spread": -2.5,
      "impliedTeam": 21.0
     },
-    "takeaway": "Line eased to PIT -2.5 (total 44.5) — tighter game than it looked earlier in the week. Startable on volume as your only healthy QB, not a smash spot."
+    "takeaway": "Game in progress, 4th quarter, PIT leads 16-10 (Yahoo/CBS live updates) — pregame line context no longer matters. Already locked, nothing to adjust."
    },
    {
     "slot": "FLEX",
@@ -683,7 +683,7 @@
      "spread": -4.5,
      "impliedTeam": 20.0
     },
-    "takeaway": "Major update: Jalen Hurts is OUT (blood clot), Tanner McKee starts for Philly, and the total crashed from 52 to 44.5 — a far less shootout-shaped game than modeled Wednesday. Barkley (hamstring) still has no official Friday designation but remains trending toward playing; a backup-QB, run-leaning script could help Pierce's floor even in a smaller role. Still start him — nothing better on your bench — but this is a genuinely different game than it looked a few days ago."
+    "takeaway": "Bigger update: Jalen Hurts is done for the SEASON (multiple blood clots in both lungs, per Rapoport/Schefter) — this isn't a one-week swing anymore, Tanner McKee is Philly's QB the rest of the way. Barkley (hamstring) still has no confirmed clearance. A backup-QB, run-leaning script could help Pierce's floor even in a smaller role. Still start him — nothing better on your bench — but plan on this backfield's outlook for the long haul, not just Week 7."
    }
   ],
   "yahoo": [
@@ -742,7 +742,7 @@
      "spread": -4.0,
      "impliedTeam": 26.75
     },
-    "takeaway": "Total eased slightly to 49.5 — still favored comfortably on the road. Brock Purdy (toe) is out again with Mac Jones starting his 5th game, but that's the 49ers offense, not the defense you're starting. Bosa's snap-count status remains unconfirmed. Confident DST start."
+    "takeaway": "Nick Bosa (knee/calf) is officially ruled OUT on the 49ers' final injury report — a real dent in the pass rush — and Purdy's own status is still unresolved, but that's the offense, not the unit you're starting. SF still favored on the road. Confident DST start."
    },
    {
     "slot": "RB",
@@ -754,14 +754,14 @@
     "defRankNote": "Tennessee ranked 20th vs RBs in yards-per-carry allowed in 2025 but 1st in yards-before-contact allowed — mixed grade, Sharp Football",
     "weather": {
      "impact": "none",
-     "note": "Huntington Bank Field outdoor, Sunday 1p ET; no severe forecast found, recheck Saturday"
+     "note": "Huntington Bank Field outdoor, Sunday 1p ET; no confirmed severe forecast found this run"
     },
     "vegas": {
      "total": 38.5,
      "spread": -1.5,
      "impliedTeam": 20.0
     },
-    "takeaway": "Still no official Friday designation found. Monken remains optimistic, but Dylan Sampson (knee) is working back from IR this week and could take a complementary role if activated, trimming Judkins' ceiling even if he plays. Confirm before final lock."
+    "takeaway": "RESOLVED — Judkins was officially removed from Cleveland's Friday injury report with no designation and said he's good to go. Dylan Sampson (knee) is also active off IR but projects as a complementary/third-down role, not a real threat to Judkins' workload. Confident start."
    },
    {
     "slot": "W/R/T",
@@ -856,7 +856,7 @@
      "spread": -4.5,
      "impliedTeam": 24.5
     },
-    "takeaway": "Jalen Hurts is OUT (blood clot) and Tanner McKee starts for Philly — the total crashed from 52 to 44.5. Dallas still favored; Pickens still your clear WR2, but a smaller game than it looked a few days ago."
+    "takeaway": "Bigger update: Jalen Hurts is out for the SEASON (multiple blood clots in both lungs) — Tanner McKee is now Philly's QB long-term, not just this week. Dallas still favored, total near 44 (Complex); Pickens still your clear WR2 in a lower-scoring environment than it looked midweek."
    },
    {
     "slot": "W/R/T",
@@ -875,7 +875,7 @@
      "spread": 4.5,
      "impliedTeam": 20.0
     },
-    "takeaway": "Same Hurts-out, McKee-starting swing that hit Pickens — Philly's implied total dropped from 23.75 to 20.0. Still your only other rosterable WR with Washington on bye, but temper expectations; this is a lesser passing environment now."
+    "takeaway": "Same story that hit Pickens, but bigger for Lemon: Jalen Hurts is done for the SEASON, so this is a season-long Tanner McKee offense, not a one-week dip. Still your only other rosterable WR with Washington on bye, but temper expectations further than last week."
    }
   ]
  },
@@ -887,12 +887,66 @@
    "summary": "Baltimore officially moved Lamar Jackson (high ankle sprain) from questionable to out on Saturday, so he'll miss a third straight game and Tyler Huntley starts at QB against Cincinnati.",
    "source": "Yahoo Sports",
    "url": "https://sports.yahoo.com/nfl/article/ravens-downgrade-lamar-jackson-to-out-for-week-7-showdown-with-bengals-qb-will-miss-third-straight-game-195849563.html",
-   "at": "2026-10-25T06:00:00-07:00"
+   "at": "2026-10-24T18:00:00-07:00"
+  },
+  {
+   "player": "Quinshon Judkins",
+   "team": "CLE",
+   "headline": "Browns RBs Quinshon Judkins, Dylan Sampson expected to play",
+   "summary": "Judkins was officially taken off Cleveland's injury report on Friday with no game designation and said he's good to go against Tennessee, while Dylan Sampson is questionable and expected back in a complementary role.",
+   "source": "ESPN",
+   "url": "https://www.espn.com/nfl/story/_/id/50259999/browns-rbs-quinshon-judkins-dylan-sampson-expected-play",
+   "at": "2026-10-24T09:00:00-07:00"
+  },
+  {
+   "player": "Makai Lemon",
+   "team": "PHI",
+   "headline": "Eagles QB Jalen Hurts out for season after multiple blood clots found in lungs",
+   "summary": "The Eagles shut Jalen Hurts down for the rest of the season after doctors found deep vein thrombosis and bilateral pulmonary emboli, making Tanner McKee the starting QB for Philadelphia's offense going forward, not just this week.",
+   "source": "ABC News",
+   "url": "https://abcnews4.com/news/nation-world/eagles-qb-jalen-hurts-out-for-season-after-multiple-blood-clots-found-in-lungs",
+   "at": "2026-10-23T12:00:00-07:00"
+  },
+  {
+   "player": "George Pickens",
+   "team": "DAL",
+   "headline": "Eagles QB Jalen Hurts out for season after multiple blood clots found in lungs",
+   "summary": "Pickens' Monday-night opponent just lost Jalen Hurts for the year to blood clots in both lungs, locking in Tanner McKee as Philadelphia's QB for a less explosive Eagles offense the rest of the season.",
+   "source": "ABC News",
+   "url": "https://abcnews4.com/news/nation-world/eagles-qb-jalen-hurts-out-for-season-after-multiple-blood-clots-found-in-lungs",
+   "at": "2026-10-23T12:00:00-07:00"
+  },
+  {
+   "player": "49ers",
+   "team": "SF",
+   "headline": "49ers vs. Falcons final injury report: Nick Bosa among six ruled out for Week 7",
+   "summary": "San Francisco's final Week 7 injury report rules out Nick Bosa (knee/calf) along with five other players, thinning the pass rush for Sunday's game at Atlanta.",
+   "source": "49ersWebZone",
+   "url": "https://www.49erswebzone.com/articles/204483-49ers-falcons-final-injury-report/",
+   "at": "2026-10-24T14:00:00-07:00"
+  },
+  {
+   "player": "Woody Marks",
+   "team": "HOU",
+   "headline": "Woody Marks' Role Set to Grow With Teammate Injured",
+   "summary": "With David Montgomery (groin) still not confirmed to play, Houston's backfield keeps running through Woody Marks for Week 7 against the Giants.",
+   "source": "RotoBaller",
+   "url": "https://www.rotoballer.com/?p=1967029",
+   "at": "2026-10-23T09:00:00-07:00"
+  },
+  {
+   "player": "Dameon Pierce",
+   "team": "PHI",
+   "headline": "Report: Eagles RB Saquon Barkley is week-to-week with hamstring injury",
+   "summary": "Barkley remains week-to-week with the hamstring injury that's kept him out since Week 4, so Pierce continues to lead Philadelphia's backfield into Monday night.",
+   "source": "NBC Sports / PFT",
+   "url": "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/report-eagles-rb-saquon-barkley-is-week-to-week-with-hamstring-injury",
+   "at": "2026-10-20T09:00:00-07:00"
   }
  ],
  "brief": {
-  "text": "YAHOO SCREENSHOTS ARE 42 DAYS STALE (since 2026-09-13) — PLEASE DROP FRESH ONES IN THE WAR ROOM DRIVE FOLDER.\n\nGANGSTAS PARADISE (Sleeper) — Lineup's set and clean; the only real news is Lamar Jackson officially downgraded to OUT, which softens Zay Flowers' ceiling but doesn't change the call.\nDo now: nothing to change — same 10 starters as yesterday.\nLocks next 24h, in kickoff order:\nHunter Henry (TE) & Roschon Johnson (RB) — Thursday game is final, locked, nothing to do (Henry caught 2 TDs for 14.1).\nTyler Shough (QB) — in progress right now in Paris vs PIT, 1.44 pts so far, locked.\nWoody Marks (RB/FLEX) — locking right now, 7:00a PT vs NYG. Montgomery still out, Marks has the backfield.\nChase Brown (RB) & Tee Higgins (WR) — lock 10:00a PT @ Baltimore, full workload expected.\nZay Flowers (WR) — locks 10:00a PT vs Cincinnati. Lamar Jackson officially OUT (3rd straight game, high ankle sprain), Tyler Huntley starts — Flowers' passing-game ceiling drops but he's still your best option, start him.\nBrowns DEF — locks 10:00a PT vs Tennessee, confident stream.\nJason Myers (K) — locks 5:20p PT (SNF) vs KC.\nDameon Pierce (RB/FLEX) — locks Monday 5:15p PT @ Dallas. Hurts out (blood clot), McKee starts for Philly; Barkley still unconfirmed. Start Pierce regardless, nothing better on the bench.\nLineup: no changes from yesterday.\n\nGAME OF THROWS (Yahoo) — Same frozen roster since the 9/13 screenshots; Judkins is still the one unresolved question going into kickoff.\nDo now: nothing new to change on the roster as known, but Quinshon Judkins (ankle) still has no official designation found this run — start him anyway, you have no rostered backup.\nLocks next 24h, in kickoff order:\nGarrett Wilson (WR), Isaiah Likely (TE), 49ers DEF — lock 7:00a PT, locking right now.\nQuinshon Judkins (RB) — locks 10:00a PT @ Tennessee. No official Friday/Saturday designation found; Monken is optimistic, but Dylan Sampson (knee) returning from IR could trim his role even if he plays. Start him — no bench alternative.\nMichael Wilson (WR) — locks 10:05a PT vs Denver.\nMatthew Stafford (QB) & Blake Corum (RB) — lock 1:25p PT @ Las Vegas.\nJason Myers (K) — locks 5:20p PT (shared exposure with your Sleeper team).\nGeorge Pickens (WR) & Makai Lemon (WR) — lock Monday 5:15p PT. Jalen Hurts is OUT, Tanner McKee starts for Philly — smaller game script than it looked midweek.\nLineup: no changes.\n\nFYI: Michael Wilson (ARI) and Jason Myers (SEA) remain shared exposure across both rosters, both locking in the same windows today.\nData: Sleeper live (Week 7 rosters/matchups/transactions via API) · Yahoo screenshots unchanged since 2026-09-13 — now 42 days stale, please drop fresh ones in the War room Drive folder.",
-  "at": "2026-10-25T07:15:00-07:00",
+  "text": "LOCKING WITHIN THE HOUR (10:00A PT): CHASE BROWN, TEE HIGGINS, ZAY FLOWERS, WOODY MARKS, BROWNS DEF ON SLEEPER · GARRETT WILSON, ISAIAH LIKELY, 49ERS DEF, QUINSHON JUDKINS ON YAHOO.\nYAHOO SCREENSHOTS ARE STILL 42 DAYS STALE (since 2026-09-13) — PLEASE DROP FRESH ONES IN THE WAR ROOM DRIVE FOLDER.\n\nGANGSTAS PARADISE (Sleeper) — Full 10-man lineup locked or locking now; nothing to change, biggest story is Jalen Hurts done for the year, not anything on this roster.\nDo now: nothing — lineup is set.\nLineup, in kickoff order: Hunter Henry (TE) — FINAL, 14.1 pts, 2 TDs, nothing to do. Roschon Johnson (RB) — FINAL, 1.3 pts, nothing to do. Tyler Shough (QB) — Paris game in the 4th quarter, Steelers lead 16-10, locked. Chase Brown (RB) & Tee Higgins (WR) — lock 10:00a PT @ Baltimore (inside the hour), full workload expected. Zay Flowers (WR) — locks 10:00a PT vs Cincinnati (inside the hour); Lamar Jackson officially OUT again, Tyler Huntley starts, caps Flowers' ceiling but he's still your best option, start him. Woody Marks (RB/FLEX) — locks 10:00a PT vs NYG (inside the hour); Montgomery still unconfirmed, Marks keeps the backfield. Browns DEF — locks 10:00a PT @ Tennessee (inside the hour), confident stream regardless of your own Judkins news. Jason Myers (K) — locks 5:20p PT (SNF) vs KC, no change. Dameon Pierce (RB/FLEX) — locks Monday 5:15p PT vs Dallas; Jalen Hurts is done for the SEASON (blood clots, both lungs), not a one-week issue — Tanner McKee is Philly's QB going forward. Start Pierce regardless, nothing better on the bench.\n\nGAME OF THROWS (Yahoo) — Judkins question is resolved clean, rest of the roster locks on schedule; still flying blind on your own record/standings until fresh screenshots land.\nDo now: nothing — Quinshon Judkins was officially taken off Cleveland's injury report Friday with no designation, he's a confirmed go.\nLineup, in kickoff order: Garrett Wilson (WR) — locks 10:00a PT vs Miami (inside the hour), still a plus matchup vs the league's worst defense. Isaiah Likely (TE) — locks 10:00a PT @ Houston (inside the hour), your clear TE1 despite the tough road script. 49ers DEF — locks 10:00a PT @ Atlanta (inside the hour); Nick Bosa (knee/calf) is ruled OUT, real dent in the pass rush, but still the streamer start. Quinshon Judkins (RB) — locks 10:00a PT @ Tennessee (inside the hour), officially clear with no designation; Dylan Sampson (knee) is active too but only in a complementary role. Michael Wilson (WR/FLEX) — locks 1:05p PT vs Denver, stingy matchup, floor play only. Matthew Stafford (QB) & Blake Corum (RB) — lock 1:25p PT @ Las Vegas, plus matchup in a dome. Jason Myers (K) — locks 5:20p PT vs KC, shared exposure with your Sleeper team. George Pickens (WR) — locks Monday 5:15p PT @ Philadelphia; same Hurts-for-the-season news, lower-scoring Eagles offense ahead, but Pickens still your clear WR2. Makai Lemon (WR/FLEX) — locks Monday 5:15p PT vs Dallas; his own team's QB situation is now a season-long McKee era — still your only other startable WR with Washington on bye, temper expectations further than last week.\n\nFYI: Michael Wilson (ARI) and Jason Myers (SEA) remain shared exposure across both rosters; Bosa's absence weakens the 49ers DEF pass rush but doesn't change the start call.\nData: Sleeper live (Week 7 rosters/matchups via API) · Yahoo screenshots unchanged since 2026-09-13 — still 42 days stale, please drop fresh ones in the War room Drive folder.",
+  "at": "2026-10-25T09:12:00-07:00",
   "mode": "sunday"
  },
  "waivers": {
