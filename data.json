@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-11-01T06:20:07-08:00",
+  "updatedAt": "2026-11-01T08:09:33-08:00",
   "week": 8,
   "yahoo": {
     "updatedAt": "2026-09-13",
     "week": 8,
     "opponent": "Tight End Danny",
     "oppManager": "unknown \u2014 no current standings screenshot",
-    "record": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 48 days)",
-    "oppRecord": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 48 days)",
+    "record": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 49 days)",
+    "oppRecord": "unknown \u2014 Yahoo screenshots stale since 2026-09-13 (now 49 days)",
     "myProj": 81.64,
     "oppProj": 101.05,
     "myPts": null,
     "oppPts": null,
-    "winProb": "underdog on stale preseason schedule-projection only (81.64 vs 101.05) \u2014 not a real read, screenshots are 48 days stale",
+    "winProb": "underdog on stale preseason schedule-projection only (81.64 vs 101.05) \u2014 not a real read, screenshots are 49 days stale",
     "starters": [
       {
         "slot": "QB",
@@ -367,10 +367,10 @@
         "slot": "FLEX",
         "name": "Michael Wilson",
         "team": "ARI",
-        "status": "Q",
-        "call": "watch",
-        "note": "Rib injury \u2014 the Cardinals' own Week 8 injury report still has him as a limited practice participant through Friday, no final game-status designation posted yet. Same 24.25-implied Dallas dome game if he plays. Recheck the inactive list this morning before locking him in.",
-        "ifOut": "Omarion Hampton (RB, LAC) \u2014 currently LAC's RB1 on the depth chart and rostered on your bench; your best replacement if Wilson sits."
+        "status": "",
+        "call": "start",
+        "note": "Status upgrade: Sleeper's live roster feed now shows no injury designation on Wilson at all (was Questionable/rib all week) \u2014 no fresh article confirms it independently, but the field is tracking correctly elsewhere this morning (Woody Marks still correctly tagged Questionable). Reads as cleared/full-go. Same 24.25-implied Dallas dome game. Games lock at 10am PT, about 2 hours out \u2014 give the actual inactive list one last glance right at kickoff since this flipped on no corroborating report.",
+        "ifOut": ""
       },
       {
         "slot": "FLEX",
@@ -468,10 +468,10 @@
         "slot": "W/R/T",
         "name": "Michael Wilson",
         "team": "ARI",
-        "status": "Q",
-        "call": "watch",
-        "note": "Same rib situation and limited-practice status as your Sleeper flex \u2014 shared exposure risk across both leagues. Cardinals' own injury report still lists him limited through Friday with no final tag. Check the inactive list Sunday morning.",
-        "ifOut": "Chig Okonkwo (WAS) or your best remaining bench WR \u2014 confirm your actual current Yahoo roster, this screenshot is 49 days stale."
+        "status": "",
+        "call": "start",
+        "note": "Same status upgrade as your Sleeper flex \u2014 Sleeper's live feed dropped his injury tag entirely overnight (was Questionable/rib). No independent article confirms it, but trust the live field over a two-day-old practice report. Same 24.25-implied Dallas dome game, locks 10am PT. Give the inactive list one last glance at kickoff.",
+        "ifOut": ""
       },
       {
         "slot": "K",
@@ -626,7 +626,7 @@
           "spread": -6.0,
           "impliedTeam": 24.25
         },
-        "takeaway": "24.25 implied into a bottom-5 graded WR defense if he plays \u2014 rib status is a lineup-call question, not a matchup one."
+        "takeaway": "24.25 implied into a bottom-5 graded WR defense \u2014 the injury tag dropped off Sleeper's feed this morning, so this is now a clean start into a plus matchup."
       },
       {
         "slot": "FLEX",
@@ -818,7 +818,7 @@
           "spread": -6.0,
           "impliedTeam": 24.25
         },
-        "takeaway": "Same rib situation and 24.25-implied spot as your Sleeper flex \u2014 shared exposure risk across both leagues if he sits."
+        "takeaway": "Same 24.25-implied spot as your Sleeper flex \u2014 injury tag cleared off Sleeper's live feed this morning, shared clean start across both leagues now."
       },
       {
         "slot": "K",
@@ -871,9 +871,9 @@
     }
   ],
   "brief": {
-    "text": "GANGSTAS PARADISE (Sleeper) \u2014 lineup's locked and clean, one real watch item: Michael Wilson's ribs.\nDo now: nothing \u2014 no lineup or waiver action needed before kickoff.\nLocks next 24h: earliest games (Jaguars/Colts, Bengals/Titans, Cardinals/Cowboys) kick off around 10am PT today \u2014 about 3.5 hours out. Henry (NE @ MIA) and Flowers (BAL @ BUF) are in later afternoon windows.\nLineup: no changes from yesterday. Tuten and Strange start vs Indianapolis (27.0 implied) despite Indy grading as the league's #1 overall defense this week \u2014 volume plays, not ceiling plays. Chase Brown and Tee Higgins get the week's best matchup, 28.25 implied against a Tennessee defense that's bled points all season and graded dead-last vs WR \u2014 locked in. Flowers is a confident WR1 start at Buffalo (25.0 implied); no confirmed forecast yet, recheck wind/snow before your early lock. Henry gets a soft road spot at Miami (26.0 implied), Aubrey has the week's best kicking matchup (30.25 implied). Watch: Michael Wilson (rib) is still a limited practice participant through Friday per the Cardinals' own injury report, with no final designation posted \u2014 if he's out, start Omarion Hampton (RB, LAC), on your bench and currently LAC's depth-chart RB1.\n\nGAME OF THROWS (Yahoo) \u2014 still flying blind, and the data gap just hit 49 days.\nDo now: drop fresh Yahoo screenshots \u2014 the newest one on file is still from 2026-09-13. Working off that last-known roster: swap in Chig Okonkwo (TE, WAS) for Isaiah Likely (NYG, on bye) if he's still rostered \u2014 his hamstring issue resolved weeks ago. Your 49ers DEF is also on bye with no bench DEF on the last-known roster \u2014 needs a Yahoo waiver add I can't see without login.\nLocks next 24h: Judkins/Pickens/Garrett Wilson windows kick off between 10am and 1:05pm PT today. Lemon's Eagles-Commanders game is Sunday Night Football (5:20pm PT); Myers's Seahawks-Bears game is Monday night.\nLineup: Stafford/Corum face the Chargers in a dome (25.5 implied); Corum stays touchdown-dependent behind Kyren Williams, still LAR's lead back. Judkins is a road underdog at Pittsburgh (18.25 implied, mixed matchup) \u2014 note his real handcuff is now reportedly Dylan Sampson, not Jerome Ford, per a single unconfirmed report that Ford has left Cleveland's roster. Pickens (30.25 implied if he plays) now has a hamstring on top of last week's shoulder issue, still limited in practice with no final tag \u2014 recheck the inactive list before trusting him, Parker Washington is your fallback. Garrett Wilson is a near-pick'em vs Las Vegas, clean on current info. Michael Wilson carries the same rib/limited-practice watch as your Sleeper flex, same Dallas game. Myers gets a good Monday-night spot at home vs Chicago, no wind concern (Lumen's covered bowl).\nWaivers / trades: not a Tuesday run \u2014 see the Waivers and Trades tabs for last Tuesday's standing recommendations.\n\nFYI: shared exposure \u2014 Michael Wilson (ARI) is the same rib/limited-practice watch item in both leagues, same 24.25-implied Dallas game; if he sits, it costs both rosters. Houston's confirmed Week 8 bye means Woody Marks (Sleeper bench RB) is a non-factor regardless of his stale Questionable tag.\nData: Sleeper live \u00b7 Yahoo screenshots from 2026-09-13 (49 days stale \u2014 please drop fresh ones)",
-    "at": "2026-11-01T06:20:07-08:00",
-    "mode": "daily"
+    "text": "LOCKS IN UNDER 2 HOURS (10:00 AM PT): JAGUARS/COLTS, BENGALS/TITANS AND CARDINALS/COWBOYS ALL KICK OFF AT 10AM PT \u2014 THAT'S BRISSETT, TUTEN, STRANGE, CHASE BROWN, HIGGINS, AUBREY, JAGUARS DEF AND MICHAEL WILSON ON SLEEPER, PLUS JUDKINS, PICKENS, GARRETT WILSON AND MICHAEL WILSON ON YAHOO. GEORGE PICKENS (YAHOO) STILL HAS NO FINAL DESIGNATION \u2014 CHECK THE INACTIVE LIST BEFORE THIS LOCK.\n\nGANGSTAS PARADISE (Sleeper) \u2014 lineup's clean, and the one watch item just resolved itself.\nDo now: nothing to change, but note Michael Wilson's injury tag vanished from Sleeper's live feed overnight (was Questionable/rib all week) \u2014 no fresh article confirms it independently, so give the actual inactive list one more look right at the 10am lock, just in case.\nLocks next 3h: the JAX/IND, CIN/TEN and ARI/DAL games all kick at 10am PT, under 2 hours out \u2014 that's 8 of your 10 starters. Flowers (BAL @ BUF) and Henry (NE @ MIA) are in the later afternoon window, more breathing room.\nLineup: Brissett starts in a dome shootout at Dallas (24.25 implied). Tuten and Strange start vs Indianapolis (27.0 implied) despite Indy grading as the league's #1 overall defense this week \u2014 volume plays, not ceiling plays. Chase Brown and Tee Higgins get the week's best matchup, 28.25 implied against a Tennessee defense that's bled points all season and graded dead-last vs WR \u2014 locked in. Michael Wilson is now a clean start at 24.25 implied \u2014 see the status note above. Flowers is a confident WR1 start at Buffalo (25.0 implied); no confirmed forecast found, recheck wind/snow before that later lock. Henry gets a soft road spot at Miami (26.0 implied), Aubrey has the week's best kicking matchup (30.25 implied), Jaguars DEF gets its best floor in weeks (19.5 implied for Indy).\n\nGAME OF THROWS (Yahoo) \u2014 still flying blind, and the data gap just hit 49 days.\nDo now: drop fresh Yahoo screenshots \u2014 the newest one on file is still from 2026-09-13. Working off that last-known roster: swap in Chig Okonkwo (TE, WAS) for Isaiah Likely (NYG, on bye) if he's still rostered \u2014 his hamstring issue resolved weeks ago. Your 49ers DEF is also on bye with no bench DEF on the last-known roster \u2014 needs a Yahoo waiver add I can't see without login.\nLocks next 3h: Judkins, Pickens, Garrett Wilson and Michael Wilson all kick at 10am PT, under 2 hours out. Stafford/Corum follow at 1:05pm PT. Lemon's Eagles-Commanders game is Sunday Night Football (5:20pm PT); Myers's Seahawks-Bears game is Monday night.\nLineup: Judkins is a road underdog at Pittsburgh (18.25 implied, mixed matchup) \u2014 note his real handcuff is now reportedly Dylan Sampson, not Jerome Ford, per a single unconfirmed report that Ford has left Cleveland's roster. Pickens (30.25 implied if he plays) still has no final designation on top of last week's shoulder-then-hamstring saga \u2014 nothing new found this run, check the inactive list before trusting him, Parker Washington is your fallback if he sits. Garrett Wilson is a near-pick'em vs Las Vegas, clean on current info. Michael Wilson is now a clean start \u2014 same status upgrade as your Sleeper flex. Stafford/Corum face the Chargers in a dome (25.5 implied); Corum stays touchdown-dependent behind Kyren Williams, still LAR's lead back. Myers gets a good Monday-night spot at home vs Chicago, no wind concern (Lumen's covered bowl).\nWaivers / trades: not a Tuesday run \u2014 see the Waivers and Trades tabs for last Tuesday's standing recommendations.\n\nFYI: Michael Wilson's status upgrade (no tag on Sleeper's live feed, was Questionable all week) is shared exposure across both leagues \u2014 same 24.25-implied Dallas game either way. Houston's confirmed Week 8 bye means Woody Marks (Sleeper bench RB) is a non-factor regardless of his real Questionable tag.\nData: Sleeper live \u00b7 Yahoo screenshots from 2026-09-13 (49 days stale \u2014 please drop fresh ones)",
+    "at": "2026-11-01T08:09:33-08:00",
+    "mode": "sunday"
   },
   "waivers": {
     "text": "SLEEPER \u2014 FAAB: $58 of $100 remaining. HEADLINE MOVE: Justin Herbert (QB, LAC) is a genuinely unrostered free agent in this league \u2014 verified directly against every roster again this run, he's on nobody's team, and he's the Chargers' clear starter. Claim him now, FAAB $15 (padded above this league's cheap recent pattern of $1-$6 bids specifically because missing this two runs running would be a real unforced error \u2014 still well within your $58 budget), and drop Tyler Shough, who's dead weight even outside his bye. Keep Jacoby Brissett rostered too as QB3 insurance \u2014 you have bench room, no need to drop him.\n2. Washington Commanders DEF \u2014 FAAB $3. Stream/insurance if Jaguars DEF draws a bad matchup later; don't start over JAX this week.\n3. Tampa Bay Buccaneers DEF \u2014 FAAB $2. Second DEF stream option, same use case as above.\n4. Tyler Bass (K, BUF) \u2014 FAAB $2. Speculative kicker insurance only \u2014 Aubrey and Myers are both fine right now; grab only as future bye/bad-matchup cover.\n5. Dylan Sampson (RB, CLE) \u2014 FAAB $1. Pure speculative depth stash, not a start candidate.\nNo forced DEF/K/TE stream needed this week beyond the speculative adds above \u2014 Jaguars DEF, Aubrey at K, and Strange/Henry at TE are all fine as rostered.\n\nYAHOO \u2014 still no free-agent visibility (private league, no login), and the newest screenshot in your Drive folder is still from 2026-09-13 \u2014 now 46 days old. You do have a real, verified hole this week regardless: your 49ers DEF is on bye and you have no bench DEF on the last-known roster. That needs a Yahoo waiver add \u2014 can't tell you who's available without fresh screenshots or you checking the wire yourself.",
