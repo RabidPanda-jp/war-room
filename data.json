@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T06:20:40-08:00",
+  "updatedAt": "2026-11-05T06:55:00-08:00",
   "week": 9,
   "yahoo": {
     "updatedAt": "2026-09-13",
@@ -324,8 +324,8 @@
         "team": "JAX",
         "status": "Questionable",
         "call": "watch",
-        "note": "Missed a SECOND straight practice (ankle/foot) heading into Thursday, and one Jacksonville outlet is now floating that the team may ease or even rest him entirely on the short week. Recheck Wednesday night/Thursday morning before locking.",
-        "ifOut": "Chris Rodriguez Jr. (RB, JAX) \u2014 the direct handcuff, still unrostered in this league two weeks running. Claim him regardless of Tuten's status. Note: one report also tagged Rodriguez himself with an unconfirmed hand note \u2014 if he's unavailable too, LeQuint Allen and Ameer Abdullah are the other names in the mix."
+        "note": "DNP all three days this week (ankle/foot) \u2014 officially a game-time decision for tonight. Jacksonville's QB situation across the field makes this an even better spot if he goes (JAX now favored by a touchdown-plus with Baltimore starting an undrafted rookie QB), so don't bail on him without a confirmed inactive. Last call comes with inactives ~90 min before the 5:15pm PT kickoff.",
+        "ifOut": "Chris Rodriguez Jr. (RB, JAX) \u2014 the direct handcuff, still unrostered in this league. Claim him the moment Tuten is ruled out."
       },
       {
         "slot": "RB",
@@ -342,7 +342,7 @@
         "team": "BAL",
         "status": "",
         "call": "start",
-        "note": "No new injury found this week. Baltimore's backup-QB situation from last week is still the real risk, not his own health. 27.0 implied vs Jacksonville.",
+        "note": "Real downgrade, not an injury: Lamar Jackson (thumb, needed surgery) and Tyler Huntley (season-ending turf toe) are BOTH out tonight, so Baltimore is starting undrafted rookie Joe Fagnano — who is himself playing through an ankle issue. Implied total cratered from 27.0 to 18.0. Still start him, nothing close on your bench, but temper the ceiling hard.",
         "ifOut": ""
       },
       {
@@ -360,7 +360,7 @@
         "team": "JAX",
         "status": "",
         "call": "start",
-        "note": "Your only real TE with Henry hurt again \u2014 start regardless of matchup.",
+        "note": "Your only real TE with Henry hurt again \u2014 start regardless of matchup. Bonus: Baltimore's starting an undrafted rookie QB tonight, so a Jaguars blowout is in play, which could mean fewer garbage-time targets late but a clean floor otherwise.",
         "ifOut": ""
       },
       {
@@ -396,7 +396,7 @@
         "team": "JAX",
         "status": "",
         "call": "start",
-        "note": "Road vs a healthy Ravens offense (27.0 implied, no fresh Lamar Jackson concerns found this run) \u2014 a bit riskier than it looked last week, but still start, nothing better behind it on your bench.",
+        "note": "Massive upgrade overnight: Lamar Jackson (thumb surgery) and Tyler Huntley (season-ending turf toe) are both out, so Baltimore starts undrafted rookie Joe Fagnano tonight. Ravens' implied total fell from 27.0 to 18.0 and Jacksonville is now favored by 7.5-8.5. One of your best plays on the board this week.",
         "ifOut": ""
       }
     ],
@@ -521,17 +521,17 @@
         "pos": "RB",
         "opp": "BAL",
         "defRank": null,
-        "defRankNote": "No clean 2026 Ravens-vs-RB split found; BAL allowed 4.2 YPC (13th) in 2025 \u2014 Sharp Football Analysis.",
+        "defRankNote": "No clean 2026 Ravens-vs-RB split found; BAL allowed 4.2 YPC (13th) in 2025 \u2014 Sharp Football Analysis. Ravens' defense itself is unaffected by their own QB carnage.",
         "weather": {
           "impact": "none",
           "note": "outdoor (M&T Bank Stadium), Thursday night \u2014 no severe forecast confirmed this far out"
         },
         "vegas": {
-          "total": 49.5,
-          "spread": 4.5,
-          "impliedTeam": 22.5
+          "total": 43.5,
+          "spread": -7.5,
+          "impliedTeam": 25.5
         },
-        "takeaway": "22.5 implied as a road dog is secondary this week \u2014 a second straight DNP and talk of Jacksonville resting him outright on the short week is the real story."
+        "takeaway": "Line flipped hard \u2014 Jacksonville is now favored by 7.5-8.5 with Baltimore starting an undrafted rookie QB, which should mean more positive game script and clock-control volume for Tuten if he's active. Still a game-time call on the ankle/foot (DNP all week)."
       },
       {
         "slot": "RB",
@@ -565,11 +565,11 @@
           "note": "outdoor (M&T Bank Stadium), Thursday night \u2014 no severe forecast confirmed this far out"
         },
         "vegas": {
-          "total": 49.5,
-          "spread": -4.5,
-          "impliedTeam": 27.0
+          "total": 43.5,
+          "spread": 7.5,
+          "impliedTeam": 18.0
         },
-        "takeaway": "Stout Jaguars D offset by a 27.0 implied total \u2014 solid WR2 floor, no fresh injury concern found."
+        "takeaway": "Stout Jaguars D plus a cratered 18.0 implied total (Lamar Jackson and Tyler Huntley both out, undrafted rookie Joe Fagnano starting) \u2014 still the clear volume leader on this offense, but ceiling takes a real hit. CBS Sports."
       },
       {
         "slot": "WR",
@@ -603,11 +603,11 @@
           "note": "outdoor (M&T Bank Stadium), Thursday night \u2014 no severe forecast confirmed this far out"
         },
         "vegas": {
-          "total": 49.5,
-          "spread": 4.5,
-          "impliedTeam": 22.5
+          "total": 43.5,
+          "spread": -7.5,
+          "impliedTeam": 25.5
         },
-        "takeaway": "Average matchup, 22.5 implied \u2014 clear TE1 regardless, nothing behind him on your roster."
+        "takeaway": "Average matchup but implied total nudged up to 25.5 now that Jacksonville is favored \u2014 clear TE1 regardless, nothing behind him on your roster."
       },
       {
         "slot": "FLEX",
@@ -673,17 +673,17 @@
         "pos": "DEF",
         "opp": "BAL",
         "defRank": null,
-        "defRankNote": "DEF rank N/A \u2014 see opposing offense implied total. No fresh Lamar Jackson health concerns found as of this run.",
+        "defRankNote": "DEF rank N/A \u2014 see opposing offense implied total. Lamar Jackson (thumb surgery) and Tyler Huntley (season-ending turf toe) are both out; undrafted rookie Joe Fagnano starts for Baltimore \u2014 CBS Sports.",
         "weather": {
           "impact": "none",
           "note": "outdoor (M&T Bank Stadium), Thursday night \u2014 no severe forecast confirmed this far out"
         },
         "vegas": {
-          "total": 49.5,
-          "spread": -4.5,
-          "impliedTeam": 27.0
+          "total": 43.5,
+          "spread": 7.5,
+          "impliedTeam": 18.0
         },
-        "takeaway": "27.0 implied for a healthy Baltimore offense is only middling for a streaming DEF \u2014 start anyway, nothing better behind it."
+        "takeaway": "Ravens' implied total fell from 27.0 to 18.0 overnight with their third-string QB situation \u2014 one of your best streaming plays of the season, locked-in start."
       }
     ],
     "yahoo": [
@@ -881,22 +881,31 @@
   },
   "news": [
     {
-      "player": "Hunter Henry",
-      "team": "NE",
-      "headline": "Henry (foot) taken back to locker room again",
-      "summary": "Henry left Sunday's loss to Miami with a new foot injury and didn't return; it's unclear if this is tied to his earlier issue or a fresh one, and there's no word yet on an IR move for this specific injury.",
-      "source": "NBC Sports",
-      "url": "https://www.nbcsports.com/fantasy/football/player-news/2026-11-01/henry-foot-taken-back-to-locker-room-again",
-      "at": "2026-11-01T18:00:00Z"
-    },
-    {
       "player": "Bhayshul Tuten",
       "team": "JAX",
-      "headline": "Jaguars' Bhayshul Tuten misses second Week 9 practice",
-      "summary": "Tuten was a non-participant for a second straight day with an ankle/foot issue, and one Jaguars outlet floated that the team may ease or even rest him entirely for Thursday's short-week trip to Baltimore.",
-      "source": "Yahoo Sports",
-      "url": "https://sports.yahoo.com/articles/jaguars-bhayshul-tuten-misses-second-015540475.html",
-      "at": "2026-11-03T18:00:00Z"
+      "headline": "Jaguars' Bhayshul Tuten: Questionable for Thursday after no practice",
+      "summary": "Tuten didn't practice at all this week with an ankle/foot issue and is officially a game-time decision for tonight's Thursday-night trip to Baltimore, with Chris Rodriguez Jr. in line for a bigger role if he sits.",
+      "source": "CBS Sports",
+      "url": "https://www.cbssports.com/fantasy/football/news/jaguars-bhayshul-tuten-questionable-for-thursday-after-no-practice/",
+      "at": "2026-11-04T18:00:00Z"
+    },
+    {
+      "player": "Zay Flowers",
+      "team": "BAL",
+      "headline": "Ravens name Joe Fagnano starter for Week 9 matchup vs. Jaguars with Lamar Jackson, Tyler Huntley injured",
+      "summary": "Baltimore is starting undrafted rookie Joe Fagnano (playing through his own ankle issue) tonight after Lamar Jackson had thumb surgery and Tyler Huntley suffered a season-ending turf toe injury — a real hit to Flowers' ceiling even though he stays the offense's clear top target.",
+      "source": "CBS Sports",
+      "url": "https://www.cbssports.com/nfl/news/ravens-starting-qb-joe-fagnano-jaguars-lamar-jackson-tyler-huntley-injured/",
+      "at": "2026-11-03T20:00:00Z"
+    },
+    {
+      "player": "Jacksonville Jaguars",
+      "team": "JAX",
+      "headline": "Ravens name Joe Fagnano starter for Week 9 matchup vs. Jaguars with Lamar Jackson, Tyler Huntley injured",
+      "summary": "With Baltimore turning to undrafted rookie Joe Fagnano at QB after losing both Lamar Jackson and Tyler Huntley, Jacksonville's defense goes from a middling matchup to one of its best spots of the season and a heavy Vegas favorite.",
+      "source": "CBS Sports",
+      "url": "https://www.cbssports.com/nfl/news/ravens-starting-qb-joe-fagnano-jaguars-lamar-jackson-tyler-huntley-injured/",
+      "at": "2026-11-03T20:00:00Z"
     },
     {
       "player": "Michael Wilson",
@@ -927,8 +936,8 @@
     }
   ],
   "brief": {
-    "text": "GANGSTAS PARADISE (Sleeper) \u2014 Tuten's a DNP into Wednesday and Jacksonville may rest him Thursday, but Michael Wilson's rib tolerance is confirmed and Chris Rodriguez Jr. is STILL sitting there unclaimed.\nDo now: Claim Chris Rodriguez Jr. (RB, JAX) again \u2014 he's been free two waiver cycles running despite being Tuten's direct Thursday handcuff. Also grab Juwan Johnson (TE, NO), your only real TE depth with Henry hurt again. See the Waivers tab for bids and drops.\nLocks next 24h: none \u2014 your earliest lock is tomorrow (Thu) around 5:15pm PT (Tuten, Flowers, Strange, and your Jaguars DEF are all in the Baltimore/Jacksonville game).\nLineup: Michael Wilson moves to a confirmed start \u2014 he's playing through two broken ribs and still went 8-for-15 for 111 yards and a touchdown last week, that's pain tolerance, not a game-status risk. Tuten stays Watch: second straight DNP, and Jacksonville is reportedly weighing resting him outright on the short week \u2014 if he sits, start Chris Rodriguez Jr. once claimed (he himself has an unconfirmed hand note, so double-check Thursday). Everyone else holds; Sampson still has the best matchup on your roster by a mile.\nWaivers / trades: See the Waivers tab \u2014 Rodriguez Jr. and Juwan Johnson are the two to get done before Wednesday's clear. No trade this week.\n\nGAME OF THROWS (Yahoo) \u2014 still on 52-day-old screenshots, but real news moved: Pickens played through his Q tag fine, and Makai Lemon is now catching passes from backup QB Tanner McKee with Jalen Hurts on IR.\nDo now: Send fresh Yahoo screenshots \u2014 the newest on file is still from Sept 13, now 52 days old. Can't confirm your real Week 9 opponent, your actual bench, or the waiver wire without them.\nLocks next 24h: none on the researched schedule \u2014 your earliest Week 9 game is Sunday.\nLineup: Pickens stays Watch \u2014 he played through the shoulder/hamstring Q in Week 8 fine, but Dallas hasn't posted a Week 9 tag yet as of Wednesday; recheck Thursday. Makai Lemon downgrades to Watch \u2014 Jalen Hurts is still on IR (blood clot) and Tanner McKee is throwing him the ball now, real efficiency risk even in a plus matchup vs the Giants; he's still your best option, nothing to swap to on a stale bench. Michael Wilson moves to a confirmed start, same rib-tolerance logic as your Sleeper flex. Everyone else holds.\nWaivers / trades: No Yahoo visibility this run (private league, no login) \u2014 check the app yourself. No trade idea either; no trade.txt in the Drive folder.\n\nFYI: Four Jaguars still sit across your two rosters tied to Thursday's short week at Baltimore (Tuten/Strange/DEF on Sleeper, Parker Washington on Yahoo's bench); Dylan Sampson (Sleeper flex) is still literally Quinshon Judkins' (Yahoo RB2) direct backup. Small bonus: your Sleeper Week 9 opponent starts kicker Chris Boswell, who's on a bye \u2014 one less thing for them to beat you with.\nData: Sleeper live (Week 8 final, Week 9 lineup) \u00b7 Yahoo screenshots from 2026-09-13 (52 days stale \u2014 please drop fresh ones)",
-    "at": "2026-11-04T06:20:40-08:00",
+    "text": "GANGSTAS PARADISE (Sleeper) \u2014 Lamar Jackson and Tyler Huntley are BOTH out tonight, Baltimore is starting an undrafted rookie QB, and that just turned your Jaguars DEF into one of your best plays of the week while taking a bite out of Zay Flowers' ceiling.\nDo now: Nothing to transact \u2014 Tuten is a game-time decision and resolves itself at inactives, not before. If he's ruled out, claim Chris Rodriguez Jr. (RB, JAX) the moment it's confirmed; he's still sitting unclaimed.\nLocks next 24h: Tuten, Flowers, Strange, and your Jaguars DEF all lock tonight at 5:15pm PT (JAX @ BAL, Thursday Night Football).\nLineup: no roster changes \u2014 everyone you had starting is still starting. Jaguars DEF upgrades hard: Jackson had thumb surgery, Huntley has a season-ending turf toe, so undrafted rookie Joe Fagnano starts for Baltimore, and Jacksonville is now favored by 7.5-8.5. Zay Flowers downgrades in outlook only (same Fagnano situation cuts his implied total from 27.0 to 18.0) \u2014 still start him, nothing close behind him on your bench. Tuten stays Watch: DNP all week, true game-time call \u2014 if he's out, start Chris Rodriguez Jr. once added. Everyone else holds.\n\nGAME OF THROWS (Yahoo) \u2014 still on 53-day-old screenshots, and nothing from tonight's Ravens QB carnage touches a known Yahoo starter directly, but send fresh screenshots so I can actually tell you.\nDo now: Send fresh Yahoo screenshots \u2014 the newest on file is from Sept 13, now 53 days old. Can't confirm your real Week 9 opponent, your actual bench, or the waiver wire without them.\nLocks next 24h: none on the researched schedule \u2014 your earliest known Week 9 game is Sunday.\nLineup: no changes from last known. Pickens stays Watch \u2014 no fresh Week 9 practice designation found as of Thursday morning; recheck before Sunday. Makai Lemon stays Watch \u2014 Jalen Hurts still on IR, Tanner McKee still throwing him the ball. Michael Wilson stays a confirmed start, same rib-tolerance logic as your Sleeper flex. Everyone else holds.\n\nFYI: Four Jaguars still sit across your two rosters tied to tonight's Baltimore game (Tuten/Strange/DEF on Sleeper, Parker Washington on Yahoo's stale bench); Dylan Sampson (Sleeper flex) is still literally Quinshon Judkins' (Yahoo RB2) direct backup; Kyren Williams is healthy and still the Rams' clear starter ahead of your Yahoo RB2 Blake Corum, no change there.\nData: Sleeper live (Week 9 matchups/transactions) \u00b7 Yahoo screenshots from 2026-09-13 (53 days stale \u2014 please drop fresh ones)",
+    "at": "2026-11-05T06:55:00-08:00",
     "mode": "daily"
   },
   "waivers": {
