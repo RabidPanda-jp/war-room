@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-11-07T06:13:28-08:00",
+  "updatedAt": "2026-11-08T06:35:00-08:00",
   "week": 9,
   "yahoo": {
     "updatedAt": "2026-09-13",
     "week": 9,
     "opponent": "FrostFosterHome",
     "oppManager": "unknown — no current standings screenshot",
-    "record": "unknown — Yahoo screenshots stale since 2026-09-13 (now 54 days)",
-    "oppRecord": "unknown — Yahoo screenshots stale since 2026-09-13 (now 54 days)",
+    "record": "unknown — Yahoo screenshots stale since 2026-09-13 (now 56 days)",
+    "oppRecord": "unknown — Yahoo screenshots stale since 2026-09-13 (now 56 days)",
     "myProj": 105.98,
     "oppProj": 92.23,
     "myPts": null,
     "oppPts": null,
-    "winProb": "favorite on stale preseason schedule-projection only (105.98 vs 92.23) — not a real read, screenshots are 54 days stale",
+    "winProb": "favorite on stale preseason schedule-projection only (105.98 vs 92.23) — not a real read, screenshots are 56 days stale",
     "starters": [
       {
         "slot": "QB",
@@ -310,30 +310,12 @@
   "lineup": {
     "sleeper": [
       {
-        "slot": "QB",
-        "name": "Tyler Shough",
-        "team": "NO",
-        "status": "",
-        "call": "start",
-        "note": "Full practice participant again this week per NBC Sports; no new Week 9 flag beyond the known hand/hip issues he's been playing through all season. Line ticked to Saints -2.75/43 vs Cleveland in a dome — 23.0 implied, your only real QB option.",
-        "ifOut": ""
-      },
-      {
         "slot": "RB",
         "name": "Bhayshul Tuten",
         "team": "JAX",
         "status": "",
         "call": "start",
-        "note": "Thursday's game is complete — scored 8.9 at Baltimore. Nothing left to decide.",
-        "ifOut": ""
-      },
-      {
-        "slot": "RB",
-        "name": "Chase Brown",
-        "team": "CIN",
-        "status": "",
-        "call": "start",
-        "note": "No injury news found this week. Game in Madrid vs Atlanta carries the week's highest total (52.0) with Cincinnati -3 — 27.5 implied, strong RB2 spot. Locks earliest of your roster (~6:30am PT Sunday).",
+        "note": "Thursday's game is complete — scored 8.9 at Baltimore. Locked, nothing left to decide.",
         "ifOut": ""
       },
       {
@@ -342,16 +324,7 @@
         "team": "BAL",
         "status": "",
         "call": "start",
-        "note": "Thursday's game is complete — scored 5.3. Nothing to change.",
-        "ifOut": ""
-      },
-      {
-        "slot": "WR",
-        "name": "Tee Higgins",
-        "team": "CIN",
-        "status": "",
-        "call": "start",
-        "note": "No injury news found this week — healthy. Same Madrid game as Chase Brown, 27.5 implied, soft Falcons defense. Locks ~6:30am PT Sunday with Brown.",
+        "note": "Thursday's game is complete — scored 5.3. Locked, nothing to change.",
         "ifOut": ""
       },
       {
@@ -360,34 +333,7 @@
         "team": "JAX",
         "status": "",
         "call": "start",
-        "note": "Thursday's game is complete — 4.2 points, a quiet floor game. Your only real TE option either way.",
-        "ifOut": ""
-      },
-      {
-        "slot": "FLEX",
-        "name": "Michael Wilson",
-        "team": "ARI",
-        "status": "Questionable",
-        "call": "start",
-        "note": "No new setback found on the broken ribs — Arizona still hasn't issued a Week 9 practice designation as of this run. Brutal Seattle matchup (15.5 implied, Seahawks are this week's top-ranked overall defense per RotoBaller), but he's been producing through it — trust the role.",
-        "ifOut": "Greg Dortch (WR, ARI) — only if he's downgraded before Sunday."
-      },
-      {
-        "slot": "FLEX",
-        "name": "Woody Marks",
-        "team": "HOU",
-        "status": "",
-        "call": "start",
-        "note": "No injury news found. New this run: a fantasy insight has Marks handling a 61% carry share in each of the last two games despite the David Montgomery committee — he's clearly still the lead back by usage, not just by old depth-chart projections. At the Chargers (SoFi, a dome), 22.5 implied.",
-        "ifOut": ""
-      },
-      {
-        "slot": "K",
-        "name": "Brandon Aubrey",
-        "team": "DAL",
-        "status": "",
-        "call": "start",
-        "note": "Line held near Cowboys -5.5/51.5 at Indianapolis (dome) — 28.5 implied, the highest team total on your roster. Clean K1 start.",
+        "note": "Thursday's game is complete — 4.2 points, a quiet floor game. Locked.",
         "ifOut": ""
       },
       {
@@ -396,8 +342,71 @@
         "team": "JAX",
         "status": "",
         "call": "start",
-        "note": "Thursday's game is complete — JAX DEF posted 11.0 at Baltimore. One of the better DEF scores on the board this week.",
+        "note": "Thursday's game is complete — JAX DEF posted 11.0 at Baltimore. Locked, one of the better DEF scores on the board this week.",
         "ifOut": ""
+      },
+      {
+        "slot": "RB",
+        "name": "Chase Brown",
+        "team": "CIN",
+        "status": "",
+        "call": "start",
+        "note": "Locks earliest of your live roster, ~6:30am PT in Madrid. No injury news found. Week's highest total (52.0) with Cincinnati -3 — 27.5 implied, strong RB2 spot.",
+        "ifOut": ""
+      },
+      {
+        "slot": "WR",
+        "name": "Tee Higgins",
+        "team": "CIN",
+        "status": "",
+        "call": "start",
+        "note": "Locks with Brown, ~6:30am PT in Madrid. No injury news found — healthy. Same 27.5-implied game, soft Falcons defense.",
+        "ifOut": ""
+      },
+      {
+        "slot": "QB",
+        "name": "Tyler Shough",
+        "team": "NO",
+        "status": "",
+        "call": "start",
+        "note": "Locks ~10:00am PT, dome vs Cleveland. No new Week 9 flag beyond the known hand/hip issues he's played through all season — still your only real QB option. Saints -2.75/43, 22.9 implied.",
+        "ifOut": ""
+      },
+      {
+        "slot": "K",
+        "name": "Brandon Aubrey",
+        "team": "DAL",
+        "status": "",
+        "call": "start",
+        "note": "Locks ~10:00am PT, dome at Indianapolis. Cowboys -5.5/51.5 — 28.5 implied, the highest team total on your roster. Clean K1 start.",
+        "ifOut": ""
+      },
+      {
+        "slot": "FLEX",
+        "name": "Adonai Mitchell",
+        "team": "NYJ",
+        "status": "",
+        "call": "sit",
+        "note": "Currently live-rostered as your FLEX, but this is the wrong call — bench him. His role is still unresolved coming off a finger injury (per multiple outlets this run) and he draws the week's toughest matchup (at Kansas City). Swap him out for Woody Marks before Marks' own kickoff (~1:05pm PT) — that's your real deadline, not Mitchell's earlier 10:00am PT kickoff.",
+        "ifOut": ""
+      },
+      {
+        "slot": "FLEX",
+        "name": "Woody Marks",
+        "team": "HOU",
+        "status": "",
+        "call": "start",
+        "note": "Should be in this FLEX instead of Adonai Mitchell — get him in before his ~1:05pm PT kickoff at the Chargers. RotoBaller (Nov 5) has him trending back up post-bye, and he's logging an 83%-snap, 70%-carry workhorse role per this run's usage data. Dome game, 22.5 implied.",
+        "ifOut": ""
+      },
+      {
+        "slot": "FLEX",
+        "name": "Michael Wilson",
+        "team": "ARI",
+        "status": "Questionable",
+        "call": "start",
+        "note": "Locks last on your roster, ~1:25pm PT at Seattle. Limited in practice all week on the broken ribs but trending toward playing per Fantasy Life's Nov 7 note — trust the role even against this week's top-ranked defense.",
+        "ifOut": "Greg Dortch (WR, ARI) — only if he's downgraded before Sunday."
       }
     ],
     "yahoo": [
@@ -407,7 +416,7 @@
         "team": "LAR",
         "status": "",
         "call": "start",
-        "note": "Iced his elbow after Sunday's win over the Chargers and is dealing with some soreness, but RotoBaller doubts it keeps him out vs Washington. Road favorite at the league's worst defense, 26.5 implied (LAR -5/48).",
+        "note": "Locks ~10:00am PT at Washington. Iced his elbow after a recent win and dealt with soreness, but reports don't treat it as a real threat to play. Road favorite at the league's worst defense, 26.5 implied (LAR -5/48).",
         "ifOut": ""
       },
       {
@@ -416,7 +425,7 @@
         "team": "LAR",
         "status": "",
         "call": "start",
-        "note": "Same plus Rams script (26.5 implied). Still behind Kyren Williams on the depth chart — floor play for lack of a better option. No new injury found.",
+        "note": "Locks ~10:00am PT with Stafford. Same plus Rams script (26.5 implied). Still behind Kyren Williams on the depth chart — floor play for lack of a better option. No new injury found.",
         "ifOut": ""
       },
       {
@@ -425,7 +434,7 @@
         "team": "CLE",
         "status": "",
         "call": "start",
-        "note": "At New Orleans (dome) — Saints remain the league's worst run defense. No Week 9 injury news found. His own backup Dylan Sampson is getting this exact matchup on your Sleeper bench — confident start regardless of the modest 20.1 implied team total.",
+        "note": "Locks ~10:00am PT at New Orleans (dome) — Saints remain the league's worst run defense. No Week 9 injury news found. His own backup Dylan Sampson is getting this exact matchup on your Sleeper bench — confident start regardless of the modest 20.1 implied team total.",
         "ifOut": ""
       },
       {
@@ -434,8 +443,8 @@
         "team": "DAL",
         "status": "Q",
         "call": "watch",
-        "note": "New this run: RotoBaller says Pickens was \"moving well\" in Wednesday's practice and is expected to play barring a setback — still no official Week 9 tag found as of this run. Recheck Sunday morning before the 1pm ET kickoff at Indianapolis.",
-        "ifOut": "Parker Washington (WR, JAX) — your best last-known bench WR; confirm he's still rostered, this screenshot is now 55 days stale."
+        "note": "Locks ~10:00am PT at Indianapolis. Updated this run: logged as a limited Wednesday practice participant with the hamstring and carries a Questionable tag into Sunday, but beat coverage still expects him active barring a setback. Recheck right before kickoff.",
+        "ifOut": "Parker Washington (WR, JAX) — your best last-known bench WR; confirm he's still rostered, this screenshot is now 56 days stale."
       },
       {
         "slot": "WR",
@@ -443,7 +452,7 @@
         "team": "NYJ",
         "status": "",
         "call": "start",
-        "note": "No injury news found — healthy. At Kansas City (top-10 overall D, -10 favorite), 18.4 implied as a road dog. Start on role/target share.",
+        "note": "Locks ~10:00am PT at Kansas City (top-10 overall D, -10 favorite), 18.4 implied as a road dog. No injury news found — start on role/target share.",
         "ifOut": ""
       },
       {
@@ -452,7 +461,7 @@
         "team": "PHI",
         "status": "",
         "call": "watch",
-        "note": "No new injury news found. Jalen Hurts still on IR, Tanner McKee still at QB — real efficiency risk even in a plus matchup (Giants D shaky, 18.0 implied). Still your best option on a stale bench.",
+        "note": "Locks ~10:00am PT vs the Giants. No new injury news found. Jalen Hurts still on IR, Tanner McKee still at QB — real efficiency risk even in a plus matchup (Giants D shaky, 18.0 implied). Still your best option on a stale bench.",
         "ifOut": ""
       },
       {
@@ -461,8 +470,17 @@
         "team": "NYG",
         "status": "",
         "call": "start",
-        "note": "No Week 9 injury news found — clean bill of health coming off the bye. Philadelphia remains the league's stingiest TE defense, but the role (2nd among NFL TEs in receptions) is the case, not the matchup. 21.3 implied.",
-        "ifOut": "Chig Okonkwo (TE, WAS) — healthy per last check; confirm he's still on your actual roster, this screenshot is 55 days stale."
+        "note": "Locks ~10:00am PT at Philadelphia. No Week 9 injury news found — clean bill of health coming off the bye. Philadelphia remains the league's stingiest TE defense, but the role (2nd among NFL TEs in receptions) is the case, not the matchup. 21.3 implied.",
+        "ifOut": "Chig Okonkwo (TE, WAS) — healthy per last check; confirm he's still on your actual roster, this screenshot is 56 days stale."
+      },
+      {
+        "slot": "DEF",
+        "name": "49ers",
+        "team": "SF",
+        "status": "",
+        "call": "start",
+        "note": "Locks ~1:05pm PT vs Las Vegas. Line moved further in SF's favor this week (SF -9.5/52.0, 30.75 implied) — the highest implied total on either of your rosters.",
+        "ifOut": "No bench DEF on last-known roster — would need a Yahoo waiver add; can't verify availability without login."
       },
       {
         "slot": "W/R/T",
@@ -470,7 +488,7 @@
         "team": "ARI",
         "status": "Q",
         "call": "start",
-        "note": "Same confirmed broken-ribs situation as your Sleeper flex — no new setback found. Tough Seattle secondary (top-ranked D this week), 15.5 implied, but trust the role.",
+        "note": "Locks last on this roster, ~1:25pm PT at Seattle. Same confirmed broken-ribs situation as your Sleeper FLEX — limited in practice all week but trending toward playing per this run's check. Tough Seattle secondary (top-ranked D this week), 15.5 implied, but trust the role.",
         "ifOut": ""
       },
       {
@@ -479,17 +497,8 @@
         "team": "SEA",
         "status": "",
         "call": "start",
-        "note": "Home favorite vs Arizona, 26.0 implied, Lumen Field's covered bowl blocks most wind. No injury concern.",
+        "note": "Locks ~1:25pm PT with M. Wilson. Home favorite vs Arizona, 26.0 implied, Lumen Field's covered bowl blocks most wind. No injury concern.",
         "ifOut": ""
-      },
-      {
-        "slot": "DEF",
-        "name": "49ers",
-        "team": "SF",
-        "status": "",
-        "call": "start",
-        "note": "Home vs Las Vegas — line moved further in SF's favor this week (SF -9.5/52.0, 30.75 implied, highest implied total on either of your rosters). This run couldn't independently confirm Las Vegas's current Week 9 skill-position designations, but a strong matchup either way.",
-        "ifOut": "No bench DEF on last-known roster — would need a Yahoo waiver add; can't verify availability without login."
       }
     ]
   },
@@ -626,7 +635,26 @@
           "spread": -10.5,
           "impliedTeam": 15.5
         },
-        "takeaway": "Toughest matchup on the roster (ARI -10.5 road dog, 15.5 implied) against the week's top-ranked defense. No new setback found on the broken ribs — trust the role over the raw grade."
+        "takeaway": "Toughest matchup on the roster (ARI -10.5 road dog, 15.5 implied) against the week's top-ranked defense. Limited in practice all week on the broken ribs but trending toward playing — trust the role over the raw grade."
+      },
+      {
+        "slot": "FLEX",
+        "name": "Adonai Mitchell",
+        "team": "NYJ",
+        "pos": "WR",
+        "opp": "KC",
+        "defRank": 9,
+        "defRankNote": "Kansas City's overall defense graded top-10 (9th, PrizePicks) — tough spot, unchanged from the same read on Garrett Wilson's Yahoo matchup.",
+        "weather": {
+          "impact": "none",
+          "note": "outdoor (GEHA Field at Arrowhead) — no severe forecast confirmed this far out"
+        },
+        "vegas": {
+          "total": 46.75,
+          "spread": 10.0,
+          "impliedTeam": 18.4
+        },
+        "takeaway": "Currently your live FLEX, but shouldn't be — his role is still unresolved coming off a finger injury and this is the week's toughest matchup on the roster (road dog, 18.4 implied). Bench him for Woody Marks."
       },
       {
         "slot": "FLEX",
@@ -645,7 +673,7 @@
           "spread": -4.5,
           "impliedTeam": 22.5
         },
-        "takeaway": "HOU -4.5/40.5 holds Marks at 22.5 implied. New this run: a fantasy insight has him at a 61% carry share in each of the last two games — he's the lead back by usage now, not just by old depth-chart projection, despite the Montgomery committee."
+        "takeaway": "HOU -4.5/40.5 holds Marks at 22.5 implied. Reconfirmed this run (RotoBaller, Nov 5): he's trending back up post-bye with an 83%-snap, 70%-carry workhorse role. He's currently benched on your live Sleeper roster in favor of Adonai Mitchell — that's backwards; swap Marks back in before his ~1:05pm PT kickoff."
       },
       {
         "slot": "K",
@@ -881,46 +909,46 @@
   },
   "news": [
     {
+      "player": "Michael Wilson",
+      "team": "ARI",
+      "headline": "Michael Wilson Still Managing Two Broken Ribs",
+      "summary": "Wilson remains limited in practice on the broken ribs he's been playing through, but nothing this run suggests it threatens his snaps against Seattle on Sunday.",
+      "source": "RotoBaller",
+      "url": "https://www.rotoballer.com/?p=1984767",
+      "at": "2026-11-06T00:00:00Z"
+    },
+    {
       "player": "George Pickens",
       "team": "DAL",
-      "headline": "George Pickens \"moving well\" in Wednesday's practice",
-      "summary": "Pickens looked good moving around in Wednesday's practice and is expected to be active Sunday at Indianapolis barring a setback, though Dallas still hadn't posted an official Week 9 practice designation as of this run.",
+      "headline": "George Pickens Limited on Wednesday With Hamstring Issue",
+      "summary": "Pickens was a limited practice participant again Wednesday on the hamstring and now carries a Questionable tag into Sunday's game at Indianapolis, though he's still expected to play barring a setback.",
       "source": "RotoBaller",
-      "url": "https://www.rotoballer.com/?p=1983799",
+      "url": "https://www.rotoballer.com/?p=1983995",
+      "at": "2026-11-04T00:00:00Z"
+    },
+    {
+      "player": "Woody Marks",
+      "team": "HOU",
+      "headline": "Woody Marks Back on the Rise After Bye Week",
+      "summary": "Marks is trending back up after Houston's bye, with workload data showing him as the clear lead back by usage over the Montgomery committee heading into the Chargers game.",
+      "source": "RotoBaller",
+      "url": "https://www.rotoballer.com/player-news/woody-marks-back-on-the-rise-after-bye-week/1984542",
       "at": "2026-11-05T00:00:00Z"
     },
     {
       "player": "Hunter Henry",
       "team": "NE",
-      "headline": "Hunter Henry absent from practice on Wednesday",
-      "summary": "Henry did not appear at the media-access portion of Wednesday's practice as he continues to deal with the foot injury that knocked him out of the Week 8 win over Miami, leaving his Week 9 status unresolved.",
-      "source": "RotoBaller",
-      "url": "https://www.rotoballer.com/?p=1983818",
-      "at": "2026-11-04T00:00:00Z"
-    },
-    {
-      "player": "Matthew Stafford",
-      "team": "LAR",
-      "headline": "Matthew Stafford Dealing With Some Elbow Soreness",
-      "summary": "Stafford was seen icing his right elbow after last Sunday's win over the Chargers, but RotoBaller doesn't expect the soreness to keep him out of this week's game against Washington.",
-      "source": "RotoBaller",
-      "url": "https://www.rotoballer.com/?p=1982367",
-      "at": "2026-11-03T00:00:00Z"
-    },
-    {
-      "player": "Michael Wilson",
-      "team": "ARI",
-      "headline": "Michael Wilson Dominates Despite Playing Through Broken Ribs",
-      "summary": "Wilson is playing through two broken ribs suffered earlier this season and still put up a huge Week 8 performance, with Arizona yet to issue a Week 9 practice designation or recovery timetable as of this run.",
-      "source": "RotoBaller",
-      "url": "https://www.rotoballer.com/?p=1981545",
-      "at": "2026-11-02T00:00:00Z"
+      "headline": "Hunter Henry Status Uncertain for Week 9",
+      "summary": "Henry's foot injury from the Week 8 Miami win is still unresolved heading into the Packers game, with the Patriots giving no firm timetable and a bigger role possible for Eli Raridon if he sits.",
+      "source": "The Fantasy Footballers",
+      "url": "https://www.thefantasyfootballers.com/news/645765/hunter-henry-status-uncertain-for-week-9/",
+      "at": "2026-11-06T00:00:00Z"
     }
   ],
   "brief": {
-    "text": "GANGSTAS PARADISE (Sleeper) — Thursday banked 29.4 points clean; Saturday's check confirms the Marks-over-Sampson call with real usage data, not just role theory.\nDo now: nothing to transact. New this run: Woody Marks has handled a 61% carry share in each of his last two games despite Houston's David Montgomery committee — he's the lead back by actual usage, reinforcing last night's call to start him over Dylan Sampson.\nLocks next 24h: Chase Brown and Tee Higgins (Bengals-Falcons in Madrid, ~6:30am PT Sunday) — nothing else locks within 24 hours.\nLineup: no changes. Michael Wilson stays a confirmed start on Watch — still playing through broken ribs, no new setback found, even though Seattle grades out as this week's No. 1 overall defense. Aubrey's line held near Cowboys -5.5/51.5, 28.5 implied, still the board's top K1.\n\nGAME OF THROWS (Yahoo) — SCREENSHOTS ARE NOW 55 DAYS STALE (since Sept 13) — please drop fresh ones, this is the seventh-plus run asking.\nDo now: send fresh Yahoo screenshots. Can't confirm your real Week 9 opponent, your actual bench, or the waiver wire without them — everything below is projected off a 55-day-old roster snapshot.\nLocks next 24h: none on the researched schedule — your earliest known Week 9 starter locks Sunday afternoon.\nLineup: no changes from last known roster. George Pickens stays Watch — new this run, RotoBaller reports he looked \"moving well\" in Wednesday's practice and is expected to play barring a setback, but no official tag has surfaced yet; recheck Sunday morning. Makai Lemon stays Watch — Jalen Hurts still on IR, Tanner McKee still at QB. Stafford confirmed to start despite some post-game elbow soreness — not considered a real risk. Everyone else holds.\n\nFYI: Michael Wilson (ARI) starts on both of your rosters, still playing through confirmed broken ribs with no new setback found, against the week's top-ranked defense (Seattle) — the single biggest shared variable across both teams. Dylan Sampson (benched on Sleeper) is literally Quinshon Judkins' (your Yahoo RB2) backup, and both are tied to the same dead-last Saints run defense this week.\nData: Sleeper live (Week 9 matchups/transactions/rosters) · Yahoo screenshots from 2026-09-13 (55 days stale — please drop fresh ones)",
-    "at": "2026-11-07T06:13:28-08:00",
-    "mode": "daily"
+    "text": "GANGSTAS PARADISE (Sleeper) — Your live roster has the wrong FLEX in: bench Adonai Mitchell for Woody Marks before 1:05pm PT.\nDo now: swap Woody Marks (HOU) in for Adonai Mitchell (NYJ) in your second FLEX. Marks is trending back up post-bye with an 83%-snap, 70%-carry workhorse role (RotoBaller, Nov 5) and a plus dome matchup at the Chargers (22.5 implied). Mitchell's role is still unresolved off a finger injury and he's drawing the week's toughest matchup, at Kansas City. Marks' own kickoff (~1:05pm PT) is your real deadline — not Mitchell's earlier one.\nLocks next 24h, in order: Chase Brown + Tee Higgins (~6:30am PT, Madrid — essentially now), Tyler Shough + Brandon Aubrey (~10:00am PT, both dome games), the FLEX slot itself (~10:00am PT, same window as Mitchell's game, but Marks doesn't lock until his own 1:05pm PT kickoff), Michael Wilson (~1:25pm PT @ Seattle).\nLineup: Thursday already banked clean — Tuten 8.9, Flowers 5.3, Strange 4.2, Jaguars DEF 11.0, all final, no changes. Today: Brown and Higgins start clean in the week's highest-total game (27.5 implied). Shough and Aubrey start clean in their domes. Michael Wilson stays a confirmed start on Questionable — still managing broken ribs, limited in practice all week, but trending toward playing even against Seattle's No. 1-ranked defense; if he's a late scratch, start Greg Dortch. The only real decision left is the FLEX: get Marks in for Mitchell.\n\nGAME OF THROWS (Yahoo) — SCREENSHOTS ARE NOW 56 DAYS STALE (since Sept 13, and even that snapshot was your actual Week 1 roster) — please drop fresh ones before next Sunday, this is the eighth-plus run asking.\nDo now: send fresh Yahoo screenshots. I cannot confirm your real Week 9 opponent, your current bench, or whether this roster has even changed since Week 1 — everything below is carried forward from that 56-day-old snapshot.\nLocks next 24h, in order: Stafford, Corum, Judkins, Pickens, Garrett Wilson, Lemon, and Likely all lock together around 10:00am PT; the 49ers DEF locks ~1:05pm PT; Michael Wilson and Jason Myers lock last, ~1:25pm PT.\nLineup: George Pickens stays Watch — updated this run, he's logged as limited again Wednesday with the hamstring and carries a Questionable tag, but is still expected to play; recheck right before his 10:00am PT kickoff. Makai Lemon stays Watch on the Jalen Hurts/Tanner McKee situation. Michael Wilson starts on Questionable, same ribs situation as your Sleeper FLEX. Everyone else holds clean.\n\nFYI: Michael Wilson (ARI) starts on both of your rosters, still managing broken ribs against the week's top-ranked defense (Seattle) — the single biggest shared variable across both teams this week.\nData: Sleeper live (Week 9 matchups/transactions/rosters) · Yahoo screenshots from 2026-09-13 (56 days stale — please drop fresh ones)",
+    "at": "2026-11-08T06:35:00-08:00",
+    "mode": "sunday"
   },
   "waivers": {
     "text": "SLEEPER — 1. Chris Rodriguez Jr. (RB, JAX) — still completely unrostered in this league two weeks running, and still Bhayshul Tuten's direct Thursday handcuff; Tuten just missed a second straight practice and Jacksonville may rest him outright. FAAB $3 — drop Adonai Mitchell (your least-used bench WR). 2. Juwan Johnson (TE, NO) — your real TE need; he's the Saints' clear TE1 and catches passes from your own starting QB Tyler Shough, so the add also insures Shough's floor. FAAB $4 — drop Jordan Watkins (buried WR4 in SF). 3. Roschon Johnson (RB, CHI) — has taken over as Chicago's clear No. 2 RB behind Swift with Kyle Monangai (turf toe) still out; real standalone flex value. FAAB $3 — drop Woody Marks (Houston's backfield timeshare has gotten muddier). 4. Seth McGowan (RB, IND) — direct backup/handcuff to workhorse Jonathan Taylor; cheap speculative insurance given Tuten and M. Wilson are both banged up elsewhere on your roster. FAAB $2 — drop Corey Kiner (buried behind others in New England's backfield). 5. Makai Lemon (WR, PHI) — yes, the same Makai Lemon on your Yahoo team; he's available here too and Eagles WR volume is real with Smith/Wicks both banged up, even with backup QB Tanner McKee throwing to him now. FAAB $2 — drop Antonio Williams (lowest-opportunity piece left). With $36 in the bank, Rodriguez + Johnson is the clean priority if you only do two; all five together still leaves $22 unspent. DEF/K: nothing beats what you already have — Jaguars DEF at Baltimore on a short week vs. a backup-depleted Ravens offense and Aubrey in a dome at Indy are both fine as-is, no stream worth the FAAB.\n\nYAHOO — no Yahoo free-agent or roster visibility this run (private league, no login, newest screenshot still from 2026-09-13 — now 52 days stale). Drop fresh screenshots or check the Yahoo app yourself for the actual waiver wire, and confirm Parker Washington, Chig Okonkwo, Travis Etienne Jr., and Tank Bigsby are still on your bench.",
